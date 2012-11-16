@@ -19,6 +19,7 @@ gem 'chosen-rails'
 gem 'thin'
 gem "paperclip"
 gem 'jquery_datepicker'
+gem 'cancan'
 
 gem 'awesome_nested_fields'
 
