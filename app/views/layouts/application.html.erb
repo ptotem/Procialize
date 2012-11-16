@@ -20,14 +20,13 @@
           <li><a href="#"><i class="icon-user"></i></a></li>
           <li><a href="#"><i class="icon-glass"></i></a></li>
           <li><a href="#"><i class="icon-envelope"></i></a></li>
-          <li><a href="#"><i class="icon-comment"></i></a></li>
+          <li><a href="#"></a></li>
+          <li class="pull-right">
+            <%= link_to destroy_user_session_path, :method => :delete do %>
+                <i class="icon-off"></i>
+            <% end %>
+          </li>
         </ul>
-        <div class="pull-right">
-          <%= current_user.email %>
-          <span class="nav_link">
-              | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-            </span>
-        </div>
       </div>
     </div>
   </div>
