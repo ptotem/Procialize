@@ -10,11 +10,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <%= yield %>
-<%= js extend_gritter :position => :bottom_left %>
-<%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
-<%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
-
 </body>
 </html>
