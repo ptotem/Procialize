@@ -10,46 +10,30 @@
 </head>
 <body>
 
-<div id="wrapper">
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <a class="brand" href="/">Procialize</a>
-      <ul class="nav">
-        <li><a href="#"><i class="icon-home"></i></a></li>
-        <li><a href="#"><i class="icon-user"></i></a></li>
-        <li><a href="#"><i class="icon-glass"></i></a></li>
-        <li><a href="#"><i class="icon-envelope"></i></a></li>
-        <li><a href="#"></a></li>
-        <li class="pull-right">
-          <%= link_to destroy_user_session_path, :method => :delete do %>
-              <i class="icon-off"></i>
-          <% end %>
-        </li>
-      </ul>
-    </div>
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">Procialize</a>
+    <ul class="nav">
+      <li><a href="#"><i class="icon-home"></i></a></li>
+      <li><a href="#"><i class="icon-user"></i></a></li>
+      <li><a href="#"><i class="icon-glass"></i></a></li>
+      <li><a href="#"><i class="icon-envelope"></i></a></li>
+      <li><a href="#"></a></li>
+      <li class="pull-right">
+        <%= link_to destroy_user_session_path, :method => :delete do %>
+            <i class="icon-off"></i>
+        <% end %>
+      </li>
+    </ul>
   </div>
+</div>
 
-  <div class="container">
-
-    <div class="page-header" style="height:100px"></div>
-    <div style="position:absolute;margin-top: -60px;" class="span12">
-      <h2>  <%= yield(:page_header) %></h2>
-    </div>
-  </div>
-  <div class="container">
-
-    <div class="content">
-      <%= js extend_gritter :position => :bottom_right %>
-      <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
-      <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
-      <%= yield %>
-    </div>
-
-    <% if request.fullpath=="/" %>
-
-
-
-    <% end %>
+<div class="container">
+  <div class="content">
+    <%= js extend_gritter :position => :bottom_right %>
+    <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
+    <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
+    <%= yield %>
   </div>
 </div>
 
