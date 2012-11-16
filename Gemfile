@@ -20,6 +20,7 @@ gem 'thin'
 gem "paperclip"
 gem 'jquery_datepicker'
 gem 'cancan'
+gem 'gritter'
 
 gem 'awesome_nested_fields'
 

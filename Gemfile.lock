@@ -73,6 +73,7 @@ GEM
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
     geocoder (1.1.5)
+    gritter (1.0.2)
     haml (3.1.7)
     hike (1.2.1)
     i18n (0.6.1)
@@ -190,6 +191,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   geocoder
+  gritter
   jquery-rails
   jquery_datepicker
   paperclip
