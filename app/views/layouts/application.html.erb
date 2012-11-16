@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div class="navbar">
+<div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <a class="brand" href="/">Procialize</a>
     <ul class="nav">
@@ -28,7 +28,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container" style="margin-top: 40px;">
   <div class="content">
     <%= js extend_gritter :position => :bottom_right %>
     <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
