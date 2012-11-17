@@ -75,6 +75,7 @@ GEM
     geocoder (1.1.5)
     gritter (1.0.2)
     haml (3.1.7)
+    hashie (1.2.0)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -98,6 +99,15 @@ GEM
     multi_json (1.3.7)
     nested_form (0.2.3)
     nokogiri (1.5.5)
+    oauth (0.4.7)
+    omniauth (1.1.0)
+      hashie (~> 1.2)
+      rack
+    omniauth-linkedin (0.0.8)
+      omniauth-oauth (~> 1.0)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
     orm_adapter (0.4.0)
     paperclip (3.3.1)
       activemodel (>= 3.0.0)
@@ -194,6 +204,8 @@ DEPENDENCIES
   gritter
   jquery-rails
   jquery_datepicker
+  omniauth
+  omniauth-linkedin
   paperclip
   rails (= 3.2.6)
   rails_admin

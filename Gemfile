@@ -21,6 +21,8 @@ gem "paperclip"
 gem 'jquery_datepicker'
 gem 'cancan'
 gem 'gritter'
+gem 'omniauth'
+gem 'omniauth-linkedin'
 
 gem 'awesome_nested_fields'
 

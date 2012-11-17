@@ -18,8 +18,9 @@
       <%= f.password_field :password, :class => "input-block-level", :placeholder => "Enter password" %>
       <br>
       <%= f.submit "Sign in", :class => "btn btn-large btn-primary" %>
-
+      <%= link_to image_tag("log-in-linkedin-large.png"), user_omniauth_authorize_path(:linkedin) %>
   <% end %>
+
 
 </div>
 
