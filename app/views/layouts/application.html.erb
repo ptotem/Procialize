@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
   <%= stylesheet_link_tag "bootstrap-responsive.min", :media => "all" %>
+  <%= stylesheet_link_tag "procialize_styles", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
@@ -15,17 +16,10 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <a class="brand" href="/">Procialize</a>
-    <ul class="nav" style="margin-top: -5px;">
-      <li><a href="#"><%= image_tag "home.png" %></a></li>
-      <li><a href="#"><i class="icon-user"></i></a></li>
-      <li><a href="#"><i class="icon-glass"></i></a></li>
-      <li><a href="#"><i class="icon-envelope"></i></a></li>
-      <li><a href="#"></a></li>
-      <li class="pull-right">
-        <%= link_to destroy_user_session_path, :method => :delete do %>
-            <i class="icon-off"></i>
-        <% end %>
-      </li>
+    <ul class="nav pull-right" style="margin-top: -5px;">
+      <li><%= link_to image_tag("event.png"), root_path %></li>
+      <li><%= link_to image_tag("delegate.png"), root_path %></li>
+      <li class="active"><%= link_to image_tag("home.png"), root_path %></li>
     </ul>
   </div>
 </div>
