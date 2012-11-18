@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117115440) do
+ActiveRecord::Schema.define(:version => 20121118172143) do
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(:version => 20121117115440) do
     t.datetime "updated_at",                             :null => false
     t.string   "provider"
     t.string   "uid"
+    t.string   "name"
+    t.string   "headline"
+    t.string   "industry"
+    t.string   "picture"
+    t.string   "public_profile"
+    t.string   "location"
+    t.string   "token"
+    t.string   "secret"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -234,3 +234,8 @@ Devise.setup do |config|
   config.omniauth :linkedin, 'dr6pt80d3n8a', 'EO46hBzTps3IsEvF', :scope => 'r_fullprofile r_emailaddress r_network', :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location", "connections"]
 
 end
+
+LinkedIn.configure do |config|
+  config.token = 'dr6pt80d3n8a'
+  config.secret = 'EO46hBzTps3IsEvF'
+end
