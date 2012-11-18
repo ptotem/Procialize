@@ -231,7 +231,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
   require "omniauth-linkedin"
-  config.omniauth :linkedin, 'dr6pt80d3n8a', 'EO46hBzTps3IsEvF', :scope => 'r_fullprofile r_emailaddress r_network', :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location", "connections"]
+  config.omniauth :linkedin, 'dr6pt80d3n8a', 'EO46hBzTps3IsEvF', :scope => 'r_fullprofile r_emailaddress r_network', :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location", "positions", "educations"]
 
 end
 

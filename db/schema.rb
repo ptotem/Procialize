@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121118172143) do
+ActiveRecord::Schema.define(:version => 20121118203913) do
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -47,8 +47,14 @@ ActiveRecord::Schema.define(:version => 20121118172143) do
     t.string   "picture"
     t.string   "public_profile"
     t.string   "location"
+    t.string   "positions"
+    t.string   "educations"
     t.string   "token"
     t.string   "secret"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
