@@ -8,8 +8,6 @@ class AddProfileFieldsToUsers < ActiveRecord::Migration
     add_column :users, :picture, :string
     add_column :users, :public_profile, :string
     add_column :users, :location, :string
-    add_column :users, :positions, :string
-    add_column :users, :educations, :string
     add_column :users, :token, :string
     add_column :users, :secret, :string
   end

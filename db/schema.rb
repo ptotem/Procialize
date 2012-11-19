@@ -47,8 +47,6 @@ ActiveRecord::Schema.define(:version => 20121118203913) do
     t.string   "picture"
     t.string   "public_profile"
     t.string   "location"
-    t.string   "positions"
-    t.string   "educations"
     t.string   "token"
     t.string   "secret"
     t.string   "avatar_file_name"
