@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Procialize: <%= yield :page_title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap-responsive.min", :media => "all" %>
+  <%= stylesheet_link_tag "procialize_styles", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield(:head) %>
+</head>
+
+
+<body>
+
+
+<div class="row-fluid">
+  <div class="span10">
+    <div class="content">
+      <div class="page-header">
+        <h1 style="font-weight: bold;">
+          <img id="profile-image" src="/assets/user.jpg">
+          Indrajeet Mishra
+          <small>Ptotem Learning, Class of 2000</small>
+        </h1>
+      </div>
+
+    </div>
+
+    <h5>
+      <div class="fbinfobox">
+        <table>
+          <tr>
+            <th>Regular Meeting</th>
+            <td>Emma Caucus</td>
+          </tr>
+          <tr>
+            <th>Time</th>
+            <td>6:30 PM</td>
+          </tr>
+          <tr>
+            <th>Department</th>
+            <td>Caucuses</td>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <td> Basalt Town Hall</td>
+          </tr>
+          <tr>
+            <th>Meeting Description</th>
+            <td>Emma Caucus Regular Meeting Agenda</td>
+          </tr>
+        </table>
+
+        <div class="fbinfo1">
+          <button class="btn btn-large btn-primary" type="submit">Accept</button>
+          <button class="btn btn-large btn-primary" type="submit">Ignore</button>
+        </div>
+
+      </div>
+    </h5>
+
+
+  </div>
+
+
+  <div class="span4">
+    <br>
+    <br>
+
+    <h3>List of Meetings</h3>
+    <br>
+
+    <div class="fbbluebox">
+      <b> Sunny Singh,</b>,
+      Ptotem Learning Projects<br>
+      <b>Meeting description:</b>
+      General Meeting Informal Information Session Time: 6:00 P.M. General Meeting Time: 7:00 P.M. Location: The Church
+      at Redstone.
+    </div>
+
+    <br>
+
+
+    <div class="fbbluebox">
+      <b> Pranay Mhatre</b>,
+      Ptotem Learning Projects<br>
+      <b>Meeting description:</b>
+      Regular Meeting - Crystal River Caucus Time: 7:00 PM Department: Caucuses Location: The Church at Redstone Meeting
+      Description: Meeting Agenda.
+    </div>
+
+  </div>
+
+
+</div>
+
+</body>
+</html>
+
+

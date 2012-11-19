@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Procialize: <%= yield :page_title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap-responsive.min", :media => "all" %>
+  <%= stylesheet_link_tag "procialize_styles", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield(:head) %>
+</head>
+
+
+<body>
+
+
+<div class="row-fluid">
+  <div class="span10">
+
+    <div class="content">
+      <div class="page-header">
+        <h1 style="font-weight: bold;">
+          <img id="profile-image" src="/assets/user.jpg">
+          Indrajeet Mishra
+          <small>Ptotem Learning, Class of 2000</small>
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="span4">
+    <div class="profile1" class="halfwidth">
+      <h4><b>Sachin Thakkar</b></h4>
+      Ptotem Learning Projects<br>
+    </div>
+    <h5>
+      <div class="fbinfobox">
+        <table>
+          <tr>
+            <th>
+              Event title
+            </th>
+            <td>
+              Basalt
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              Time
+            </th>
+            <td>
+              9:30 PM
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              Department
+            </th>
+            <td>
+              Regular
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              Location
+            </th>
+            <td>
+              Basalt Town Hall
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              Meeting Description
+            </th>
+            <td>
+              The newly relaunched Paragraph Reading Series hosted an event featuring
+              critically acclaimed novelist in which teams must design, build, document and test one robotic
+              device
+            </td>
+          </tr>
+
+
+        </table>
+
+        <br>
+        <br>
+
+        <div class="msg">
+          <button class="btn btn-large btn-primary" type="submit">Reply</button>
+          <button class="btn btn-large btn-primary" type="submit">Forward</button>
+          <button class="btn btn-large btn-primary" type="submit">Delete</button>
+        </div>
+      </div>
+    </h5>
+    <br>
+    <br>
+
+    <div class="profile1" class="halfwidth">
+      <h4><b>Nilesh Panchal</b></h4>
+      Ptotem Learning Projects<br>
+    </div>
+    <h5>
+      <div class="fbinfobox">
+        <table>
+          <tr>
+            <th>Regular Meeting</th>
+            <td>Emma Caucus</td>
+          </tr>
+          <tr>
+            <th>Time</th>
+            <td>6:30 PM</td>
+          </tr>
+          <tr>
+            <th>Department</th>
+            <td>Caucuses</td>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <td>Basalt Town Hall</td>
+          </tr>
+          <tr>
+            <th>Meeting Description</th>
+            <td>Emma Caucus Regular Meeting Agenda</td>
+          </tr>
+        </table>
+
+        <br>
+        <br>
+
+        <div class="msg">
+          <button class="btn btn-large btn-primary" type="submit">Reply</button>
+          <button class="btn btn-large btn-primary" type="submit">Forward</button>
+          <button class="btn btn-large btn-primary" type="submit">Delete</button>
+        </div>
+
+      </div>
+    </h5>
+
+
+  </div>
+</div>
+</div>
+
+
+</body>
+</html>
+
+
+

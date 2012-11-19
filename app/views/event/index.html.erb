@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Procialize: <%= yield :page_title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap-responsive.min", :media => "all" %>
+  <%= stylesheet_link_tag "procialize_styles", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield(:head) %>
+</head>
+
+
+<body>
+
+
+<div class="row-fluid">
+  <div class="span10">
+
+    <div class="content">
+      <div class="page-header">
+        <h1 style="font-weight: bold;">
+          <img id="profile-image" src="/assets/user.jpg">
+          Indrajeet Mishra
+          <small>Ptotem Learning, Class of 2000</small>
+        </h1>
+      </div>
+
+
+      <h5>
+        <div class="fbinfobox">
+          On December 20, the newly relaunched Paragraph Reading Series hosted an event featuring
+          critically acclaimed novelist in which teams must design, build, document and test one robotic
+          device
+          <br>
+          <br>
+
+          <div class="fbinfo1">
+            <button class="btn btn-large btn-primary" type="submit">Accept</button>
+            <button class="btn btn-large btn-primary" type="submit">Ignore</button>
+          </div>
+
+        </div>
+      </h5>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="span4">
+    <h3>List of Attendees</h3>
+    <br>
+
+    <div class="fbbluebox">
+      <b> Amol Bhor</b>,
+      Ptotem Learning Projects<br>
+      <b>Event description:</b>
+      Prior to the competition teams must design, build, document and test one robotic device to move scored items.
+    </div>
+
+    <br>
+
+
+    <div class="fbbluebox">
+      <b> Pranay Mhatre</b>,
+      Ptotem Learning Projects<br>
+      <b>Event description:</b>
+      Join us on Friday, November 30th at 7PM as event members Indrajeet mishra and Nilesh Panchal share their work at
+      our monthly reading at Antop hill.
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
+
+
