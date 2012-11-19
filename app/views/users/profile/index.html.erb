@@ -1,5 +1,60 @@
+<div class="container">
+
+  <div class="content">
+    <div class="page-header">
+      <h1 style="font-weight: bold;">
+        <%= image_tag @photo, :id=>"profile-image" %>
+        <%= @name %>
+        <small><%= @current_position %></small>
+        <input type="text" placeholder="Status Update" id="status-update">
+        <button class="btn" type="submit">Update</button>
+      </h1>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span10">
+        <h5>
+          <div class="fbinfobox">
+            To keep things even more interesting, each hour will have a theme! Each team is
+            encouraged to dress up for each theme and the music and games will be targeted toward that
+            particular theme.
+            The themes for each year's dance marathon will be revealed at the Dancer Meeting prior to the
+            event. <br>
+          </div>
+          <div class="fbinfo"> Like &nbsp; Share &nbsp; Comment</div>
+        </h5>
+      </div>
+
+      <br>
+      <br>
+
+      <div class="span10">
+        <h5>
+          <div class="fbinfobox">
+            On November 26, the newly relaunched Paragraph Reading Series hosted an event
+            featuring critically acclaimed novelist.The series, took place in space provided by Nilesh
+            Panchal
+            bartending school <br>
+          </div>
+          <div class="fbinfo"> Like &nbsp; Share &nbsp; Comment</div>
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+
+  </footer>
+
+</div>
+
+
+
+
 <%= image_tag @photo %>
 <%= @name %>
+<br>
+
 <%= @headline %>
 <%= @educations %>
 <%= @current_position %>
