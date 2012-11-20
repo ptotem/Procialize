@@ -1,0 +1,32 @@
+    <html>
+    <head>
+    <!-- Make sure to include jQuery -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+    <script type="text/javascript" src="/js/status-update.js"></script>
+    <title>Status Update Test</title>
+    
+    $(document).ready(function() {
+	$("#submit-status").click(function() {
+	// If the form is empty do nothing
+	if ($("textarea#status").val() != '') {
+	$("textarea#status").css({ 'opacity':'.5' });
+	$.post('your-callback.php',$("#status-update").serialize(),function(data) {
+	$("#posts").prepend('<div id="status-container">' + content + "</div>");
+	$("textarea#status").val('').css({ 'opacity':'1' });
+	});
+	}
+	});
+	});
+    
+    
+    </head>
+    <body>
+    <h1>Hiiiii</h1>
+    <form id="status-update" method="post" action="/">
+    <textarea name="status" id="status" rows="5" cols="50">
+    <input type="button" id="submit-status" value="Post" />
+    </form>
+    <div id="posts">
+    </div>
+    </body>
+    </html>

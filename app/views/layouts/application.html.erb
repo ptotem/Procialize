@@ -8,6 +8,8 @@
   <%= stylesheet_link_tag "bootstrap-responsive.min", :media => "all" %>
   <%= stylesheet_link_tag "procialize_styles", :media => "all" %>
   <%= javascript_include_tag "application" %>
+
+
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 </head>
@@ -17,14 +19,16 @@
   <div class="navbar-inner">
     <%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" %>
     <ul class="nav pull-right" style="margin-top: -5px;">
-      <li><%= link_to image_tag("event.png"), root_path %></li>
-      <li><%= link_to image_tag("delegate.png"), root_path %></li>
+      <li><%= link_to image_tag("event.png"),:title => "Events" ,:controller => "event", :action => "index" %></li>
+      <li><%= link_to image_tag("delegate.png"), :controller => "meeting", :action => "index" %></li>
+      <li><%= link_to image_tag("message.png"), :controller => "message", :action => "index" %>
+      <li><%= link_to image_tag("calendar.png"), :controller => "calendar", :action => "index" %>
       <li class="active"><%= link_to image_tag("home.png"), root_path %></li>
     </ul>
   </div>
 </div>
 
-<div class="container" style="margin-top: 40px;">
+<div class="container" style="margin-top: 60px;">
   <div class="content">
     <%= js extend_gritter :position => :bottom_right %>
     <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>

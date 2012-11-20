@@ -1,1 +1,107 @@
+<%= javascript_include_tag "jquery-1.8.2.js" %>
+<%= javascript_include_tag "jquery-ui-1.9.1.custom.min.js" %>
+<%= stylesheet_link_tag "jquery-ui-1.9.1.custom.css", :media => "all" %>
+
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="row-fluid">
+
+      <div class="span10">
+        <%= image_tag @photo %>
+        <h4><%= @name %></h4>
+        <h5><%= @headline %></h5>
+      </div>
+      <br>
+      <br>
+
+      <div class="span4">
+
+        <div class="notice-bar">
+          Status update
+        </div>
+
+
+        <div class="fbinfobox">
+          <textarea class="landing_textarea"></textarea>
+          <button class="btn btn-mini btn-primary" type="submit">Share</button>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="notice-bar">
+          Recent updates
+        </div>
+
+        <div class="fbinfobox">
+          On December 20, the newly relaunched Paragraph Reading Series hosted an event featuring
+          critically acclaimed novelist in which teams must design, build, document and test one robotic
+          device
+        </div>
+        <br>
+
+
+        <br>
+        <br>
+
+
+        <div class="notice-bar">
+          Events update
+        </div>
+        <div class="fbinfobox">
+          <%= link_to "Event calendar", :controller=>"calendar", :action=>"index" ,:style => "color: #627aad;"%>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="notice-bar">
+          Meeting Request
+        </div>
+        <div class="fbinfobox">
+          <table>
+            <tr>
+              <th>Regular Meeting</th>
+              <td>Emma Caucus</td>
+            </tr>
+            <tr>
+              <th>Time</th>
+              <td>6:30 PM</td>
+            </tr>
+            <tr>
+              <th>Department</th>
+              <td>Caucuses</td>
+            </tr>
+            <tr>
+              <th>Location</th>
+              <td> Basalt Town Hall</td>
+            </tr>
+            <tr>
+              <th>Meeting Description</th>
+              <td>Emma Caucus Regular Meeting Agenda</td>
+            </tr>
+          </table>
+
+          <div class="fbinfo1">
+            <button class="btn btn-mini btn-primary" type="submit">Accept</button>
+            <button class="btn btn-mini btn-primary" type="submit">Ignore</button>
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <script>
+          $("#tabs").tabs();
+      </script>
+
+    </div>
+  </div>
+</div>
+
+
 

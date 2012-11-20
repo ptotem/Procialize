@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Procialize: <%= yield :page_title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap-responsive.min", :media => "all" %>
+  <%= stylesheet_link_tag "procialize_styles", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield(:head) %>
+</head>
+
+
+<body>
+
+
+<div class="row-fluid">
+  <div class="span12">
+
+
+    <td><h3>Event name</h3></td>
+    <% @user.events.each do |event| %>
+        <tr>
+          <td><%= event.name %></td>
+
+        </tr>
+    <% end %>
+
+
+
+
+
+
+    <!--<table>-->
+
+      <!--<tr>-->
+        <!--<td><h3>Event name</h3></td>-->
+
+
+      <!--</tr>-->
+
+      <!--<tr>-->
+        <!--<td><h4><%#= @event.name %></h4></td>-->
+
+      <!--</tr>-->
+
+
+    <!--</table>-->
+  </div>
+</div>
+<div id="link_box" style="position: relative;">
+  <%= link_to "Back", :controller=>"calendar", :action=>"index" ,:style => "color: #627aad;"%>
+</div>
+
+</body>
+</html>
+
+

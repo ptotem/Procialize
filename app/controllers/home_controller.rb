@@ -10,7 +10,13 @@ class HomeController < ApplicationController
     #@position=@linkedin_user.positions.all.select{|p| p.is_current}.map{|p| "#{p.title}, #{p.company.name}"}
     #@education=@linkedin_user.educations.all.select{|e| e.degree.include?("PG")}.map{|t| "Class of #{t.end_date.year}, #{t.school_name}"}
     #@user=current_user
-    #
+
+    @user=current_user
+    @name=@user.name
+    @photo=@user.picture
+    @headline=@user.headline
+    #@educations=@user.educations.values[1]
+
 
   end
 
