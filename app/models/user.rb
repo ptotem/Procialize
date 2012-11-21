@@ -11,7 +11,23 @@ class User < ActiveRecord::Base
   attr_accessible :provider, :uid, :name, :location, :industry, :picture, :token, :secret, :headline, :positions,:educations, :avatar
   serialize :positions
   serialize :educations
+
+
   has_attached_file :avatar
+
+  has_one :grafiti_wall
+  has_one :notice_board
+  has_one :profile
+
+  has_many :organizers, :dependent => :destroy
+  has_many :attendees, :dependent => :destroy
+  has_many :speakers, :dependent => :destroy
+  has_many :events, :dependent => :destroy
+  has_many :meetings, :dependent => :destroy
+
+
+
+
 
   def self.find_for_linkedin_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first

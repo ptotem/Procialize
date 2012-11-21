@@ -1,0 +1,139 @@
+<div class="row-fluid">
+  <div class="span8">
+    <p id="notice"><%= notice %></p>
+
+    <div class="notice-bar">
+      List of  events
+    </div>
+
+    <div class="fbinfobox">
+    <table border="2">
+      <% @user.events.each do |event| %>
+          <tr>
+            <th>Event Name</th>
+            <th>Event description</th>
+            <th>Event location</th>
+            <th>Event start_at</th>
+            <th>Event end_at</th>
+
+
+          </tr>
+          <tr>
+
+            <td><%= event.event_name %></td>
+
+            <td><%= event.event_description %></td>
+
+            <td><%= event.event_location %></td>
+
+            <td><%= event.start_at %></td>
+
+            <td><%= event.end_at %></td>
+
+      <% end %>
+
+    </table>
+    <%#= link_to 'Edit', edit_event_path(@event) %>
+    <%#= link_to 'Back', events_path %>
+
+
+
+
+
+
+  </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<p>-->
+<!--<b>Event name:</b>-->
+<!--<%#= @event.event_name %>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--<b>Event description:</b>-->
+<!--<%#= @event.event_description %>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--<b>Event location:</b>-->
+<!--<%#= @event.event_location %>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--<b>Event datetime:</b>-->
+<!--<%#= @event.event_datetime %>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--<b>Organizer:</b>-->
+<!--<%#= @event.organizer_id %>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--<b>User:</b>-->
+<!--<%#= @event.user_id %>-->
+<!--</p>-->

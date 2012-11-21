@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  event_name: MyString
+  event_description: MyText
+  event_location: MyString
+  event_datetime: 2012-11-21 13:30:16
+  organizer_id: 1
+  user_id: 1
+
+two:
+  event_name: MyString
+  event_description: MyText
+  event_location: MyString
+  event_datetime: 2012-11-21 13:30:16
+  organizer_id: 1
+  user_id: 1

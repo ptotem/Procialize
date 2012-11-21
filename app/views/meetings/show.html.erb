@@ -1,0 +1,65 @@
+<div class="row-fluid">
+  <div class="span12">
+<p id="notice"><%= notice %></p>
+    <div class="notice-bar">
+      List of  meetings
+    </div>
+
+    <div class="fbinfobox">
+<table>
+  <% @user.meetings.each do |meeting| %>
+      <tr>
+        <th>Meeting Name</th>
+        <th>Meeting description</th>
+        <th>Meeting location</th>
+        <!--<th> start_at</th>-->
+        <!--<th>Event end_at</th>-->
+
+
+      </tr>
+      <tr>
+
+        <td><%= meeting.meeting_name %></td>
+
+        <td><%= meeting.meeting_description %></td>
+
+        <td><%= meeting.meeting_location %></td>
+
+        <!--<td><%#= event.start_at %></td>-->
+
+        <!--<td><%#= event.end_at %></td>-->
+
+  <% end %>
+
+</table>
+<!--<p>-->
+  <!--<b>Meeting name:</b>-->
+  <!--<%#= @meeting.meeting_name %>-->
+<!--</p>-->
+
+<!--<p>-->
+  <!--<b>Meeting description:</b>-->
+  <!--<%#= @meeting.meeting_description %>-->
+<!--</p>-->
+
+<!--<p>-->
+  <!--<b>Meeting location:</b>-->
+  <!--<%#= @meeting.meeting_location %>-->
+<!--</p>-->
+
+<!--<p>-->
+  <!--<b>Meeting datetime:</b>-->
+  <!--<%#= @meeting.meeting_datetime %>-->
+<!--</p>-->
+
+<!--<p>-->
+  <!--<b>User:</b>-->
+  <!--<%#= @meeting.user_id %>-->
+<!--</p>-->
+
+
+<%#= link_to 'Edit', edit_meeting_path(@meeting) %>
+<%= link_to 'Back', meetings_path %>
+ </div>
+      </div>
+    </div>

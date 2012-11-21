@@ -17,8 +17,10 @@
   <div class="navbar-inner">
     <%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" %>
     <ul class="nav pull-right" style="margin-top: -5px;">
-      <li><%= link_to image_tag("event.png"), root_path %></li>
-      <li><%= link_to image_tag("delegate.png"), root_path %></li>
+      <li><%= link_to image_tag("event.png"), events_path %></li>
+      <li><%= link_to image_tag("delegate.png"),meetings_path %></li>
+      <li><%#= link_to image_tag("message.png"), :controller => "message", :action => "index" %>
+      <li><%= link_to image_tag("calendar.png"), :controller => "calendar", :action => "index" %>
       <li class="active"><%= link_to image_tag("home.png"), root_path %></li>
     </ul>
   </div>

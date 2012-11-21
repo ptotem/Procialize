@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  wall_message: MyText
+  attendee_id: 1
+  user_id: 1
+
+two:
+  wall_message: MyText
+  attendee_id: 1
+  user_id: 1

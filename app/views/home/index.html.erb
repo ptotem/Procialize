@@ -1,1 +1,128 @@
-<%= @user.positions.values[1][0].company.name %>
+<%#= @user.positions.values[1][0].company.name %>
+
+<title>Procialize: <%= yield :page_title %></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%= stylesheet_link_tag "application", :media => "all" %>
+<%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
+<%= stylesheet_link_tag "bootstrap-responsive.min", :media => "all" %>
+<%= stylesheet_link_tag "procialize_styles", :media => "all" %>
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tags %>
+<%= yield(:head) %>
+
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="row-fluid">
+
+      <div class="span10">
+        <%= image_tag @photo %>
+        <h4><%= @name %></h4>
+        <h5><%= @headline %></h5>
+      </div>
+      <br>
+      <br>
+
+      <div class="span4">
+
+        <div class="notice-bar">
+          Status update
+        </div>
+
+
+        <div class="fbinfobox">
+          <textarea class="landing_textarea"></textarea>
+          <button class="btn btn-mini btn-primary" type="submit">Share</button>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="notice-bar">
+          Recent updates
+        </div>
+
+        <div class="fbinfobox">
+
+          On December 20, the newly relaunched Paragraph Reading Series hosted an event featuring
+          critically acclaimed novelist in which teams must design, build, document and test one robotic
+          device
+        </div>
+        <br>
+
+
+        <br>
+        <br>
+
+
+        <div class="notice-bar">
+          Events update
+        </div>
+        <div class="fbinfobox">
+          <div class="row-fluid">
+            <div class="span12">
+
+
+              <td><h6>Event name</h6></td>
+              <% @user.events.each do |event| %>
+                  <tr>
+
+                    <td><%= link_to event.event_name, events_path %></td>
+
+                  </tr>
+              <% end %>
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="notice-bar">
+          Meeting Request
+        </div>
+        <div class="fbinfobox">
+          <table border="2">
+            <% @user.meetings.each do |meeting| %>
+            <tr>
+              <th>Meeting name</th>
+              <td><%= meeting.meeting_name  %></td>
+            </tr>
+
+
+            <tr>
+              <th>Meeting location</th>
+              <td><%= meeting.meeting_location %></td>
+            </tr>
+            <tr>
+              <th>Meeting Description</th>
+              <td><%= meeting.meeting_description %></td>
+            </tr>
+           <% end %>
+          </table>
+
+          <div class="fbinfo1">
+            <%= link_to "Accept",meetings_path%>
+
+            <%= link_to "Ignore"%>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+

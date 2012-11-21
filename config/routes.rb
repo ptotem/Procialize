@@ -1,5 +1,11 @@
 ProcializeApp::Application.routes.draw do
 
+  match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+
+  resources :meetings
+
+  resources :events
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
   match 'users/(:id)/profile', :to=>"users/profile#index", :as=>"user_profile"
