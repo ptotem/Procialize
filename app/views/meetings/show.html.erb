@@ -1,61 +1,42 @@
 <div class="row-fluid">
-  <div class="span12">
-<p id="notice"><%= notice %></p>
-    <div class="notice-bar">
-      List of  meetings
-    </div>
-
+  <div class="span8">
     <div class="fbinfobox">
-<table>
-  <% @user.meetings.each do |meeting| %>
-      <tr>
-        <th>Meeting Name</th>
-        <th>Meeting description</th>
-        <th>Meeting location</th>
-        <!--<th> start_at</th>-->
-        <!--<th>Event end_at</th>-->
+      <p id="notice"><%= notice %></p>
+      <div class="notice-bar">
+        List of  meetings
+      </div>
+
+      <div class="fbinfobox">
+        <table border="2">
+
+          <tr>
+            <th>Meeting Name</th>
+            <th>Meeting description</th>
+            <th>Meeting location</th>
+            <!--<th> start_at</th>-->
+            <!--<th>Event end_at</th>-->
 
 
-      </tr>
-      <tr>
+          </tr>
+          <% @user.meetings.each do |meeting| %>
 
-        <td><%= meeting.meeting_name %></td>
+              <tr>
 
-        <td><%= meeting.meeting_description %></td>
+                <td><%= meeting.meeting_name %></td>
 
-        <td><%= meeting.meeting_location %></td>
+                <td><%= meeting.meeting_description %></td>
 
-        <!--<td><%#= event.start_at %></td>-->
+                <td><%= meeting.meeting_location %></td>
 
-        <!--<td><%#= event.end_at %></td>-->
+                <!--<td><%#= event.start_at %></td>-->
 
-  <% end %>
+                <!--<td><%#= event.end_at %></td>-->
 
-</table>
-<!--<p>-->
-  <!--<b>Meeting name:</b>-->
-  <!--<%#= @meeting.meeting_name %>-->
-<!--</p>-->
+          <% end %>
 
-<!--<p>-->
-  <!--<b>Meeting description:</b>-->
-  <!--<%#= @meeting.meeting_description %>-->
-<!--</p>-->
+        </table>
 
-<!--<p>-->
-  <!--<b>Meeting location:</b>-->
-  <!--<%#= @meeting.meeting_location %>-->
-<!--</p>-->
-
-<!--<p>-->
-  <!--<b>Meeting datetime:</b>-->
-  <!--<%#= @meeting.meeting_datetime %>-->
-<!--</p>-->
-
-<!--<p>-->
-  <!--<b>User:</b>-->
-  <!--<%#= @meeting.user_id %>-->
-<!--</p>-->
+      </div>
 
 
 <%#= link_to 'Edit', edit_meeting_path(@meeting) %>

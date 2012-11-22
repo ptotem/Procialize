@@ -56,6 +56,7 @@ class MeetingsController < ApplicationController
     @user=current_user
     @meet=Meeting.find_by_user_id(@user).id
     @meeting = Meeting.new(params[:meeting])
+    @meeting = Meeting.create(:meeting_name =>params[:meeting][:meeting_name] ,:meeting_description => params[:meeting][:meeting_description],:meeting_location => params[:meeting][:meeting_location] , :user_id => @user.id)
 
     respond_to do |format|
       if @meeting.save

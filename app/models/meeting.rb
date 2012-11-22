@@ -1,5 +1,5 @@
 class Meeting < ActiveRecord::Base
-  attr_accessible :meeting_datetime, :meeting_description, :meeting_location, :meeting_name, :user_id
+  attr_accessible :meeting_datetime, :meeting_description, :meeting_location, :meeting_name, :user_id,:start_at,:end_at
 
   belongs_to :user
 

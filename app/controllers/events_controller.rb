@@ -52,9 +52,20 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    #render :text=>params
+    #return
     @user=current_user
+
     @ev=Event.find_by_user_id(@user).id
     @event = Event.new(params[:event])
+    @start_at=params[:event]["start_at(1i)"]+'-'+ @start_at=params[:event]["start_at(2i)"]+'-'+@start_at=params[:event]["start_at(3i)"]+' '+@start_at=params[:event]["start_at(4i)"]+':'+@start_at=params[:event]["start_at(5i)"]
+    @end_at=params[:event]["end_at(1i)"]+'-'+ @end_at=params[:event]["end_at(2i)"]+'-'+@end_at=params[:event]["end_at(3i)"]+' '+@end_at=params[:event]["end_at(4i)"]+':'+@end_at=params[:event]["end_at(5i)"]
+
+
+
+        #render :text => @start_at
+    #return
+    @event = Event.create(:event_name =>params[:event][:event_name] ,:event_description => params[:event][:event_description],:event_location => params[:event][:event_location] , :user_id => @user.id,:start_at => @start_at,:end_at => @end_at)
 
     respond_to do |format|
       if @event.save
@@ -70,9 +81,13 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
+    #render :text=>params[:event][:start_at]
+    #return
     @user=current_user
+
     @ev=Event.find_by_user_id(@user).id
     @event = Event.find(params[:id])
+    @event.complete
 
     respond_to do |format|
       if @event.update_attributes(params[:event])

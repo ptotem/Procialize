@@ -11,7 +11,15 @@
 <%= yield(:head) %>
 <%= stylesheet_link_tag "event_calendar" %>
 
-<h1>Calendar</h1>
 
-<%= raw(event_calendar) %>
+<div class="row-fluid">
+  <div class="span8">
+      <div class="fbinfobox">
+        <h3 style="text-align: center;">Calendar</h3>
+
+        <%= raw(event_calendar) %>
+      </div>
+  </div>
+</div>
+
 <%#= raw(meeting_calendar) %>

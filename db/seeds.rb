@@ -32,12 +32,11 @@ Profile.create!(:profile_name => 'Rakesh Rengaraj', :interest => 'Technology', :
 Profile.create!(:profile_name => 'Sunny singh', :interest => 'Technology', :user_id => '5')
 
 
-Event.create(:event_name => 'Project exhibition',:event_description => 'Presentation about Mobile features',:event_location => 'Mumbai' ,:organizer_id => '1', :user_id => '1')
-Event.create(:event_name => 'Technical exhibition',:event_description => 'Debate on  vehicle enegine',:event_location => 'Pune' ,:organizer_id => '1',  :organizer_id => '2', :user_id => '2')
-Event.create(:event_name => 'Presentation',:event_description => 'Exhibition about technical aspects',:event_location => 'Bangalore' ,:organizer_id => '1',  :organizer_id => '3', :user_id => '3')
-Event.create(:event_name => 'Debate',:event_description => 'Presentation about Mobile featuresdgffdgdfgfgf',:event_location => 'Chennai' ,:organizer_id => '1',  :organizer_id => '4', :user_id => '4')
-Event.create(:event_name => 'Optimization',:event_description => 'Exhibition about satellite aspects',:event_location => 'Thane' ,:organizer_id => '1',  :organizer_id => '5', :user_id => '5')
-
+Event.create(:event_name => 'Project exhibition',:event_description => 'Presentation about Mobile features',:event_location => 'Mumbai' ,:organizer_id => '1', :user_id => '1',:start_at =>'2012-12-19 01:00:00',:end_at => '2012-12-19 05:30:00')
+Event.create(:event_name => 'Technical exhibition',:event_description => 'Debate on  vehicle enegine',:event_location => 'Pune' ,:organizer_id => '1',  :organizer_id => '2', :user_id => '2',:start_at =>'2013-01-5 01:00:00',:end_at => '2013-01-6 03:00:00')
+Event.create(:event_name => 'Presentation',:event_description => 'Exhibition about technical aspects',:event_location => 'Bangalore' ,:organizer_id => '1',  :organizer_id => '3', :user_id => '3',:start_at =>'2013-01-18 11:00:00',:end_at => '2013-10-19 06:00:00')
+Event.create(:event_name => 'Debate',:event_description => 'Presentation about Mobile featuresdgffdgdfgfgf',:event_location => 'Chennai' ,:organizer_id => '1',  :organizer_id => '4', :user_id => '4',:start_at =>'2013-01-23 07:00:00',:end_at => '2013-10-26 23:00:00')
+Event.create(:event_name => 'Optimization',:event_description => 'Exhibition about satellite aspects',:event_location => 'Thane' ,:organizer_id => '1',  :organizer_id => '5', :user_id => '5',:start_at =>'2012-12-2 18:00:00',:end_at => '2012-12-5 03:00:00')
 #Event.create(:name => 'Project exhibition', :organizer_id => '1',:start_at =>'2012-12-19 01:00:00',:end_at => '2012-12-19 05:30:00')
 #Event.create(:name => 'Technical exhibition', :organizer_id => '2',:start_at =>'2013-01-5 01:00:00',:end_at => '2013-01-6 03:00:00')
 #Event.create(:name => 'Presentation', :organizer_id => '3',:start_at =>'2013-01-18 11:00:00',:end_at => '2013-10-19 06:00:00')

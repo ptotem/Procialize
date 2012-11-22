@@ -14,16 +14,17 @@
     <div class="fbinfobox">
     <table border="2">
 
+      <tr>
+        <th>Event Name</th>
+        <th>Event description</th>
+        <th>Event location</th>
+        <th>Event start_at</th>
+        <th>Event end_at</th>
+
+      </tr>
 
       <% @user.events.each do |event| %>
-          <tr>
-            <th>Event Name</th>
-            <th>Event description</th>
-            <th>Event location</th>
-            <th>Event start_at</th>
-            <th>Event end_at</th>
 
-          </tr>
           <tr>
 
             <td><%= event.event_name %></td>
@@ -52,7 +53,7 @@
 
     <br/>
 
-    <%#= link_to 'New Event', new_event_path %>
+    <%= link_to 'New Event', new_event_path %>
 
   </div>
 </div>

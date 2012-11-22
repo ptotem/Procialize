@@ -15,6 +15,7 @@ class HomeController < ApplicationController
     @name=@user.name
     @photo=@user.picture
     @headline=@user.headline
+    @events = Event.all
   end
 
 end
