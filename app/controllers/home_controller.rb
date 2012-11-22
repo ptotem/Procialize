@@ -16,6 +16,21 @@ class HomeController < ApplicationController
     @photo=@user.picture
     @headline=@user.headline
     @events = Event.all
+    @status=Status.all
+    #@status = Status.create(:comment => params[:status][:comment],:user_id => @user.id)
+    #@status=Status
   end
+
+  def create
+    @status = Status.new(params[:status])
+
+    @status.save
+    redirect_to action: :show, id: @status.id
+  end
+
+   def show
+     @status = Status.find(params[:id])
+
+   end
 
 end
