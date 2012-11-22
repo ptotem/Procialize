@@ -13,6 +13,8 @@
             <th>Meeting Name</th>
             <th>Meeting description</th>
             <th>Meeting location</th>
+            <th>Meeting start_at</th>
+            <th>Meeting end_at</th>
             <!--<th> start_at</th>-->
             <!--<th>Event end_at</th>-->
 
@@ -28,9 +30,9 @@
 
                 <td><%= meeting.meeting_location %></td>
 
-                <!--<td><%#= event.start_at %></td>-->
+                <td><%= meeting.start_at %></td>
 
-                <!--<td><%#= event.end_at %></td>-->
+                <td><%= meeting.end_at %></td>
 
           <% end %>
 

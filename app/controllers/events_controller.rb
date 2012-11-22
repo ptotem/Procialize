@@ -58,6 +58,7 @@ class EventsController < ApplicationController
 
     @ev=Event.find_by_user_id(@user).id
     @event = Event.new(params[:event])
+
     @start_at=params[:event]["start_at(1i)"]+'-'+ @start_at=params[:event]["start_at(2i)"]+'-'+@start_at=params[:event]["start_at(3i)"]+' '+@start_at=params[:event]["start_at(4i)"]+':'+@start_at=params[:event]["start_at(5i)"]
     @end_at=params[:event]["end_at(1i)"]+'-'+ @end_at=params[:event]["end_at(2i)"]+'-'+@end_at=params[:event]["end_at(3i)"]+' '+@end_at=params[:event]["end_at(4i)"]+':'+@end_at=params[:event]["end_at(5i)"]
 

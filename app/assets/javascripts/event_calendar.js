@@ -3,7 +3,7 @@
  * Handles for when events span rows, or don't have a background color
  */
 Event.observe(window, "load", function() {
-  var highlight_color = "#2EAC6A";
+  var highlight_color = "#888888";
   
   // highlight events that have a background color
   $$(".ec-event-bg").each(function(ele) {

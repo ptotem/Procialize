@@ -15,8 +15,6 @@ class Event < ActiveRecord::Base
   has_event_calendar :start_at => '2012-10-1', :end_at => '2050-12-31'
 
 
-  def complete
-    Event.update_attributes(:event_start_at,:event_end_at)
-  end
+
 
 end

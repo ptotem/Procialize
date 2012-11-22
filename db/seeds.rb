@@ -44,11 +44,11 @@ Event.create(:event_name => 'Optimization',:event_description => 'Exhibition abo
 #Event.create(:name => 'Optimization', :organizer_id => '5',:start_at =>'2012-12-2 18:00:00',:end_at => '2012-12-5 03:00:00')
 
 
-Meeting.create(:meeting_name => 'Mobilable like' ,:meeting_location => 'Mumbai', :meeting_description => 'Exhibition about satellite aspects',:user_id => '5')
-Meeting.create(:meeting_name => 'Techyy as soon' ,:meeting_location => 'Mumbai', :meeting_description => 'Exhibition about technical aspects', :user_id => '4')
-Meeting.create(:meeting_name => 'Presentable' ,:meeting_location => 'Mumbai', :meeting_description => 'Presentation about Mobile features', :user_id => '3')
-Meeting.create(:meeting_name => 'Debate Debate' ,:meeting_location => 'Mumbai', :meeting_description => 'Debate on  vehicle enegine', :user_id =>'2')
-Meeting.create(:meeting_name => 'Tech watering' ,:meeting_location => 'Pune', :meeting_description => 'Presentation about Mobile features', :user_id => '1')
+Meeting.create(:meeting_name => 'Mobilable like' ,:meeting_location => 'Mumbai', :meeting_description => 'Exhibition about satellite aspects',:user_id => '5',:start_at =>'2012-12-19 01:00:00',:end_at => '2012-12-19 05:30:00')
+Meeting.create(:meeting_name => 'Techyy as soon' ,:meeting_location => 'Mumbai', :meeting_description => 'Exhibition about technical aspects', :user_id => '4',:start_at =>'2013-01-5 01:00:00',:end_at => '2013-01-6 03:00:00')
+Meeting.create(:meeting_name => 'Presentable' ,:meeting_location => 'Mumbai', :meeting_description => 'Presentation about Mobile features', :user_id => '3',:start_at =>'2013-01-18 11:00:00',:end_at => '2013-10-19 06:00:00')
+Meeting.create(:meeting_name => 'Debate Debate' ,:meeting_location => 'Mumbai', :meeting_description => 'Debate on  vehicle enegine', :user_id =>'2',:start_at =>'2013-01-23 07:00:00',:end_at => '2013-10-26 23:00:00')
+Meeting.create(:meeting_name => 'Tech watering' ,:meeting_location => 'Pune', :meeting_description => 'Presentation about Mobile features', :user_id => '1',:start_at =>'2012-12-2 18:00:00',:end_at => '2012-12-5 03:00:00')
 
 Location.create!(:name => 'Mumbai', :meeting_id => '1')
 Location.create!(:name => 'Pune', :meeting_id => '2')

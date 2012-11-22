@@ -18,8 +18,24 @@
         <h3 style="text-align: center;">Calendar</h3>
 
         <%= raw(event_calendar) %>
+
+        <%#= raw(meeting_calendar) %>
       </div>
   </div>
 </div>
 
-<%#= raw(meeting_calendar) %>
+
+
+
+<%#= calendar_for(@tasks) do |t| %>
+    <%#= t.day do |day, tasks| %>
+        <%# if tasks.nil? %>
+            <%#= day.cweek %>
+        <%# else %>
+            <%#= day.day %>
+            <%# tasks.each do |task| %>
+                <%#= h(task.name) %>
+            <%# end %>
+        <%# end %>
+    <%# end %>
+<%# end %>

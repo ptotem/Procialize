@@ -91,21 +91,21 @@
         <div class="fbinfobox">
           <table border="2">
             <% @user.meetings.each do |meeting| %>
-            <tr>
-              <th>Meeting name</th>
-              <td><%= meeting.meeting_name  %></td>
-            </tr>
+                <tr>
+                  <th>Meeting name</th>
+                  <td><%= meeting.meeting_name  %></td>
+                </tr>
 
 
-            <tr>
-              <th>Meeting location</th>
-              <td><%= meeting.meeting_location %></td>
-            </tr>
-            <tr>
-              <th>Meeting Description</th>
-              <td><%= meeting.meeting_description %></td>
-            </tr>
-           <% end %>
+                <tr>
+                  <th>Meeting location</th>
+                  <td><%= meeting.meeting_location %></td>
+                </tr>
+                <tr>
+                  <th>Meeting Description</th>
+                  <td><%= meeting.meeting_description %></td>
+                </tr>
+            <% end %>
           </table>
 
           <div class="fbinfo1">

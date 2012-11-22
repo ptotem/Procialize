@@ -22,6 +22,8 @@
     <th>Meeting name</th>
     <th>Meeting description</th>
     <th>Meeting location</th>
+    <th>Meeting start_at</th>
+    <th>Meeting end_at</th>
     <!--<th>Meeting datetime</th>-->
     <!--<th>User</th>-->
     <!--<th></th>-->
@@ -34,6 +36,8 @@
     <td><%= meeting.meeting_name %></td>
     <td><%= meeting.meeting_description %></td>
     <td><%= meeting.meeting_location %></td>
+    <td><%= meeting.start_at %></td>
+    <td><%= meeting.end_at %></td>
     <!--<td><%#= %></td>-->
     <!--<td><%#= meeting.user_id %></td>-->
     <!--<td><%#= link_to 'Show', meeting %></td>-->
@@ -70,6 +74,7 @@
          <td><%= meeting.meeting_name %></td>
          <td><%= meeting.meeting_description %></td>
          <td><%= meeting.meeting_location %></td>
+         <td><%= link_to 'Show', meeting %></td>
              <%#= link_to 'Accept'%>
               <%#= link_to 'Ignore'%>
         <% end %>

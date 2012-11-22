@@ -56,7 +56,11 @@ class MeetingsController < ApplicationController
     @user=current_user
     @meet=Meeting.find_by_user_id(@user).id
     @meeting = Meeting.new(params[:meeting])
-    @meeting = Meeting.create(:meeting_name =>params[:meeting][:meeting_name] ,:meeting_description => params[:meeting][:meeting_description],:meeting_location => params[:meeting][:meeting_location] , :user_id => @user.id)
+
+    @start_at=params[:meeting]["start_at(1i)"]+'-'+ @start_at=params[:meeting]["start_at(2i)"]+'-'+@start_at=params[:meeting]["start_at(3i)"]+' '+@start_at=params[:meeting]["start_at(4i)"]+':'+@start_at=params[:meeting]["start_at(5i)"]
+    @end_at=params[:meeting]["end_at(1i)"]+'-'+ @end_at=params[:meeting]["end_at(2i)"]+'-'+@end_at=params[:meeting]["end_at(3i)"]+' '+@end_at=params[:meeting]["end_at(4i)"]+':'+@end_at=params[:meeting]["end_at(5i)"]
+
+    @meeting = Meeting.create(:meeting_name =>params[:meeting][:meeting_name] ,:meeting_description => params[:meeting][:meeting_description],:meeting_location => params[:meeting][:meeting_location] , :user_id => @user.id,:start_at => @start_at,:end_at => @end_at)
 
     respond_to do |format|
       if @meeting.save
