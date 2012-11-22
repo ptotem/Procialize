@@ -64,16 +64,16 @@
           <div class="row-fluid">
             <div class="span12">
 
-
-              <td><h6>Event name</h6></td>
+               <table>
+              <h6>Event name</h6>
               <% @user.events.each do |event| %>
                   <tr>
 
-                    <td><%= link_to event.event_name, events_path %></td>
+                    <td><li><%= link_to event.event_name, events_path %></li></td>
 
                   </tr>
               <% end %>
-
+               </table>
 
 
 

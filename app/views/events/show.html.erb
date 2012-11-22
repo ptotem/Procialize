@@ -18,23 +18,23 @@
 
 
       </tr>
-      <% @user.events.each do |event| %>
 
           <tr>
 
-            <td><%= event.event_name %></td>
+            <td><%= @event.event_name %></td>
 
-            <td><%= event.event_description %></td>
+            <td><%= @event.event_description %></td>
 
-            <td><%= event.event_location %></td>
+            <td><%= @event.event_location %></td>
 
-            <td><%= event.start_at %></td>
+            <td><%= @event.start_at %></td>
 
-            <td><%= event.end_at %></td>
+            <td><%= @event.end_at %></td>
 
-      <% end %>
+
 
     </table>
+      <%= link_to 'Calendar', :controller => "calendar", :action => "index" %>
     <%#= link_to 'Edit', edit_event_path(@event) %>
     <%#= link_to 'Back', events_path %>
 
