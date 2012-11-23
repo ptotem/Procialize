@@ -27,7 +27,7 @@
 
           <tr>
 
-            <td><%= event.event_name %></td>
+            <td><%=link_to event.event_name,event_show_path(event.id) %></td>
 
             <td><%= event.event_description %></td>
 
@@ -53,7 +53,7 @@
 
     <br/>
 
-    <%= link_to 'New Event', new_event_path %>
+    <%#= link_to 'New Event', new_event_path %>
 
   </div>
 </div>
@@ -70,7 +70,7 @@
     <% @user.attendees.each do |attendee| %>
 
 
-          <td><%= attendee.attendee_name %></td>
+          <td><li><%= attendee.attendee_name %></li></td>
 
 
 

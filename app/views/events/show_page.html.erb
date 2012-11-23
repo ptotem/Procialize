@@ -1,0 +1,101 @@
+<div class="row-fluid">
+
+  <div class="span9">
+    <%= image_tag @photo %>
+    <h4><%= @name %></h4>
+    <h5><%= @headline %></h5>
+  </div>
+
+  <div class="span10">
+    <div class="notice-bar">
+      Events
+    </div>
+
+    <div class="fbinfobox">
+      <table border="2">
+
+        <tr>
+          <th>Event Name</th>
+          <!--<th>Event description</th>-->
+          <th>Event location</th>
+          <th>Event start_at</th>
+          <th>Event end_at</th>
+
+        </tr>
+
+        <%# @events.each do |event| %>
+
+        <tr>
+
+
+          <td><%= @event.event_name %></td>
+
+          <!--<td><%#= @event.event_description %></td>-->
+
+          <td><%= @event.event_location %></td>
+
+          <td><%= @event.start_at %></td>
+
+          <td><%= @event.end_at %></td>
+
+        </tr>
+        </table>
+      <table>
+        <tr>
+          <div class="button_tag">
+          <td><%= button_tag "Accept",:class => "btn btn-success" %></td>
+          <td><%= button_tag "Decline",:class => "btn btn-warning" %></td>
+          <td><%= button_tag "Share",:class => "btn "%></td>
+          <td><%= button_tag "Feedback" ,:class => "btn btn-info" %></td>
+          </div><%# end %>
+        </tr>
+
+
+      </table>
+
+    </div>
+
+
+    <br/>
+    <div class="notice-bar">
+      Event Description
+    </div>
+        <div class="fbinfobox">
+         <table>
+         <td> <%= @event.event_description %></td>
+          <%# @speakers.each do |speaker| %>
+           <!--<li><td>speaker.speaker_name</td></li>-->
+               <%# end %>
+               </table>
+               </div>
+    <%#= link_to 'New Event', new_event_path %>
+
+
+  </div>
+
+  <div class="span8">
+    <br>
+    <br>
+    <br>
+
+    <div class="notice-bar">
+      List of attendees
+    </div>
+    <div class="fbinfobox">
+
+      <% @attend.each do |attendee| %>
+
+
+          <td>
+            <li><%= attendee.attendee_name %></li>
+          </td>
+
+
+          <!--<td><%#= link_to 'Show', event %></td>-->
+          <!--<td><%#= link_to 'Edit', edit_event_path(event) %></td>-->
+          <!--<td><%#= link_to 'Destroy', event, method: :delete, data: {confirm: 'Are you sure?'} %></td>-->
+          </tr>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class Attendee < ActiveRecord::Base
-  attr_accessible :attendee_name, :user_id
+  attr_accessible :attendee_name, :user_id,:event_id
 
   belongs_to :user
 

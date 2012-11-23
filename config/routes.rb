@@ -10,12 +10,15 @@ ProcializeApp::Application.routes.draw do
 
 
 
+
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
   match 'users/(:id)/profile', :to=>"users/profile#index", :as=>"user_profile"
-
-  post "home" => "home#create"
-  get "posts/:id" => "posts#show"
+  match 'events/:id/:event_day'=> 'events#show'
+  match 'event/:id'   => 'events#show_page', :as => 'event_show'
+  #post "home" => "home#create"
+  #get "posts/:id" => "posts#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

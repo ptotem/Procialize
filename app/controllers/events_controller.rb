@@ -16,13 +16,48 @@ class EventsController < ApplicationController
     end
   end
 
+
+  def show_page
+    @user=current_user
+    @name=@user.name
+    @photo=@user.picture
+    @headline=@user.headline
+    @ev=Event.find_by_user_id(@user).id
+    @event = Event.find(params[:id])
+    @attend=Attendee.find_all_by_event_id(@event.id)
+    @attendee=Attendee.find_by_user_id(@user).id
+    @speakers=Speaker.all
+    #render :text=>[@user.id,@event.id]
+    #return
+    #@speak=Speaker.find_by_user_id_and_event_id(@user.id,@event.id).speaker_name
+    #@events = Event.all
+    #render :text=>@event.ename
+    #return
+    #@event_name = Event.find_by_user_id(@user).event_name
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @event }
+    end
+  end
   # GET /events/1
   # GET /events/1.json
   def show
+
     @user=current_user
     @ev=Event.find_by_user_id(@user).id
     @event = Event.find(params[:id])
-
+    @events = Event.all
+    @ev_d=params[:event_day]
+    @eve=Event.find_all_by_user_id_and_event_day(@user.id,params[:event_day])
+    @days=Array.new
+    @user.events.each do |event|
+      @days<<event.event_day
+    end
+    @days=@days.uniq
+    #@speakers=Speaker.all
+    #@speak=Speaker.find_by_user_id_and_event_id(@user.id,@event.id).first
+    #render :text=>@speak
+    #return
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
