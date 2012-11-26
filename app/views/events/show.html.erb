@@ -1,28 +1,14 @@
-<%#= javascript_include_tag "bjqs-1.3" %>
-<%#= stylesheet_link_tag "bjqs" %>
+
 
 <script type="text/javascript">
     $(function(){
         $('select').val('<%=@ev_d%>');
         $('select').change(function(){
-            window.location = '/events/'+<%=@event.id%>+'/'+$(this).val();
+            window.location = '/events/'+ <%=@event.id%> + '/'+$(this).val();
 
         });
     });
 
-//jQuery(document).ready(function($) {
-//    $('#my-slideshow').bjqs({
-//        'height' : 320,
-//        'width' : 620,
-//        'responsive' : true
-//    });
-//
-//    $('.bjqs-next').click(function(){
-////        window.location = '/events/'+<%#=@event.id%>+'/'+$(this).val();
-//
-////        window.location = '/events/'+<%#=@event.id%>+'/'+$(this).val();
-//    })
-//});
 
 </script>
 
@@ -31,18 +17,8 @@
     <p id="notice"><%= notice %></p>
 
     <div class="notice-bar">
+      Event list for the day
       <%= select_tag :event_day, options_for_select(@days)%>
-      <%#= select ('event_day',@,{},{:id =>'opponent_team_id'}) %>
-      <!--<div id="my-slideshow">-->
-        <!--<ul class="bjqs">-->
-          <!--<%# @eve %>-->
-          <!--<%# @days.each_with_index do |event, index| %>-->
-          <!--<li><div id='<%#= index+1 %>'><h2><%#= event.titleize %></h2></div></li>-->
-              <!--<%# end %>-->
-
-        <!--</ul>-->
-      <!--</div>-->
-
     </div>
 
     <div class="fbinfobox">

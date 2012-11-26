@@ -17,20 +17,69 @@ class HomeController < ApplicationController
     @headline=@user.headline
     @events = Event.all
     @status=Status.all
+    @ev=Event.find_by_user_id(@user).id
+
+    @events = Event.all
+    #@ev_d=@events.find_by_@evt
+    #@event = Event.find_by_user_id(@user).id
+
+    @evt = Array.new
+    @user.events.each do |eve|
+      @evt<<eve.id
+    end
+    @evt=@evt.uniq
+    #render :text=>@ev_d
+    #return
+
+
+    #@ev_d=params[:event_day]
+    #@eve=Event.find_all_by_user_id_and_event_day(@user.id,params[:event_day])
+    @days=Array.new
+    @user.events.each do |event|
+      @days<<event.event_day
+    end
+    @days=@days.uniq
+    @ev_n=Event.find_all_by_user_id_and_event_day(@user.id,@days)
+
+
+
+  end
     #@status = Status.create(:comment => params[:status][:comment],:user_id => @user.id)
     #@status=Status
   end
 
   def create
-    @status = Status.new(params[:status])
 
-    @status.save
-    redirect_to action: :show, id: @status.id
   end
 
    def show
-     @status = Status.find(params[:id])
+     @user=current_user
+     @ev=Event.find_by_user_id(@user).id
+     @event = Event.find(params[:id])
+     @events = Event.all
+     @ev_d=params[:event_day]
+     @eve=Event.find_all_by_user_id_and_event_day(@user.id,params[:event_day])
+     @days=Array.new
+     @user.events.each do |event|
+       @days<<event.event_day
+     end
+     @days=@days.uniq
+     @evt = Array.new
+     @user.events.each do |eve|
+       @evt<<eve.id
+     end
+     @evt=@evt.uniq
+     #render :text=>@evt
+     #return
 
-   end
+     @ev_d=params[:event_day]
+     #@ev_d=params[:event_day]
+     #@eve=Event.find_all_by_user_id_and_event_day(@user.id,params[:event_day])
+     @days=Array.new
+     @user.events.each do |event|
+       @days<<event.event_day
+     end
+     @days=@days.uniq
+     @ev_n=Event.find_all_by_user_id_and_event_day(@user.id,@days)
 
 end

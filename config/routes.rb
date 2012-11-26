@@ -14,9 +14,11 @@ ProcializeApp::Application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
+  #mount RailsAdmin::Engine => '/admin', :as => 'rails_admin' # Feel free to change '/admin' to any namespace you need.
   match 'users/(:id)/profile', :to=>"users/profile#index", :as=>"user_profile"
   match 'events/:id/:event_day'=> 'events#show'
   match 'event/:id'   => 'events#show_page', :as => 'event_show'
+  #match 'home/:id/:event_day'=> 'events#index'
   #post "home" => "home#create"
   #get "posts/:id" => "posts#show"
 

@@ -15,8 +15,13 @@
 
 
 <script>
-    $(function() {
-        $( "#tabs" ).tabs();
+    $(function () {
+        $('select').val('<%=@days%>');
+        $('select').change(function () {
+
+            window.location = '/events/' + <%=@evt.first%> +'/' + $(this).val();
+
+        });
     });
 </script>
 
@@ -34,12 +39,11 @@
       <br>
       <br>
 
-      <div class="span4">
+      <div class="span8">
 
         <div class="notice-bar">
           Status update
         </div>
-
 
 
         <div class="fbinfobox">
@@ -69,43 +73,45 @@
 
 
         <div class="notice-bar">
-          Events update
+          List of Events
         </div>
         <div class="fbinfobox">
           <div class="row-fluid">
             <div class="span10">
-              <!--<div id="tabs">-->
-                <!--<ul>-->
-                  <!--<li><a href="#tabs-1">Nunc tincidunt</a></li>-->
-                  <!--<li><a href="#tabs-2">Proin dolor</a></li>-->
-                  <!--<li><a href="#tabs-3">Aenean lacinia</a></li>-->
-                <!--</ul>-->
-                <!--<div id="tabs-1">-->
-                  <!--<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>-->
-                <!--</div>-->
-                <!--<div id="tabs-2">-->
-                  <!--<p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>-->
-                <!--</div>-->
-                <!--<div id="tabs-3">-->
-                  <!--<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>-->
-                  <!--<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<h6>Event name</h6>-->
-               <table border="2">
-                 <th><h4>Event name</h4></th>
-              <% @user.events.each do |event| %>
-                  <tr>
+              <%= select_tag :event_day, options_for_select(@days) %>
 
-                    <td><li><%=link_to event.event_name,event_show_path(event.id) %></li></td>
+              <table border="2">
 
-                  </tr>
+                <tr>
+                  <th>Event Name</th>
+                  <th>Event description</th>
+                  <th>Event location</th>
+                  <th>Event start_at</th>
+                  <th>Event end_at</th>
 
-              <% end %>
-               </table>
 
-              <%= link_to "Calendar", :controller => "calendar", :action => "index" %>
+                </tr>
 
+                <%#= @ev_n %>
+                <% @ev_n.each do |event| %>
+
+                    <tr>
+
+
+                      <td><%= link_to event.event_name, event_show_path(event.id) %></td>
+
+                      <td><%= event.event_description %></td>
+
+                      <td><%= event.event_location %></td>
+
+
+                      <td><%= event.start_at %></td>
+
+                      <td><%= event.end_at %></td>
+
+                <% end %>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
@@ -122,7 +128,7 @@
             <% @user.meetings.each do |meeting| %>
                 <tr>
                   <th>Meeting name</th>
-                  <td><%= meeting.meeting_name  %></td>
+                  <td><%= meeting.meeting_name %></td>
                 </tr>
 
 
@@ -138,9 +144,9 @@
           </table>
 
           <div class="fbinfo1">
-            <%= link_to "Accept",meetings_path%>
+            <%= link_to "Accept", meetings_path %>
 
-            <%= link_to "Ignore"%>
+            <%= link_to "Ignore" %>
           </div>
 
         </div>

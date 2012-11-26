@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123085433) do
+ActiveRecord::Schema.define(:version => 20121126094436) do
 
   create_table "attendees", :force => true do |t|
     t.string   "attendee_name"
@@ -48,11 +48,15 @@ ActiveRecord::Schema.define(:version => 20121123085433) do
     t.string   "event_location"
     t.integer  "organizer_id"
     t.integer  "user_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.datetime "start_at"
     t.datetime "end_at"
     t.string   "event_day"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "feedbacks", :force => true do |t|

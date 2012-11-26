@@ -54,10 +54,9 @@ class EventsController < ApplicationController
       @days<<event.event_day
     end
     @days=@days.uniq
-    #@speakers=Speaker.all
-    #@speak=Speaker.find_by_user_id_and_event_id(@user.id,@event.id).first
-    #render :text=>@speak
+    #render :text=>@eve
     #return
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
