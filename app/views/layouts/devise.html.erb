@@ -3,14 +3,16 @@
 <head>
   <title>Procialize</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
-  <%= stylesheet_link_tag "bootstrap-responsive.min", :media => "all" %>
-  <%= stylesheet_link_tag "procialize_styles", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <%= csrf_meta_tags %>
+  <%= yield(:head) %>
 </head>
-<body style="margin-top: 40px;">
-<%= yield %>
+<body>
+    <div id="body_wrapper">
+        <%= yield %>
+    </div>
 </body>
 </html>
