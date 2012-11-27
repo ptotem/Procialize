@@ -1,3 +1,0 @@
-module GlobalConstants
-
-end
