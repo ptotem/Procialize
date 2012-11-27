@@ -3,31 +3,21 @@
 <head>
   <title>Procialize: <%= yield :page_title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
-  <%= stylesheet_link_tag "bootstrap-responsive.min", :media => "all" %>
-  <%= stylesheet_link_tag "procialize_styles", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 </head>
 <body>
-<div id="main_menu_wrapper">
-  <ul id="menu_list">
-    <li>Conferences</li>
-    <li>Events</li>
-    <li>Meetings</li>
-    <li>Messages</li>
-    <li>Profile</li>
-    <li>Sign Out</li>
-  </ul>
-</div>
+
 <div id="body_wrapper">
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <%= link_to image_tag("menu.jpeg"), "#", :class => "pull-left", :id => "main_menu" %>
 
-      <%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" ,:id => "title_bar"%>
+      <%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand", :id => "title_bar" %>
       <ul class="nav pull-right" style="margin-top: -5px;">
         <li><%= link_to image_tag("event.png"), root_path %></li>
         <li><%= link_to image_tag("delegate.png"), root_path %></li>
@@ -47,31 +37,5 @@
   </div>
 </div>
 </body>
-
-<script type="text/javascript">
-    var menu_state = false;
-    function main_menu_toggle() {
-        if (menu_state) {
-            $('#body_wrapper').animate({
-                marginLeft:"-=500px",
-                width:"-=500px"
-            }, 500);
-            menu_state = false;
-            $('#main_menu_wrapper').hide();
-        } else {
-            $('#main_menu_wrapper').fadeIn('500');
-            $('#body_wrapper').animate({
-                marginLeft:"+=500px",
-                width:"+=500px"
-            }, 600);
-            menu_state = true;
-        }
-    }
-    $(function () {
-        $('#main_menu').on('click', function () {
-            main_menu_toggle();
-        })
-    })
-</script>
 
 </html>
