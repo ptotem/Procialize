@@ -26,8 +26,7 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <%= link_to image_tag("menu.jpeg"), "#", :class => "pull-left", :id => "main_menu" %>
-
-      <%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" ,:id => "title_bar"%>
+      <%= link_to "Pro", destroy_user_session_path, :method => :delete, :class => "brand" ,:id => "title_bar"%>
       <ul class="nav pull-right" style="margin-top: -5px;">
         <li><%= link_to image_tag("event.png"), root_path %></li>
         <li><%= link_to image_tag("delegate.png"), root_path %></li>
@@ -53,16 +52,16 @@
     function main_menu_toggle() {
         if (menu_state) {
             $('#body_wrapper').animate({
-                marginLeft:"-=500px",
-                width:"-=500px"
+                marginLeft:"-=200px",
+                width:"-=200px"
             }, 500);
             menu_state = false;
             $('#main_menu_wrapper').hide();
         } else {
             $('#main_menu_wrapper').fadeIn('500');
             $('#body_wrapper').animate({
-                marginLeft:"+=500px",
-                width:"+=500px"
+                marginLeft:"+=200px",
+                width:"+=200px"
             }, 600);
             menu_state = true;
         }

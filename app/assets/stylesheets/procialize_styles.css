@@ -36,19 +36,19 @@ img {
 }
 
 ul#menu_list{
-    height: 100%;
-    /*margin-top: 2%;*/
+    /*height: 100%;*/
+    margin-top: 2%;
 }
 ul#menu_list li{
     height: 15%;
     color: white;
     font: bold;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 #title_bar
 {
-    margin-left: 1%;
+    margin-left: 2px;
 }
 /* End Generic Layout Definitions*/
 
