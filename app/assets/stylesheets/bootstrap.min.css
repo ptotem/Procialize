@@ -324,7 +324,6 @@ a:hover {
 .row-fluid {
   width: 100%;
   *zoom: 1;
-   margin-top: 10px;
 }
 
 .row-fluid:before,

@@ -12,29 +12,65 @@
   <%= yield(:head) %>
 </head>
 <body>
+<div id="main_menu_wrapper">
+  <ul id="menu_list">
+    <li>Conferences</li>
+    <li>Events</li>
+    <li>Meetings</li>
+    <li>Messages</li>
+    <li>Profile</li>
+    <li>Sign Out</li>
+  </ul>
+</div>
+<div id="body_wrapper">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <%= link_to image_tag("menu.jpeg"), "#", :class => "pull-left", :id => "main_menu" %>
+      <%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" %>
+      <ul class="nav pull-right" style="margin-top: -5px;">
+        <li><%= link_to image_tag("event.png"), root_path %></li>
+        <li><%= link_to image_tag("delegate.png"), root_path %></li>
+        <li class="active"><%= link_to image_tag("home.png"), root_path %></li>
+        <li><%= link_to image_tag("contact.png"), root_path %></li>
+      </ul>
+    </div>
+  </div>
 
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" %>
-    <ul class="nav pull-right" style="margin-top: -5px;">
-      <li><%= link_to image_tag("event.png"), events_path %></li>
-      <li><%= link_to image_tag("delegate.png"),meetings_path %></li>
-      <li><%#= link_to image_tag("message.png"), :controller => "message", :action => "index" %>
-      <li><%= link_to image_tag("calendar.png"), :controller => "calendar", :action => "index" %>
-      <li class="active"><%= link_to image_tag("home.png"), root_path %></li>
-    </ul>
+  <div class="container" style="margin-top: 40px;">
+    <div class="content">
+      <%= js extend_gritter :position => :bottom_right %>
+      <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
+      <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
+      <%= yield %>
+    </div>
   </div>
 </div>
-
-<div class="container" style="margin-top: 40px;">
-  <div class="content">
-    <%= js extend_gritter :position => :bottom_right %>
-    <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
-    <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
-    <%= yield %>
-  </div>
-</div>
-
-
 </body>
+
+<script type="text/javascript">
+    var menu_state = false;
+    function main_menu_toggle() {
+        if (menu_state) {
+            $('#body_wrapper').animate({
+                marginLeft:"-=500px",
+                width:"-=500px"
+            }, 500);
+            menu_state = false;
+            $('#main_menu_wrapper').hide();
+        } else {
+            $('#main_menu_wrapper').fadeIn('500');
+            $('#body_wrapper').animate({
+                marginLeft:"+=500px",
+                width:"+=500px"
+            }, 600);
+            menu_state = true;
+        }
+    }
+    $(function () {
+        $('#main_menu').on('click', function () {
+            main_menu_toggle();
+        })
+    })
+</script>
+
 </html>
