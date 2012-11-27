@@ -1,24 +1,13 @@
 class Event < ActiveRecord::Base
-  attr_accessible :event_description, :event_location, :event_name, :organizer_id, :user_id,:start_at,:end_at,:event_day
+  attr_accessible :description, :end, :event_day_id, :name, :start ,:avatar
 
-  belongs_to :organizer
-  belongs_to :user
 
-  has_many :feedbacks, :dependent => :destroy
   has_many :decks, :dependent => :destroy
-  has_many :speakers, :dependent => :destroy
-  has_many :broadcasts, :dependent => :destroy
-
+  has_many :attendees, :dependent => :destroy
   has_many :event_locations, :dependent => :destroy
-  has_many :locations, :through => :event_locations
-
-  has_event_calendar :start_at => '2012-10-1', :end_at => '2050-12-31'
-
-
-  attr_accessible :avatar
+  has_many :speakers, :dependent => :destroy
   has_attached_file :avatar
 
-
-
+  belongs_to :event_day
 
 end

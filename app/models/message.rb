@@ -1,7 +1,10 @@
 class Message < ActiveRecord::Base
-  attr_accessible :attendee_id, :meeting_id, :message_details
+  attr_accessible :body, :name, :user_id, :conference_id
 
-  belongs_to :attendee
-  belongs_to :meeting
+
+  has_many :receipients, :dependent => :destroy
+
+  belongs_to :user
+  belongs_to :conference
 
 end

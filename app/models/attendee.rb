@@ -1,15 +1,7 @@
 class Attendee < ActiveRecord::Base
-  attr_accessible :attendee_name, :user_id,:event_id
+  attr_accessible :event_id, :feedback, :user_id
 
   belongs_to :user
-
-
-  has_many :feedbacks, :dependent => :destroy
-
-  has_one :grafiti_wall
-
-  has_many :messages,:dependent => :destroy
-  has_many :meetings, :through => :messages
-
+  belongs_to :event
 
 end
