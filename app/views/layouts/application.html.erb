@@ -26,7 +26,8 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <%= link_to image_tag("menu.jpeg"), "#", :class => "pull-left", :id => "main_menu" %>
-      <%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" %>
+
+      <%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" ,:id => "title_bar"%>
       <ul class="nav pull-right" style="margin-top: -5px;">
         <li><%= link_to image_tag("event.png"), root_path %></li>
         <li><%= link_to image_tag("delegate.png"), root_path %></li>

@@ -26,7 +26,7 @@ gem 'omniauth-linkedin'
 gem 'linkedin'
 
 gem 'awesome_nested_fields'
-gem 'event-calendar', :require => 'event_calendar'
+
 
 
 # Gems used only for assets and not required

@@ -46,6 +46,10 @@ ul#menu_list li{
     margin-top: 10%;
 }
 
+#title_bar
+{
+    margin-left: 1%;
+}
 /* End Generic Layout Definitions*/
 
 /* _______________________________________________________________ */

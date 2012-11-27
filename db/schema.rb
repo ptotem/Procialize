@@ -11,28 +11,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126094436) do
+ActiveRecord::Schema.define(:version => 20121126135954) do
 
   create_table "attendees", :force => true do |t|
-    t.string   "attendee_name"
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
     t.integer  "event_id"
+    t.text     "feedback"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table "broadcasts", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "organizer_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+  create_table "conferences", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "starting"
+    t.date     "ending"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "decks", :force => true do |t|
-    t.string   "deck_name"
     t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  create_table "event_days", :force => true do |t|
+    t.string   "name"
+    t.integer  "conference_id"
+    t.integer  "sequence"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "event_locations", :force => true do |t|
@@ -43,86 +56,80 @@ ActiveRecord::Schema.define(:version => 20121126094436) do
   end
 
   create_table "events", :force => true do |t|
-    t.string   "event_name"
-    t.text     "event_description"
-    t.string   "event_location"
-    t.integer  "organizer_id"
-    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "event_day_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.string   "event_day"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
   end
 
-  create_table "feedbacks", :force => true do |t|
-    t.text     "feedback_details"
-    t.integer  "event_id"
-    t.integer  "attendee_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  create_table "grafiti_walls", :force => true do |t|
-    t.text     "wall_message"
-    t.integer  "attendee_id"
+  create_table "followers", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "follower_id"
+    t.integer  "conference_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "locations", :force => true do |t|
     t.string   "name"
+    t.integer  "conference_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "meeters", :force => true do |t|
     t.integer  "meeting_id"
+    t.integer  "user_id"
+    t.text     "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "meetings", :force => true do |t|
-    t.string   "meeting_name"
-    t.text     "meeting_description"
-    t.string   "meeting_location"
-    t.datetime "meeting_datetime"
-    t.integer  "user_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.datetime "start_at"
-    t.datetime "end_at"
+    t.string   "name"
+    t.string   "location"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "messages", :force => true do |t|
-    t.text     "message_details"
-    t.integer  "attendee_id"
-    t.integer  "meeting_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  create_table "notice_boards", :force => true do |t|
-    t.text     "board_messages"
-    t.integer  "broadcast_id"
+    t.string   "name"
+    t.text     "body"
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "conference_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "organizers", :force => true do |t|
-    t.string   "organizer_name"
+    t.integer  "conference_id"
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
-  create_table "profiles", :force => true do |t|
-    t.string   "profile_name"
-    t.string   "interest"
+  create_table "participants", :force => true do |t|
+    t.integer  "conference_id"
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "conference_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -138,12 +145,18 @@ ActiveRecord::Schema.define(:version => 20121126094436) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
-  create_table "speakers", :force => true do |t|
-    t.string   "speaker_name"
+  create_table "receipients", :force => true do |t|
+    t.integer  "message_id"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "speakers", :force => true do |t|
     t.integer  "event_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "statuses", :force => true do |t|
@@ -151,6 +164,8 @@ ActiveRecord::Schema.define(:version => 20121126094436) do
     t.text     "comment"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "autogen"
+    t.boolean  "public"
   end
 
   create_table "users", :force => true do |t|
