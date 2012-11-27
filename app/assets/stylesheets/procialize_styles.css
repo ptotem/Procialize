@@ -1,4 +1,5 @@
 /* Jquery Mobile Variants*/
+
 .ui-body-f {
     background-color: #D8EA70;
     font-family: "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
@@ -17,38 +18,6 @@ body {
 
 img {
     max-width: 100%;
-}
-
-#main_menu_wrapper {
-    background: black;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    display: none;
-    height: 100%;
-    z-index: 1;
-
-}
-
-#body_wrapper {
-    position: relative;
-    z-index: 2;
-}
-
-ul#menu_list {
-    height: 100%;
-    /*margin-top: 2%;*/
-}
-
-ul#menu_list li {
-    height: 15%;
-    color: white;
-    font: bold;
-    margin-top: 5%;
-}
-
-#title_bar {
-    margin-left: 1%;
 }
 
 /* End Generic Layout Definitions*/
