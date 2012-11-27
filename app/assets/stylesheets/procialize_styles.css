@@ -1,11 +1,5 @@
 /* Jquery Mobile Variants*/
 
-.ui-body-c, .ui-overlay-c {
-    background: linear-gradient(#D8EA70, #EEEEEE) repeat scroll 0 0 #D8EA70;
-    border: 1px solid #AAAAAA;
-    color: #333333;
-    text-shadow: 0 1px 0 #FFFFFF;
-}
 
 /* Start Generic Layout Definitions*/
 
