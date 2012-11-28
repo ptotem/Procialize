@@ -23,7 +23,9 @@
   <%= js extend_gritter :position => :bottom_right %>
   <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
   <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
-  <%= yield %>
+  <div id="content_container">
+    <%= yield %>
+  </div>
 </div>
 <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
   <div data-role="navbar" data-theme='a'>
