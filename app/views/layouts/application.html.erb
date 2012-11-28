@@ -14,22 +14,21 @@
 
 <div data-role="header" data-position="fixed" data-fullscreen="true">
   <a href="#" data-icon="grid">Menu</a>
+
   <h1>Procialize</h1>
   <a href="#" data-icon="user">Search</a>
   <%#= link_to "Procialize", destroy_user_session_path, :method => :delete, :'data-ajax'=>false %>
 </div>
-<div class="container" style="margin-top: 40px;">
-  <div class="content">
-    <%= js extend_gritter :position => :bottom_right %>
-    <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
-    <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
-    <%= yield %>
-  </div>
+<div data-role="content" data-theme='a'>
+  <%= js extend_gritter :position => :bottom_right %>
+  <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
+  <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
+  <%= yield %>
 </div>
 <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
   <div data-role="navbar" data-theme='a'>
     <ul>
-      <li><a href="#" data-icon="home" data-theme='a'>Home</a></li>
+      <li><a href="#" data-icon="home" class="ui-btn-active" data-theme='a'>Home</a></li>
       <li><a href="#" data-icon="calendar" data-theme='a'>Events</a></li>
       <li><a href="#" data-icon="envelope" data-theme='a'>Messages</a></li>
     </ul>
