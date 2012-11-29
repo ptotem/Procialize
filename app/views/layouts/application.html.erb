@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,40 +7,96 @@
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "app" %>
   <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
+
+
+
+
+
 </head>
+
+
+
+
 <body>
-
-<div data-role="header" data-position="fixed" data-fullscreen="true">
-  <a href="#" data-icon="grid">Menu</a>
-
-  <h1><%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" %></h1>
-  <a href="#" data-icon="user">Search</a>
-  <%#= link_to "Procialize", destroy_user_session_path, :method => :delete, :'data-ajax'=>false %>
+<div id="menu">
+  <h3>Menu</h3>
+  <ul>
+    <li><a href="#home" class="contentLink">Conference</a></li>
+    <li><a href="#home" class="contentLink">Events</a></li>
+    <li><a href="#home" class="contentLink">Messages</a></li>
+    <li><a href="#home" class="contentLink">Meetings</a></li>
+    <li><a href="#home" class="contentLink">Sign out</a></li>
+  </ul>
 </div>
-<div data-role="content" data-theme='a'>
-  <%= js extend_gritter :position => :bottom_right %>
-  <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
-  <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
-  <div id="content_container">
-    <%= yield %>
+
+<div id="menu1" style="position: absolute;right: 0px; top:0px;">
+  <h3>Menu</h3>
+  <ul>
+    <li><a href="#home" class="contentLink">Conference</a></li>
+    <li><a href="#home" class="contentLink">Events</a></li>
+    <li><a href="#home" class="contentLink">Messages</a></li>
+    <li><a href="#home" class="contentLink">Meetings</a></li>
+    <li><a href="#home" class="contentLink">Sign out</a></li>
+  </ul>
+</div>
+
+<div data-role="page" class="pages" id="home">
+  <div data-role="header" data-position="fixed" data-fullscreen="true">
+  <!--<div data-role="header" data-fullscreen="true">-->
+    <a href="#"  id="main_menu"  data-icon="grid" class="showMenu">Menu</a>
+
+    <h1><%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" %></h1>
+    <a href="#" data-icon="user" class="showMenu1">Search</a>
+    <%#= link_to "Procialize", destroy_user_session_path, :method => :delete, :'data-ajax'=>false %>
+  </div>
+
+  <div data-role="content" data-theme='a'>
+    <%= js extend_gritter :position => :bottom_right %>
+    <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
+    <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
+    <div id="content_container">
+      <%= yield %>
+    </div>
+  </div>
+  <!--<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">-->
+  <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
+    <div data-role="navbar" data-theme='a'>
+      <ul>
+        <li><a href="#" data-icon="home" rel= "external" class="ui-btn-active" data-theme='a'>Home</a></li>
+        <li><a href="/event" data-icon="calendar" data-theme='a'>Events</a></li>
+        <li><a href="#" data-icon="envelope" data-theme='a'>Messages</a></li>
+      </ul>
+    </div>
+
   </div>
 </div>
-<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
-  <div data-role="navbar" data-theme='a'>
-    <ul>
-      <li><a href="#" data-icon="home" rel= "external" class="ui-btn-active" data-theme='a'>Home</a></li>
-      <li><a href="/event" data-icon="calendar" data-theme='a'>Events</a></li>
-      <li><a href="#" data-icon="envelope" data-theme='a'>Messages</a></li>
-    </ul>
-  </div>
-  <!-- /navbar -->
-</div>
-
-
 </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -141,7 +141,37 @@ h3, h4, h5, h6 {
 
 .button_tag  {
     margin-top: 10%;
+}
+
+
+#menu {
+    background: black;
+
+    height:100%;
+
 
 }
+
+#menu1 {
+    background: black;
+
+    height:100%;
+
+
+}
+
+
+ul#menu{
+    height: 100%;
+
+}
+ul#menu li{
+    height: 15%;
+    color: white;
+    font: bold;
+    margin-top: 10%;
+}
+
+
 /* End Message Page Definitions */
 
