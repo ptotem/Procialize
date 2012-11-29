@@ -74,7 +74,7 @@ $(function right(){
     $("a.showMenu1").click(function(){
         if(menuStatus1 != true){
             $(".ui-page-active").animate({
-                width: "88%",
+                width: "60%",
             }, 300, function(){menuStatus1 = true});
             return false;
         } else {
@@ -96,7 +96,7 @@ $(function right(){
     $('.pages').live("swipeleft", function(){
         if (!menuStatus1){
             $(".ui-page-active").animate({
-                width: "88%",
+                width: "60%",
             }, 300, function(){menuStatus1 = true});
         }
     });
