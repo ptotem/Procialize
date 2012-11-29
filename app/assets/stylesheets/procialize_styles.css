@@ -154,22 +154,25 @@ h3, h4, h5, h6 {
 
 #menu1 {
     background: black;
-
+    position: absolute;
+    right:0;
+    top:0px;
     height:100%;
 
 
 }
 
 
-ul#menu{
+ul a #menu{
     height: 100%;
 
 }
-ul#menu li{
-    height: 15%;
+ul a #menu li{
+    height: 30%;
     color: white;
     font: bold;
     margin-top: 10%;
+
 }
 
 
