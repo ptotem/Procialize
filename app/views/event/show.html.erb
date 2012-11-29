@@ -1,13 +1,23 @@
 <div class="fbinfobox">
   <div class="ui-grid-a">
+
     <div class="ui-block-a">
 
       <%# @event_days.each do |e| %>
           <%#= e.name %>
           <%# end %>
 
-      <table border="2">
+      <table>
+        <%= image_tag @events.avatar.url %>
 
+      </table>
+
+
+
+    </div>
+    <div class="ui-block-b">
+
+      <table border="2">
         <tr>
           <th>Event Name</th>
           <td><%= @events.name %></td>
@@ -22,20 +32,15 @@
         </tr>
         <tr>
 
-           <th>Event description</th>
+          <th>Event description</th>
           <td><%= @events.description %></td>
 
         </tr>
-      </table>
 
-
-
-    </div>
-    <div class="ui-block-b">
-
-      <table>
-
+        </table>
+        <table>
         <tr>
+
           <div class="button_tag">
 
 
@@ -43,6 +48,8 @@
             <td><%= button_tag "Decline",:class => "btn btn-warning" %></td>
             <td><%= button_tag "Share",:class => "btn "%></td>
             <td><%= button_tag "Feedback" ,:class => "btn btn-info" %></td>
+
+            <td><a href="/event" data-role="button" data-icon="arrow-l">Back</a><%#= button_tag "Back",:class => "btn btn-success" data-icon="arrow-l" %></td>
           </div>
         </tr>
 
