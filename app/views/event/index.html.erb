@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    $(function(){
+        //a=$('select').val();
+        <%#=@hhh=Event.find(a)%>
+        $('select').val();
+        $('select').change(function(){
+//            alert($(this).val().name);
+          window.location = '/event/'+$(this).val();
+
+        });
+    });
+
+
+</script>
+
+
+
+<div class="ui-grid-a">
+  <div class="ui-block-a">
+    <%#= @event_days %>
+    <h1><%= @conference.name %></h1>
+
+  </div>
+  <div class="ui-block-b">
+    <%#= @event_days %>
+    <br>
+    <br>
+      <h3>List of events</h3>
+    <% @event_days.each do |event_day| %>
+        <h1><%#=event_day.name %></h1>
+        <% event_day.events.each do |event| %>
+            <%=link_to event.name ,event %>
+
+        <% end %>
+    <% end %>
+
+    <%= select_tag :event_days, options_from_collection_for_select(@event_days, 'id', 'name')%>
+
+
+
+  </div>
+</div>

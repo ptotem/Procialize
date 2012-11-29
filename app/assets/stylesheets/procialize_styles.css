@@ -63,7 +63,7 @@ img {
 /* Start Profile page Definitions*/
 
 .fbinfobox {
-    background: white;
+    background:#fafad2;
     color: #333333;
     padding: 10px;
     border-radius: 10px;
@@ -138,5 +138,10 @@ h3, h4, h5, h6 {
     font-weight: bold;
 }
 
+
+.button_tag  {
+    margin-top: 10%;
+
+}
 /* End Message Page Definitions */
 

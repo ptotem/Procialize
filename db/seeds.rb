@@ -31,13 +31,13 @@ Conference.create!(:name => 'Ptotem intialising', :description => 'Ptotem simula
 
 
 EventDay.create!(:name => 'Day one',:conference_id => '1',:sequence => '1')
-EventDay.create!(:name => 'Day two',:conference_id => '2',:sequence => '2')
-EventDay.create!(:name => 'Day three',:conference_id => '3',:sequence => '3')
-EventDay.create!(:name => 'Day four',:conference_id => '1',:sequence => '4')
 EventDay.create!(:name => 'Day one',:conference_id => '2',:sequence => '1')
-EventDay.create!(:name => 'Day two',:conference_id => '3',:sequence => '2')
-EventDay.create!(:name => 'Day one',:conference_id => '1',:sequence => '1')
 EventDay.create!(:name => 'Day two',:conference_id => '2',:sequence => '2')
+EventDay.create!(:name => 'Day three',:conference_id => '2',:sequence => '3')
+EventDay.create!(:name => 'Day one',:conference_id => '3',:sequence => '1')
+EventDay.create!(:name => 'Day two',:conference_id => '3',:sequence => '2')
+EventDay.create!(:name => 'Day one',:conference_id => '4',:sequence => '1')
+EventDay.create!(:name => 'Day two',:conference_id => '4',:sequence => '2')
 
 
 Event.create!(:name => 'Balls of the Bull Festival',:description => 'employers will be scheduling "Late Night Interviews" during the Fair and will conduct them in the Career Center at 185 Student Services Building.',:start => '2012-11-06 09:00:00',:end => '2012-11-06 10:30:00',:event_day_id => '1')
@@ -85,4 +85,93 @@ Meeting.create!(:name => 'Debate Debate',:location => 'Thane',:start_time => '20
 Meeting.create!(:name => 'Exhibition about satellite aspects',:location => 'Dadar',:start_time => '2013-01-5 01:00:00',:end_time => '2013-01-5 01:00:00')
 Meeting.create!(:name => 'Debate on  vehicle enegine',:location => 'Wadala',:start_time => '2013-01-5 01:00:00',:end_time => '2013-01-5 01:00:00')
 Meeting.create!(:name => 'Presentation about Mobile features',:location => 'Malad',:start_time => '2013-01-5 01:00:00',:end_time => '2013-01-5 01:00:00')
+
+
+Meeter.create!(:meeting_id => '1',:user_id => '1', :status => 'whats on your mind?')
+Meeter.create!(:meeting_id => '2',:user_id => '2', :status => 'Behind every successful man there is a WOMAN If U Need More Success Increase the Number.')
+Meeter.create!(:meeting_id => '3',:user_id => '3', :status => 'Rule of boys: Phulo ki ma ak ko churaya nahi jata,')
+Meeter.create!(:meeting_id => '4',:user_id => '4', :status => 'Partying all day enjoy whole night be a rebel')
+Meeter.create!(:meeting_id => '5',:user_id => '5', :status => 'Iam single and dont want to mingle')
+Meeter.create!(:meeting_id => '6',:user_id => '2', :status => 'Awesome,if u smell what the rock is cookin')
+Meeter.create!(:meeting_id => '7',:user_id => '3', :status => 'thats the bottom line because stone cold said so')
+Meeter.create!(:meeting_id => '8',:user_id => '2', :status => 'yeah yeah iam not afraid')
+
+
+Follower.create!(:user_id => '1',:follower_id => '1',:conference_id => '1')
+Follower.create!(:user_id => '2',:follower_id => '2',:conference_id => '2')
+Follower.create!(:user_id => '3',:follower_id => '3',:conference_id => '3')
+Follower.create!(:user_id => '4',:follower_id => '4',:conference_id => '4')
+Follower.create!(:user_id => '1',:follower_id => '5',:conference_id => '5')
+Follower.create!(:user_id => '2',:follower_id => '6',:conference_id => '6')
+Follower.create!(:user_id => '3',:follower_id => '7',:conference_id => '7')
+Follower.create!(:user_id => '4',:follower_id => '8',:conference_id => '8')
+
+
+Message.create!(:name => 'Indrajeet',:body => 'Attending the event',:user_id => '1',:conference_id => '1')
+Message.create!(:name => 'Nilesh',:body => 'Mee too joining indrajeet as iam in same category',:user_id => '2',:conference_id => '2')
+Message.create!(:name => 'Sachin',:body => 'Awesome call me awesome',:user_id => '3',:conference_id => '3')
+Message.create!(:name => 'Pranay',:body => 'Enjoyed the event very much',:user_id => '4',:conference_id => '4')
+Message.create!(:name => 'Sunny',:body => 'Finally iam the event by baba indrajeet',:user_id => '1',:conference_id => '5')
+Message.create!(:name => 'Ashwin',:body => 'Good perseus',:user_id => '2',:conference_id => '6')
+Message.create!(:name => 'Amol',:body => 'Thank you nilesh',:user_id => '3',:conference_id => '7')
+Message.create!(:name => 'Perseus',:body => 'Thanks ashwin',:user_id => '4',:conference_id => '8')
+
+
+Organizer.create!(:conference_id => '1',:user_id => '1')
+Organizer.create!(:conference_id => '2',:user_id => '2')
+Organizer.create!(:conference_id => '3',:user_id => '3')
+Organizer.create!(:conference_id => '4',:user_id => '4')
+Organizer.create!(:conference_id => '5',:user_id => '1')
+Organizer.create!(:conference_id => '6',:user_id => '2')
+Organizer.create!(:conference_id => '7',:user_id => '3')
+Organizer.create!(:conference_id => '8',:user_id => '4')
+
+
+Participant.create!(:conference_id => '1',:user_id => '1')
+Participant.create!(:conference_id => '2',:user_id => '2')
+Participant.create!(:conference_id => '3',:user_id => '3')
+Participant.create!(:conference_id => '4',:user_id => '4')
+Participant.create!(:conference_id => '5',:user_id => '1')
+Participant.create!(:conference_id => '6',:user_id => '2')
+Participant.create!(:conference_id => '7',:user_id => '3')
+Participant.create!(:conference_id => '8',:user_id => '4')
+
+Post.create!(:name => 'Indrajeet',:conference_id => '1',:user_id => '1')
+Post.create!(:name => 'Nilesh',:conference_id => '2',:user_id => '2')
+Post.create!(:name => 'Sachin',:conference_id => '3',:user_id => '3')
+Post.create!(:name => 'Pranay',:conference_id => '4',:user_id => '4')
+Post.create!(:name => 'Amol',:conference_id => '5',:user_id => '1')
+Post.create!(:name => 'Perseus',:conference_id => '6',:user_id => '2')
+Post.create!(:name => 'Sunny',:conference_id => '7',:user_id => '3')
+Post.create!(:name => 'Ashwin',:conference_id => '8',:user_id => '4')
+
+
+Receipient.create!(:message_id => '1',:user_id => '1')
+Receipient.create!(:message_id => '2',:user_id => '2')
+Receipient.create!(:message_id => '3',:user_id => '3')
+Receipient.create!(:message_id => '4',:user_id => '4')
+Receipient.create!(:message_id => '5',:user_id => '1')
+Receipient.create!(:message_id => '6',:user_id => '2')
+Receipient.create!(:message_id => '7',:user_id => '3')
+Receipient.create!(:message_id => '8',:user_id => '4')
+
+
+Speaker.create!(:user_id => '1',:event_id => '1')
+Speaker.create!(:user_id => '2',:event_id => '2')
+Speaker.create!(:user_id => '3',:event_id => '3')
+Speaker.create!(:user_id => '4',:event_id => '4')
+Speaker.create!(:user_id => '2',:event_id => '5')
+Speaker.create!(:user_id => '3',:event_id => '6')
+Speaker.create!(:user_id => '4',:event_id => '7')
+Speaker.create!(:user_id => '2',:event_id => '8')
+
+
+Status.create!(:user_id => '1',:comment => 'Attending the event')
+Status.create!(:user_id => '2',:comment => 'Mee too joining indrajeet as iam in same category')
+Status.create!(:user_id => '3',:comment => 'Awesome call me awesome')
+Status.create!(:user_id => '4',:comment => 'Enjoyed the event very much')
+Status.create!(:user_id => '2',:comment => 'Finally iam the event by baba indrajeet')
+Status.create!(:user_id => '3',:comment => 'Good perseus')
+Status.create!(:user_id => '4',:comment => 'Thank you nilesh')
+Status.create!(:user_id => '2',:comment => 'Thanks ashwin')
 
