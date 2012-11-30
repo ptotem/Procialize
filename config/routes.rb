@@ -3,6 +3,7 @@ ProcializeApp::Application.routes.draw do
   #get "event/edit"
 
   resources :event
+  resources :meeting
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
@@ -10,6 +11,7 @@ ProcializeApp::Application.routes.draw do
   match 'users/(:id)/profile', :to=>"users/profile#index", :as=>"user_profile"
 
   match 'event/:id' , :to => 'event#show'
+  match 'meeting/:id' , :to => 'meeting#show'
 
 
 

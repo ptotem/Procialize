@@ -13,6 +13,9 @@ class HomeController < ApplicationController
     @name=@user.name
     @photo=@user.picture
     @headline=@user.headline
+    @statuses = Status.all
+    @statuses = Status.find_all_by_user_id(@user).last
+    @stat = Status.find_all_by_user_id(@user).first
 
 
   end
