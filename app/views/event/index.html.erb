@@ -17,8 +17,14 @@
 
 <div class="ui-grid-a">
   <div class="ui-block-a">
-    <%#= @conference.description %>
-    <h1><%= @conference.name %></h1>
+    <%#= @eve_loc %>
+       <h1>Conference name</h1>
+    <h3><%= @conference.name %></h3><br>
+
+     <!--<b>Location:</b>-->
+    <!--<%# @locations.each do |location| %>-->
+        <!--<%#= location.name %>-->
+    <!--<%# end %>-->
 
   </div>
   <div class="ui-block-b">
@@ -33,6 +39,10 @@
 
         <% end %>
     <% end %>
+
+    <%# @event_locations.each do |event_location| %>
+        <%# event_location. %>
+        <%# end %>
 
     <%= select_tag :event_days, options_from_collection_for_select(@event_days, 'id', 'name')%>
 

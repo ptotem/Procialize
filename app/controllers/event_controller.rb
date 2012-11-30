@@ -12,9 +12,12 @@ class EventController < ApplicationController
 
 
     @event_days = @conference.event_days
-    @eves=Array.new
+    @locations = @conference.locations
+
 
     @events = @event_days.map { |ed| ed.events }.flatten
+    @event_locations=@events.map{ |ev| ev.event_locations}.flatten
+
 
 
   end

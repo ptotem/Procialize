@@ -1,0 +1,63 @@
+<div class="fbinfobox">
+  <div class="ui-grid-a">
+
+    <div class="ui-block-a">
+
+      <%# @event_days.each do |e| %>
+      <%#= e.name %>
+      <%# end %>
+
+      <table>
+       <h2>Meetings Details</h2>
+
+      </table>
+
+
+
+    </div>
+    <div class="ui-block-b">
+
+      <table border="2">
+        <tr>
+          <th>Meeting Name</th>
+          <td><%= @meetings.name %></td>
+        </tr>
+        <tr>
+          <th>Meeting start_at</th>
+          <td><%= @meetings.start_time %></td>
+        </tr>
+        <tr>
+          <th>Meeting end_at</th>
+          <td><%= @meetings.end_time %></td>
+        </tr>
+        <tr>
+
+          <th>Meeting description</th>
+          <td><%= @meetings.location %></td>
+
+        </tr>
+
+      </table>
+      <table>
+        <tr>
+
+          <div class="button_tag">
+
+
+            <td><%= button_tag "Accept",:class => "btn btn-success" %></td>
+            <td><%= button_tag "Decline",:class => "btn btn-warning" %></td>
+            <td><%= button_tag "Share",:class => "btn "%></td>
+            <td><%= button_tag "Feedback" ,:class => "btn btn-info" %></td>
+
+            <td><a href="/meeting" data-role="button" data-icon="arrow-l">Back</a><%#= button_tag "Back",:class => "btn btn-success" data-icon="arrow-l" %></td>
+          </div>
+        </tr>
+
+
+      </table>
+
+    </div>
+  </div>
+
+</div>
+

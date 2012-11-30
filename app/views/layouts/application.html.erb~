@@ -18,23 +18,76 @@
 <body>
 <div id="menu">
 <h3>Menu</h3>
-  <div class="fbinfobox2"><a href="#" data-icon="grid" >Conference</a></div>
-  <div class="fbinfobox2"><a href="#">Events</a></div>
-  <div class="fbinfobox2"><a href="#">Meetings</a></div>
-  <div class="fbinfobox2"><a href="#">Messages</a></div>
-  <hr>
-  <div class="fbinfobox2"><a href="#">Sign out</a></div>
-
+  <div class="fbinfobox2">
+    <div class="img">
+      <%= link_to(image_tag("User.png")) %>
+    </div>
+    <div class="text">
+      <b>Indrajeet</b>
+    </div>
+  </div>  
+  <div class="fbinfobox2">
+    <div class="img">
+      <%= link_to(image_tag("User.png")) %>
+    </div>
+    <div class="text">
+      <b>Indrajeet</b>
+    </div>
+  </div>
 </div>
 
 <div id="menu1">
   <h3></h3>
 
-  <div class="fbinfobox3"><a href="#" data-icon="grid" >Indrajeet</a></div>
-  <div class="fbinfobox3"><a href="#">Sachin</a></div>
-  <div class="fbinfobox3"><a href="#">Amol</a></div>
-  <div class="fbinfobox3"><a href="#">Nilesh</a></div>
-  <div class="fbinfobox3"><a href="#">Sunny</a></div>
+  <div class="fbinfobox2">
+    <div class="img">
+      <%= link_to(image_tag("User.png")) %>
+    </div>
+    <div class="text">
+      <b>Indrajeet</b>
+    </div>
+  </div>
+   <br> <br> <br>
+
+  <div class="fbinfobox2">
+    <div class="img">
+      <%= link_to(image_tag("User.png")) %>
+    </div>
+    <div class="text">
+      <b>Sunny</b>
+    </div>
+
+  </div>
+  <br>  <br> <br>
+
+  <div class="fbinfobox2">
+    <div class="img">
+      <%= link_to(image_tag("User.png")) %>
+    </div>
+    <div class="text">
+      <b>Amol</b>
+    </div>
+    </div>
+  <br> <br> <br>
+
+  <div class="fbinfobox2">
+    <div class="img">
+      <%= link_to(image_tag("User.png")) %>
+    </div>
+    <div class="text">
+      <b>Nilesh</b>
+    </div>
+    </div>
+  <br> <br> <br>
+
+  <div class="fbinfobox2">
+    <div class="img">
+      <%= link_to(image_tag("User.png")) %>
+    </div>
+    <div class="text">
+      <b>Sachin</b>
+    </div>
+    </div>
 
 </div>
 
