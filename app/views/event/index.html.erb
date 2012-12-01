@@ -3,9 +3,10 @@
         //a=$('select').val();
         <%#=@hhh=Event.find(a)%>
         $('select').val();
+//        alert($(this).val())
         $('select').change(function(){
 //            alert($(this).val().name);
-          window.location = '/event/'+$(this).val();
+          window.location = '/show_page/'+$(this).val();
 
         });
     });
@@ -35,7 +36,8 @@
     <% @event_days.each do |event_day| %>
         <h1><%#=event_day.name %></h1>
         <% event_day.events.each do |event| %>
-            <%=link_to event.name ,event %>
+            <%#=link_to event.name ,event %>
+           <li><%= event.name %></li>
 
         <% end %>
     <% end %>

@@ -6,4 +6,6 @@ class ApplicationController < ActionController::Base
   def set_current_conference
     @conference=current_user.participants.map { |p| p.conference }[0]
   end
+
+
 end

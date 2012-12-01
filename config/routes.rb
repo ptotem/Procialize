@@ -11,7 +11,10 @@ ProcializeApp::Application.routes.draw do
   match 'users/(:id)/profile', :to=>"users/profile#index", :as=>"user_profile"
 
   match 'event/:id' , :to => 'event#show'
+  match 'show_page/:id' , :to => 'event#show_page'
   match 'meeting/:id' , :to => 'meeting#show'
+
+  #match 'event/:id/:sequence'  , :to => 'even#showpage'
 
 
 

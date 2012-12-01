@@ -4,7 +4,14 @@ class EventController < ApplicationController
 
   def show
 
-    @events = Event.find(params[:id])
+    @event = Event.find(params[:id])
+
+  end
+
+  def show_page
+
+    @event = Event.find(params[:id])
+
   end
 
   def index

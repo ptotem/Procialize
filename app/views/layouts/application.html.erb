@@ -5,12 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
   <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "jquery.dataTables", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "app" %>
+  <%= javascript_include_tag "jquery.dataTables" %>
   <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 
+
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $('#search_name').dataTable( {
+              "bPaginate": false,
+              "sPaginationType":"full_numbers",
+              "bLengthChange": false,
+              "bFilter": true,
+              "bSort": true,
+              "bInfo": true,
+              "oSearch": {"sSearch": ""},
+              "sDom": 'C<"clear">lfrtip',
+              "bAutoWidth": false } );
+      } );
+  </script>
 
 </head>
 
@@ -18,23 +36,60 @@
 <body>
 <div id="menu">
 <h3>Menu</h3>
-  <div class="fbinfobox2"><a href="#" data-icon="grid" >Conference</a></div>
-  <div class="fbinfobox2"><a href="#">Events</a></div>
-  <div class="fbinfobox2"><a href="#">Meetings</a></div>
-  <div class="fbinfobox2"><a href="#">Messages</a></div>
-  <hr>
-  <div class="fbinfobox2"><a href="#">Sign out</a></div>
+  <!--<div id="example_wrapper" class="dataTables_wrapper" role="grid">-->
+  <!--<div id="example_filter" class="dataTables_filter">-->
+    <!--<label>-->
+      <!--Search:-->
+      <!--<input type="text" aria-controls="example">-->
+    <!--</label>-->
+  <!--</div>-->
+  <table id="search_name">
+    <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><div class="fbinfobox2"><a href="#" data-icon="grid" >Indrajeet</a></div></td>
+    </tr>
+    <tr>
+      <td><div class="fbinfobox2"><a href="#">Sachin</a></div></td>
+    </tr>
+    <tr>
+    <td><div class="fbinfobox2"><a href="#">Nilesh</a></div></td>
+    </tr>
+    <tr>
+      <td><div class="fbinfobox2"><a href="#">Amol</a></div></td>
+    </tr>
+     <tr>
+       <td><div class="fbinfobox2"><a href="#">Ashwin</a></div></td>
+     </tr>
+      <tr>
+       <td><div class="fbinfobox2"><a href="#">Persues</a></div></td>
+    </tr>
+    <tr>
+      <td><div class="fbinfobox2"><a href="#">Sunny</a></div></td>
+    </tr>
+    <tr>
+      <td><div class="fbinfobox2"><a href="#">Rakesh</a></div></td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  </div>
+
+
+
+
+
+
 
 </div>
 
 <div id="menu1">
-  <h3></h3>
 
-  <div class="fbinfobox3"><a href="#" data-icon="grid" >Indrajeet</a></div>
-  <div class="fbinfobox3"><a href="#">Sachin</a></div>
-  <div class="fbinfobox3"><a href="#">Amol</a></div>
-  <div class="fbinfobox3"><a href="#">Nilesh</a></div>
-  <div class="fbinfobox3"><a href="#">Sunny</a></div>
 
 </div>
 
@@ -43,8 +98,10 @@
     <!--<div data-role="header" data-fullscreen="true">-->
     <a href="#" id="main_menu" data-icon="grid" class="showMenu">Menu</a>
 
-    <h1><%= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" %></h1>
-    <a href="#" data-icon="user" class="showMenu1">Search</a>
+    <%#= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" %>
+    <h1><%= link_to "Procialize"%></h1>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "brand","data-icon"=>"user" %>
+    <!--<a href="/sessions" data-icon="user" class="showMenu1">Sign out</a>-->
     <%#= link_to "Procialize", destroy_user_session_path, :method => :delete, :'data-ajax'=>false %>
   </div>
 
@@ -62,6 +119,7 @@
       <ul>
         <li><a href="#" data-icon="home" rel="external" class="ui-btn-active" data-theme='a'>Home</a></li>
         <li><a href="/event" data-icon="calendar" data-theme='a'>Events</a></li>
+        <li><a href="#" data-icon="Meetings" data-theme='a'>Meetings</a></li>
         <li><a href="#" data-icon="envelope" data-theme='a'>Messages</a></li>
       </ul>
     </div>

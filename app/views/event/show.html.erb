@@ -8,7 +8,7 @@
           <%# end %>
 
       <table>
-        <%= image_tag @events.avatar.url %>
+        <%= image_tag @event.avatar.url %>
 
       </table>
 
@@ -20,20 +20,20 @@
       <table border="2">
         <tr>
           <th>Event Name</th>
-          <td><%= @events.name %></td>
+          <td><%= @event.name %></td>
         </tr>
         <tr>
           <th>Event start_at</th>
-          <td><%= @events.start %></td>
+          <td><%= @event.start %></td>
         </tr>
         <tr>
           <th>Event end_at</th>
-          <td><%= @events.end %></td>
+          <td><%= @event.end %></td>
         </tr>
         <tr>
 
           <th>Event description</th>
-          <td><%= @events.description %></td>
+          <td><%= @event.description %></td>
 
         </tr>
 
