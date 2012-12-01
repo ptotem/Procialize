@@ -6,7 +6,7 @@
 //        alert($(this).val())
         $('select').change(function(){
 //            alert($(this).val().name);
-          window.location = '/show_page/'+$(this).val();
+            window.location = '/show_page/'+$(this).val();
 
         });
     });
@@ -19,12 +19,12 @@
 <div class="ui-grid-a">
   <div class="ui-block-a">
     <%#= @eve_loc %>
-       <h1>Conference name</h1>
+    <h1>Conference name</h1>
     <h3><%= @conference.name %></h3><br>
 
-     <!--<b>Location:</b>-->
+    <!--<b>Location:</b>-->
     <!--<%# @locations.each do |location| %>-->
-        <!--<%#= location.name %>-->
+    <!--<%#= location.name %>-->
     <!--<%# end %>-->
 
   </div>
@@ -32,23 +32,48 @@
     <%#= @event_days %>
     <br>
     <br>
-      <h3>List of events</h3>
-    <% @event_days.each do |event_day| %>
-        <h1><%#=event_day.name %></h1>
-        <% event_day.events.each do |event| %>
-            <%#=link_to event.name ,event %>
-           <li><%= event.name %></li>
+    <h3>List of events</h3>
+    <%# @event_days.each do |event_day| %>
+    <h1><%#=event_day.name %></h1>
+    <%# event_day.events.each do |event| %>
+    <%#=link_to event.name ,event %>
+    <!--<li><%#= event.name %></li>-->
 
-        <% end %>
-    <% end %>
+    <%# end %>
+    <%# end %>
 
     <%# @event_locations.each do |event_location| %>
-        <%# event_location. %>
-        <%# end %>
+    <%# event_location. %>
+    <%# end %>
 
-    <%= select_tag :event_days, options_from_collection_for_select(@event_days, 'id', 'name')%>
+    <%#= select_tag :event_days, options_from_collection_for_select(@event_days, 'id', 'name')%>
 
 
 
   </div>
 </div>
+
+
+<div class="content-primary">
+
+  <ul data-role="listview" data-theme="a" data-divider-theme="d">
+
+    <% @event_days.each do |event_day| %>
+        <li data-role="list-divider"><%=event_day.name %><span class="ui-li-count"></span></li>
+        <%#=event_day.name %>
+        <% event_day.events.each do |event| %>
+
+            <li>
+              <%=link_to event.name ,event %>
+              <%#= event.name %>
+
+            </li>
+            <%#=link_to event.name ,event %>
+            <%#= event.name %>
+
+        <% end %>
+    <% end %>
+
+  </ul>
+</div><!--/content-primary -->
+
