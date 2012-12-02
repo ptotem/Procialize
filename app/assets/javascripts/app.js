@@ -9,7 +9,7 @@ $(function () {
     $("a.showMenu").click(function () {
         if (menuStatus != true) {
             $(".ui-page-active").animate({
-                marginLeft: "165px"
+                marginLeft: "235px"
             }, 300, function () {
                 menuStatus = true
             });
@@ -38,7 +38,7 @@ $(function () {
     $('.pages').live("swiperight", function () {
         if (!menuStatus) {
             $(".ui-page-active").animate({
-                marginLeft: "165px"
+                marginLeft: "235px"
             }, 300, function () {
                 menuStatus = true
             });
@@ -64,52 +64,52 @@ $(function () {
 
 
 
-$(document).bind("mobileinit", function right() {
-    $.mobile.pushStateEnabled = true;
-});
-
-$(function right(){
-    var menuStatus1;
-
-    $("a.showMenu1").click(function(){
-        if(menuStatus1 != true){
-            $(".ui-page-active").animate({
-                width: "60%",
-            }, 300, function(){menuStatus1 = true});
-            return false;
-        } else {
-            $(".ui-page-active").animate({
-                width: "100%",
-            }, 300, function(){menuStatus1 = false});
-            return false;
-        }
-    });
-
-    $('.pages').live("swiperight", function(){
-        if (menuStatus1){
-            $(".ui-page-active").animate({
-                width: "100%",
-            }, 300, function(){menuStatus1 = false});
-        }
-    });
-
-    $('.pages').live("swipeleft", function(){
-        if (!menuStatus1){
-            $(".ui-page-active").animate({
-                width: "60%",
-            }, 300, function(){menuStatus1 = true});
-        }
-    });
-
-    $("#menu1 li a").click(function(){
-        var p = $(this).parent();
-
-        if($(p).hasClass('active')){
-            $("#menu1 li").removeClass('active');
-        } else {
-            $("#menu1 li").removeClass('active');
-            $(p).addClass('active');
-        }
-    });
-
-});
+//$(document).bind("mobileinit", function right() {
+//    $.mobile.pushStateEnabled = true;
+//});
+//
+//$(function right(){
+//    var menuStatus1;
+//
+//    $("a.showMenu1").click(function(){
+//        if(menuStatus1 != true){
+//            $(".ui-page-active").animate({
+//                width: "60%",
+//            }, 300, function(){menuStatus1 = true});
+//            return false;
+//        } else {
+//            $(".ui-page-active").animate({
+//                width: "100%",
+//            }, 300, function(){menuStatus1 = false});
+//            return false;
+//        }
+//    });
+//
+//    $('.pages').live("swiperight", function(){
+//        if (menuStatus1){
+//            $(".ui-page-active").animate({
+//                width: "100%",
+//            }, 300, function(){menuStatus1 = false});
+//        }
+//    });
+//
+//    $('.pages').live("swipeleft", function(){
+//        if (!menuStatus1){
+//            $(".ui-page-active").animate({
+//                width: "60%",
+//            }, 300, function(){menuStatus1 = true});
+//        }
+//    });
+//
+//    $("#menu1 li a").click(function(){
+//        var p = $(this).parent();
+//
+//        if($(p).hasClass('active')){
+//            $("#menu1 li").removeClass('active');
+//        } else {
+//            $("#menu1 li").removeClass('active');
+//            $(p).addClass('active');
+//        }
+//    });
+//
+//});
