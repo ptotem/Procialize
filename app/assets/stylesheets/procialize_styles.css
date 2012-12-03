@@ -12,7 +12,7 @@ img {
     max-width: 100%;
 }
 
-#content_container{
+.content_container{
     margin-top: 45px;
     padding: 20px;
 }

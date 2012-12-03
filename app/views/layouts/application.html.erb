@@ -3,8 +3,8 @@
 <head>
   <title>Procialize: <%= yield :page_title %></title>
   <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
   <%= stylesheet_link_tag "application", :media => "all" %>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
   <%= javascript_include_tag "application" %>
   <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <%= csrf_meta_tags %>
@@ -27,7 +27,7 @@
     <%= js extend_gritter :position => :bottom_right %>
     <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
     <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
-    <div id="content_container">
+    <div class="content_container">
       <%= yield %>
     </div>
   </div>
@@ -49,11 +49,13 @@
     <a href="#home" data-icon="grid">Back</a>
   </div>
   <div data-role="content" data-theme='a'>
-    <ul data-role="listview">
-      <li><a href="acura.html">Acura</a></li>
-      <li><a href="audi.html">Audi</a></li>
-      <li><a href="bmw.html">BMW</a></li>
-    </ul>
+    <div class="content_container">
+      <ul data-role="listview">
+        <li><a href="acura.html">Acura</a></li>
+        <li><a href="audi.html">Audi</a></li>
+        <li><a href="bmw.html">BMW</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 
