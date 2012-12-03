@@ -147,8 +147,8 @@ h3, h4, h5, h6 {
 #menu {
     background: black;
     background-image:url('backgrnd.jpg');
-
     height:100%;
+    overflow: auto;
 
 }
 
