@@ -1,18 +1,13 @@
-<script type="text/javascript">
-  $(function(){
-      $('.footer_link').removeClass('ui-btn-active');
-      $('#home_link').addClass('ui-btn-active');
-  })
-</script>
+<%= content_for :page_title do %>
+Procialize
+<% end %>
 
 <div class="ui-grid-a">
-  <div class="ui-block-a">
-    <%= image_tag @photo %>
-  </div>
-  <div class="ui-block-b">
-    <h4><%= @name %></h4>
-    <h5><%= @headline %></h5>
-  </div>
+  <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;" %>
+  <h4><%= @name %>
+    <br>
+    <small><%= @headline %></small>
+  </h4>
 </div>
 
 
