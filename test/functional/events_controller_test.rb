@@ -18,10 +18,10 @@ class EventsControllerTest < ActionController::TestCase
 
   test "should create event" do
     assert_difference('Event.count') do
-      post :create, event: { event_datetime: @event.event_datetime, event_description: @event.event_description, event_location: @event.event_location, event_name: @event.event_name, organizer_id: @event.organizer_id, user_id: @event.user_id }
+      post :create, events: { event_datetime: @event.event_datetime, event_description: @event.event_description, event_location: @event.event_location, event_name: @event.event_name, organizer_id: @event.organizer_id, user_id: @event.user_id }
     end
 
-    assert_redirected_to event_path(assigns(:event))
+    assert_redirected_to event_path(assigns(:events))
   end
 
   test "should show event" do
@@ -35,8 +35,8 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   test "should update event" do
-    put :update, id: @event, event: { event_datetime: @event.event_datetime, event_description: @event.event_description, event_location: @event.event_location, event_name: @event.event_name, organizer_id: @event.organizer_id, user_id: @event.user_id }
-    assert_redirected_to event_path(assigns(:event))
+    put :update, id: @event, events: { event_datetime: @event.event_datetime, event_description: @event.event_description, event_location: @event.event_location, event_name: @event.event_name, organizer_id: @event.organizer_id, user_id: @event.user_id }
+    assert_redirected_to event_path(assigns(:events))
   end
 
   test "should destroy event" do

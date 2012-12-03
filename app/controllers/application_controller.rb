@@ -4,8 +4,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_current_conference
 
   def set_current_conference
-    #@conference=current_user.participants.map { |p| p.conference }[0] unless current_user.participants.blank?
+    @conference=current_user.participants.map { |p| p.conference }[0] unless current_user.participants.blank?
   end
 
+  def after_sign_out_path_for(resource_or_scope)
+    new_user_session_path
+  end
 
 end

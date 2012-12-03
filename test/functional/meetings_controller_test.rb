@@ -18,10 +18,10 @@ class MeetingsControllerTest < ActionController::TestCase
 
   test "should create meeting" do
     assert_difference('Meeting.count') do
-      post :create, meeting: { meeting_datetime: @meeting.meeting_datetime, meeting_description: @meeting.meeting_description, meeting_location: @meeting.meeting_location, meeting_name: @meeting.meeting_name, user_id: @meeting.user_id }
+      post :create, meetings: { meeting_datetime: @meeting.meeting_datetime, meeting_description: @meeting.meeting_description, meeting_location: @meeting.meeting_location, meeting_name: @meeting.meeting_name, user_id: @meeting.user_id }
     end
 
-    assert_redirected_to meeting_path(assigns(:meeting))
+    assert_redirected_to meeting_path(assigns(:meetings))
   end
 
   test "should show meeting" do
@@ -35,8 +35,8 @@ class MeetingsControllerTest < ActionController::TestCase
   end
 
   test "should update meeting" do
-    put :update, id: @meeting, meeting: { meeting_datetime: @meeting.meeting_datetime, meeting_description: @meeting.meeting_description, meeting_location: @meeting.meeting_location, meeting_name: @meeting.meeting_name, user_id: @meeting.user_id }
-    assert_redirected_to meeting_path(assigns(:meeting))
+    put :update, id: @meeting, meetings: { meeting_datetime: @meeting.meeting_datetime, meeting_description: @meeting.meeting_description, meeting_location: @meeting.meeting_location, meeting_name: @meeting.meeting_name, user_id: @meeting.user_id }
+    assert_redirected_to meeting_path(assigns(:meetings))
   end
 
   test "should destroy meeting" do

@@ -8,8 +8,6 @@
 
 User.create!(:email => 'organizer@procialize.com', :password => 'secret', :password_confirmation => 'secret')
 
-
-
 Attendee.create!(:user_id => '1',:event_id => '1' ,:feedback => 'Not good enough,still unable to get the point')
 Attendee.create!(:user_id => '2',:event_id => '2' ,:feedback => 'Good enough,to believe')
 Attendee.create!(:user_id => '2',:event_id => '3' ,:feedback => 'Refereshing what a presentation good')

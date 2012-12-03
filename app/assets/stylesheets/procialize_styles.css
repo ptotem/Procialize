@@ -3,7 +3,7 @@
 
 /* Start Generic Layout Definitions*/
 
-body {
+html, body {
     background-color: #D8EA70;
     overflow-x: hidden;
 }
@@ -14,6 +14,10 @@ img {
 
 .content_container{
     margin-top: 45px;
+    padding: 20px;
+}
+
+.search_container{
     padding: 20px;
 }
 
