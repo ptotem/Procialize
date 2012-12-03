@@ -1,3 +1,6 @@
+<%#= @messages %>
+
+
 <script type="text/javascript">
     $(function(){
         //a=$('select').val();
@@ -57,23 +60,28 @@
 <div class="content-primary">
 
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
-    <h3>List of events</h3>
-    <% @event_days.each do |event_day| %>
-        <li data-role="list-divider"><%=event_day.name %><span class="ui-li-count"></span></li>
+    <h3>List of Messages</h3>
+    <% @messages.each do |message| %>
+        <li data-role="list-divider"><%=message.name %><span class="ui-li-count"></span></li>
         <%#=event_day.name %>
-        <% event_day.events.each do |event| %>
+        <%# event_day.events.each do |event| %>
 
             <li>
-              <%=link_to event.name ,event %>
+              <%=link_to message.body ,message %>
+              <%#=link_to event.name ,event %>
               <%#= event.name %>
 
             </li>
             <%#=link_to event.name ,event %>
             <%#= event.name %>
 
-        <% end %>
+        <%# end %>
     <% end %>
 
   </ul>
+  <br>
+
+  <%= link_to 'New Message', new_message_path %>
 </div><!--/content-primary -->
+
 

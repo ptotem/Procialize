@@ -1,0 +1,50 @@
+
+<div class="fbinfobox">
+  <div class="ui-grid-a">
+
+    <div class="ui-block-a">
+
+
+      <!--<table>-->
+        <!--<%#= image_tag @event.avatar.url %>-->
+
+      <!--</table>-->
+
+
+
+    </div>
+    <div class="ui-block-b">
+
+      <table border="2">
+        <tr>
+          <th>From</th>
+          <td><%= @message.name %></td>
+        </tr>
+        <tr>
+          <th>Message</th>
+          <td><%= @message.body%>
+
+      </table>
+      <table>
+        <tr>
+
+          <div class="button_tag">
+
+
+            <td><%= button_tag "Reply",:class => "btn btn-success" %></td>
+            <td><%#= button_tag "Decline",:class => "btn btn-warning" %></td>
+            <td><%#= button_tag "Share",:class => "btn "%></td>
+            <td><%#= button_tag "Feedback" ,:class => "btn btn-info" %></td>
+
+            <td><a href="/message" data-role="button" data-icon="arrow-l">Back</a></td>
+          </div>
+        </tr>
+
+
+      </table>
+
+    </div>
+  </div>
+
+</div>
+

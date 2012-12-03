@@ -1,16 +1,38 @@
 ProcializeApp::Application.routes.draw do
 
+  #get "message/index"
+
   #get "event/edit"
 
-  resources :event
+
+  get "meeting/new_resp"
+  get "meeting/show_resp"
+
+
   resources :meeting
+  resources  :message
+  resource   :signup
+  resource :users
+
+
+
+
+  resources :event
+  #resources :meeting
+  #resources :message
+  #resource   :signup
+  #resource :users
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
 
   match 'users/(:id)/profile', :to=>"users/profile#index", :as=>"user_profile"
 
+
+  match 'meeting/new_resp' , :to => "meeting#new_resp"
+
   match 'event/:id' , :to => 'event#show'
+  match 'meeting/:id' , :to => 'meeting#show'
   match 'show_page/:id' , :to => 'event#show_page'
   match 'meeting/:id' , :to => 'meeting#show'
 
