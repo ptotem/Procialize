@@ -18,7 +18,7 @@
   <div data-role="header" data-position="fixed" data-fullscreen="true">
     <a href="#search_menu" id="main_menu" data-icon="grid">Search</a>
     <h1><%= yield :page_title %></h1>
-    <% if request.full_path=='/' %>
+    <% if current_page?(root_url) %>
         <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "brand", "data-icon" => "user" %>
     <% end %>
   </div>
