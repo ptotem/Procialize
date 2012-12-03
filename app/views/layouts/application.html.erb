@@ -5,174 +5,23 @@
   <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= stylesheet_link_tag "jquery.dataTables", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "app" %>
-  <%= javascript_include_tag "jquery.dataTables" %>
   <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
-
-
-
-  <script type="text/javascript">
-      $(document).ready(function() {
-          $('#search_name').dataTable( {
-              "bPaginate": true,
-              "sPaginationType":"full_numbers",
-              "bLengthChange": false,
-              "bFilter": true,
-              "bSort": true,
-              "bInfo": false,
-              "oSearch": {"sSearch": ""},
-              "oLanguage": { "sSearch": "" },
-              "sDom": 'C<"clear">lfrtip',
-              "bAutoWidth": false }).columnFilter( {
-
-
-
-                      aoColumns: [
-                          {
-                              type: "number"
-                          },
-                          {
-                              type: "text",
-                              bRegex: true,
-                              bSmart: true
-                          },
-                          null,
-                          {
-                              type: "select",
-                              values: [ 'A', 'B', 'C' ]
-                          },
-                          {
-                              type: "number-range"
-                          },
-                          {
-                              type: "date-range"
-                          }
-                      ]
-                  }
-          );
-      } );
-
-
-
-
-
-
-
-      $(function(){
-          var menuStatus;
-
-          $("a.showMenu").click(function(){
-              if(menuStatus != true){
-                  $(".ui-page-active").animate({
-                      marginLeft: "165px"
-                  }, 300, function(){menuStatus = true});
-                  return false;
-              } else {
-                  $(".ui-page-active").animate({
-                      marginLeft: "0px"
-                  }, 300, function(){menuStatus = false});
-                  return false;
-              }
-          });
-
-          $('.pages').live("swipeleft", function(){
-              if (menuStatus){
-                  $(".ui-page-active").animate({
-                      marginLeft: "0px"
-                  }, 300, function(){menuStatus = false});
-              }
-          });
-
-          $('.pages').live("swiperight", function(){
-              if (!menuStatus){
-                  $(".ui-page-active").animate({
-                      marginLeft: "165px"
-                  }, 300, function(){menuStatus = true});
-              }
-          });
-
-          $("#menu li a").click(function(){
-              var p = $(this).parent();
-              if($(p).hasClass('active')){
-                  $("#menu li").removeClass('active');
-              } else {
-                  $("#menu li").removeClass('active');
-                  $(p).addClass('active');
-              }
-          });
-
-      });
-  </script>
-
 </head>
 
 
 <body>
-<div id="menu">
-
-  <table id="search_name">
-    <thead>
-    <tr>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td><div class="fbinfobox2"><a href="#" data-icon="grid" >Indrajeet</a></div></td>
-    </tr>
-    <tr>
-      <td><div class="fbinfobox2"><a href="#">Sachin</a></div></td>
-    </tr>
-    <tr>
-      <td><div class="fbinfobox2"><a href="#">Nilesh</a></div></td>
-    </tr>
-    <tr>
-      <td><div class="fbinfobox2"><a href="#">Amol</a></div></td>
-    </tr>
-    <tr>
-      <td><div class="fbinfobox2"><a href="#">Ashwin</a></div></td>
-    </tr>
-    <tr>
-      <td><div class="fbinfobox2"><a href="#">Persues</a></div></td>
-    </tr>
-    <tr>
-      <td><div class="fbinfobox2"><a href="#">Sunny</a></div></td>
-    </tr>
-    <tr>
-      <td><div class="fbinfobox2"><a href="#">Rakesh</a></div></td>
-    </tr>
-    </tbody>
-  </table>
-
-
-</div>
-
-
-
-
-
-
-
 
 <div data-role="page" class="pages" id="home">
   <div data-role="header" data-position="fixed" data-fullscreen="true">
-
-
-
-    <!--<div data-role="header" data-fullscreen="true">-->
-    <a href="#" id="main_menu" data-icon="grid" class="showMenu" style="overflow: auto">Search</a>
-
-    <%#= link_to "Procialize", destroy_user_session_path, :method => :delete, :class => "brand" %>
-    <h1><%= link_to "Procialize"%></h1>
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "brand","data-icon"=>"user" %>
-    <!--<a href="/sessions" data-icon="user" class="showMenu1">Sign out</a>-->
-    <%#= link_to "Procialize", destroy_user_session_path, :method => :delete, :'data-ajax'=>false %>
+    <a href="#search_menu" id="main_menu" data-icon="grid">Search</a>
+    <h1><%= yield :page_title %></h1>
+    <% if request.full_path=='/' %>
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "brand", "data-icon" => "user" %>
+    <% end %>
   </div>
-
   <div data-role="content" data-theme='a'>
     <%= js extend_gritter :position => :bottom_right %>
     <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
@@ -181,17 +30,11 @@
       <%= yield %>
     </div>
   </div>
-  <!--<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">-->
   <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
     <div data-role="navbar" data-theme='a'>
       <ul>
-
-
-
-
-
         <li><a href="/welcome" data-icon="home" rel="external" class="ui-btn-active" data-theme='a'>Home</a></li>
-        <li><a href="/event" data-icon="calendar" data-theme='a' data-ajax=false >Events</a></li>
+        <li><a href="/event" data-icon="calendar" data-theme='a' data-ajax=false>Events</a></li>
         <li><a href="/meeting" data-icon="envelope" data-theme='a' data-ajax=false>Meetings</a></li>
         <li><a href="/message" data-icon="envelope" data-theme='a' data-ajax=false>Messages</a></li>
       </ul>
@@ -199,6 +42,17 @@
 
   </div>
 </div>
+
+<div id="search_menu" data-role="page">
+  <div data-role="header" data-position="fixed" data-fullscreen="true">
+    <a href="#home" data-icon="grid">Back</a>
+  </div>
+
+
+
+</div>
+
+
 </body>
 </html>
 
