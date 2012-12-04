@@ -51,8 +51,8 @@
 
     <h1>Delegate Search</h1>
   </div>
-  <div data-role="content" data-theme='a' style="padding-top: 20px;">
-    <ul data-role="listview" data-filter="true" data-autodividers="true">
+  <div data-role="content" data-theme='b' style="padding-top: 20px;">
+    <ul data-role="listview" data-filter="true" data-autodividers="true" data-theme='a'>
       <% @conference.participants.map{|participant| participant.user}.sort_by{|u| u[:name]}.each do |user| %>
           <li><a href="<%= user_profile_path(user) %>"><%= user.name %></a></li>
       <% end %>
