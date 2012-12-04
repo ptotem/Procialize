@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(:version => 20121126135954) do
   end
 
   create_table "rails_admin_histories", :force => true do |t|
-    t.text     "message"
+    t.text     "messages"
     t.string   "username"
     t.integer  "item"
     t.string   "table"

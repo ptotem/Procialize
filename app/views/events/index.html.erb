@@ -7,16 +7,16 @@
   <h1>Conference: <br>
     <small><%= @conference.name %></small>
   </h1>
-  <br>
-  <br>
 
-  <ul data-role="listview" data-theme="a" data-divider-theme="a">
+
+  <ul data-role="listview" data-theme="a" data-divider-theme="b">
     <% @event_days.each do |event_day| %>
         <li data-role="list-divider"><%= event_day.name %>
           <% event_day.events.each do |event| %>
             <li>
               <%= link_to event do %>
-                  <%= event.start %>: <%= event.name %>
+                  <%= event.name %>
+                  <p class="ui-li-aside"><%= event.start %></p>
               <% end %>
             </li>
         <% end %>
