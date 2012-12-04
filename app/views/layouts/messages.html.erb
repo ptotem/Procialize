@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Messages</title>
+  <title>Procialize: <%= yield :page_title %></title>
   <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
   <%= stylesheet_link_tag "application", :media => "all" %>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css"/>
@@ -18,7 +18,7 @@
   <div data-role="header" data-fullscreen="true">
     <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
 
-    <h1>Messages</h1>
+    <h1><%= yield :page_title %></h1>
     <a href="#search_menu" data-icon="search" data-prefetch>Search</a>
 
     <div data-role="navbar">
@@ -60,7 +60,7 @@
 
     <div data-role="navbar">
       <ul>
-        <li><a href="messages/new">New</a></li>
+        <li><a href="messages/new"  class="ui-btn-active ui-state-persist">New</a></li>
         <li><a href="#inbox">Inbox</a></li>
         <li><a href="#outbox">Outbox</a></li>
       </ul>
@@ -102,6 +102,7 @@
     </ul>
   </div>
 </div>
+
 
 
 </body>

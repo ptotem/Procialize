@@ -1,42 +1,30 @@
-<%# content_for :page_title do %>
-    <!--Messages-->
-<%# end %>
-<h1> Message Create</h1>
-To <br>
-Rakesh<br>
-<%#= link_to "Add Recepient", :controller => "message", :action => "index" %>
-<table>
+<% content_for :page_title do %>
+    New Messages
+<% end %>
 
- <tr>
-   <td><label for="Subject">Subject</label></td><td><input type="text" name="text"  value="" /></td>
- </tr>
- <!--<tr>-->
-   <!--<td>-->
-     <!--<label><input type="checkbox"  id="checkMe" > Meeting Request </label>-->
-   <!--</td>-->
-   <!--<td></td>-->
- <!--</tr>-->
- <!--<tr>-->
-   <!--<td><input type=text id="text" style="visibility: hidden;"></td>-->
- <!--</tr>-->
- <!--<tr>-->
-   <!--<td>-->
-     <!--<label for="textarea">Message</label>-->
-   <!--</td>-->
-   <!--<td></td>-->
- <!--</tr>-->
- <tr>
-   <td colspan="2"> <textarea name="textarea" id="textarea"></textarea></td>
- </tr>
 
-</table>
-<table style="margin-left: 50px">
-  <tr>
-    <td>
-      <input type="submit" value="Send" />
-    </td>
-    <td>
-      <input type="reset" value="cancel" />
-    </td>
-  </tr>
-</table>
+
+<form>
+  <label for="select-choice-0" class="select">To:</label>
+  <select name="select-choice-0" id="select-choice-0">
+    <option value="standard">Standard: 7 day</option>
+    <option value="rush">Rush: 3 days</option>
+    <option value="express">Express: next day</option>
+    <option value="overnight">Overnight</option>
+  </select>
+
+  <label for="basic">Subject</label>
+  <input type="text" name="name"  data-mini="true" />
+
+  <label for="basic">Description</label>
+  <textarea></textarea >
+
+
+
+  <div data-role="controlgroup" data-type="horizontal" style="float: right;">
+    <a href="#" data-role="button">Send</a>
+    <a href="#" data-role="button">Cancel</a>
+
+  </div>
+</form>
+
