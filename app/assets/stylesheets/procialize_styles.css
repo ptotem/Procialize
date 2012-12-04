@@ -4,7 +4,7 @@
 /* Start Generic Layout Definitions*/
 
 html, body {
-    background-color: #D8EA70;
+    /*background-color: #D8EA70;*/
     overflow-x: hidden;
     min-height: 100%;
 }
@@ -35,9 +35,6 @@ img {
 
 #title_text_front_page {
     text-align: center;
-    max-width: 50%;
-    margin: 1em auto;
-    font-weight: bold;
 }
 
 .form-signin {
