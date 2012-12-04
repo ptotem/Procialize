@@ -1,13 +1,8 @@
 <%= content_for :page_title do %>
-    Procialize: Events
+    <%= @conference.name %>
 <% end %>
 
 <div class="content-primary">
-
-  <h1>Conference: <br>
-    <small><%= @conference.name %></small>
-  </h1>
-
 
   <ul data-role="listview" data-theme="a" data-divider-theme="b">
     <% @event_days.each do |event_day| %>
