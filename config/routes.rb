@@ -2,6 +2,7 @@ ProcializeApp::Application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
+  mount RailsAdminImport::Engine => '/rails_admin_import', :as => 'rails_admin_import'
 
   resources :meetings
   resources  :messages

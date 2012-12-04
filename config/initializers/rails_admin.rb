@@ -32,6 +32,29 @@ RailsAdmin.config do |config|
   # Include specific models (exclude the others):
   # config.included_models = []
 
+    config.included_models = ["Location", "EventDay", "Event", "User"]
+
+    config.actions do
+      # root actions
+      dashboard # mandatory
+
+      # collection actions
+      index # mandatory
+      new
+      export
+      import
+      history_index
+      bulk_delete
+
+      # member actions
+      show
+      edit
+      delete
+      history_show
+      show_in_app
+    end
+
+
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
 

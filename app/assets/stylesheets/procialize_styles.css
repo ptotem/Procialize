@@ -3,7 +3,7 @@
 /* Start Generic Layout Definitions*/
 
 html, body {
-    /*background-color: #D8EA70;*/
+    background-color: rgba(201, 226, 121, 0.98);
     overflow-x: hidden;
     min-height: 100%;
 }

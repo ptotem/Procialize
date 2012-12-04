@@ -9,6 +9,6 @@ class Conference < ActiveRecord::Base
   has_many :followers, :dependent => :destroy
   has_many :organizers, :dependent => :destroy
   has_many :participants, :dependent => :destroy
-  has_many :posts,:dependent => :destroy
+  has_many :posts, :dependent => :destroy
 
 end
