@@ -1,20 +1,13 @@
 ProcializeApp::Application.routes.draw do
 
-  get "meeting/new_resp"
-  get "meeting/show_resp"
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
 
   resources :meetings
   resources  :messages
   resources :events
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
-
   match 'users/(:id)/profile', :to=>"users/profile#index", :as=>"user_profile"
-  match 'meeting/new_resp' , :to => "meeting#new_resp"
-  match 'event/:id' , :to => 'event#show'
-  match 'meeting/:id' , :to => 'meeting#show'
-  match 'show_page/:id' , :to => 'event#show_page'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
