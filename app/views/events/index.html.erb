@@ -14,7 +14,11 @@
     <% @event_days.each do |event_day| %>
         <li data-role="list-divider"><%= event_day.name %>
           <% event_day.events.each do |event| %>
-            <li><%= link_to event.name, event %></li>
+            <li>
+              <%= link_to event do %>
+                  <%= event.start %>: <%= event.name %>
+              <% end %>
+            </li>
         <% end %>
         </li>
     <% end %>
