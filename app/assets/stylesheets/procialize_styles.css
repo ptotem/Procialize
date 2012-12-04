@@ -6,6 +6,7 @@
 html, body {
     background-color: #D8EA70;
     overflow-x: hidden;
+    min-height: 100%;
 }
 
 img {
