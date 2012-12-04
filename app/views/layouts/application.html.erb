@@ -45,43 +45,7 @@
   </div>
 </div>
 
-<div id="search_menu" data-role="page">
-  <div data-role="header" data-fullscreen="true">
-    <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
-    <h1>Delegate Search</h1>
-  </div>
-  <div data-role="content" data-theme='a' style="padding-top: 20px;">
-      <ul data-role="listview" data-filter="true" data-autodividers="true">
-        <%= @conference.participants %>
-        <li><a href="acura.html">Acura</a></li>
-      </ul>
-  </div>
-</div>
-
+<%= render :partial => 'search' %>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
