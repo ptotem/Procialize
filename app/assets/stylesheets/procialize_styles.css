@@ -21,6 +21,12 @@ img {
     padding: 20px;
 }
 
+#status_here{
+    border:1px solid black;
+    border-radius: 5px;
+    padding:10px;
+}
+
 /* End Generic Layout Definitions*/
 
 /* _______________________________________________________________ */

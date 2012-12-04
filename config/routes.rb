@@ -7,10 +7,6 @@ ProcializeApp::Application.routes.draw do
   resources  :messages
   resources :events
 
-
-
-
-
   match 'users/(:id)/profile', :to=>"users/profile#index", :as=>"user_profile"
   match '/update_status', :to=>"home#update_status", :as=>"update_status"
 
