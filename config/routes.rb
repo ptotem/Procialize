@@ -13,6 +13,15 @@ ProcializeApp::Application.routes.draw do
 
   match 'reply',:to => "meetings#reply"
 
+  match 'show',:to => "meetings#show"
+
+  match 'list',:to => "meetings#list"
+
+  match 'new',:to => "meetings#new"
+
+  match 'accepted',:to => "meetings#accepted"
+
+  match 'pending',:to => "meetings#pending"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

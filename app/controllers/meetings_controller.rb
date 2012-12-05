@@ -27,5 +27,17 @@ class MeetingsController < ApplicationController
 
   end
 
-  
+  def list
+
+  end
+
+  def accepted
+
+  end
+
+
+  def pending
+
+  end
+
 end

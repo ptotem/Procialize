@@ -14,7 +14,7 @@
 
 <body>
 
-<div data-role="page" id="inbox">
+<div data-role="page">
   <div data-role="header" data-fullscreen="true">
     <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
 
@@ -23,9 +23,9 @@
 
     <div data-role="navbar">
       <ul>
-        <li><a href="messages/new">New</a></li>
-        <li><a href="#inbox" class="ui-btn-active ui-state-persist">Inbox</a></li>
-        <li><a href="#outbox">Outbox</a></li>
+        <li><a href="new" data-ajax="false">New</a></li>
+        <li><a href="accepted" class="ui-btn-active ui-state-persist">Accepted</a></li>
+        <li><a href="pending">Pending</a></li>
       </ul>
     </div>
 
@@ -51,7 +51,7 @@
   </div>
 </div>
 
-<div data-role="page" id="outbox">
+<div data-role="page" id="pending">
   <div data-role="header" data-fullscreen="true">
     <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
 
@@ -60,9 +60,9 @@
 
     <div data-role="navbar">
       <ul>
-        <li><a href="messages/new">New</a></li>
-        <li><a href="#inbox">Inbox</a></li>
-        <li><a href="#outbox" class="ui-btn-active ui-state-persist">Outbox</a></li>
+        <li><a href="new" data-ajax="false">New</a></li>
+        <li><a href="accepted">Accepted</a></li>
+        <li><a href="pending" class="ui-btn-active ui-state-persist">Pending</a></li>
       </ul>
     </div>
 
