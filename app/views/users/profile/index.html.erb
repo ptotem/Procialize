@@ -1,23 +1,23 @@
-<div class="container">
-
-  <div class="content" style="margin-top: -30px">
-    <div class="page-header" style="margin-top: 0px">
-      <h3 style="font-weight: bold;" style="margin-top: 0px">
-        <%= image_tag @photo, :id => "profile-image" %>
-        <%= @name %>
-        <br>
-        <small style="color:#222222"><%= @headline %></small>
-        <%= link_to "Follow", "#", :class => "btn btn-primary", :style => "margin-top:10px" %>
-        <%= link_to "Request Meeting", "#", :class => "btn btn-primary", :style => "margin-top:10px" %>
-      </h3>
-    </div>
-    <div style="background: black;border-radius: 10px;padding:10px;border:4px solid black;margin-top: -30px; color:white;">
-      <%= @user_status %>
-    </div>
-    <%= @educations %>
-    <%= @current_position %>
-    <%= @past_positions %>
-  </div>
+<%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+<h4><%= @name.titlecase %>
+  <br>
+  <small><%= @headline %></small>
+</h4>
+<br>
+<div data-role="navbar">
+  <ul>
+    <li><%= link_to "Follow", "#", :'data-role' => "button", :'data-theme' => "a" %></li>
+    <li><%= link_to "Request Meeting", "#", :'data-role' => "button", :'data-theme' => "a" %></li>
+  </ul>
+</div>
+<br>
+<div style="background: black;border-radius: 10px;padding:10px;border:4px solid black;margin-top: -30px; color:white;">
+  <%= @user_status %>
+</div>
+<%= @educations %>
+<%= @current_position %>
+<%= @past_positions %>
+</div>
 </div>
 
 
