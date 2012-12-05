@@ -7,18 +7,27 @@
 <div data-role="navbar">
   <ul>
     <li><%= link_to "Follow", "#", :'data-role' => "button", :'data-theme' => "a" %></li>
-    <li><%= link_to "Request Meeting", "#", :'data-role' => "button", :'data-theme' => "a" %></li>
+    <li><%= link_to "Request Meeting", "#", :'data-role' => "button", :'data-theme' => "b" %></li>
   </ul>
 </div>
 <br>
-<div style="background: black;border-radius: 10px;padding:10px;border:4px solid black;margin-top: -30px; color:white;">
-  <%= @user_status %>
-</div>
-<%= @educations %>
-<%= @current_position %>
-<%= @past_positions %>
-</div>
-</div>
+<strong>Work</strong>
+<br>
+<ul>
+  <% @positions.each do |position| %>
+      <li><%= position %></li>
+  <% end %>
+</ul>
+<strong>Education</strong>
+<br>
+<ul>
+  <% @educations.each do |education| %>
+      <li><%= education %></li>
+  <% end %>
+</ul>
+<br>
+<br>
+<br>
 
 
 
