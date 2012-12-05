@@ -1,6 +1,6 @@
 class Users::ProfileController < ApplicationController
   def index
-    @user=current_user
+    @user=User.find(params[:id])
     @name=@user.name
     @photo=@user.picture
     @headline=@user.headline
