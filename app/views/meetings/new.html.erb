@@ -1,65 +1,81 @@
-<%# content_for :page_title do %>
-    <!--Meetings-->
-<%# end %>
+
+<%= javascript_include_tag "mobiscroll-2.2.custom.min" %>
+<%= stylesheet_link_tag "mobiscroll-2.2.custom.min" %>
+
+<script type="text/javascript">
+    $(function(){
+        $('#i').scroller({
+            preset: 'time',
+            theme: 'default',
+            display: 'modal',
+            mode: 'scroller'
+        });
+    });
+</script>
 
 
-<h1>New Meeting</h1>
-<table>
-  <tr>
-      <td>
-       To
-    </td>
-    <td>
-      <input type="text" >
-    </td>
-  </tr>
-  <tr>
-      <td>
-        Day
-      </td>
-      <td>
-        <input type="text" >
-      </td>
-    </tr>
-  <tr>
-      <td>
-        Time
-      </td>
-      <td>
-        <input type="text" >
-      </td>
-    </tr>
-  <tr>
-      <td>
-        Location
-      </td>
-      <td>
-        <input type="text" >
-      </td>
-    </tr>
-  <tr>
-      <td colspan="2">
-        Description
-      </td>
-  </tr>
-      <tr>
-        <td colspan="2">
-          <textarea name="textarea" id="textarea"></textarea>
-        </td>
-      </tr>
-</table>
-<table style="margin-left: 50px">
-  <tr>
-        <td>
-          <input type="button" value="Send">
-        </td>
-        <td>
-      <input type="button" value="cancel">
+  <div data-role="navbar" data-fullscreen="true" id="navbar">
+  <ul>
+    <li><a href="new" data-role="button" data-ajax=false class="ui-btn-active">New</a></li>
+    <li><a href="show" data-role="button" data-ajax=false>Show meeting</a></li>
+    <li><a href="/reply" data-role="button" data-ajax=false>Reply </a></li>
+  </ul>
+</div>
 
-        </td>
+<br>
+<br>
 
-      </tr>
-</table>
+
+
+
+<form>
+
+  <label for="select-choice-9" class="select"><strong> To:</strong></label>
+  <select name="select-choice-9" id="select-choice-9" multiple="multiple" data-native-menu="false">
+    <option>Choose recepients</option>
+    <option value="standard">Rakesh</option>
+    <option value="rush">Inder</option>
+    <option value="express">Perseus</option>
+    <option value="overnight">Lolly</option>
+  </select>
+
+
+
+<label for="select-choice-0" class="select"><b>Day:</b></label>
+<select name="select-choice-0" id="select-choice-0">
+  <option value="standard">Day one</option>
+  <option value="rush">Day two</option>
+  <option value="express">Day three</option>
+  <option value="overnight">Day four</option>
+</select>
+
+
+
+<label for="mydate" ><b>Time:</b></label>
+  <input id="i" name="i">
+
+
+<label for="select-choice-1" class="select"><b>Location:</b></label>
+<select name="select-choice-0" id="select-choice-1">
+  <option value="standard">wing one</option>
+  <option value="rush">wing two</option>
+  <option value="express">wing three</option>
+  <option value="overnight">wing four</option>
+</select>
+
+
+
+<label for="basic"><b>Description:</b></label>
+<textarea name="textarea" id="textarea"></textarea>
+
+
+  <div data-role="controlgroup" data-type="horizontal" style="float: right;">
+    <a href="#" data-role="button">Send</a>
+    <a href="#" data-role="button">Cancel</a>
+  </div>
+
+
+</form>
 
 
 

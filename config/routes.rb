@@ -11,6 +11,9 @@ ProcializeApp::Application.routes.draw do
   match 'users/(:id)/profile', :to=>"users/profile#index", :as=>"user_profile"
   match '/update_status', :to=>"home#update_status", :as=>"update_status"
 
+  match 'reply',:to => "meetings#reply"
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
