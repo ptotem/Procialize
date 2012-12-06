@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def index
-    @messages = @conference.messages
+    @messages = Receipient.find_all_by_user_id(current_user.id).map{|r| r.message}
   end
 
   def show
