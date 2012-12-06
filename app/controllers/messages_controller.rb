@@ -1,8 +1,6 @@
 class MessagesController < ApplicationController
   def index
-
-    #@messages = @conference.messages
-    @messages = Message.all
+    @messages = @conference.messages
   end
 
   def show
@@ -11,9 +9,6 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
-    20.times {@message.receipients.build}
-    #@message = Message.new(params[:message])
-
   end
 
   def edit
@@ -22,12 +17,11 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(params[:message])
-    #@user = current_user
-    #@message = Message.create(:name => params[:message][:name],:body => params[:message][:body],:user_id => @user.id,:conference => @conference.id)
-    #render text: params[@message]
-    #return
     respond_to do |format|
       if @message.save
+        params[:receipient_users].each do |uid|
+          Receipient.create!(:message_id=>@message.id, :user_id=>uid)
+        end
         format.html { redirect_to @message, notice: 'Message was successfully created.' }
         format.json { render json: @message, status: :created, location: @message }
       else

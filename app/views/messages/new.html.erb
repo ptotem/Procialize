@@ -5,7 +5,7 @@
 
 
 
-<%= form_for :message, url: { action: :create } do |f| %>
+<%= form_for :message, url: {action: :create} do |f| %>
 
     <% if @message.errors.any? %>
         <div id="error_explanation">
@@ -18,19 +18,21 @@
           </ul>
         </div>
     <% end %>
-    <%= f.hidden_field :conference_id, :value=>Conference.last.id %>
-    <%= f.hidden_field :user_id, :value=>current_user.id %>
+    <%= f.hidden_field :conference_id, :value => Conference.last.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+
     <label for="message_receipients" class="select">To:</label>
-    <%= f.select :receipient_ids, Participant.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+    <%= select_tag 'receipient_users[]', options_for_select(User.all.map {|u| [u.name, u.id]}), :multiple => true%>
+
     <div class="field">
       <%= f.label :subject %>
-      <%= f.text_field :name, :'data-mini'=>true %>
+      <%= f.text_field :name, :'data-mini' => true %>
     </div>
     <div class="field">
       <%= f.label :body %>
       <%= f.text_area :body %>
     </div>
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
-      <%= f.submit "Send", :'data-role'=>"button",:'data-ajax'=>"false" %>
+      <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
     </div>
 <% end %>
