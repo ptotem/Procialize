@@ -23,6 +23,16 @@
         </a>
       </li>
   <% end %>
+  <li data-role="list-divider">Sent Messages<span class="ui-li-count"><%= @sent.size %></span></li>
+  <% @sent.each do |message| %>
+      <li>
+        <a href="<%= message_path(message) %>" data-ajax="false">
+          <h3><%= message.receipients.map{|r| r.user.name}.join(", ") %></h3>
+          <p><%= message.name %></p>
+          <p class="ui-li-aside"><strong><%= message.created_at %></strong></p>
+        </a>
+      </li>
+  <% end %>
 
 </ul>
 
