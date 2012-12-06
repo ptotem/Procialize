@@ -1,30 +1,37 @@
 <% content_for :page_title do %>
-    New Messages
+
+    New Message
 <% end %>
 
 
 
-<form>
-  <label for="select-choice-0" class="select">To:</label>
-  <select name="select-choice-0" id="select-choice-0">
-    <option value="standard">Standard: 7 day</option>
-    <option value="rush">Rush: 3 days</option>
-    <option value="express">Express: next day</option>
-    <option value="overnight">Overnight</option>
-  </select>
+<%= form_for :message, url: { action: :create } do |f| %>
 
-  <label for="basic">Subject</label>
-  <input type="text" name="name"  data-mini="true" />
+    <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
 
-  <label for="basic">Description</label>
-  <textarea></textarea >
+          <ul>
+            <% @message.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.hidden_field :conference_id, :value=>Conference.last.id %>
+    <%= f.hidden_field :user_id, :value=>current_user.id %>
+    <label for="select-choice-0" class="select">To:</label>
+    <%= f.select :receipients, Participant.all.collect {|x| [x.name, x.id]}, {}, :multiple => false, :name=>"select-choice-0", :id=>"select-choice-0" %>
 
-
-
-  <div data-role="controlgroup" data-type="horizontal" style="float: right;">
-    <a href="#" data-role="button">Send</a>
-    <a href="#" data-role="button">Cancel</a>
-
-  </div>
-</form>
-
+    <div class="field">
+      <%= f.label :subject %>
+      <%= f.text_field :name, :'data-mini'=>true %>
+    </div>
+    <div class="field">
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+    <div data-role="controlgroup" data-type="horizontal" style="float: right;">
+      <%= f.submit "Send", :'data-role'=>"button",:'data-ajax'=>"false" %>
+    </div>
+<% end %>

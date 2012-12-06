@@ -12,6 +12,12 @@ ProcializeApp::Application.routes.draw do
   match 'users/:id/follow', :to=>"users/profile#following", :as=>"follow"
   match '/update_status', :to=>"home#update_status", :as=>"update_status"
 
+
+
+
+
+
+
   match 'reply',:to => "meetings#reply"
 
   match 'show',:to => "meetings#show"
