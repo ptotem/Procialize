@@ -1,13 +1,27 @@
 <ul data-role="listview" data-theme="a" data-divider-theme="d">
-  <li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">2</span></li>
-  <% @messages.each do |message| %>
-      <li><a href="messages/show">
-        <h3><%= message.user.name %></h3>
+  <li data-role="list-divider">Unread Messages<span class="ui-li-count"><%= @unread.size %></span></li>
+  <% @unread.each do |message| %>
+      <li>
+        <a href="<%= message_path(message) %>">
+          <h3><%= message.user.name %></h3>
 
-        <p><%= message.name %></p>
+          <p><%= message.name %></p>
 
-        <p class="ui-li-aside"><strong><%= message.created_at %></strong></p>
-      </a></li>
+          <p class="ui-li-aside"><strong><%= message.created_at %></strong></p>
+        </a>
+      </li>
+  <% end %>
+  <li data-role="list-divider">Viewed Messages<span class="ui-li-count"><%= @read.size %></span></li>
+  <% @read.each do |message| %>
+      <li>
+        <a href="<%= message_path(message) %>">
+          <h3><%= message.user.name %></h3>
+
+          <p><%= message.name %></p>
+
+          <p class="ui-li-aside"><strong><%= message.created_at %></strong></p>
+        </a>
+      </li>
   <% end %>
 
 </ul>

@@ -1,10 +1,14 @@
 class MessagesController < ApplicationController
   def index
-    @messages = Receipient.find_all_by_user_id(current_user.id).map{|r| r.message}
+    @unread = Receipient.find_all_by_user_id_and_status(current_user.id,false).map{|r| r.message}
+    @read = Receipient.find_all_by_user_id_and_status(current_user.id,true).map{|r| r.message}
   end
 
   def show
     @message = Message.find(params[:id])
+    @receipient=Receipient.find_by_user_id_and_message_id(current_user.id,@message.id)
+    @receipient.status=true
+    @receipient.save
   end
 
   def new
