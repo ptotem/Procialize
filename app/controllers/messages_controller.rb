@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
+    20.times {@message.receipients.build}
     #@message = Message.new(params[:message])
 
   end

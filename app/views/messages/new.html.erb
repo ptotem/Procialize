@@ -20,9 +20,8 @@
     <% end %>
     <%= f.hidden_field :conference_id, :value=>Conference.last.id %>
     <%= f.hidden_field :user_id, :value=>current_user.id %>
-    <label for="select-choice-0" class="select">To:</label>
-    <%= f.select :receipients, Participant.all.collect {|x| [x.name, x.id]}, {}, :multiple => false, :name=>"select-choice-0", :id=>"select-choice-0" %>
-
+    <label for="message_receipients" class="select">To:</label>
+    <%= f.select :receipient_ids, Participant.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
     <div class="field">
       <%= f.label :subject %>
       <%= f.text_field :name, :'data-mini'=>true %>
