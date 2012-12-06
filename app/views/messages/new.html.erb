@@ -1,0 +1,36 @@
+<% content_for :page_title do %>
+
+    New Message
+<% end %>
+
+
+
+<%= form_for :message, url: { action: :create } do |f| %>
+
+    <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+          <ul>
+            <% @message.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.hidden_field :conference_id, :value=>Conference.last.id %>
+    <%= f.hidden_field :user_id, :value=>current_user.id %>
+    <label for="message_receipients" class="select">To:</label>
+    <%= f.select :receipient_ids, Participant.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+    <div class="field">
+      <%= f.label :subject %>
+      <%= f.text_field :name, :'data-mini'=>true %>
+    </div>
+    <div class="field">
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+    <div data-role="controlgroup" data-type="horizontal" style="float: right;">
+      <%= f.submit "Send", :'data-role'=>"button",:'data-ajax'=>"false" %>
+    </div>
+<% end %>

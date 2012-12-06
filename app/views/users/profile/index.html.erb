@@ -1,12 +1,32 @@
+<script type="text/javascript">
+    function follow() {
+        $.ajax({
+            url:"<%= follow_path(@user.id) %>",
+            type:"post",
+            success:function (data) {
+                $("#follow_button .ui-btn-text").html(data);
+                if (data == "Follow") {
+                    $('#follow_notice').html("Not Followed");
+                } else {
+                    $('#follow_notice').html("Followed");
+                }
+            }
+        });
+    }
+</script>
+
 <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
 <h4><%= @name.titlecase %>
   <br>
   <small><%= @headline %></small>
+  <br>
+  <span id="follow_notice"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not Followed" :"Followed" %></span>
 </h4>
 <br>
+
 <div data-role="navbar">
   <ul>
-    <li><%= link_to "Follow", "#", :'data-role' => "button", :'data-theme' => "a" %></li>
+    <li><%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow':'Unfollow  '}", "#", :'data-role' => "button", :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %></li>
     <li><%= link_to "Request Meeting", "#", :'data-role' => "button", :'data-theme' => "b" %></li>
   </ul>
 </div>
@@ -25,6 +45,19 @@
       <li><%= education %></li>
   <% end %>
 </ul>
+
+<strong>Other Followers</strong>
+<br>
+<ul>
+  <% @followers.each do |follower| %>
+      <li>
+        <%= image_tag follower.picture, :style => "float:left; border-radius:5px;margin-right:10px;max-width:40px" %>
+        <%= follower.name.titlecase %>
+      </li>
+  <% end %>
+</ul>
+
+
 <br>
 <br>
 <br>

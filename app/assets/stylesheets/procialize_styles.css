@@ -26,6 +26,14 @@ img {
     padding: 10px;
 }
 
+.highlighted, #follow_notice{
+    background: black;
+    color:white;
+    padding:0.2em;
+    float:right;
+    font-size:0.8em;
+}
+
 /* End Generic Layout Definitions*/
 
 /* _______________________________________________________________ */
