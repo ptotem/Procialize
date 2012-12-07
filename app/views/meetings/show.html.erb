@@ -9,8 +9,12 @@
 <br>
 <%= Location.find(@meeting.location).name %>
 
-<%= link_to "Accept", accept_path(@meeting), :'data-role'=>"button" %>
-<%= link_to "Decline", decline_path(@meeting), :'data-role'=>"button" %>
+<% if @meeting.user==current_user %>
+    <%= link_to "Cancel", @meeting, :method=>:delete, :'data-role' => "button", :'data-ajax' => false %>
+<% else %>
+    <%= link_to "Accept", accept_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+    <%= link_to "Decline", decline_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+<% end %>
 
 <br>
 <br>
@@ -22,65 +26,65 @@
 <!--<div class="content_container" data-theme="a">-->
 
 
-  <!--<strong> From:</strong>-->
-  <!--Rakesh-->
-  <!--<br>-->
-  <!--<br>-->
+<!--<strong> From:</strong>-->
+<!--Rakesh-->
+<!--<br>-->
+<!--<br>-->
 
-  <!--<strong>Date:</strong>-->
+<!--<strong>Date:</strong>-->
 
-  <!--21/01/2013-->
-  <!--<br>-->
-  <!--<br>-->
-
-
-  <!--<strong>Time:</strong>-->
-
-  <!--03:15 PM-->
-  <!--<br>-->
-  <!--<br>-->
+<!--21/01/2013-->
+<!--<br>-->
+<!--<br>-->
 
 
-  <!--<strong> Location:</strong>-->
+<!--<strong>Time:</strong>-->
 
-  <!--Mumbai-->
-  <!--<br>-->
-  <!--<br>-->
-
-  <!--<strong> Description:</strong>-->
+<!--03:15 PM-->
+<!--<br>-->
+<!--<br>-->
 
 
-  <!--hiiiiiiiiiiiiiiii-->
+<!--<strong> Location:</strong>-->
 
-  <!--<br>-->
+<!--Mumbai-->
+<!--<br>-->
+<!--<br>-->
 
-
-  <!--<div data-role="collapsible" data-theme="a" data-content-theme="c">-->
-    <!--<h2>Accepted by</h2>-->
-    <!--<ul data-role="listview">-->
-      <!--<li data-icon="false"><a href="#">Acura</a></li>-->
-      <!--<li data-icon="false"><a href="#">Audi</a></li>-->
-      <!--<li data-icon="false"><a href="#">BMW</a></li>-->
-      <!--<li data-icon="false"><a href="#">Cadillac</a></li>-->
-      <!--<li data-icon="false"><a href="#">Chrysler</a></li>-->
-    <!--</ul>-->
-  <!--</div>-->
+<!--<strong> Description:</strong>-->
 
 
-  <!--<div data-role="collapsible" data-theme="a" data-content-theme="c">-->
-    <!--<h2>Declined by</h2>-->
-    <!--<ul data-role="listview" >-->
-      <!--<li data-icon="false"><a href="#">Prakesh</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
-      <!--<li data-icon="false"><a href="#">Pinder</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
-      <!--<li data-icon="false"><a href="#">Pperseus</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
-      <!--<li data-icon="false"><a href="#">Psunny</a><input type="text" value="" readonly="readonly"></li>-->
-      <!--<li data-icon="false"><a href="#">Plolly</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
+<!--hiiiiiiiiiiiiiiii-->
 
-    <!--</ul>-->
+<!--<br>-->
 
 
+<!--<div data-role="collapsible" data-theme="a" data-content-theme="c">-->
+<!--<h2>Accepted by</h2>-->
+<!--<ul data-role="listview">-->
+<!--<li data-icon="false"><a href="#">Acura</a></li>-->
+<!--<li data-icon="false"><a href="#">Audi</a></li>-->
+<!--<li data-icon="false"><a href="#">BMW</a></li>-->
+<!--<li data-icon="false"><a href="#">Cadillac</a></li>-->
+<!--<li data-icon="false"><a href="#">Chrysler</a></li>-->
+<!--</ul>-->
+<!--</div>-->
 
-  <!--</div>-->
-  <!--<a href="/reply" data-role="button">Reply</a>-->
+
+<!--<div data-role="collapsible" data-theme="a" data-content-theme="c">-->
+<!--<h2>Declined by</h2>-->
+<!--<ul data-role="listview" >-->
+<!--<li data-icon="false"><a href="#">Prakesh</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
+<!--<li data-icon="false"><a href="#">Pinder</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
+<!--<li data-icon="false"><a href="#">Pperseus</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
+<!--<li data-icon="false"><a href="#">Psunny</a><input type="text" value="" readonly="readonly"></li>-->
+<!--<li data-icon="false"><a href="#">Plolly</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
+
+<!--</ul>-->
+
+
+
+<!--</div>-->
+<!--<a href="/reply" data-role="button">Reply</a>-->
 
 <!--</div>-->
