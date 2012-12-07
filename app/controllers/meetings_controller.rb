@@ -7,11 +7,7 @@ class MeetingsController < ApplicationController
     @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting }
     @accepted = Meeter.find_all_by_user_id_and_status(current_user.id, true).map { |r| r.meeting }
     @decline = Meeter.find_all_by_user_id_and_status(current_user.id, false).map { |r| r.meeting }
-    @sent = Meeting.find_all_by_user_id(@user)
-
-
-
-    @meetings = Meeting.all
+    @sent = Meeting.find_all_by_user_id(@user.id)
 
     #respond_to do |format|
     #  format.html # index.html.erb
