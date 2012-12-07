@@ -1,3 +1,7 @@
+<%= content_for :page_title do %>
+Messages
+<% end %>
+
 <ul data-role="listview" data-theme="a" data-divider-theme="d">
   <li data-role="list-divider">Unread Messages<span class="ui-li-count"><%= @unread.size %></span></li>
   <% @unread.each do |message| %>
