@@ -1,81 +1,142 @@
 
-<%= javascript_include_tag "mobiscroll-2.2.custom.min" %>
-<%= stylesheet_link_tag "mobiscroll-2.2.custom.min" %>
+<!--<%#= javascript_include_tag "mobiscroll-2.2.custom.min" %>-->
+<!--<%#= stylesheet_link_tag "mobiscroll-2.2.custom.min" %>-->
 
-<script type="text/javascript">
-    $(function(){
-        $('#i').scroller({
-            preset: 'time',
-            theme: 'default',
-            display: 'modal',
-            mode: 'scroller'
-        });
-    });
-</script>
+<!--<script type="text/javascript">-->
+<!--//    $(function(){-->
+<!--//        $('#i').scroller({-->
+<!--//            preset: 'time',-->
+<!--//            theme: 'default',-->
+<!--//            display: 'modal',-->
+<!--//            mode: 'scroller'-->
+<!--//        });-->
+<!--//    });-->
+<!--</script>-->
 
+<!--<br>-->
+<!--<br>-->
 
-  <!--<div data-role="navbar" data-fullscreen="true" id="navbar">-->
-  <!--<ul>-->
-    <!--<li><a href="new" data-role="button" data-ajax=false class="ui-btn-active">New</a></li>-->
-    <!--<li><a href="show" data-role="button" data-ajax=false>Show meeting</a></li>-->
-    <!--<li><a href="/reply" data-role="button" data-ajax=false>Reply </a></li>-->
-  <!--</ul>-->
-<!--</div>-->
-
-<br>
-<br>
+<% content_for :page_title do %>
+    New meetings
+<% end %>
 
 
+<%= form_for :meeting, url: {action: :create} do |f| %>
+
+    <% if @meeting.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+
+          <ul>
+            <% @meeting.errors.full_meeting.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <%= select_tag 'meeter_users[]', options_for_select(@user_list), :multiple => true%>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name,:'data-mini' => true  %>
+    </div>
+
+    <div class="field">
+      <%= f.label :location %><br>
+      <%= f.text_area :location,:'data-mini' => true  %>
+    </div>
 
 
-<form>
+    <div class="field">
+      <%= f.label :start_time %>
+      <%= f.datetime_select :start_time,:'data-mini' => true  %>
+    </div>
 
-  <label for="select-choice-9" class="select" data-filter="true"><strong> To:</strong></label>
-  <select name="select-choice-9" id="select-choice-9" multiple="multiple" data-native-menu="false"  >
-    <option>Choose recepients</option>
-    <option value="standard">Rakesh</option>
-    <option value="rush">Inder</option>
-    <option value="express">Perseus</option>
-    <option value="overnight">Lolly</option>
-  </select>
-
+    <div class="field">
+      <%= f.label :end_time %>
+      <%= f.datetime_select :end_time,:'data-mini' => true  %>
+    </div>
 
 
-<label for="select-choice-0" class="select"><b>Day:</b></label>
-<select name="select-choice-0" id="select-choice-0">
-  <option value="standard">Day one</option>
-  <option value="rush">Day two</option>
-  <option value="express">Day three</option>
-  <option value="overnight">Day four</option>
-</select>
+    <div data-role="controlgroup" data-type="horizontal" style="float: right;">
+      <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
+    </div>
+
+<% end %>
 
 
 
-<label for="mydate" ><b>Time:</b></label>
-  <input id="i" name="i">
-
-
-<label for="select-choice-1" class="select"><b>Location:</b></label>
-<select name="select-choice-0" id="select-choice-1">
-  <option value="standard">wing one</option>
-  <option value="rush">wing two</option>
-  <option value="express">wing three</option>
-  <option value="overnight">wing four</option>
-</select>
 
 
 
-<label for="basic"><b>Description:</b></label>
-<textarea name="textarea" id="textarea"></textarea>
 
 
-  <div data-role="controlgroup" data-type="horizontal" style="float: right;">
-    <a href="#" data-role="button">Send</a>
-    <a href="#" data-role="button">Cancel</a>
-  </div>
 
 
-</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<form>-->
+
+  <!--<label for="select-choice-9" class="select" data-filter="true"><strong> To:</strong></label>-->
+  <!--<select name="select-choice-9" id="select-choice-9" multiple="multiple" data-native-menu="false"  >-->
+    <!--<option>Choose recepients</option>-->
+    <!--<option value="standard">Rakesh</option>-->
+    <!--<option value="rush">Inder</option>-->
+    <!--<option value="express">Perseus</option>-->
+    <!--<option value="overnight">Lolly</option>-->
+  <!--</select>-->
+
+
+
+<!--<label for="select-choice-0" class="select"><b>Day:</b></label>-->
+<!--<select name="select-choice-0" id="select-choice-0">-->
+  <!--<option value="standard">Day one</option>-->
+  <!--<option value="rush">Day two</option>-->
+  <!--<option value="express">Day three</option>-->
+  <!--<option value="overnight">Day four</option>-->
+<!--</select>-->
+
+
+
+<!--<label for="mydate" ><b>Time:</b></label>-->
+  <!--<input id="i" name="i">-->
+
+
+<!--<label for="select-choice-1" class="select"><b>Location:</b></label>-->
+<!--<select name="select-choice-0" id="select-choice-1">-->
+  <!--<option value="standard">wing one</option>-->
+  <!--<option value="rush">wing two</option>-->
+  <!--<option value="express">wing three</option>-->
+  <!--<option value="overnight">wing four</option>-->
+<!--</select>-->
+
+
+
+<!--<label for="basic"><b>Description:</b></label>-->
+<!--<textarea name="textarea" id="textarea"></textarea>-->
+
+
+  <!--<div data-role="controlgroup" data-type="horizontal" style="float: right;">-->
+    <!--<a href="#" data-role="button">Send</a>-->
+    <!--<a href="#" data-role="button">Cancel</a>-->
+  <!--</div>-->
+
+
+<!--</form>-->
 
 
 

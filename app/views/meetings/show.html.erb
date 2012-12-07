@@ -1,79 +1,83 @@
+<% content_for :page_title do %>
+    Meeting
+<% end %>
 
-<!--<div data-role="navbar">-->
-  <!--<ul>-->
-    <!--<li><a href="new" data-role="button" data-ajax=false>New</a></li>-->
-    <!--<li><a href="show" data-role="button" data-ajax=false class="ui-btn-active">Show meeting</a></li>-->
-    <!--<li><a href="/reply" data-role="button" data-ajax=false>Reply </a></li>-->
-  <!--</ul>-->
+<h3>To: <%= @meeting.meeters.map { |r| r.user.name }.join(", ") %></h3>
+<p>Subject: <%= @meeting.name %></p>
+<p class="ui-li-aside"><strong><%= @meeting.created_at %></strong></p>
+<br>
+<br>
+<%= raw @meeting.body %>
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+<!--<div class="content_container" data-theme="a">-->
+
+
+  <!--<strong> From:</strong>-->
+  <!--Rakesh-->
+  <!--<br>-->
+  <!--<br>-->
+
+  <!--<strong>Date:</strong>-->
+
+  <!--21/01/2013-->
+  <!--<br>-->
+  <!--<br>-->
+
+
+  <!--<strong>Time:</strong>-->
+
+  <!--03:15 PM-->
+  <!--<br>-->
+  <!--<br>-->
+
+
+  <!--<strong> Location:</strong>-->
+
+  <!--Mumbai-->
+  <!--<br>-->
+  <!--<br>-->
+
+  <!--<strong> Description:</strong>-->
+
+
+  <!--hiiiiiiiiiiiiiiii-->
+
+  <!--<br>-->
+
+
+  <!--<div data-role="collapsible" data-theme="a" data-content-theme="c">-->
+    <!--<h2>Accepted by</h2>-->
+    <!--<ul data-role="listview">-->
+      <!--<li data-icon="false"><a href="#">Acura</a></li>-->
+      <!--<li data-icon="false"><a href="#">Audi</a></li>-->
+      <!--<li data-icon="false"><a href="#">BMW</a></li>-->
+      <!--<li data-icon="false"><a href="#">Cadillac</a></li>-->
+      <!--<li data-icon="false"><a href="#">Chrysler</a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
+
+
+  <!--<div data-role="collapsible" data-theme="a" data-content-theme="c">-->
+    <!--<h2>Declined by</h2>-->
+    <!--<ul data-role="listview" >-->
+      <!--<li data-icon="false"><a href="#">Prakesh</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
+      <!--<li data-icon="false"><a href="#">Pinder</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
+      <!--<li data-icon="false"><a href="#">Pperseus</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
+      <!--<li data-icon="false"><a href="#">Psunny</a><input type="text" value="" readonly="readonly"></li>-->
+      <!--<li data-icon="false"><a href="#">Plolly</a><input type="text" value="don't like your face" readonly="readonly"></li>-->
+
+    <!--</ul>-->
+
+
+
+  <!--</div>-->
+  <!--<a href="/reply" data-role="button">Reply</a>-->
+
 <!--</div>-->
-
-<!--<br>-->
-<!--<br>-->
-
-
-
-<div class="content_container" data-theme="a">
-
-
-  <strong> From:</strong>
-  Rakesh
-  <br>
-  <br>
-
-  <strong>Date:</strong>
-
-  21/01/2013
-  <br>
-  <br>
-
-
-  <strong>Time:</strong>
-
-  03:15 PM
-  <br>
-  <br>
-
-
-  <strong> Location:</strong>
-
-  Mumbai
-  <br>
-  <br>
-
-  <strong> Description:</strong>
-
-
-  hiiiiiiiiiiiiiiii
-
-  <br>
-
-
-  <div data-role="collapsible" data-theme="a" data-content-theme="c">
-    <h2>Accepted by</h2>
-    <ul data-role="listview">
-      <li data-icon="false"><a href="#">Acura</a></li>
-      <li data-icon="false"><a href="#">Audi</a></li>
-      <li data-icon="false"><a href="#">BMW</a></li>
-      <li data-icon="false"><a href="#">Cadillac</a></li>
-      <li data-icon="false"><a href="#">Chrysler</a></li>
-    </ul>
-  </div>
-
-
-  <div data-role="collapsible" data-theme="a" data-content-theme="c">
-    <h2>Declined by</h2>
-    <ul data-role="listview" >
-      <li data-icon="false"><a href="#">Prakesh</a><input type="text" value="don't like your face" readonly="readonly"></li>
-      <li data-icon="false"><a href="#">Pinder</a><input type="text" value="don't like your face" readonly="readonly"></li>
-      <li data-icon="false"><a href="#">Pperseus</a><input type="text" value="don't like your face" readonly="readonly"></li>
-      <li data-icon="false"><a href="#">Psunny</a><input type="text" value="" readonly="readonly"></li>
-      <li data-icon="false"><a href="#">Plolly</a><input type="text" value="don't like your face" readonly="readonly"></li>
-
-    </ul>
-
-
-
-  </div>
-  <a href="/reply" data-role="button">Reply</a>
-
-</div>

@@ -28,9 +28,37 @@
   <small><%= @headline %></small>
 </h4>
 <br>
-<%= text_area_tag :comment,"", :placeholder => "Post your thoughts" %>
-<%= submit_tag "Update", :'data-role'=>"button", :'data-theme'=>"a",:onclick => "update_status();" %>
+
+<%= text_area_tag :comment, "", :placeholder => "Post your thoughts" %>
+<%= submit_tag "Update", :'data-role' => "button", :'data-theme' => "a", :onclick => "update_status();" %>
 
 <hr>
+<hr>
+
+<ul>
+  <div class="fbinfobox">
+  <% @followers=Follower.find_all_by_user_id(@user.id) %>
+  <% @status=Array.new %>
+  <% @followers.each do |f| %>
+      <% if !User.find(f.follower_id).statuses.nil? %>
+          <% @status<<User.find(f.follower_id).statuses.last %>
+
+      <% end %>
+  <% end %>
+  <% @status.each do |stat| %>
+      <% if !stat.nil? %>
+          <% @name = User.find(stat.user_id).name %>
+          <li><%= @name.titleize %></li>
+
+         <small><%= stat.comment %></small>
+      <% end %>
+  <% end %>
+
+
+  </div>
+</ul>
+
+
+
 
 

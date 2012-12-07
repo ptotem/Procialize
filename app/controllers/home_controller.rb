@@ -16,4 +16,12 @@ class HomeController < ApplicationController
     render :text=>@status.comment
   end
 
+
+
+  def followers_status
+
+    @user = current_user
+
+  end
+
 end
