@@ -59,6 +59,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    combined_time_select (0.0.1)
     daemons (1.1.9)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
@@ -203,6 +204,7 @@ DEPENDENCIES
   cancan
   chosen-rails
   coffee-rails (~> 3.2.1)
+  combined_time_select
   devise
   geocoder
   gritter

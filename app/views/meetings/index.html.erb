@@ -9,9 +9,8 @@
         <a href="<%= meeting_path(meeting) %>" data-ajax="false">
           <h3><%= meeting.user.name %></h3>
 
-          <p><%= meeting.name %></p>
-
-          <p class="ui-li-aside"><strong><%= meeting.created_at %></strong></p>
+          <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
+          <p class="ui-li-aside"><strong><%= meeting.start_time %></strong></p>
         </a>
       </li>
   <% end %>
@@ -21,9 +20,8 @@
         <a href="<%= meeting_path(meeting) %>" data-ajax="false">
           <h3><%= meeting.user.name %></h3>
 
-          <p><%= meeting.name %></p>
-
-          <p class="ui-li-aside"><strong><%= meeting.created_at %></strong></p>
+          <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
+          <p class="ui-li-aside"><strong><%= meeting.start_time %></strong></p>
         </a>
       </li>
   <% end %>
@@ -32,8 +30,8 @@
       <li>
         <a href="<%= meeting_path(meeting) %>" data-ajax="false">
           <h3><%= meeting.meeters.map{|r| r.user.name}.join(", ") %></h3>
-          <p><%= meeting.name %></p>
-          <p class="ui-li-aside"><strong><%= meeting.created_at %></strong></p>
+          <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
+          <p class="ui-li-aside"><strong><%= meeting.start_time %></strong></p>
         </a>
       </li>
   <% end %>
@@ -43,8 +41,8 @@
       <li>
         <a href="<%= meeting_path(meeting) %>" data-ajax="false">
           <h3><%= meeting.meeters.map{|r| r.user.name}.join(", ") %></h3>
-          <p><%= meeting.name %></p>
-          <p class="ui-li-aside"><strong><%= meeting.created_at %></strong></p>
+          <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
+          <p class="ui-li-aside"><strong><%= meeting.start_time %></strong></p>
         </a>
       </li>
   <% end %>

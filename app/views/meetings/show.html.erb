@@ -4,10 +4,10 @@
 
 <h3>To: <%= @meeting.meeters.map { |r| r.user.name }.join(", ") %></h3>
 <p>Subject: <%= @meeting.name %></p>
-<p class="ui-li-aside"><strong><%= @meeting.created_at %></strong></p>
+<p class="ui-li-aside"><strong><%= @meeting.start_time %></strong></p>
 <br>
 <br>
-<%= raw @meeting.location %>
+<%= Location.find(@meeting.location).name %>
 
 <br>
 <br>

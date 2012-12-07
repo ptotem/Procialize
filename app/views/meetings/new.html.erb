@@ -1,4 +1,3 @@
-
 <!--<%#= javascript_include_tag "mobiscroll-2.2.custom.min" %>-->
 <!--<%#= stylesheet_link_tag "mobiscroll-2.2.custom.min" %>-->
 
@@ -37,29 +36,25 @@
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
 
-    <%= select_tag 'meeter_users[]', options_for_select(@user_list), :multiple => true%>
+    <div class="field">
+      <%= f.text_field :name, :'data-mini' => true, :placeholder => "Enter meeting agenda" %>
+    </div>
+
+    <%= select_tag 'meeter_users[]', options_for_select(@user_list), :multiple => true %>
 
     <div class="field">
-      <%= f.label :subject %><br>
-      <%= f.text_field :name,:'data-mini' => true  %>
+      <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true %>
     </div>
 
     <div class="field">
-      <%= f.label :location %><br>
-      <%= f.select :location, options_for_select(@conference.locations.map{|l| [l.name,l.id]}),:'data-mini' => true  %>
+      <%= f.time_select :start_time,
+                        :combined => true,
+                        :default => Time.now.change(:hour => 11, :min => 30),
+                        :minute_interval => 30,
+                        :time_separator => "",
+                        :start_hour => 00,
+                        :end_hour => 23 %>
     </div>
-
-
-    <div class="field">
-      <%= f.label :start_time %>
-      <%= f.datetime_select :start_time,:'data-mini' => true  %>
-    </div>
-
-    <div class="field">
-      <%= f.label :end_time %>
-      <%= f.datetime_select :end_time,:'data-mini' => true  %>
-    </div>
-
 
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
       <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
@@ -91,37 +86,37 @@
 
 <!--<form>-->
 
-  <!--<label for="select-choice-9" class="select" data-filter="true"><strong> To:</strong></label>-->
-  <!--<select name="select-choice-9" id="select-choice-9" multiple="multiple" data-native-menu="false"  >-->
-    <!--<option>Choose recepients</option>-->
-    <!--<option value="standard">Rakesh</option>-->
-    <!--<option value="rush">Inder</option>-->
-    <!--<option value="express">Perseus</option>-->
-    <!--<option value="overnight">Lolly</option>-->
-  <!--</select>-->
+<!--<label for="select-choice-9" class="select" data-filter="true"><strong> To:</strong></label>-->
+<!--<select name="select-choice-9" id="select-choice-9" multiple="multiple" data-native-menu="false"  >-->
+<!--<option>Choose recepients</option>-->
+<!--<option value="standard">Rakesh</option>-->
+<!--<option value="rush">Inder</option>-->
+<!--<option value="express">Perseus</option>-->
+<!--<option value="overnight">Lolly</option>-->
+<!--</select>-->
 
 
 
 <!--<label for="select-choice-0" class="select"><b>Day:</b></label>-->
 <!--<select name="select-choice-0" id="select-choice-0">-->
-  <!--<option value="standard">Day one</option>-->
-  <!--<option value="rush">Day two</option>-->
-  <!--<option value="express">Day three</option>-->
-  <!--<option value="overnight">Day four</option>-->
+<!--<option value="standard">Day one</option>-->
+<!--<option value="rush">Day two</option>-->
+<!--<option value="express">Day three</option>-->
+<!--<option value="overnight">Day four</option>-->
 <!--</select>-->
 
 
 
 <!--<label for="mydate" ><b>Time:</b></label>-->
-  <!--<input id="i" name="i">-->
+<!--<input id="i" name="i">-->
 
 
 <!--<label for="select-choice-1" class="select"><b>Location:</b></label>-->
 <!--<select name="select-choice-0" id="select-choice-1">-->
-  <!--<option value="standard">wing one</option>-->
-  <!--<option value="rush">wing two</option>-->
-  <!--<option value="express">wing three</option>-->
-  <!--<option value="overnight">wing four</option>-->
+<!--<option value="standard">wing one</option>-->
+<!--<option value="rush">wing two</option>-->
+<!--<option value="express">wing three</option>-->
+<!--<option value="overnight">wing four</option>-->
 <!--</select>-->
 
 
@@ -130,10 +125,10 @@
 <!--<textarea name="textarea" id="textarea"></textarea>-->
 
 
-  <!--<div data-role="controlgroup" data-type="horizontal" style="float: right;">-->
-    <!--<a href="#" data-role="button">Send</a>-->
-    <!--<a href="#" data-role="button">Cancel</a>-->
-  <!--</div>-->
+<!--<div data-role="controlgroup" data-type="horizontal" style="float: right;">-->
+<!--<a href="#" data-role="button">Send</a>-->
+<!--<a href="#" data-role="button">Cancel</a>-->
+<!--</div>-->
 
 
 <!--</form>-->

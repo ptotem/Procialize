@@ -54,6 +54,7 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
+    params[:meeting].parse_time_select! :start_time
     @meeting = Meeting.new(params[:meeting])
     respond_to do |format|
       if @meeting.save

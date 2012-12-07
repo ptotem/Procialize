@@ -6,7 +6,7 @@ class Users::ProfileController < ApplicationController
     @headline=@user.headline
     @educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "":"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
     @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name}" }.uniq
-    @followers=Follower.find_all_by_follower_id(@user.id).select{|f| f.user unless f.user==current_user}
+    @followers=Follower.find_all_by_follower_id(@user.id).select{|f| f.user unless f.user==current_user}.map{|f| f.user}
   end
 
   def following
