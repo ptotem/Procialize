@@ -38,7 +38,7 @@
       </li>
   <% end %>
 
-  <li data-role="list-divider">Sent Messages<span class="ui-li-count"><%= @sent.size %></span></li>
+  <li data-role="list-divider">Sent<span class="ui-li-count"><%= @sent.size %></span></li>
   <% @sent.each do |meeting| %>
       <li>
         <a href="<%= meeting_path(meeting) %>" data-ajax="false">

@@ -77,7 +77,17 @@ img {
 /* Start Profile page Definitions*/
 
 .fbinfobox {
-    background: #808080;
+    background: #fafad2;
+    color: #333333;
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.fbinfo {
+    background: #90ee90;
     color: #333333;
     padding: 10px;
     border-radius: 10px;
@@ -85,6 +95,7 @@ img {
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
     font-weight: bold;
+    /*float:right;*/
 }
 
 h3, h4, h5, h6 {

@@ -36,8 +36,9 @@
 <hr>
 
 <ul>
-  <div class="fbinfobox">
+
   <% @followers=Follower.find_all_by_user_id(@user.id) %>
+
   <% @status=Array.new %>
   <% @followers.each do |f| %>
       <% if !User.find(f.follower_id).statuses.nil? %>
@@ -47,15 +48,21 @@
   <% end %>
   <% @status.each do |stat| %>
       <% if !stat.nil? %>
-          <% @name = User.find(stat.user_id).name %>
-          <li><%= @name.titleize %></li>
 
-         <small><%= stat.comment %></small>
+          <% @photo = User.find(stat.user_id).picture %><br><br>
+          <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %><br>
+          <% @name = User.find(stat.user_id).name %>
+          <br>
+          <%= @name.titleize %>
+          <div class="fbinfo">
+            <small><%= stat.comment %></small>
+            <br>
+          </div>
+
       <% end %>
   <% end %>
 
 
-  </div>
 </ul>
 
 
