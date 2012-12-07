@@ -40,13 +40,13 @@
     <%= select_tag 'meeter_users[]', options_for_select(@user_list), :multiple => true%>
 
     <div class="field">
-      <%= f.label :name %><br>
+      <%= f.label :subject %><br>
       <%= f.text_field :name,:'data-mini' => true  %>
     </div>
 
     <div class="field">
       <%= f.label :location %><br>
-      <%= f.text_area :location,:'data-mini' => true  %>
+      <%= f.select :location, options_for_select(@conference.locations.map{|l| [l.name,l.id]}),:'data-mini' => true  %>
     </div>
 
 
