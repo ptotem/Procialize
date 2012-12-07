@@ -33,16 +33,16 @@
               <% if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>
                   <li data-theme='a'>
                     <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a'>
-                      <%= user.name %>
+                      <%= user.name.titlecase %>
                     </a>
-                    <%= link_to "Follow #{user.name}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
+                    <%= link_to "Follow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
                   </li>
               <% else %>
                   <li data-theme='b'>
                     <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='b'>
-                      <%= user.name %><span id="following<%= user.id %>" class="highlighted">Following</span>
+                      <%= user.name.titlecase %><span id="following<%= user.id %>" class="highlighted">Following</span>
                     </a>
-                    <%= link_to "Unfollow #{user.name}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
+                    <%= link_to "Unfollow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
                   </li>
               <% end %>
           <% end %>
