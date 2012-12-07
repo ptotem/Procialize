@@ -97,4 +97,21 @@ class MeetingsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def accept
+    @meeting=Meeting.find(params[:id])
+    @meeter=current_user
+    @meeter.status=true
+    @meeter.save
+    redirect_to meetings_path
+  end
+
+  def decline
+    @meeting=Meeting.find(params[:id])
+    @meeter=current_user
+    @meeter.status=false
+    @meeter.save
+    redirect_to meetings_path
+  end
+
 end

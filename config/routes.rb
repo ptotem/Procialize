@@ -14,6 +14,8 @@ ProcializeApp::Application.routes.draw do
   match '/update_status', :to=>"home#update_status", :as=>"update_status"
 
   match '/followers_status',:to => "home#followers_status" ,:as =>"followers_status"
+  match '/accept/:id',:to => "meetings#accept" ,:as =>"accept"
+  match '/decline/:id',:to => "meetings#decline" ,:as =>"decline"
 
 
 

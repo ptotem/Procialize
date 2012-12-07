@@ -9,6 +9,9 @@
 <br>
 <%= Location.find(@meeting.location).name %>
 
+<%= link_to "Accept", accept_path(@meeting), :'data-role'=>"button" %>
+<%= link_to "Decline", decline_path(@meeting), :'data-role'=>"button" %>
+
 <br>
 <br>
 <br>
