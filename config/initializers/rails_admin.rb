@@ -32,7 +32,7 @@ RailsAdmin.config do |config|
   # Include specific models (exclude the others):
   # config.included_models = []
 
-    config.included_models = ["Location", "EventDay", "Event","Post", "User"]
+    config.included_models = ["Location", "EventDay", "Event","Post", "User", "Organizer"]
 
     config.actions do
       # root actions

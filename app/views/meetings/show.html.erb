@@ -1,6 +1,14 @@
 <%= content_for :page_title do %>
     Meeting
 <% end %>
+
+<%= content_for :page_menu do %>
+    <ul>
+      <li><a href="/meetings/new" data-ajax='false'>New</a></li>
+      <li><a href="/meetings" data-ajax='false'>Meetings</a></li>
+    </ul>
+<% end %>
+
 <h3>
   <table>
     <tr>

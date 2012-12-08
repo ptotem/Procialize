@@ -1,27 +1,25 @@
 <%= content_for :page_title do %>
     <%= @event.event_day.name.titlecase %> Event
 <% end %>
-<div class="content_container">
 
-  <h3>
-    <%= image_tag "dummy.png", :style => "float:left; margin-right:10px;" %>
-    <%= @event.name %>
-    <br>
-    <small><%= image_tag "clock.png", :style => "vertical-align:middle;margin-left:-18px;" %><%= @event.start %></small>
-  </h3>
+<h3>
+  <%= image_tag "dummy.png", :style => "float:left; margin-right:10px;" %>
+  <%= @event.name %>
+  <br>
+  <small><%= image_tag "clock.png", :style => "vertical-align:middle;margin-left:-18px;" %><%= @event.start %></small>
+</h3>
 
-  <%= @event.description %>
+<%= @event.description %>
 
-  <% if @my_attendee.blank? %>
-      <a href="<%= attend_event_path(@event) %>" data-role="button">Accept</a>
+<% if @my_attendee.blank? %>
+    <a href="<%= attend_event_path(@event) %>" data-role="button">Accept</a>
+<% end %>
+
+<h3 style="margin-top: 30px;padding-bottom: 15px;">Confirmed Attendees</h3>
+<ul data-role="listview" data-filter="true">
+  <% @attendees.each do |attendee| %>
+      <li><%= attendee.name.titlecase %></li>
   <% end %>
+</ul>
 
-  <h3 style="margin-top: 30px;padding-bottom: 15px;">Confirmed Attendees</h3>
-  <ul data-role="listview" data-filter="true">
-    <% @attendees.each do |attendee| %>
-        <li><%= attendee.name.titlecase %></li>
-    <% end %>
-  </ul>
-
-</div>
 

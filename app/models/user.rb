@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :provider, :uid, :name, :location, :industry, :picture, :token, :secret, :headline, :positions, :educations, :avatar
+  attr_accessible :provider, :uid, :name, :location, :industry, :picture, :token, :secret, :headline, :positions, :educations, :avatar, :batchie
   serialize :positions
   serialize :educations
 
@@ -31,7 +31,11 @@ class User < ActiveRecord::Base
   def self.find_for_linkedin_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
-      user = User.create(provider: auth.provider, uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0, 20], name: auth.info.name, location: auth.info.location, picture: auth.info.image, token: auth.credentials.token, secret: auth.credentials.secret, headline: auth.info.headline, industry: auth.info.industry, positions: auth.extra.raw_info.positions, educations: auth.extra.raw_info.educations)
+      user = User.create(provider:auth.provider, uid:auth.uid, email:auth.info.email, password:Devise.friendly_token[0, 20], name:auth.info.name, location:auth.info.location, picture:auth.info.image, token:auth.credentials.token, secret:auth.credentials.secret, headline:auth.info.headline, industry:auth.info.industry, positions:auth.extra.raw_info.positions, educations:auth.extra.raw_info.educations)
+      user.educations.values[1].each do |t|
+        user.batchie= ((t.schoolName=="Indian School of Business" and !t.endDate.blank?) ? "Class of #{t.endDate.year}" : "Not from ISB")
+        user.save
+      end
     end
     user
   end
@@ -52,5 +56,8 @@ class User < ActiveRecord::Base
     Thread.current[:user] = user
   end
 
-
+  rails_admin do
+    weight 1
+    navigation_label 'User Management'
+  end
 end

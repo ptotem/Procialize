@@ -1,5 +1,5 @@
 class EventDay < ActiveRecord::Base
-  attr_accessible :conference_id, :name, :sequence
+  attr_accessible :conference_id, :name, :sequence, :event_date
   has_many :events, :dependent => :destroy
   belongs_to :conference
 
@@ -12,6 +12,7 @@ class EventDay < ActiveRecord::Base
         label "Day Number"
       end
       field :name
+      field :event_date
     end
     edit do
       field :conference
@@ -19,6 +20,7 @@ class EventDay < ActiveRecord::Base
         label "Day Number"
       end
       field :name
+      field :event_date
     end
   end
 

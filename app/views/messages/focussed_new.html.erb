@@ -1,18 +1,26 @@
-<% content_for :page_title do %>
+<%= content_for :page_title do %>
     New Message
 <% end %>
+<%= content_for :page_menu do %>
+    <ul>
+      <li><a href="/messages/new" data-ajax='false'>New</a></li>
+      <li><a href="/messages" data-ajax='false'>Messages</a></li>
+    </ul>
+<% end %>
 
-<script type="text/javascript">
-    $(function () {
-        $('select').change(function () {
-            if ($('select option:selected').length > 0) {
-                $('[type="submit"]').button('enable');
-            } else {
-                $('[type="submit"]').button('disable');
-            }
-        });
-    })
-</script>
+<%= content_for :head do %>
+    <script type="text/javascript">
+        $(function () {
+            $('select').change(function () {
+                if ($('select option:selected').length > 0) {
+                    $('[type="submit"]').button('enable');
+                } else {
+                    $('[type="submit"]').button('disable');
+                }
+            });
+        })
+    </script>
+<% end %>
 
 <%= form_for :message, url: {action: :create} do |f| %>
 
@@ -24,10 +32,10 @@
         <%= select_tag 'receipient_users[]', options_for_select(@user_list, @receipient), :multiple => true %>
     <% end %>
     <div class="field">
-      <%= f.text_field :name, :value=>(@last_message.name unless @last_message.nil?), :'data-mini' => true, :placeholder=>"Add a Quick Note" %>
+      <%= f.text_field :name, :value => (@last_message.name unless @last_message.nil?), :'data-mini' => true, :placeholder => "Add a Quick Note" %>
     </div>
     <div class="field">
-      <%= f.text_area :body, :rows => '5', :placeholder=>"Add more details, if you want to" %>
+      <%= f.text_area :body, :rows => '5', :placeholder => "Add more details, if you want to" %>
     </div>
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
       <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
