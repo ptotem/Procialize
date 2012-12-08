@@ -16,10 +16,6 @@
       <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name }).delete_if { |n| n==current_user.name }).join(", ") %></td>
     </tr>
     <tr>
-      <td class="headtd">Agenda</td>
-      <td class="normtd"><%= @meeting.name %></td>
-    </tr>
-    <tr>
       <td class="headtd">Scheduled</td>
       <td class="normtd">at <%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
     </tr>
@@ -30,6 +26,11 @@
   </table>
 </h3>
 
+<% unless @meeting.name.blank? %>
+    <div class="padded" style="min-height: 5em; border:solid 1px black; border-radius: 5px;background: white;">
+      <%= @meeting.name %>
+    </div>
+<% end %>
 <% if @meeting.user==current_user %>
     <%= link_to "Cancel", @meeting, :method => :delete, :'data-role' => "button", :'data-ajax' => false %>
 <% else %>
