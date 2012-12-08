@@ -10,9 +10,7 @@
         <li>
           <a href="<%= meeting_path(meeting) %>" data-ajax="false">
             <h3><%= ((meeting.meeters.select{|m| m.status}.map{|m| m.user.name} << meeting.user.name).delete_if{|n| n==current_user.name}).join(", ") %></h3>
-
             <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
-
             <p class="ui-li-aside"><strong><%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %></strong></p>
           </a>
         </li>
@@ -27,10 +25,8 @@
         <li>
           <a href="<%= meeting_path(meeting) %>" data-ajax="false">
             <h3><%= ((meeting.meeters.select{|m| m.status}.map{|m| m.user.name} << meeting.user.name).delete_if{|n| n==current_user.name}).join(", ") %></h3>
-
             <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
-
-            <p class="ui-li-aside"><strong><%= meeting.start_time %></strong></p>
+            <p class="ui-li-aside"><strong><%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %></strong></p>
           </a>
         </li>
     <% end %>
@@ -43,11 +39,9 @@
     <% @open.each do |meeting| %>
         <li>
           <a href="<%= meeting_path(meeting) %>" data-ajax="false">
-            <h3><%= ((meeting.meeters.select{|m| m.status}.map{|m| m.user.name} << meeting.user.name).delete_if{|n| n==current_user.name}).join(", ") %></h3>
-
+            <h3><%= meeting.meeters.map{|m| m.user.name}.join(", ") %></h3>
             <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
-
-            <p class="ui-li-aside"><strong><%= meeting.start_time %></strong></p>
+            <p class="ui-li-aside"><strong><%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %></strong></p>
           </a>
         </li>
     <% end %>
@@ -61,10 +55,8 @@
         <li>
           <a href="<%= meeting_path(meeting) %>" data-ajax="false">
             <h3><%= meeting.user.name %></h3>
-
             <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
-
-            <p class="ui-li-aside"><strong><%= meeting.start_time %></strong></p>
+            <p class="ui-li-aside"><strong><%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %></strong></p>
           </a>
         </li>
     <% end %>

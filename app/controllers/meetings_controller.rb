@@ -32,10 +32,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/1.json
   def show
     @meeting = Meeting.find(params[:id])
-    if @meeter=Meeter.find_by_user_id_and_meeting_id(current_user.id, @meeting.id)
-      @meeter.status=true
-      @meeter.save
-    end
+    @meeter = Meeter.find_by_user_id_and_meeting_id(current_user.id, @meeting.id)
 
     respond_to do |format|
       format.html # show.html.erb

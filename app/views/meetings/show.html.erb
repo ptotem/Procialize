@@ -4,15 +4,15 @@
 <h3>
   <table>
     <tr>
-      <td class="headtd">Requester:</td>
+      <td class="headtd">Requester</td>
       <td class="normtd"><%= @meeting.user.name.titlecase %></td>
     </tr>
     <tr>
-      <td class="headtd">Confirmed Attendees</td>
+      <td class="headtd">Confirmed</td>
       <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status }.map { |m| m.user.name }).delete_if { |n| n==current_user.name }).join(", ") %></td>
     </tr>
     <tr>
-      <td class="headtd">Tentative Attendees</td>
+      <td class="headtd">Tentative</td>
       <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name }).delete_if { |n| n==current_user.name }).join(", ") %></td>
     </tr>
     <tr>
@@ -20,8 +20,8 @@
       <td class="normtd"><%= @meeting.name %></td>
     </tr>
     <tr>
-      <td class="headtd">Scheduled at</td>
-      <td class="normtd"><%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
+      <td class="headtd">Scheduled</td>
+      <td class="normtd">at <%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
     </tr>
     <tr>
       <td class="headtd">Location</td>
@@ -33,6 +33,14 @@
 <% if @meeting.user==current_user %>
     <%= link_to "Cancel", @meeting, :method => :delete, :'data-role' => "button", :'data-ajax' => false %>
 <% else %>
-    <%= link_to "Accept", accept_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
-    <%= link_to "Decline", decline_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+    <% if @meeter.status.nil? %>
+        <%= link_to "Accept", accept_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+        <%= link_to "Decline", decline_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+    <% elsif @meeter.status %>
+        <h1>Accepted</h1>
+        <%= link_to "Decline", decline_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+    <% else %>
+        <h1>Declined</h1>
+        <%= link_to "Accept", accept_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+    <% end %>
 <% end %>
