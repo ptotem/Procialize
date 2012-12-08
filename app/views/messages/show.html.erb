@@ -2,12 +2,36 @@
     Message
 <% end %>
 
-<h3>To: <%= @message.receipients.map { |r| r.user.name }.join(", ") %></h3>
-<p>Subject: <%= @message.name %></p>
-<p class="ui-li-aside"><strong><%= @message.created_at %></strong></p>
-<br>
-<br>
-<%= raw @message.body %>
+
+<h3>
+  <div class="padded">
+    <span class="label-block">From:</span>
+    <span class="point-block"><%= @message.user.name.titlecase %></span>
+  </div>
+  <div class="padded">
+    <span class="label-block">To:</span>
+    <span class="point-block"><%= @message.receipients.map { |r| r.user.name.titlecase }.join(", ") %></span>
+  </div>
+  <div class="padded">
+    <span class="label-block">Subject:</span>
+    <span class="point-block"><%= @message.name %></span>
+  </div>
+  <div class="padded">
+    <span class="label-block">Sent at:</span>
+    <span class="point-block"><%= @message.created_at %> hrs on <%= @message.created_at.strftime("%m/%d/%Y") %> </span>
+  </div>
+</h3>
+<div class="padded" style="min-height: 5em; border:solid 1px black; border-radius: 5px;background: white;">
+  <%= raw @message.body %>
+</div>
+
+<div data-role="navbar">
+  <ul>
+    <li><%= link_to "Reply", focussed_message_path(@message.user) %></li>
+    <li><%= link_to "Reply All", focussed_message_path(@message.user, @message) %></li>
+  </ul>
+</div>
+
 
 <br>
 <br>

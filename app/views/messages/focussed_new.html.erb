@@ -17,15 +17,17 @@
     <% end %>
     <%= f.hidden_field :conference_id, :value => Conference.last.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
-
-    <%= select_tag 'receipient_users[]', options_for_select(@user_list), :multiple => true%>
-
+    <% if @all %>
+        <%= select_tag 'receipient_users[]', options_for_select(@user_list, @receipients), :multiple => true %>
+    <% else %>
+        <%= select_tag 'receipient_users[]', options_for_select(@user_list, @receipient), :multiple => true %>
+    <% end %>
     <div class="field">
       <%= f.label :subject %>
       <%= f.text_field :name, :'data-mini' => true %>
     </div>
     <div class="field">
-      <%= f.text_area :body, :rows=>'5' %>
+      <%= f.text_area :body, :rows => '5' %>
     </div>
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
       <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>

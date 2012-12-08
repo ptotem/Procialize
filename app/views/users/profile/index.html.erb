@@ -1,3 +1,4 @@
+<!--TODO: Add the Class of Data-->
 <script type="text/javascript">
     function follow() {
         $.ajax({
@@ -20,16 +21,11 @@
   <br>
   <small><%= @headline %></small>
   <br>
-  <span id="follow_notice"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not Followed" :"Followed" %></span>
+  <span id="follow_notice" style="float:left"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not Followed" :"Followed" %></span>
 </h4>
 <br>
+<%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :'data-role' => "button", :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %>
 
-<div data-role="navbar">
-  <ul>
-    <li><%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow':'Unfollow  '}", "#", :'data-role' => "button", :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %></li>
-    <li><%= link_to "Request Meeting", "#", :'data-role' => "button", :'data-theme' => "b" %></li>
-  </ul>
-</div>
 <br>
 <strong>Work</strong>
 <br>

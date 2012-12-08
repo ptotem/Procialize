@@ -33,6 +33,19 @@ img {
     float:right;
     font-size:0.8em;
 }
+.label-block{
+    background: gray;
+    color:white;
+    padding:0.4em;
+    font-size:0.8em;
+    width:10%;
+    border-radius: 5px;
+}
+.padded{
+    padding: 0.4em;
+    margin-bottom:0.4em;
+    margin-right:0.4em;
+}
 
 /* End Generic Layout Definitions*/
 
