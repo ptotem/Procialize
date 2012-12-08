@@ -2,30 +2,32 @@
     New Message
 <% end %>
 
+<script type="text/javascript">
+    $(function () {
+        $('[type="submit"]').button('disable');
+        $('select').change(function () {
+            if ($('select option:selected').length>0) {
+                $('[type="submit"]').button('enable');
+            } else {
+                $('[type="submit"]').button('disable');
+            }
+        });
+    })
+</script>
+
 <%= form_for :message, url: {action: :create} do |f| %>
 
-    <% if @message.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
-
-          <ul>
-            <% @message.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
     <%= f.hidden_field :conference_id, :value => Conference.last.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
 
-    <%= select_tag 'receipient_users[]', options_for_select(@user_list), :multiple => true%>
+    <%= select_tag 'receipient_users[]', options_for_select(@user_list), :multiple => true %>
 
     <div class="field">
       <%= f.label :subject %>
       <%= f.text_field :name, :'data-mini' => true %>
     </div>
     <div class="field">
-      <%= f.text_area :body, :rows=>'5' %>
+      <%= f.text_area :body, :rows => '5' %>
     </div>
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
       <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
