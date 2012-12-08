@@ -33,7 +33,7 @@ img {
     float:right;
     font-size:0.8em;
 }
-.label-block{
+.label-block {
     background: gray;
     color:white;
     padding:0.4em;
@@ -42,6 +42,17 @@ img {
     border-radius: 5px;
     float:left;
     margin-right: 0.4em;
+}
+.headtd {
+    background: gray;
+    color:white;
+    padding:0.4em;
+    font-size:0.8em;
+    border-radius: 5px;
+    margin-right: 0.4em;
+}
+.normtd{
+    padding-left: 0.4em;
 }
 .point-block{
     line-height:1.4em;

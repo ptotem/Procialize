@@ -1,25 +1,27 @@
-<% content_for :page_title do %>
+<%= content_for :page_title do %>
     Message
 <% end %>
 
 
 <h3>
-  <div class="padded">
-    <span class="label-block">From:</span>
-    <span class="point-block"><%= @message.user.name.titlecase %></span>
-  </div>
-  <div class="padded">
-    <span class="label-block">To:</span>
-    <span class="point-block"><%= @message.receipients.map { |r| r.user.name.titlecase }.join(", ") %></span>
-  </div>
-  <div class="padded">
-    <span class="label-block">Quick Note:</span>
-    <span class="point-block"><%= @message.name %></span>
-  </div>
-  <div class="padded">
-    <span class="label-block">Sent at:</span>
-    <span class="point-block"><%= @message.created_at %> hrs on <%= @message.created_at.strftime("%m/%d/%Y") %> </span>
-  </div>
+  <table>
+    <tr>
+      <td class="headtd">From:</td>
+      <td class="normtd"><%= @message.user.name.titlecase %></td>
+    </tr>
+    <tr>
+      <td class="headtd">To:</td>
+      <td class="normtd"><%= @message.receipients.map { |r| r.user.name.titlecase }.join(", ") %></td>
+    </tr>
+    <tr>
+      <td class="headtd">Quick Note:</td>
+      <td class="normtd"><%= @message.name %></td>
+    </tr>
+    <tr>
+      <td class="headtd">Sent at:</td>
+      <td class="normtd"><%= @message.created_at %> hrs on <%= @message.created_at.strftime("%m/%d/%Y") %></td>
+    </tr>
+  </table>
 </h3>
 <% unless @message.body.blank? %>
     <div class="padded" style="min-height: 5em; border:solid 1px black; border-radius: 5px;background: white;">

@@ -5,9 +5,22 @@ class MeetingsController < ApplicationController
     @meetings = Meeting.all
     @user = current_user
     @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting }
-    @accepted = Meeter.find_all_by_user_id_and_status(current_user.id, true).map { |r| r.meeting }
-    @decline = Meeter.find_all_by_user_id_and_status(current_user.id, false).map { |r| r.meeting }
+    @scheduled = Meeter.find_all_by_user_id_and_status(current_user.id, true).map { |r| r.meeting }
+    @declined = Meeter.find_all_by_user_id_and_status(current_user.id, false).map { |r| r.meeting }
     @sent = Meeting.find_all_by_user_id(@user.id)
+    @open=[]
+
+    @sent.each do |meeting|
+      if meeting.meeters.select{|meeter| meeter.status}.length==meeting.meeters.length
+        @scheduled << meeting
+      else
+        @open<<meeting
+      end
+    end
+
+    @scheduled.flatten
+    @open.flatten
+
 
     #respond_to do |format|
     #  format.html # index.html.erb
@@ -100,7 +113,7 @@ class MeetingsController < ApplicationController
 
   def accept
     @meeting=Meeting.find(params[:id])
-    @meeter=current_user
+    @meeter=@meeting.meeters.where('user_id=?',current_user.id).first
     @meeter.status=true
     @meeter.save
     redirect_to meetings_path
