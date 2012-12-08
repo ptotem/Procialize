@@ -4,11 +4,12 @@ class ApplicationController < ActionController::Base
   before_filter :set_current_conference
 
   def set_current_conference
+    User.current = current_user
     if !current_user.blank?
       if !current_user.participants.blank?
         @conference=current_user.participants.map { |p| p.conference }[0]
       else
-        Participant.create!(:conference_id => Conference.last.id,:user_id => current_user.id)
+        Participant.create!(:conference_id => Conference.last.id, :user_id => current_user.id)
         @conference=Conference.last
       end
     end
