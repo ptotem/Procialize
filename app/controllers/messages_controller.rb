@@ -26,10 +26,13 @@ class MessagesController < ApplicationController
     @message = Message.new
     @receipient = params[:id]
     @all=false
-    unless params[:all].blank?
-      @last_message=Message.find(params[:all])
-      @receipients=@last_message.receipients.map{|r| r.user.id}
-      @all=true
+    @last_message=nil
+    unless params[:message].blank?
+      @last_message=Message.find(params[:message])
+      unless params[:all].blank?
+        @receipients=@last_message.receipients.map { |r| r.user.id }
+        @all=true
+      end
     end
     @users=[]
     @followed=Follower.find_all_by_user_id(current_user.id).map { |f| User.find(f.follower_id) }

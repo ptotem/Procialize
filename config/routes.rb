@@ -12,7 +12,7 @@ ProcializeApp::Application.routes.draw do
   match 'users/:id/profile', :to=>"users/profile#index", :as=>"user_profile"
   match 'users/:id/follow', :to=>"users/profile#following", :as=>"follow"
   match '/update_status', :to=>"home#update_status", :as=>"update_status"
-  match '/messages/focus/new/:id/(:all)', :to=>"messages#focussed_new", :as=>"focussed_message"
+  match '/messages/focus/new/:id/(:message)/(:all)', :to=>"messages#focussed_new", :as=>"focussed_message"
 
   match '/followers_status',:to => "home#followers_status" ,:as =>"followers_status"
   match '/accept/:id',:to => "meetings#accept" ,:as =>"accept"

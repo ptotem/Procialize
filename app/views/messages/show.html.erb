@@ -13,11 +13,11 @@
     <span class="point-block"><%= @message.receipients.map { |r| r.user.name.titlecase }.join(", ") %></span>
   </div>
   <div class="padded">
-    <span class="label-block">Subject:</span>
+    <span class="label-block">Quick Note:</span>
     <span class="point-block"><%= @message.name %></span>
   </div>
   <div class="padded">
-    <span class="label-block">Sent at:</span>
+    <span class="label-block">Details:</span>
     <span class="point-block"><%= @message.created_at %> hrs on <%= @message.created_at.strftime("%m/%d/%Y") %> </span>
   </div>
 </h3>
@@ -27,8 +27,8 @@
 
 <div data-role="navbar">
   <ul>
-    <li><%= link_to "Reply", focussed_message_path(@message.user) %></li>
-    <li><%= link_to "Reply All", focussed_message_path(@message.user, @message) %></li>
+    <li><%= link_to "Reply", focussed_message_path(@message.user,@message) %></li>
+    <li><%= link_to "Reply All", focussed_message_path(@message.user, @message,"all") %></li>
   </ul>
 </div>
 
