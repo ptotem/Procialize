@@ -38,10 +38,10 @@
         <%= link_to "Accept", accept_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
         <%= link_to "Decline", decline_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
     <% elsif @meeter.status %>
-        <h1>Accepted</h1>
         <%= link_to "Decline", decline_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+        <h1>Accepted</h1>
     <% else %>
-        <h1>Declined</h1>
         <%= link_to "Accept", accept_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+        <h1>Declined</h1>
     <% end %>
 <% end %>

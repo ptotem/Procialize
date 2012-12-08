@@ -1,17 +1,15 @@
 <% content_for :page_title do %>
-    New Meeting
+    New meetings
 <% end %>
 
 
 <%= form_for :meeting, url: {action: :create} do |f| %>
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
-
     <div class="field">
       <%= f.text_field :name, :'data-mini' => true, :placeholder => "Enter meeting agenda" %>
     </div>
-
-    <%= select_tag 'meeter_users[]', options_for_select(@user_list), :multiple => true %>
+    <%= select_tag 'meeter_users[]', options_for_select(@user_list, @meeter), :multiple => true %>
 
     <div class="field">
       <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true %>
