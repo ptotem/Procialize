@@ -23,7 +23,7 @@
 
     <div data-role="navbar">
       <ul>
-        <li><%= link_to "Request Meeting", "#", :'data-role' => "button", :'data-theme' => "a" %></li>
+        <li><%= link_to "Request Meeting", focussed_meeting_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
         <li><%= link_to "Send Message", focussed_message_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
       </ul>
     </div>
