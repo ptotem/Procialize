@@ -1,44 +1,27 @@
 <%= content_for :page_title do %>
     <%= @event.event_day.name.titlecase %> Event
 <% end %>
-<div class = "content_container">
-<h3>
-  <%= image_tag "dummy.gif", :style => "float:left; margin-right:10px;" %>
-  <%= @event.name %>
-  <br>
-  <small><%= image_tag "clock.png", :style => "vertical-align:middle;margin-left:-18px;" %><%= @event.start %></small>
-</h3>
+<div class="content_container">
 
-<%= @event.description %>
+  <h3>
+    <%= image_tag "dummy.png", :style => "float:left; margin-right:10px;" %>
+    <%= @event.name %>
+    <br>
+    <small><%= image_tag "clock.png", :style => "vertical-align:middle;margin-left:-18px;" %><%= @event.start %></small>
+  </h3>
 
-<div data-role="controlgroup" data-type="horizontal">
-  <a href="#" data-role="button">Accept</a>
-  <a href="#" data-role="button">Share</a>
-  <a href="#" data-role="button">Feedback</a>
+  <%= @event.description %>
+
+  <% if @my_attendee.blank? %>
+      <a href="<%= attend_event_path(@event) %>" data-role="button">Accept</a>
+  <% end %>
+
+  <h3 style="margin-top: 30px;padding-bottom: 15px;">Confirmed Attendees</h3>
+  <ul data-role="listview" data-filter="true">
+    <% @attendees.each do |attendee| %>
+        <li><%= attendee.name.titlecase %></li>
+    <% end %>
+  </ul>
+
 </div>
-<h3 style="margin-top: 30px;padding-bottom: 15px;">Confirmed Attendees</h3>
-<ul data-role="listview" data-filter="true">
-  <li><a href="acura.html">Acura</a></li>
-  <li><a href="audi.html">Audi</a></li>
-  <li><a href="bmw.html">BMW</a></li>
-  <li><a href="bmw.html">Carbn</a></li>
-  <li><a href="bmw.html">Dido</a></li>
-  <li><a href="bmw.html">Eta</a></li>
-</ul>
-</div>
-
-<!--<div data-role="collapsible-set" data-theme="b" data-content-theme="d">-->
-  <!--<div data-role="collapsible">-->
-        <!--<ul data-role="listview" data-filter="true" data-filter-theme="c" data-divider-theme="d">-->
-      <!--<li><a href="#">Adam Kinkaid</a></li>-->
-      <!--<li><a href="#">Alex Wickerham</a></li>-->
-      <!--<li><a href="#">Avery Johnson</a></li>-->
-      <!--<li><a href="#">Bob Cabot</a></li>-->
-      <!--<li><a href="#">Caleb Booth</a></li>-->
-    <!--</ul>-->
-  <!--</div>-->
-<!--</div>-->
-
-
-
 

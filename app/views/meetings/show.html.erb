@@ -35,13 +35,13 @@
     <%= link_to "Cancel", @meeting, :method => :delete, :'data-role' => "button", :'data-ajax' => false %>
 <% else %>
     <% if @meeter.status.nil? %>
-        <%= link_to "Accept", accept_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
-        <%= link_to "Decline", decline_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+        <%= link_to "Accept", accept_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+        <%= link_to "Decline", decline_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
     <% elsif @meeter.status %>
-        <%= link_to "Decline", decline_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+        <%= link_to "Decline", decline_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
         <h1>Accepted</h1>
     <% else %>
-        <%= link_to "Accept", accept_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+        <%= link_to "Accept", decline_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
         <h1>Declined</h1>
     <% end %>
 <% end %>

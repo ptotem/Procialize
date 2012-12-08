@@ -1,7 +1,6 @@
 class Event < ActiveRecord::Base
   attr_accessible :description, :end, :event_day_id, :name, :start, :avatar, :locations_attributes
 
-
   has_many :decks, :dependent => :destroy
   has_many :attendees, :dependent => :destroy
   has_many :event_locations, :dependent => :destroy

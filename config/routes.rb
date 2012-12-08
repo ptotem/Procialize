@@ -8,7 +8,6 @@ ProcializeApp::Application.routes.draw do
   resources :messages
   resources :events
 
-
   match 'users/:id/profile', :to=>"users/profile#index", :as=>"user_profile"
   match 'users/:id/follow', :to=>"users/profile#following", :as=>"follow"
   match '/update_status', :to=>"home#update_status", :as=>"update_status"
@@ -16,10 +15,9 @@ ProcializeApp::Application.routes.draw do
   match '/meetings/focus/new/:id', :to=>"meetings#focussed_new", :as=>"focussed_meeting"
 
   match '/followers_status',:to => "home#followers_status" ,:as =>"followers_status"
-  match '/accept/:id',:to => "meetings#accept" ,:as =>"accept"
-  match '/decline/:id',:to => "meetings#decline" ,:as =>"decline"
-
-
+  match '/accept/event/:id',:to => "events#accept" ,:as =>"attend_event"
+  match '/accept/meeting/:id',:to => "meetings#accept" ,:as =>"accept_meeting"
+  match '/decline/meeting/:id',:to => "meetings#decline" ,:as =>"decline_meeting"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
