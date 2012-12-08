@@ -40,10 +40,14 @@ img {
     font-size:0.8em;
     width:10%;
     border-radius: 5px;
+    float:left;
+    margin-right: 0.4em;
+}
+.point-block{
+    line-height:1.4em;
 }
 .padded{
     padding: 0.4em;
-    margin-bottom:0.4em;
     margin-right:0.4em;
 }
 

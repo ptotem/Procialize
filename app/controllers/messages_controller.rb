@@ -19,23 +19,23 @@ class MessagesController < ApplicationController
     @followed=Follower.find_all_by_user_id(current_user.id).map { |f| User.find(f.follower_id) }
     @users<<@followed
     @users<<(User.all - @followed)
-    @user_list=@users.flatten.map { |u| [u.name, u.id] }
+    @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
   end
 
   def focussed_new
     @message = Message.new
-    @receipient = User.find(params[:id])
+    @receipient = params[:id]
     @all=false
     unless params[:all].blank?
       @last_message=Message.find(params[:all])
-      @receipients=@last_message.receipients.map{|r| r.user}
+      @receipients=@last_message.receipients.map{|r| r.user.id}
       @all=true
     end
     @users=[]
     @followed=Follower.find_all_by_user_id(current_user.id).map { |f| User.find(f.follower_id) }
     @users<<@followed
     @users<<(User.all - @followed)
-    @user_list=@users.flatten.map { |u| [u.name, u.id] }
+    @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
   end
 
   def edit
