@@ -26,6 +26,8 @@
     <ul>
       <li><a href="#">View Profile</a></li>
       <li><a href="#">Edit Profile</a></li>
+      <li><a href="/search/search">Search</a></li>
+
       <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false %></li>
     </ul>
 <% end %>
@@ -141,7 +143,6 @@
     <% end %>
   </ul>
 </div>
-
 
 
 

@@ -1,5 +1,8 @@
 ProcializeApp::Application.routes.draw do
 
+   get "locations/location"
+  get "search/search"
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
   mount RailsAdminImport::Engine => '/rails_admin_import', :as => 'rails_admin_import'
@@ -7,6 +10,7 @@ ProcializeApp::Application.routes.draw do
   resources :meetings
   resources :messages
   resources :events
+
 
   match 'users/:id/profile', :to=>"users/profile#index", :as=>"user_profile"
   match 'users/:id/follow', :to=>"users/profile#following", :as=>"follow"

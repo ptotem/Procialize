@@ -9,24 +9,7 @@
   <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <%= csrf_meta_tags %>
 
-  <script type="text/javascript">
-      function follow_search(id) {
-          $.ajax({
-              url:"/users/" + id + "/follow",
-              type:"post",
-              success:function (data) {
-                  if (data == "Unfollow") {
-                      $('#user' + id).parent().attr('data-theme', 'b').removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
-                      $('#user' + id).prev().find('.ui-link-inherit').append('<span id="following' + id + '" class="highlighted" >Following</span>');
-                  } else {
-                      $('#user' + id).parent().attr('data-theme', 'a').removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
-                      $("#following" + id).remove();
-                  }
-              }
-          });
-      }
 
-  </script>
 
   <%= yield(:head) %>
 </head>
@@ -37,7 +20,7 @@
     <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
 
     <h1><%= yield :page_title %></h1>
-    <a href="#search_menu" id="main_menu" data-icon="search" data-prefetch>Search</a>
+    <a href="#location" id="main_menu" data-icon="search" data-prefetch>I am At</a>
 
     <div data-role="navbar">
       <%= yield :page_menu %>
@@ -53,6 +36,7 @@
       <br/>
     </div>
   </div>
+
   <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
     <div data-role="navbar" data-theme='a'>
       <ul>
@@ -65,35 +49,32 @@
   </div>
 </div>
 
-<div id="search_menu" data-role="page">
+<div id="location" data-role="page">
   <div data-role="header" data-fullscreen="true">
     <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
 
-    <h1>Delegate Search</h1>
+    <h1>Location</h1>
   </div>
-  <div data-role="content" data-theme='b' style="padding-top: 20px;">
-    <ul data-role="listview" data-filter="true" data-autodividers="true" data-theme='a' data-split-icon='star' data-split-theme="c">
-      <% @conference.participants.map { |participant| participant.user }.sort_by { |u| u[:name] }.each do |user| %>
-          <% unless user==current_user %>
-              <% if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>
-                  <li data-theme='a' data-filtertext="<%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>">
-                    <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a'>
-                      <%= user.name.titlecase %>
-                    </a>
-                    <%= link_to "Follow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
-                  </li>
-              <% else %>
-                  <li data-theme='b' data-filtertext="<%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>">
-                    <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='b'>
-                      <%= user.name.titlecase %><span id="following<%= user.id %>" class="highlighted">Following</span>
-                    </a>
-                    <%= link_to "Unfollow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
-                  </li>
-              <% end %>
-          <% end %>
-      <% end %>
-    </ul>
-  </div>
+  <div data-role="content" data-theme='a'>
+    <fieldset data-role="controlgroup">
+      <legend>Choose Location</legend>
+      <input type="radio" name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked" />
+      <label for="radio-choice-1">TownHall</label>
+      <input type="radio" name="radio-choice-1" id="radio-choice-2" value="choice-2"  />
+      <label for="radio-choice-2">Meeting Hall</label>
+      <input type="radio" name="radio-choice-1" id="radio-choice-3" value="choice-3"  />
+      <label for="radio-choice-3">Seminar Hall</label>
+      <input type="radio" name="radio-choice-1" id="radio-choice-4" value="choice-4"  />
+      <label for="radio-choice-4">Oditoriaum</label>
+      <input type="radio" name="radio-choice-1" id="radio-choice-5" value="choice-5"  />
+      <label for="radio-choice-5">Football ground</label>
+      <input type="radio" name="radio-choice-1" id="radio-choice-6" value="choice-6"  />
+      <label for="radio-choice-6">Campus</label>
+      <input type="radio" name="radio-choice-1" id="radio-choice-7" value="choice-7"  />
+      <label for="radio-choice-7">Park</label>
+    </fieldset>
+   </div>
+</div>
 </div>
 
 </body>
