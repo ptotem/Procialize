@@ -17,7 +17,10 @@ class HomeController < ApplicationController
     @notice_board=@conference.organizers.map{|o| o.user}.map{|u| u.posts}.flatten
     @followed=(Follower.find_all_by_user_id_and_conference_id(@user.id,@conference.id).map{|f| User.find(f.follower_id)}<<current_user).map{|u| u.posts}.flatten
     @graffiti=(User.all-(Follower.find_all_by_user_id_and_conference_id(@user.id,@conference.id).map{|f| User.find(f.follower_id)}<<current_user)).map{|u| u.posts}.flatten.select{|p| p.created_at>(Time.now-900)}
-    @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
+    if !UserLocation.find_all_by_user_id(@user.id).blank?
+      @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
+    end
+
   end
 
   def update_status

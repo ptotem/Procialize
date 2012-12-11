@@ -39,11 +39,15 @@
   <span id="follow_notice" style="float:left"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not Followed" :"Followed" %></span>
 </h4>
 <br>
-<span id="location"><h3>Last Seen at <%= @last_seen.name %>
-    at  <% @created.each do |create| %>
-         <%= create.created_at %>
-        <% end %>
-      </h3></span>
+<span id="location"><h3>Last Seen at
+  <% if !@last_seen.nil? %>
+  <%= @last_seen.name %>
+   <% end %>
+  at
+  <%# @created.each do |create| %>
+      <%= @created.created_at %>
+  <%# end %>
+</h3></span>
 <%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :'data-role' => "button", :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %>
 <br>
 
