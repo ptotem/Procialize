@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_many :participants, :dependent => :destroy
   has_many :statuses, :dependent => :destroy
   has_many :receipients, :dependent => :destroy
+  has_many :user_locations, :dependent => :destroy
 
 
   def self.find_for_linkedin_oauth(auth, signed_in_resource=nil)

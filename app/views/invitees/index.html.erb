@@ -1,0 +1,48 @@
+
+  <h1>List of invitees</h1>
+
+
+
+
+  <div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
+    <h2>Invitees</h2>
+    <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
+      <% @invitees.each do |invitee| %>
+          <li>
+
+            <h3><%= invitee.name%></h3>
+
+            <p><%= invitee.email %></p>
+
+            <% link_to 'Show', invitee %>
+
+
+
+          </li>
+      <% end %>
+    </ul>
+  </div>
+
+
+
+
+  <br />
+
+  <%= link_to 'New Invitee', new_invitee_path %>
+
+
+
+  <!--<%# @invitees.each do |invitee| %>-->
+  <!--<tr>-->
+    <!--<td><%#= invitee.name %></td>-->
+    <!--<td><%#= invitee.email %></td>-->
+    <!--<td><%#= link_to 'Show', invitee %></td>-->
+    <!--<td><%#= link_to 'Edit', edit_invitee_path(invitee) %></td>-->
+    <!--<td><%#= link_to 'Destroy', invitee, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+  <!--</tr>-->
+<!--<%# end %>-->
+<!--</table>-->
+
+<!--<br />-->
+
+<%#= link_to 'New Invitee', new_invitee_path %>

@@ -7,6 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 gem 'jquery-rails'
+gem "mail"
 
 gem 'rails_admin'
 gem "rails_admin_import", :git => "git://github.com/stephskardal/rails_admin_import.git"

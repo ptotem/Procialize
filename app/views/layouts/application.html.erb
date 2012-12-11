@@ -26,6 +26,29 @@
           });
       }
 
+
+
+      function location_update(this_select) {
+          var data = {user:[], location:[]}
+          data["user"].push(<%= current_user.id %> );
+          data["location"].push($(this_select).val())
+          $.ajax({
+              url:"<%= update_location_path %>",
+              type:"delete",
+              async:false,
+              data:JSON.stringify(data),
+              contentType:"application/json",
+              success:function (data) {
+                  alert(data);
+
+
+              }
+          });
+      }
+
+
+
+
   </script>
 
   <%= yield(:head) %>
@@ -37,7 +60,7 @@
     <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
 
     <h1><%= yield :page_title %></h1>
-    <a href="#search_menu" id="main_menu" data-icon="search" data-prefetch>Search</a>
+    <a href="#search_menu" id="main_menu" data-icon="search" data-prefetch>Iam at </a>
 
     <div data-role="navbar">
       <%= yield :page_menu %>
@@ -65,36 +88,82 @@
   </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div id="search_menu" data-role="page">
   <div data-role="header" data-fullscreen="true">
     <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
 
-    <h1>Delegate Search</h1>
+    <h1>Select Location</h1>
   </div>
+
+      <div class="field">
+        <%= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }),:onchange => "location_update($(this));"%>
+      </div>
+          <br>
+          <br>
   <div data-role="content" data-theme='b' style="padding-top: 20px;">
     <ul data-role="listview" data-filter="true" data-autodividers="true" data-theme='a' data-split-icon='star' data-split-theme="c">
-      <% @conference.participants.map { |participant| participant.user }.sort_by { |u| u[:name] }.each do |user| %>
-          <% unless user==current_user %>
-              <% if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>
-                  <li data-theme='a' data-filtertext="<%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>">
-                    <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a'>
-                      <%= user.name.titlecase %>
-                    </a>
-                    <%= link_to "Follow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
-                  </li>
-              <% else %>
-                  <li data-theme='b' data-filtertext="<%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>">
-                    <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='b'>
-                      <%= user.name.titlecase %><span id="following<%= user.id %>" class="highlighted">Following</span>
-                    </a>
-                    <%= link_to "Unfollow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
-                  </li>
-              <% end %>
-          <% end %>
+
+    <% @conference.participants.map { |participant| participant.user }.sort_by { |u| u[:name] }.each do |user| %>
+      <% unless user==current_user %>
+      <% if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>
+      <li data-theme='a' data-filtertext="<%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>">
+      <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a'>
+      <%= user.name.titlecase %>
+      </a>
+      <%= link_to "Follow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
+      </li>
+      <% else %>
+      <li data-theme='b' data-filtertext="<%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>">
+      <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='b'>
+      <%= user.name.titlecase %>
+      <span id="following<%= user.id %>" class="highlighted">Following</span>
+      </a>
+      <%= link_to "Unfollow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
+      </li>
       <% end %>
+      <% end %>
+<% end %>
+
     </ul>
   </div>
 </div>
-
 </body>
 </html>
+
+
+
+
+
+<%# @conference.participants.map { |participant| participant.user }.sort_by { |u| u[:name] }.each do |user| %>
+    <%# unless user==current_user %>
+        <%# if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>
+            <!--<li data-theme='a' data-filtertext="<%#= user.name %> <%#= user.batchie %> <%#= user.headline %> <%#= user.industry %>">-->
+              <!--<a href="<%#= user_profile_path(user) %>" data-ajax=false data-theme='a'>-->
+                <%#= user.name.titlecase %>
+              <!--</a>-->
+              <%#= link_to "Follow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
+            <!--</li>-->
+        <%# else %>
+            <!--<li data-theme='b' data-filtertext="<%#= user.name %> <%#= user.batchie %> <%#= user.headline %> <%#= user.industry %>">-->
+              <!--<a href="<%#= user_profile_path(user) %>" data-ajax=false data-theme='b'>-->
+                <%#= user.name.titlecase %>
+                    <!--<span id="following<%#= user.id %>" class="highlighted">Following</span>-->
+              <!--</a>-->
+              <%#= link_to "Unfollow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
+            <!--</li>-->
+        <%# end %>
+    <%# end %>
+<%# end %>

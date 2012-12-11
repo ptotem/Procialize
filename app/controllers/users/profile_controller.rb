@@ -15,6 +15,7 @@ class Users::ProfileController < ApplicationController
     end
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
     @posts=@user.posts
+    @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
   end
 
   def following

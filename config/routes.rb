@@ -1,5 +1,7 @@
 ProcializeApp::Application.routes.draw do
 
+  resources :invitees
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
   mount RailsAdminImport::Engine => '/rails_admin_import', :as => 'rails_admin_import'
@@ -18,6 +20,7 @@ ProcializeApp::Application.routes.draw do
   match '/accept/event/:id',:to => "events#accept" ,:as =>"attend_event"
   match '/accept/meeting/:id',:to => "meetings#accept" ,:as =>"accept_meeting"
   match '/decline/meeting/:id',:to => "meetings#decline" ,:as =>"decline_meeting"
+  match '/update_location', :to=>"application#update_location", :as=>"update_location"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

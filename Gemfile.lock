@@ -211,6 +211,7 @@ DEPENDENCIES
   jquery-rails
   jquery_datepicker
   linkedin
+  mail
   omniauth
   omniauth-linkedin
   paperclip

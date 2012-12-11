@@ -26,6 +26,9 @@
     <ul>
       <li><a href="#">View Profile</a></li>
       <li><a href="#">Edit Profile</a></li>
+      <li><a href="/search/index">Search</a></li>
+
+
       <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false %></li>
     </ul>
 <% end %>
@@ -40,6 +43,14 @@
 <%= text_area_tag :comment, "", :placeholder => "Write up your thoughts" %>
 <%= submit_tag "Post it!", :'data-role' => "button", :'data-theme' => "a", :onclick => "create_post();" %>
 <hr>
+   <br>
+   <br>
+<a href="/invitees/new" data-rel="dialog" data-ajax=false data-role=button data-transition="pop">Invite your friends</a>
+
+<br>
+
+<span id="location"><h3>Your are  at <%= @last_seen.name %> at <%= @last_seen.created_at %> </h3></span>
+<br>
 
 <div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
   <h2>Meetings in the next two hours</h2>
