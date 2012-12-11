@@ -111,6 +111,7 @@
       <div class="field">
         <%= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }),:onchange => "location_update($(this));"%>
       </div>
+  <span id="location"><h3>Your are  at <%= @last_seen.name %> at <%= @last_seen.created_at %> </h3></span>
           <br>
           <br>
   <div data-role="content" data-theme='b' style="padding-top: 20px;">
