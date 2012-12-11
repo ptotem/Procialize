@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def update_location
     @user_location=UserLocation.create!(:user_id => params[:user][0],:location_id=>params[:location][0])
-
+    render :text=>Location.find(@user_location.location_id).name
 
   end
 
