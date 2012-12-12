@@ -1,0 +1,20 @@
+<%= content_for :page_title do %>
+    Contact_us
+<% end %>
+
+
+<%= form_for :message, url: {action: :create} do |f| %>
+
+    <%= f.hidden_field :conference_id, :value => Conference.last.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <%= select_tag 'receipient_users[]', options_for_select(@use) %>
+
+
+    <div class="field">
+      <%= f.text_area :body, :rows => '5', :placeholder => "Add details, if you want to" %>
+    </div>
+    <div data-role="controlgroup" data-type="horizontal" style="float: right;">
+      <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
+    </div>
+<% end %>

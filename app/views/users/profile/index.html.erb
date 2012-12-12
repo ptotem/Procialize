@@ -19,9 +19,15 @@
 
 <%= content_for :page_menu do %>
     <ul>
-      <li><%= link_to "Request Meeting", focussed_meeting_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
-      <li><%= link_to "Send Message", focussed_message_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
-    </ul>
+
+      <% if @user==current_user %>
+          <li><%= link_to "Edit Profile",edit_path, :'data-role' => "button", :'data-theme' => "a",:'data-ajax' => false %></li>
+          <li><a href="/search/search" data-ajax=false>Search</a></li>
+       <% else %>
+          <li><%= link_to "Request Meeting", focussed_meeting_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
+          <li><%= link_to "Send Message", focussed_message_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
+      <% end %>
+          </ul>
 <% end %>
 
 
@@ -45,8 +51,9 @@
    <% end %>
   at
   <%# @created.each do |create| %>
+    <% if !@created.nil? %>
       <%= @created.created_at %>
-  <%# end %>
+  <% end %>
 </h3></span>
 <%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :'data-role' => "button", :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %>
 <br>

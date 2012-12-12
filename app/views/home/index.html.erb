@@ -24,19 +24,23 @@
 
 <%= content_for :page_menu do %>
     <ul>
-      <li><a href="#">View Profile</a></li>
-      <li><a href="#">Edit Profile</a></li>
+      <li><a href="/users/<%= @user.id %>/profile" data-ajax=false>View Profile</a></li>
+      <li><a href="/search/search" data-ajax=false>Search</a></li>
       <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false %></li>
     </ul>
 <% end %>
+
+<a href="/contacts/new"  data-ajax=false data-role=button style="float: right;">Contact us</a>
 
 <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
 <h4><%= @name.titlecase %>
   <br>
   <small><%= @headline %></small>
+  <%= @now %>
   <br>
   <small><%= @batch %></small>
 </h4>
+
 <%= text_area_tag :comment, "", :placeholder => "Write up your thoughts" %>
 <%= submit_tag "Post it!", :'data-role' => "button", :'data-theme' => "a", :onclick => "create_post();" %>
 <hr>
@@ -136,6 +140,7 @@
           <p class="ui-li-aside"><strong><%= post.created_at %></strong></p>
         </li>
     <% end %>
+    <%# i=@graffiti.count %>
     <% @graffiti.each do |post| %>
         <li>
           <h3><%= post.user.name %></h3>

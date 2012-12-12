@@ -1,3 +1,281 @@
+<% if @user==current_user %>
+    <div data-role="header" data-fullscreen="true">
+      <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
+    </div>
+    <div data-role="content" data-theme='a'>
+    <div class="content_container">
+    <h2>Edit Profile</h2>
+
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div><%= f.label :name %>
+          <%= f.text_field :name %></div>
+
+        <!--<div>-->
+          <!--<%#= f.label :email %>-->
+          <!--<%#= f.email_field :email %>-->
+        <!--</div>-->
+
+        <!--<div>-->
+          <!--<%#= f.label :password %>-->
+          <!--<%#= f.password_field :password %>-->
+        <!--</div>-->
+
+        <!--<div>-->
+          <!--<%#= f.label :password_confirmation %>-->
+          <!--<%#= f.password_field :password_confirmation %>-->
+        <!--</div>-->
+
+        <label for="industry">Industry</label>
+        <select name="studycourse" id="course">
+        <optgroup label="Agriculture">
+          <option value="law-business">Farming</option>
+          <option value="law-business">Ranching</option>
+          <option value="law-business">Dairy</option>
+          <option value="law-business">Fishery</option>
+        </optgroup>
+
+        <optgroup label="Arts">
+          <option value="law-business">Museums and Institutions</option>
+          <option value="law-business">Fine Art</option>
+          <option value="law-business">Performing Arts</option>
+          <option value="law-business">Design</option>
+          <option value="law-business">Arts and Crafts</option>
+          <option value="law-business">Music</option>
+          <option value="law-business">Photography</option>
+          <option value="law-business">Graphic Design</option>
+        </optgroup>
+
+
+
+        <optgroup label="Construction">
+          <option value="law-business">Construction</option>
+          <option value="law-business">Building Materials</option>
+          <option value="law-business">Architecture & Planning</option>
+          <option value="law-business">Civil Engineering</option>
+        </optgroup>
+
+
+
+        <optgroup label="Consumer Goods">
+          <option value="law-business">Cosmetics</option>
+          <option value="law-business">Apparel & Fashion</option>
+          <option value="law-business">Sporting Goods</option>
+          <option value="law-business">Tobacco</option>
+          <option value="law-business">Supermarkets</option>
+          <option value="law-business">Food Production</option>
+          <option value="law-business">Consumer Electronics</option>
+          <option value="law-business">Furniture</option>
+          <option value="law-business">Retail</option>
+          <option value="law-business"> Wholesale</option>
+          <option value="law-business">Import and Export</option>
+          <option value="law-business">Wine and Spirits</option>
+          <option value="law-business">Luxury Goods & Jewelry</option>
+
+
+        </optgroup>
+        <optgroup label="Corporate">
+          <option value="law-business">Management Consulting</option>
+          <option value="law-business">Marketing and Advertising</option>
+          <option value="law-business">Market Research</option>
+          <option value="law-business">Public Relations and Communications</option>
+          <option value="law-business">Staffing and Recruiting</option>
+          <option value="law-business">Professional Training & Coaching</option>
+          <option value="law-business">Security and Investigations</option>
+          <option value="law-business">Facilities Services</option>
+          <option value="law-business">Outsourcing/Offshoring</option>
+          <option value="law-business">Human Resources</option>
+          <option value="law-business">Business Supplies and Equipment</option>
+        </optgroup>
+        <optgroup label="Educational">
+          <option value="law-business">Primary/Secondary Education</option>
+          <option value="law-business">Higher Education</option>
+          <option value="law-business">Education Management</option>
+          <option value="law-business">Research</option>
+          <option value="law-business">E-LearningEducational</option>
+          <option value="law-business">Professional Training & Coaching</option>
+          <option value="law-business">Primary/Secondary Education</option>
+        </optgroup>
+
+        <optgroup label="Finance">
+          <option value="law-business">Banking</option>
+          <option value="law-business">Insurance</option>
+          <option value="law-business">Financial Services</option>
+          <option value="law-business">Investment Banking</option>
+          <option value="law-business">Investment Management</option>
+          <option value="law-business">Capital Markets</option>
+          <option value="law-business">Venture Capital & Private Equity</option>
+          <option value="law-business">Accounting</option>
+        </optgroup>
+
+
+        <optgroup label="Government">
+          <option value="law-business">Military</option>
+          <option value="law-business">Legislative Office</option>
+          <option value="law-business">Judiciary</option>
+          <option value="law-business">International Affairs</option>
+          <option value="law-business">Government Administration</option>
+          <option value="law-business">Executive Office</option>
+          <option value="law-business">Law Enforcement</option>
+          <option value="law-business">Public Safety</option>
+          <option value="law-business">Public Policy</option>
+          <option value="law-business">Political Organization</option>
+          <option value="law-business">Government Relations</option>
+        </optgroup>
+
+        <optgroup label="High Tech">
+          <option value="law-business">Defense & Space</option>
+          <option value="law-business">Computer Hardware</option>
+          <option value="law-business">Computer Networking</option>
+          <option value="law-business">Internet</option>
+          <option value="law-business">Semiconductors</option>
+          <option value="law-business">Telecommunications</option>
+          <option value="law-business">Information Technology and Services</option>
+          <option value="law-business">Nanotechnology</option>
+          <option value="law-business">Computer & Network Security</option>
+          <option value="law-business">Wireless</option>
+        </optgroup>
+
+        <optgroup label="Legal">
+          <option value="law-business">Law Practice</option>
+          <option value="law-business">Legal Services</option>
+          <option value="law-business">Alternative Dispute Resolution</option>
+        </optgroup>
+
+
+        <optgroup label="Manufacturing">
+          <option value="law-business">Aviation & Aerospace</option>
+          <option value="law-business">Automotive</option>
+          <option value="law-business">Chemicals</option>
+          <option value="law-business">Machinery</option>
+          <option value="law-business">Mining & Metals</option>
+          <option value="law-business">Oil & Energy</option>
+          <option value="law-business">Shipbuilding</option>
+          <option value="law-business">Textiles</option>
+          <option value="law-business">Paper & Forest Products</option>
+          <option value="law-business">Railroad Manufacture</option>
+          <option value="law-business">Electrical/Electronic Manufacturing</option>
+          <option value="law-business">Plastics</option>
+          <option value="law-business">Mechanical or Industrial Engineering</option>
+          <option value="law-business">Renewables & Environment</option>
+          <option value="law-business">Glass, Ceramics & Concrete</option>
+          <option value="law-business">Packaging and Containers</option>
+          <option value="law-business">Industrial Automation</option>
+        </optgroup>
+
+
+        <optgroup label="Media">
+          <option value="law-business">Broadcast Media</option>
+          <option value="law-business">Newspapers</option>
+          <option value="law-business">Publishing</option>
+          <option value="law-business">Printing</option>
+          <option value="law-business">Writing and Editing</option>
+          <option value="law-business">Online Media</option>
+          <option value="law-business">Media Production</option>
+          <option value="law-business">Animation</option>
+        </optgroup>
+
+        <optgroup label="Medical">
+          <option value="law-business">Biotechnology</option>
+          <option value="law-business">Medical Practice</option>
+          <option value="law-business">Hospital & Health Care</option>
+          <option value="law-business">Pharmaceuticals</option>
+          <option value="law-business">Veterinary</option>
+          <option value="law-business">Medical Devices</option>
+          <option value="law-business">Health, Wellness and Fitness</option>
+          <option value="law-business">Alternative Medicine</option>
+          <option value="law-business">Mental Health Care</option>
+        </optgroup>
+
+        <optgroup label="Non-profit">
+          <option value="law-business">Consumer Services</option>
+          <option value="law-business">Non-Profit Organization Management</option>
+          <option value="law-business">Fund-Raising</option>
+          <option value="law-business">Program Development</option>
+          <option value="law-business">Think Tanks</option>
+          <option value="law-business">Philanthropy</option>
+          <option value="law-business">International Trade and Development</option>
+        </optgroup>
+
+
+        <optgroup label="Recreational">
+          <option value="law-business">Entertainment</option>
+          <option value="law-business">Gambling & Casinos</option>
+          <option value="law-business">Leisure, Travel & Tourism</option>
+          <option value="law-business">Hospitality</option>
+          <option value="law-business">Restaurants</option>
+          <option value="law-business">Sports</option>
+          <option value="law-business">Food & Beverages</option>
+          <option value="law-business">Recreational Facilities and Services</option>
+          <option value="law-business">Computer Games</option>
+          <option value="law-business">Events Services</option>
+
+        </optgroup>
+
+        <optgroup label="Service">
+          <option value="law-business">Information Services</option>
+          <option value="law-business">Libraries</option>
+          <option value="law-business">Environmental Services</option>
+          <option value="law-business">Individual & Family Services</option>
+          <option value="law-business">Religious Institutions</option>
+          <option value="law-business">Civic & Social Organization</option>
+          <option value="law-business">Translation and Localization</option>
+        </optgroup>
+
+        <optgroup label="Transportation">
+          <option value="law-business"> Package/Freight Delivery</option>
+          <option value="law-business">Transportation/Trucking/Railroad</option>
+          <option value="law-business">Warehousing</option>
+          <option value="law-business">Airlines/Aviation</option>
+          <option value="law-business">Religious Institutions</option>
+          <option value="law-business">Maritime</option>
+          <option value="law-business">Logistics and Supply Chain</option>
+        </optgroup>
+
+        </select>
+
+        <label for="select-choice-1">Alumini</label>
+        <select id="select-choice-1" name="select-choice-1">
+          <option value="standard">Class of 2000</option>
+          <option value="standard">Class of 2001</option>
+          <option value="standard">Class of 2002</option>
+          <option value="standard">Class of 2003</option>
+          <option value="standard">Class of 2004</option>
+          <option value="standard">Class of 2005</option>
+          <option value="standard">Class of 2006</option>
+          <option value="standard">Class of 2007</option>
+          <option value="standard">Class of 2008</option>
+          <option value="standard">Class of 2009</option>
+          <option value="standard">Class of 2010</option>
+          <option value="standard">Class of 2012</option>
+          <option value="standard">Class of 2013</option>
+        </select>
+
+
+
+
+        <%= f.label :Headline %>
+
+        <%= f.text_field :headline %>
+
+        <br>
+        <br>
+        <div><%= f.submit "Save", :'data-role' => "button", :'data-theme' => "a" %></div>
+        <%#- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+            <%#= link_to "Forgot your password?", new_password_path(resource_name), :'data-role' => "button", :'data-theme' => "a" %>
+        <!--<br />-->
+        <%# end -%>
+        <div><%= link_to "Cancel", new_user_session_path, :'data-role' => "button", :'data-theme' => "a" %></div>
+
+    <% end %>
+
+
+    </div>
+    </div>
+
+<% else %>
+
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -23,3 +301,4 @@
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
 
 <%= link_to "Back", :back %>
+<% end %>

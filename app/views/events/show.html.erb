@@ -12,7 +12,8 @@
 <%= @event.description %>
 
 <% if @my_attendee.blank? %>
-    <a href="<%= attend_event_path(@event) %>" data-role="button">Accept</a>
+    <%= link_to "Accept", attend_event_path(@event), :'data-role'=>"button", :'data-ajax' => false,:flash_notice => "Accepted"%>
+    <!--<a href="<%#= attend_event_path(@event) %>" data-role="button" >Accept</a>-->
 <% end %>
 
 <h3 style="margin-top: 30px;padding-bottom: 15px;">Confirmed Attendees</h3>

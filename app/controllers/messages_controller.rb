@@ -52,7 +52,7 @@ class MessagesController < ApplicationController
         params[:receipient_users].each do |uid|
           Receipient.create!(:message_id => @message.id, :user_id => uid)
         end
-        format.html { redirect_to messages_path, notice: 'Message was successfully created.' }
+        format.html { redirect_to message_url(@message), notice: 'Message was successfully created.' }
         format.json { render json: @message, status: :created, location: @message }
       else
         format.html { render action: "new" }

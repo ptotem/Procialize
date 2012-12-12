@@ -15,8 +15,12 @@ class Users::ProfileController < ApplicationController
     end
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
     @posts=@user.posts
+    if !UserLocation.find_all_by_user_id(@user.id).last.blank?
     @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
+    end
+    if !UserLocation.find_all_by_user_id(@user.id).last.blank?
     @created=UserLocation.find_all_by_user_id(@user.id).last
+     end
   end
 
   def following
@@ -29,6 +33,21 @@ class Users::ProfileController < ApplicationController
     end
 
   end
+
+
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(params[:user])
+      redirect_to action: :index
+    else
+      render 'edit'
+    end
+  end
+
+
+
 
 
 end

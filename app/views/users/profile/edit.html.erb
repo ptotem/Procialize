@@ -1,0 +1,27 @@
+<div class="content_container">
+<h1>Edit profile</h1>
+
+<%= form_for :user, url: { action: :update},
+             method: :put do |f| %>
+
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </p>
+
+    <p>
+      <%= f.label :headline %><br>
+      <%= f.text_area :headline %>
+    </p>
+<p>
+      <%= f.label :industry %><br>
+      <%= f.text_area :industry %>
+    </p>
+
+    <p>
+      <%= f.submit "Save" %>
+    </p>
+<% end %>
+</div>
+
+

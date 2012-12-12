@@ -1,5 +1,7 @@
 ProcializeApp::Application.routes.draw do
 
+
+
   resources :invitees
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -9,6 +11,8 @@ ProcializeApp::Application.routes.draw do
   resources :meetings
   resources :messages
   resources :events
+  resources :profile
+  resources :contacts
 
   match 'users/:id/profile', :to=>"users/profile#index", :as=>"user_profile"
   match 'users/:id/follow', :to=>"users/profile#following", :as=>"follow"
@@ -21,6 +25,11 @@ ProcializeApp::Application.routes.draw do
   match '/accept/meeting/:id',:to => "meetings#accept" ,:as =>"accept_meeting"
   match '/decline/meeting/:id',:to => "meetings#decline" ,:as =>"decline_meeting"
   match '/update_location', :to=>"application#update_location", :as=>"update_location"
+  get 'search/search'
+  match 'users/:id/edit' ,:to=>"users/profile#edit",:as=>"edit"
+  match 'users/:id/update',:to=>"users/profile#update",:as=>"update"
+
+  #put "posts/:id" => "posts#update"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
