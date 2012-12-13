@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Procialize: <%= yield :page_title %></title>
+  <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css"/>
+  <%= javascript_include_tag "application" %>
+  <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <%= csrf_meta_tags %>
+
+  <script type="text/javascript">
+      function follow_search(id) {
+          $.ajax({
+              url:"/users/" + id + "/follow",
+              type:"post",
+              success:function (data) {
+                  if (data == "Unfollow") {
+                      $('#user' + id).parent().attr('data-theme', 'b').removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
+                      $('#user' + id).prev().find('.ui-link-inherit').append('<span id="following' + id + '" class="highlighted" >Following</span>');
+                  } else {
+                      $('#user' + id).parent().attr('data-theme', 'a').removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
+                      $("#following" + id).remove();
+                  }
+              }
+          });
+      }
+
+
+      function location_update(this_select) {
+          var data = {user:[], location:[]}
+          data["user"].push(<%= current_user.id %>);
+          data["location"].push($(this_select).val())
+          $.ajax({
+              url:"<%= update_location_path %>",
+              type:"delete",
+              async:false,
+              data:JSON.stringify(data),
+              contentType:"application/json",
+              success:function (data) {
+                  // alert(data);
+                  $('#location12').html('');
+                  $('#location12').html(data);
+//                  $('#comment').val("");
+
+
+              }
+          });
+      }
+
+
+  </script>
+
+  <%= yield(:head) %>
+</head>
+
+<body>
+<div data-role="page" id="home">
+  <div data-role="header" data-fullscreen="true">
+
+    <a href="/meetings"  data-icon="arrow-l" data-ajax="false">Back</a>
+
+    <h1><%= yield :page_title %></h1>
+    <a href="#search_menu" id="main_menu" data-icon="search" data-prefetch>Iam at </a>
+
+    <div data-role="navbar">
+      <%= yield :page_menu %>
+    </div>
+  </div>
+  <div data-role="content" data-theme='a'>
+    <%= js extend_gritter :position => :bottom_right %>
+    <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
+    <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
+    <div class="content_container">
+      <%= yield %>
+      <br/>
+      <br/>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
+    <div data-role="navbar" data-theme='a'>
+      <ul>
+        <li><a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a></li>
+        <li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>
+        <li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>
+        <li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div id="search_menu" data-role="page">
+  <div data-role="header" data-fullscreen="true">
+    <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
+
+    <h1>Select Location</h1>
+  </div>
+
+  <div class="field">
+    <%= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :onchange => "location_update($(this));" %>
+  </div>
+  <h3>Your are currently at <% if !@last_seen.blank? %>
+        <br>
+        <div id="location12">
+          <b><%= @last_seen.name %></b>
+        </div>
+    <% end %>
+  </h3>
+  <br>
+  <br>
+
+
+</div>
+</body>
+</html>
+
+
+
+
+
+<!--<div data-role="content" data-theme='b' style="padding-top: 20px;">-->
+<!--<ul data-role="listview" data-filter="true" data-autodividers="true" data-theme='a' data-split-icon='star' data-split-theme="c">-->
+
+<!--<%# @conference.participants.map { |participant| participant.user }.sort_by { |u| u[:name] }.each do |user| %>-->
+<!--<%# unless user==current_user %>-->
+<!--<%# if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>-->
+<!--<li data-theme='a' data-filtertext="<%#= user.name %> <%#= user.batchie %> <%#= user.headline %> <%#= user.industry %>">-->
+<!--<a href="<%#= user_profile_path(user) %>" data-ajax=false data-theme='a'>-->
+<!--<%#= user.name.titlecase %>-->
+<!--</a>-->
+<!--<%#= link_to "Follow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>-->
+<!--</li>-->
+<!--<%# else %>-->
+<!--<li data-theme='b' data-filtertext="<%#= user.name %> <%#= user.batchie %> <%#= user.headline %> <%#= user.industry %>">-->
+<!--<a href="<%#= user_profile_path(user) %>" data-ajax=false data-theme='b'>-->
+<!--<%#= user.name.titlecase %>-->
+<!--<span id="following<%#= user.id %>" class="highlighted">Following</span>-->
+<!--</a>-->
+<!--<%#= link_to "Unfollow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>-->
+<!--</li>-->
+<!--<%# end %>-->
+<!--<%# end %>-->
+<!--<%# end %>-->
+
+<!--</ul>-->
+<!--</div>-->

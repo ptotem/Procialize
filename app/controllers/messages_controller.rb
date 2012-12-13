@@ -1,16 +1,20 @@
 class MessagesController < ApplicationController
   def index
+
     @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message }
     @read = Receipient.find_all_by_user_id_and_status(current_user.id, true).map { |r| r.message }
-    @sent = Message.find_all_by_user_id(current_user.id)
+    @sent = Message.find_all_by_user_id(current_user.id).last(10).reverse
+
   end
 
   def show
+
     @message = Message.find(params[:id])
     if @receipient=Receipient.find_by_user_id_and_message_id(current_user.id, @message.id)
       @receipient.status=true
       @receipient.save
     end
+    render :layout => 'message_show'
   end
 
   def new
@@ -52,8 +56,8 @@ class MessagesController < ApplicationController
         params[:receipient_users].each do |uid|
           Receipient.create!(:message_id => @message.id, :user_id => uid)
         end
-        format.html { redirect_to message_url(@message), notice: 'Message was successfully created.' }
-        format.json { render json: @message, status: :created, location: @message }
+        format.html { redirect_to message_path( @message) , notice: 'Message was successfully created.' }
+        #format.json { render json: @message, status: :created, location: @message }
       else
         format.html { render action: "new" }
         format.json { render json: @message.errors, status: :unprocessable_entity }

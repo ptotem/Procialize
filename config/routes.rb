@@ -28,8 +28,9 @@ ProcializeApp::Application.routes.draw do
   get 'search/search'
   match 'users/:id/edit' ,:to=>"users/profile#edit",:as=>"edit"
   match 'users/:id/update',:to=>"users/profile#update",:as=>"update"
+  match '/messages/:id' ,:to=>"messages#show"
 
-  #put "posts/:id" => "posts#update"
+  #put "messages/:id" => "messages#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

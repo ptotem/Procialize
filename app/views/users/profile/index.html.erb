@@ -42,8 +42,10 @@
   <br>
   <small><%= "#{@industry} background" unless @industry.blank? %> </small>
   <br>
+  <% unless @user==current_user%>
   <span id="follow_notice" style="float:left"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not Followed" :"Followed" %></span>
-</h4>
+   <% end %>
+      </h4>
 <br>
 <span id="location"><h3>Last Seen at
   <% if !@last_seen.nil? %>
@@ -55,8 +57,10 @@
       <%= @created.created_at %>
   <% end %>
 </h3></span>
+ <% unless @user==current_user%>
 <%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :'data-role' => "button", :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %>
-<br>
+  <% end %>
+    <br>
 
 
 <strong>Work</strong>

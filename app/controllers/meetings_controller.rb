@@ -7,7 +7,7 @@ class MeetingsController < ApplicationController
     @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting }
     @scheduled = Meeter.find_all_by_user_id_and_status(current_user.id, true).map { |r| r.meeting }
     @declined = Meeter.find_all_by_user_id_and_status(current_user.id, false).map { |r| r.meeting }
-    @sent = Meeting.find_all_by_user_id(@user.id)
+    @sent = Meeting.find_all_by_user_id(@user.id).last(10).reverse
     @open=[]
 
     @sent.each do |meeting|
@@ -34,10 +34,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
     @meeter = Meeter.find_by_user_id_and_meeting_id(current_user.id, @meeting.id)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @meeting }
-    end
+    render :layout => 'meeting_show'
   end
 
   # GET /meetings/new
@@ -87,8 +84,8 @@ class MeetingsController < ApplicationController
         params[:meeter_users].each do |uid|
           Meeter.create!(:meeting_id => @meeting.id, :user_id => uid)
         end
-        format.html { redirect_to meetings_path, notice: 'Meeting was successfully created.' }
-        format.json { render json: @meeting, status: :created, location: @meeting }
+        format.html { redirect_to meeting_path(@meeting.id), notice: 'Meeting was successfully created.' }
+        format.json { head :no_content }
       else
         format.html { render action: "new" }
         format.json { render json: @meeting.errors, status: :unprocessable_entity }

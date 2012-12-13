@@ -30,13 +30,21 @@
     </ul>
 <% end %>
 
+<% unless current_user.id==1 %>
 <a href="/contacts/new"  data-ajax=false data-role=button style="float: right;">Contact us</a>
+<% end %>
 
 <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+
+
+
+
+
+
 <h4><%= @name.titlecase %>
   <br>
   <small><%= @headline %></small>
-  <%= @now %>
+
   <br>
   <small><%= @batch %></small>
 </h4>
@@ -44,6 +52,10 @@
 <%= text_area_tag :comment, "", :placeholder => "Write up your thoughts" %>
 <%= submit_tag "Post it!", :'data-role' => "button", :'data-theme' => "a", :onclick => "create_post();" %>
 <hr>
+<br>
+<div class="fbinfobox" style="border: 1px solid #000000;font-style: italic;font-size: 15px;height: 50px; " id="status_here" ></div>
+
+
    <br>
    <br>
 <a href="/invitees/new" data-rel="dialog" data-ajax=false data-role=button data-transition="pop">Invite your friends</a>
@@ -51,8 +63,8 @@
 <br>
 <br>
 <br>
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
-  <h2>Meetings in the next two hours</h2>
+<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" >
+  <h2>Meetings in the next fifteen minutes</h2>
   <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
     <% @upcoming_meetings.each do |meeting| %>
         <li>
@@ -68,8 +80,9 @@
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
-  <h2>Events in the next two hours</h2>
+<br>
+<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+  <h2>Events in the next fifteen minutes</h2>
   <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
     <% @upcoming_events.each do |event| %>
         <li>
@@ -81,41 +94,43 @@
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
-  <h2>Unread Messages</h2>
-  <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
-    <% @unread.each do |message| %>
-        <li>
-          <a href="<%= message_path(message) %>" data-ajax="false">
-            <h3><%= message.user.name %></h3>
+<br>
+<!--<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">-->
+  <!--<h2>Unread Messages</h2>-->
+  <!--<ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">-->
+    <!--<%# @unread.each do |message| %>-->
+        <!--<li>-->
+          <!--<a href="<%#= message_path(message) %>" data-ajax="false">-->
+            <!--<h3><%#= message.user.name %></h3>-->
 
-            <p><%= message.name %></p>
+            <!--<p><%#= message.name %></p>-->
 
-            <p class="ui-li-aside"><strong><%= message.created_at %></strong></p>
-          </a>
-        </li>
-    <% end %>
-  </ul>
-</div>
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
-  <h2>Pending Invitations</h2>
-  <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
-    <% @pending.each do |meeting| %>
-        <li>
-          <a href="<%= meeting_path(meeting) %>" data-ajax="false">
-            <h3><%= ((meeting.meeters.select { |m| m.status }.map { |m| m.user.name } << meeting.user.name).delete_if { |n| n==current_user.name }).join(", ") %></h3>
+            <!--<p class="ui-li-aside"><strong><%#= message.created_at %></strong></p>-->
+          <!--</a>-->
+        <!--</li>-->
+    <!--<%# end %>-->
+  <!--</ul>-->
+<!--</div>-->
+<!--<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">-->
+  <!--<h2>Pending Invitations</h2>-->
+  <!--<ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">-->
+    <!--<%# @pending.each do |meeting| %>-->
+        <!--<li>-->
+          <!--<a href="<%#= meeting_path(meeting) %>" data-ajax="false">-->
+            <!--<h3><%#= ((meeting.meeters.select { |m| m.status }.map { |m| m.user.name } << meeting.user.name).delete_if { |n| n==current_user.name }).join(", ") %></h3>-->
 
-            <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
+            <!--<p><%#= meeting.name %> @ <%#= Location.find(meeting.location).name %></p>-->
 
-            <p class="ui-li-aside">
-              <strong><%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %></strong></p>
-          </a>
-        </li>
-    <% end %>
-  </ul>
-</div>
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
+            <!--<p class="ui-li-aside">-->
+              <!--<strong><%#= meeting.start_time %> hrs on <%#= meeting.start_time.strftime("%d %b") %></strong></p>-->
+          <!--</a>-->
+        <!--</li>-->
+    <!--<%# end %>-->
+  <!--</ul>-->
+<!--</div>-->
+<div class="fbinfobox">
   <h2>Notice Board</h2>
+  <hr size=5 color=black>
   <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
     <% @notice_board.each do |post| %>
         <li>
@@ -128,19 +143,24 @@
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
+<br>
+<br>
+<div class="fbinfobox">
   <h2>Graffiti</h2>
+  <hr size=5 color=black>
   <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
     <% @followed.each do |post| %>
         <li>
           <h3><%= post.user.name %></h3>
 
-          <p><%= post.name %></p>
 
+
+          <p><%= post.name %></p>
+           <hr>
           <p class="ui-li-aside"><strong><%= post.created_at %></strong></p>
         </li>
     <% end %>
-    <%# i=@graffiti.count %>
+
     <% @graffiti.each do |post| %>
         <li>
           <h3><%= post.user.name %></h3>

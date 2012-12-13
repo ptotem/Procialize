@@ -14,7 +14,7 @@ def new
   @users<<@followed
   @users<<(User.all - @followed)
   @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
-  @use=@users.flatten.select{|u| u.name=="Administrator"}.map{|u| u.name }
+  @use=@users.flatten.select{|u| (u.name=="Administrator")}.map{|u| u.name }
 
 end
 
@@ -25,7 +25,7 @@ end
     @message = Message.new(params[:message])
     @message.save
     @receipient=Receipient.create!(:user_id => 1, :message_id => @message.id)
-      @receipient.status=true
+      @receipient.status=nil
       @receipient.save
 
     respond_to do |format|
