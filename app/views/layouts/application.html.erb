@@ -100,7 +100,8 @@
   <div class="field">
     <%= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :onchange => "location_update($(this));" %>
   </div>
-  <h3>Your are currently at <% if !@last_seen.blank? %>
+  <% if !@last_seen.blank? %>
+  <h3>Your are currently at
         <br>
         <div id="location12">
           <b><%= @last_seen.name %></b>
