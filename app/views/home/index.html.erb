@@ -24,9 +24,9 @@
 
 <%= content_for :page_menu do %>
     <ul>
-      <li><a href="/users/<%= @user.id %>/profile" data-ajax=false>View Profile</a></li>
-      <li><a href="/search/search" data-ajax=false>Search</a></li>
-      <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false %></li>
+      <li><a href="/users/<%= @user.id %>/profile" data-ajax=false data-theme='b'>View Profile</a></li>
+      <li><a href="/search/search" data-ajax=false data-theme='b'>Search</a></li>
+      <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :'data-theme'=>'b' %></li>
     </ul>
 <% end %>
 
@@ -95,39 +95,6 @@
   </ul>
 </div>
 <br>
-<!--<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">-->
-  <!--<h2>Unread Messages</h2>-->
-  <!--<ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">-->
-    <!--<%# @unread.each do |message| %>-->
-        <!--<li>-->
-          <!--<a href="<%#= message_path(message) %>" data-ajax="false">-->
-            <!--<h3><%#= message.user.name %></h3>-->
-
-            <!--<p><%#= message.name %></p>-->
-
-            <!--<p class="ui-li-aside"><strong><%#= message.created_at %></strong></p>-->
-          <!--</a>-->
-        <!--</li>-->
-    <!--<%# end %>-->
-  <!--</ul>-->
-<!--</div>-->
-<!--<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">-->
-  <!--<h2>Pending Invitations</h2>-->
-  <!--<ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">-->
-    <!--<%# @pending.each do |meeting| %>-->
-        <!--<li>-->
-          <!--<a href="<%#= meeting_path(meeting) %>" data-ajax="false">-->
-            <!--<h3><%#= ((meeting.meeters.select { |m| m.status }.map { |m| m.user.name } << meeting.user.name).delete_if { |n| n==current_user.name }).join(", ") %></h3>-->
-
-            <!--<p><%#= meeting.name %> @ <%#= Location.find(meeting.location).name %></p>-->
-
-            <!--<p class="ui-li-aside">-->
-              <!--<strong><%#= meeting.start_time %> hrs on <%#= meeting.start_time.strftime("%d %b") %></strong></p>-->
-          <!--</a>-->
-        <!--</li>-->
-    <!--<%# end %>-->
-  <!--</ul>-->
-<!--</div>-->
 <div class="fbinfobox">
   <h2>Notice Board</h2>
   <hr size=5 color=black>
