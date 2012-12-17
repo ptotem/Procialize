@@ -65,7 +65,7 @@
 <% unless @user==current_user %>
     <%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :'data-role' => "button", :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %>
 <% end %>
-<div id="status_here" class="status" style="font-style: italic;"><%= @post.name %></div>
+<div id="status_here" class="status" style="font-style: italic;"><%= @post.name unless @post.blank? %></div>
 <br>
 
 <div class="fbinfobox1" >

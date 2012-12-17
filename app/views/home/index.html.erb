@@ -75,7 +75,7 @@
 
 
 
-<div id="status_here" class="status" style="font-style: italic;"><%= @post.name %></div>
+<div id="status_here" class="status" style="font-style: italic;"><%= @post.name unless @post.blank? %></div>
 <div id="text">
   <%= text_area_tag :comment, "", :placeholder => "Write up your thoughts" %>
 </div>
