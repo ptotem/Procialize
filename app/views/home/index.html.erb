@@ -1,14 +1,9 @@
 <%= content_for :page_title do %>
-    <span style="color:white">Pro</span><span style="color:black">cialize</span>
+    <span style="color:white">Pro</span><span style="color:darkgray">cialize</span>
 <% end %>
 
 <%= content_for :head do %>
-
-
-
     <script type="text/javascript">
-
-
         function create_post() {
             var data = {user_id:[], comment:[]}
             data["user_id"].push('<%= @user.id %>');
@@ -27,7 +22,6 @@
             });
         }
 
-
         $(function () {
             $('[type="submit"]').button('disable');
             $('#comment').focus(function () {
@@ -38,10 +32,6 @@
                 }
             });
         });
-
-
-
-
 
     </script>
 <% end %>
@@ -54,7 +44,7 @@
     </ul>
 <% end %>
 
-<div style="float: right;">
+<div style="float: right;margin-top: -1em">
   <% unless current_user.id==1 %>
       <a href="/contacts/new" data-ajax=false data-role=button>Contact</a>
   <% end %>
