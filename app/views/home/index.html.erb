@@ -55,6 +55,7 @@
   </div>
   <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px;vertical-align:50px;" %>
   <%= @name.titlecase %>
+
   <br>
   <small><%= @headline %></small>
   <br>
@@ -73,7 +74,7 @@
 <hr>
 
 
-<%#= @post.name %>
+
 <div id="status_here" class="status" style="font-style: italic;"><%= @post.name %></div>
 <div id="text">
   <%= text_area_tag :comment, "", :placeholder => "Write up your thoughts" %>
@@ -114,7 +115,7 @@
 <% if !@notice_board.blank? %>
     <% @notice_board.each do |post| %>
         <div class="fbinfobox1">
-          <div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
+          <div style="color:white;background: rgba(46,64,27,0.97); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
             <%= post.user.name %>
             <span style="float:right;margin-right: 0.2em"><%= post.created_at %></span>
           </div>
@@ -135,7 +136,7 @@
     <% @followed.each do |post| %>
         <% if !(post.user==current_user and post == @post) %>
             <div class="fbinfobox1">
-              <div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
+              <div style="background: rgba(226,163,34,0.74); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
                 <%= post.user.name %>
                 <span style="float:right;margin-right: 0.2em"><%= post.created_at %></span>
               </div>
@@ -152,9 +153,14 @@
     <% end %>
 <% end %>
 
+<% if !@event_day_name.nil? %>
+    <%= @event_day_name.name %>
+<% end %>
+
 <% @graffiti.each do |post| %>
+
     <div class="fbinfobox1">
-      <div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
+      <div style="background: rgba(96,141,61,0.97); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
         <%= post.user.name %>
         <span style="float:right;margin-right: 0.2em"><%= post.created_at %></span>
       </div>
@@ -187,7 +193,6 @@
       </table>
     </div>
 <% end %>
-
 
 <br>
 <br>

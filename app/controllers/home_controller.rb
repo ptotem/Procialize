@@ -25,6 +25,7 @@ class HomeController < ApplicationController
     end
     @created_at=UserLocation.find_all_by_user_id_and_location_id(@user.id,@last_seen.id).last
     @post=Post.find_all_by_user_id(@user.id).last
+    @event_day_name=EventDay.find_by_event_date(@now)
   end
 
   def update_status
