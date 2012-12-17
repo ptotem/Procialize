@@ -22,6 +22,10 @@
     </div>
 
     <div class="field">
+      <%= f.select :event_day_id, options_for_select(@conference.event_days.map { |e| [e.name, e.id] }), :'data-mini' => true %>
+    </div>
+
+    <div class="field">
       <%= f.time_select :start_time,
                         :combined => true,
                         :default => Time.now.change(:hour => 11, :min => 30),

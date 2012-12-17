@@ -31,7 +31,7 @@ class EventsController < ApplicationController
     @event=Event.find(params[:id])
     Attendee.create!(:event_id => @event.id, :user_id => current_user.id) unless Attendee.find_by_event_id_and_user_id(@event.id,current_user.id)
     respond_to do |format|
-    format.html{redirect_to events_path,notice: "Accepted"}
+    format.html{redirect_to events_path,notice: @event.name}
       end
   end
 

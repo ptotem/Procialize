@@ -18,9 +18,13 @@ class Users::ProfileController < ApplicationController
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?
     @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
     end
+    #if !UserLocation.find_all_by_user_id(@user.id).last.blank?
+    #@created=UserLocation.find_all_by_user_id(@user.id).last
+    #end
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?
-    @created=UserLocation.find_all_by_user_id(@user.id).last
-     end
+    @created_at=UserLocation.find_all_by_user_id_and_location_id(@user.id,@last_seen.id).last
+    end
+    @post=Post.find_all_by_user_id(@user.id).last
   end
 
   def following

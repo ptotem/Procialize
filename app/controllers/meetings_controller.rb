@@ -79,8 +79,10 @@ class MeetingsController < ApplicationController
   def create
     params[:meeting].parse_time_select! :start_time
     @meeting = Meeting.new(params[:meeting])
+
     respond_to do |format|
       if @meeting.save
+
         params[:meeter_users].each do |uid|
           Meeter.create!(:meeting_id => @meeting.id, :user_id => uid)
         end
@@ -91,6 +93,7 @@ class MeetingsController < ApplicationController
         format.json { render json: @meeting.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PUT /meetings/1

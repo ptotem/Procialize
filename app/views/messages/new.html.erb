@@ -31,11 +31,11 @@
 
     <%= select_tag 'receipient_users[]', options_for_select(@user_list), :multiple => true %>
 
+    <!--<div class="field">-->
+      <!--<%#= f.text_field :name, :'data-mini' => true, :placeholder => "Add a Quick Note" %>-->
+    <!--</div>-->
     <div class="field">
-      <%= f.text_field :name, :'data-mini' => true, :placeholder => "Add a Quick Note" %>
-    </div>
-    <div class="field">
-      <%= f.text_area :body, :rows => '5', :placeholder => "Add more details, if you want to" %>
+      <%= f.text_area :body, :rows => '5', :placeholder => "Write your details" %>
     </div>
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
       <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>

@@ -151,6 +151,18 @@
       </p>
       <br>
 
+
+    <p>
+      <%= f.label :class_of %>
+      <%= f.select :batchie, options_for_select([ @user.batchie
+
+                                                 ], :selected => @user.batchie), :'data-mini' => true %>
+
+
+
+    </p>
+
+
       <p>
         <%= f.submit "Save" %>
       </p>

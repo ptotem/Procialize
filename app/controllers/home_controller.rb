@@ -22,8 +22,10 @@ class HomeController < ApplicationController
 
     if !UserLocation.find_all_by_user_id(@user.id).blank?
       @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
-    end
 
+    end
+    @created_at=UserLocation.find_all_by_user_id_and_location_id(@user.id,@last_seen.id).last
+    @post=Post.find_all_by_user_id(@user.id).last
   end
 
   def update_status

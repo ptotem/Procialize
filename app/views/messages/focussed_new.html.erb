@@ -31,9 +31,9 @@
     <% else %>
         <%= select_tag 'receipient_users[]', options_for_select(@user_list, @receipient), :multiple => true %>
     <% end %>
-    <div class="field">
-      <%= f.text_field :name, :value => (@last_message.name unless @last_message.nil?), :'data-mini' => true, :placeholder => "Add a Quick Note" %>
-    </div>
+    <!--<div class="field">-->
+      <!--<%#= f.text_field :name, :value => (@last_message.name unless @last_message.nil?), :'data-mini' => true, :placeholder => "Add a Quick Note" %>-->
+    <!--</div>-->
     <div class="field">
       <%= f.text_area :body, :rows => '5', :placeholder => "Add more details, if you want to" %>
     </div>

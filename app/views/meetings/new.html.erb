@@ -23,6 +23,11 @@
       <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true %>
     </div>
 
+
+    <div class="field">
+      <%= f.select :event_day_id, options_for_select(@conference.event_days.map { |e| [e.name, e.id] }), :'data-mini' => true %>
+    </div>
+
     <div class="field">
       <%= f.time_select :start_time,
                         :combined => true,
