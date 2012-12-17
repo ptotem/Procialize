@@ -2,8 +2,17 @@
     Procialize
 <% end %>
 
+
+
+
+
 <%= content_for :head do %>
+
+
+
     <script type="text/javascript">
+
+
         function create_post() {
             var data = {user_id:[], comment:[]}
             data["user_id"].push('<%= @user.id %>');
@@ -14,11 +23,25 @@
                 data:JSON.stringify(data),
                 contentType:"application/json",
                 success:function (data) {
+
                     $('#status_here').html(data);
                     $('#comment').val("");
                 }
             });
         }
+
+
+        $(function(){
+
+            $('#comment').focus(function() {
+               $('#status_here').show();
+                $('#stat_button').show();
+            });
+        });
+
+
+
+
     </script>
 <% end %>
 
@@ -30,10 +53,12 @@
     </ul>
 <% end %>
 
+<div style="float: right;">
 <% unless current_user.id==1 %>
-<a href="/contacts/new"  data-ajax=false data-role=button style="float: right;">Contact us</a>
+<a href="/contacts/new"  data-ajax=false data-role=button>Contact</a>
 <% end %>
-
+<a href="/invitees/new"  data-ajax=false data-role=button>Invite</a>
+</div>
 <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
 
 
@@ -48,53 +73,70 @@
   <br>
   <small><%= @batch %></small>
 </h4>
-
+<span id="location"><h3>Last Seen at
+  <% if !@last_seen.nil? %>
+      <%= @last_seen.name %>
+  <% end %>
+  <!--at-->
+  <%# @created.each do |create| %>
+  <%# if !@created.nil? %>
+      <%#= @created.created_at%>
+  <%# end %>
+</h3></span>
+ <div id ="text">
 <%= text_area_tag :comment, "", :placeholder => "Write up your thoughts" %>
-<%= submit_tag "Post it!", :'data-role' => "button", :'data-theme' => "a", :onclick => "create_post();" %>
-<hr>
+ </div>
+<div id="stat_button">
+<%= submit_tag "Post it!", :'data-role' => "button", :'data-theme' => "a", :onclick => "create_post();"%>
+</div>
+<hr size=2 color=black>
 <br>
-<div class="fbinfobox" style="border: 1px solid #000000;font-style: italic;font-size: 15px;height: 50px; " id="status_here" ></div>
+<div class="fbinfobox" style="border: 1px solid #000000;font-style: italic;font-size: 15px;height: auto;overflow: hidden; " id="status_here" ></div>
 
 
    <br>
-   <br>
-<a href="/invitees/new" data-rel="dialog" data-ajax=false data-role=button data-transition="pop">Invite your friends</a>
+<%if !@upcoming_meetings.blank? %>
 
-<br>
-<br>
-<br>
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" >
-  <h2>Meetings in the next fifteen minutes</h2>
-  <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
+
+
+
     <% @upcoming_meetings.each do |meeting| %>
-        <li>
-          <a href="<%= meeting_path(meeting) %>" data-ajax="false">
+        <div class="fbinfobox" style="border: 1px solid #000000;height: auto;overflow: hidden ">
+
+          <a style="color: #000000;text-decoration: none" href="<%= meeting_path(meeting) %>" data-ajax="false">
             <h3><%= ((meeting.meeters.select { |m| m.status }.map { |m| m.user.name } << meeting.user.name).delete_if { |n| n==current_user.name }).join(", ") %></h3>
 
-            <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
+            <p ><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
 
             <p class="ui-li-aside">
               <strong><%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %></strong></p>
           </a>
-        </li>
+        </div>
+        <br>
     <% end %>
-  </ul>
-</div>
-<br>
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
-  <h2>Events in the next fifteen minutes</h2>
-  <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
+
+
+<% end %>
+
+
+<%if !@upcoming_events.blank? %>
+
+
+
     <% @upcoming_events.each do |event| %>
-        <li>
-          <%= link_to event do %>
+        <div class="fbinfobox" style="border: 1px solid #000000;height: auto;overflow: hidden;">
+
+          <%= link_to event,:style=>"color: #000000;text-decoration: none"  do %>
               <%= event.name %>
               <p class="ui-li-aside"><%= event.start %></p>
           <% end %>
-        </li>
+        </div>
+        <br>
     <% end %>
-  </ul>
-</div>
-<br>
+
+
+ <% end %>
+
 <!--<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">-->
   <!--<h2>Unread Messages</h2>-->
   <!--<ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">-->
@@ -128,51 +170,55 @@
     <!--<%# end %>-->
   <!--</ul>-->
 <!--</div>-->
-<div class="fbinfobox">
-  <h2>Notice Board</h2>
-  <hr size=5 color=black>
-  <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
+<% if !@notice_board.blank? %>
+
+
+
     <% @notice_board.each do |post| %>
-        <li>
+        <div class="fbinfobox" style="border: 1px solid #000000;height: auto;overflow: hidden; ">
+
           <h3><%= post.user.name %></h3>
 
           <p><%= post.name %></p>
 
           <p class="ui-li-aside"><strong><%= post.created_at %></strong></p>
-        </li>
+        </div>
     <% end %>
-  </ul>
-</div>
-<br>
-<br>
-<div class="fbinfobox">
-  <h2>Graffiti</h2>
-  <hr size=5 color=black>
-  <ul data-role="listview" data-theme="a" data-divider-theme="d" data-inset="true">
+
+
+  <% end %>
+
+
+<% if !@followed.blank? %>
+
+
+
+
     <% @followed.each do |post| %>
-        <li>
+        <div class="fbinfobox" style="border: 1px solid #000000;height: auto;overflow: hidden;">
           <h3><%= post.user.name %></h3>
 
-
-
           <p><%= post.name %></p>
-           <hr>
+
           <p class="ui-li-aside"><strong><%= post.created_at %></strong></p>
-        </li>
+        </div>
+    <br>
     <% end %>
 
     <% @graffiti.each do |post| %>
-        <li>
+    <div class="fbinfobox" style="border: 1px solid #000000;height: auto;overflow: hidden; ">
           <h3><%= post.user.name %></h3>
 
           <p><%= post.name %></p>
 
           <p class="ui-li-aside"><strong><%= post.created_at %></strong></p>
-        </li>
+    </div>
     <% end %>
-  </ul>
-</div>
 
+
+<% end %>
+<br>
+<br>
 
 
 

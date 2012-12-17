@@ -11,10 +11,10 @@ ProcializeApp::Application.routes.draw do
   resources :meetings
   resources :messages
   resources :events
-  resources :profile
   resources :contacts
 
   match 'users/:id/profile', :to=>"users/profile#index", :as=>"user_profile"
+  match 'users/:id/profile/edit', :to=>"users/profile#edit", :as=>"edit_user_profile"
   match 'users/:id/follow', :to=>"users/profile#following", :as=>"follow"
   match '/update_status', :to=>"home#update_status", :as=>"update_status"
   match '/messages/focus/new/:id/(:message)/(:all)', :to=>"messages#focussed_new", :as=>"focussed_message"

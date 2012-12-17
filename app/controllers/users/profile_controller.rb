@@ -34,7 +34,9 @@ class Users::ProfileController < ApplicationController
 
   end
 
-
+  def edit
+    @user=current_user
+  end
 
   def update
     @user = User.find(params[:id])

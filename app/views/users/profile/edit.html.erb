@@ -1,183 +1,160 @@
 <div class="content_container">
-<h1>Edit profile</h1>
+  <h1>Edit profile</h1>
 
-<%= form_for :user, url: {action: :update},
-             method: :put do |f| %>
+  <%= form_for :user, url: {action: :update}, method: :put do |f| %>
 
-    <p>
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
-    </p>
+      <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </p>
 
-    <p>
-      <%= f.label :headline %><br>
-      <%= f.text_area :headline %>
-    </p>
+      <p>
+        <%= f.label :headline %>
+        <%= f.text_area :headline %>
+      </p>
 
-    <p>
-    <%= f.label :industry %>
-    <br>
-    <%#= f.text_area :industry %>
-      <%= f.select :industry, options_for_select(["Farming", "Ranching", "Dairy", "Fishery", "Museums and Institutions",
-                                                  "Fine Art", "Performing Arts", "Design", "Arts and Crafts", "Music", "Photography",
-                                                  "Graphic Design", "Construction", "Building Materials", "Architecture & Planning", "Civil Engineering",
-                                                  "Cosmetics", "Apparel & Fashion", "Sporting Goods", "Tobacco",
-                                                  "Supermarkets",
-                                                  "Food Production",
-                                                  "Consumer Electronics",
-                                                  "Furniture",
-                                                  "Retail",
-                                                  "Wholesale",
-                                                  "Import and Export",
-                                                  "Wine and Spirits",
-                                                  "Luxury Goods & Jewelry",
-                                                  "Management Consulting",
-                                                  "Marketing and Advertising",
-                                                  "Market Research",
-                                                  "Public Relations and Communications",
-                                                  "Staffing and Recruiting",
-                                                  "Professional Training & Coaching",
-                                                  "Security and Investigations",
-                                                  "Facilities Services",
-                                                  "Outsourcing/Offshoring",
-                                                  "Human Resources",
-                                                  "Business Supplies and Equipment  ",
-                                                  "Primary/Secondary Education",
-                                                  "Higher Education",
-                                                  "Education Management",
-                                                  "Research",
-                                                  "E-LearningEducational",
-                                                  "Professional Training & Coaching",
-                                                  "Primary/Secondary Education",
-                                                  "Banking",
-                                                  "Insurance",
-                                                  "Financial Services",
-                                                  "Investment Banking",
-                                                  "Investment Management",
-                                                  "Capital Markets",
-                                                  "Venture Capital & Private Equity",
-                                                  "Accounting",
-                                                  "Military",
-                                                  "Legislative Office",
-                                                  "Judiciary",
-                                                  "International Affairs",
-                                                  "Government Administration",
-                                                  "Executive Office",
-                                                  "Law Enforcement",
-                                                  "Public Safety",
-                                                  "Public Policy",
-                                                  "Political Organization",
-                                                  "Government Relations",
-                                                  "Defense & Space",
-                                                  "Computer Hardware",
-                                                  "Computer Networking",
-                                                  "Internet",
-                                                  "Semiconductors",
-                                                  "Telecommunications",
-                                                  "Information Technology and Services",
-                                                  "Nanotechnology",
-                                                  "Computer & Network Security",
-                                                  "Wireless",
-                                                  "Law Practice",
-                                                  "Legal Services",
-                                                  "Alternative Dispute Resolution",
-                                                  "Aviation & Aerospace",
-                                                  "Automotive",
-                                                  "Chemicals",
-                                                  "Machinery",
-                                                  "Mining & Metals",
-                                                  "Oil & Energy",
-                                                  "Shipbuilding",
-                                                  "Textiles",
-                                                  "Paper & Forest Products",
-                                                  "Railroad Manufacture",
-                                                  "Electrical/Electronic Manufacturing",
-                                                  "Plastics",
-                                                  "Mechanical or Industrial Engineering",
-                                                  "Renewables & Environment",
-                                                  "Glass, Ceramics & Concrete",
-                                                  "Packaging and Containers",
-                                                  "Industrial Automation",
-                                                  " Broadcast Media",
-                                                  "Newspapers",
-                                                  "Publishing",
-                                                  "Printing",
-                                                  "Writing and Editing",
-                                                  "Online Media",
-                                                  "Media Production",
-                                                  "Animation",
-                                                  "Biotechnology",
-                                                  "Medical Practice",
-                                                  "Hospital & Health Care",
-                                                  "Pharmaceuticals",
-                                                  "Veterinary",
-                                                  "Medical Devices",
-                                                  "Health, Wellness and Fitness",
-                                                  "Alternative Medicine",
-                                                  "Mental Health Care",
-                                                  "Consumer Services",
-                                                  "Non-Profit Organization Management",
-                                                  "Fund-Raising",
-                                                  "Program Development",
-                                                  "Think Tanks",
-                                                  "Philanthropy",
-                                                  "International Trade and Development",
-                                                  "Entertainment",
-                                                  "Gambling & Casinos",
-                                                  "Leisure, Travel & Tourism",
-                                                  "Hospitality",
-                                                  "Restaurants",
-                                                  "Sports",
-                                                  "Food & Beverages",
-                                                  "Recreational Facilities and Services",
-                                                  "Computer Games",
-                                                  "Events Services",
-                                                  "Information Services",
-                                                  "Libraries",
-                                                  "Environmental Services",
-                                                  "Individual & Family Services",
-                                                  "Religious Institutions",
-                                                  "Civic & Social Organization",
-                                                  "Translation and Localization",
-                                                  "Package/Freight Delivery",
-                                                  "Transportation/Trucking/Railroad",
-                                                  "Warehousing",
-                                                  "Airlines/Aviation",
-                                                  "Religious Institutions",
-                                                  "Maritime",
-                                                  "Logistics and Supply Chain",
+      <p>
+        <%= f.label :industry %>
+        <%= f.select :industry, options_for_select(["", "Farming", "Ranching", "Dairy", "Fishery", "Museums and Institutions",
+                                                    "Fine Art", "Performing Arts", "Design", "Arts and Crafts", "Music", "Photography",
+                                                    "Graphic Design", "Construction", "Building Materials", "Architecture & Planning", "Civil Engineering",
+                                                    "Cosmetics", "Apparel & Fashion", "Sporting Goods", "Tobacco",
+                                                    "Supermarkets",
+                                                    "Food Production",
+                                                    "Consumer Electronics",
+                                                    "Furniture",
+                                                    "Retail",
+                                                    "Wholesale",
+                                                    "Import and Export",
+                                                    "Wine and Spirits",
+                                                    "Luxury Goods & Jewelry",
+                                                    "Management Consulting",
+                                                    "Marketing and Advertising",
+                                                    "Market Research",
+                                                    "Public Relations and Communications",
+                                                    "Staffing and Recruiting",
+                                                    "Professional Training & Coaching",
+                                                    "Security and Investigations",
+                                                    "Facilities Services",
+                                                    "Outsourcing/Offshoring",
+                                                    "Human Resources",
+                                                    "Business Supplies and Equipment  ",
+                                                    "Primary/Secondary Education",
+                                                    "Higher Education",
+                                                    "Education Management",
+                                                    "Research",
+                                                    "E-LearningEducational",
+                                                    "Professional Training & Coaching",
+                                                    "Primary/Secondary Education",
+                                                    "Banking",
+                                                    "Insurance",
+                                                    "Financial Services",
+                                                    "Investment Banking",
+                                                    "Investment Management",
+                                                    "Capital Markets",
+                                                    "Venture Capital & Private Equity",
+                                                    "Accounting",
+                                                    "Military",
+                                                    "Legislative Office",
+                                                    "Judiciary",
+                                                    "International Affairs",
+                                                    "Government Administration",
+                                                    "Executive Office",
+                                                    "Law Enforcement",
+                                                    "Public Safety",
+                                                    "Public Policy",
+                                                    "Political Organization",
+                                                    "Government Relations",
+                                                    "Defense & Space",
+                                                    "Computer Hardware",
+                                                    "Computer Networking",
+                                                    "Internet",
+                                                    "Semiconductors",
+                                                    "Telecommunications",
+                                                    "Information Technology and Services",
+                                                    "Nanotechnology",
+                                                    "Computer & Network Security",
+                                                    "Wireless",
+                                                    "Law Practice",
+                                                    "Legal Services",
+                                                    "Alternative Dispute Resolution",
+                                                    "Aviation & Aerospace",
+                                                    "Automotive",
+                                                    "Chemicals",
+                                                    "Machinery",
+                                                    "Mining & Metals",
+                                                    "Oil & Energy",
+                                                    "Shipbuilding",
+                                                    "Textiles",
+                                                    "Paper & Forest Products",
+                                                    "Railroad Manufacture",
+                                                    "Electrical/Electronic Manufacturing",
+                                                    "Plastics",
+                                                    "Mechanical or Industrial Engineering",
+                                                    "Renewables & Environment",
+                                                    "Glass, Ceramics & Concrete",
+                                                    "Packaging and Containers",
+                                                    "Industrial Automation",
+                                                    " Broadcast Media",
+                                                    "Newspapers",
+                                                    "Publishing",
+                                                    "Printing",
+                                                    "Writing and Editing",
+                                                    "Online Media",
+                                                    "Media Production",
+                                                    "Animation",
+                                                    "Biotechnology",
+                                                    "Medical Practice",
+                                                    "Hospital & Health Care",
+                                                    "Pharmaceuticals",
+                                                    "Veterinary",
+                                                    "Medical Devices",
+                                                    "Health, Wellness and Fitness",
+                                                    "Alternative Medicine",
+                                                    "Mental Health Care",
+                                                    "Consumer Services",
+                                                    "Non-Profit Organization Management",
+                                                    "Fund-Raising",
+                                                    "Program Development",
+                                                    "Think Tanks",
+                                                    "Philanthropy",
+                                                    "International Trade and Development",
+                                                    "Entertainment",
+                                                    "Gambling & Casinos",
+                                                    "Leisure, Travel & Tourism",
+                                                    "Hospitality",
+                                                    "Restaurants",
+                                                    "Sports",
+                                                    "Food & Beverages",
+                                                    "Recreational Facilities and Services",
+                                                    "Computer Games",
+                                                    "Events Services",
+                                                    "Information Services",
+                                                    "Libraries",
+                                                    "Environmental Services",
+                                                    "Individual & Family Services",
+                                                    "Religious Institutions",
+                                                    "Civic & Social Organization",
+                                                    "Translation and Localization",
+                                                    "Package/Freight Delivery",
+                                                    "Transportation/Trucking/Railroad",
+                                                    "Warehousing",
+                                                    "Airlines/Aviation",
+                                                    "Religious Institutions",
+                                                    "Maritime",
+                                                    "Logistics and Supply Chain",
 
-                                                 ]), :'data-mini' => true %>
+                                                   ], :selected => @user.industry), :'data-mini' => true %>
 
 
 
-
-
-
-
-    <!--<label for="select-choice-1">Alumini</label>-->
-    <!--<select id="select-choice-1" name="select-choice-1">-->
-      <!--<option value="standard">Class of 2000-->
-      <!--<option value="standard">Class of 2001-->
-      <!--<option value="standard">Class of 2002-->
-      <!--<option value="standard">Class of 2003-->
-      <!--<option value="standard">Class of 2004-->
-      <!--<option value="standard">Class of 2005-->
-      <!--<option value="standard">Class of 2006-->
-      <!--<option value="standard">Class of 2007-->
-      <!--<option value="standard">Class of 2008-->
-      <!--<option value="standard">Class of 2009-->
-      <!--<option value="standard">Class of 2010-->
-      <!--<option value="standard">Class of 2012-->
-      <!--<option value="standard">Class of 2013-->
-    <!--</select>-->
-
-    </p>
+      </p>
       <br>
-    <p>
-      <%= f.submit "Save" %>
-    </p>
-<% end %>
+
+      <p>
+        <%= f.submit "Save" %>
+      </p>
+  <% end %>
 </div>
 
 

@@ -38,10 +38,8 @@
               data:JSON.stringify(data),
               contentType:"application/json",
               success:function (data) {
+                  window.location="/"
                  // alert(data);
-                  $('#location12').html('');
-                  $('#location12').html(data);
-//                  $('#comment').val("");
 
 
               }
@@ -61,7 +59,7 @@
     <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
 
     <h1><%= yield :page_title %></h1>
-    <a href="#search_menu" id="main_menu" data-icon="search" data-prefetch>Iam at </a>
+    <a href="#search_menu" id="main_menu" data-icon="search" data-prefetch>I am at </a>
 
     <div data-role="navbar">
       <%= yield :page_menu %>
@@ -101,16 +99,13 @@
     <%= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :onchange => "location_update($(this));" %>
   </div>
   <% if !@last_seen.blank? %>
-  <h3>Your are currently at
+  <!--<h3>Your are currently at-->
         <br>
         <div id="location12">
-          <b><%= @last_seen.name %></b>
+          <b><% @last_seen.name %></b>
         </div>
     <% end %>
-  </h3>
-  <br>
-  <br>
-
+  <!--</h3>-->
 
 </div>
 </body>

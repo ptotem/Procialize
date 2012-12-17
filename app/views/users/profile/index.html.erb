@@ -21,13 +21,13 @@
     <ul>
 
       <% if @user==current_user %>
-          <li><%= link_to "Edit Profile",edit_path, :'data-role' => "button", :'data-theme' => "a",:'data-ajax' => false %></li>
+          <li><%= link_to "Edit Profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false %></li>
           <li><a href="/search/search" data-ajax=false>Search</a></li>
-       <% else %>
+      <% else %>
           <li><%= link_to "Request Meeting", focussed_meeting_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
           <li><%= link_to "Send Message", focussed_message_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
       <% end %>
-          </ul>
+    </ul>
 <% end %>
 
 
@@ -42,68 +42,77 @@
   <br>
   <small><%= "#{@industry} background" unless @industry.blank? %> </small>
   <br>
-  <% unless @user==current_user%>
-  <span id="follow_notice" style="float:left"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not Followed" :"Followed" %></span>
-   <% end %>
-      </h4>
+  <% unless @user==current_user %>
+      <span id="follow_notice" style="float:left"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not Followed" :"Followed" %></span>
+  <% end %>
+</h4>
 <br>
 <span id="location"><h3>Last Seen at
   <% if !@last_seen.nil? %>
-  <%= @last_seen.name %>
-   <% end %>
-  at
+      <%= @last_seen.name %>
+  <% end %>
+  <!--at-->
   <%# @created.each do |create| %>
-    <% if !@created.nil? %>
-      <%= @created.created_at%>
-  <% end %>
+  <%# if !@created.nil? %>
+  <%#= @created.created_at%>
+  <%# end %>
 </h3></span>
- <% unless @user==current_user%>
-<%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :'data-role' => "button", :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %>
-  <% end %>
-    <br>
-
-
-<strong>Work</strong>
+<% unless @user==current_user %>
+    <%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :'data-role' => "button", :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %>
+<% end %>
 <br>
-<ul>
+
+<div class="fbinfobox" style="border: 1px solid #000000;height: auto;overflow: hidden; ">
+  <h2>Work</h2>
+  <hr size=5 color=black>
+  <br>
+
   <% @positions.each do |position| %>
-      <li><%= position %></li>
+      <%= position %>
   <% end %>
-</ul>
-<strong>Education</strong>
+</div>
 <br>
-<ul>
+<div class="fbinfobox" style="border: 1px solid #000000;height: auto;overflow: hidden; ">
+  <h2>Education</h2>
+  <hr size=5 color=black>
+  <br>
+
   <% @educations.each do |education| %>
-      <li><%= education %></li>
+      <%= education %>
   <% end %>
-</ul>
+</div>
 
-<h2>Posts</h2>
+
 <br>
-<ul data-role="listview" data-theme="a">
+<div class="fbinfobox" style="border: 1px solid #000000;height: auto;overflow: hidden; ">
+  <h2>Posts</h2>
+  <hr size=5 color=black>
   <% @posts.each do |post| %>
-      <li>
-        <h3><%= post.user.name %></h3>
 
-        <p><%= post.name %></p>
+      <h3><%= post.user.name %></h3>
 
-        <p class="ui-li-aside"><strong><%= post.created_at %></strong></p>
-      </li>
+      <p><%= post.name %></p>
+      <hr>
+      <p class="ui-li-aside"><strong><%= post.created_at %></strong></p>
+
   <% end %>
-</ul>
+</div>
 
-<h2>Followers</h2>
-<br>
-<ul>
+   <br>
+
+<div class="fbinfobox" style="border: 1px solid #000000;height: auto;overflow: hidden; ">
+  <h2>Followers</h2>
+  <hr size=5 color=black>
+
   <% @followers.each do |follower| %>
       <li>
         <%= image_tag follower.picture, :style => "float:left; border-radius:5px;margin-right:10px;max-width:40px" %>
         <%= follower.name.titlecase %>
       </li>
   <% end %>
-</ul>
 
-<br>
+</div>
+
 
 
 
