@@ -24,6 +24,8 @@ class MessagesController < ApplicationController
     @users<<@followed
     @users<<(User.all - @followed)
     @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
+    #@user_remove=((@users.flatten.map { |u| [u.name.titlecase, u.id] })-current_user)
+
   end
 
   def focussed_new
