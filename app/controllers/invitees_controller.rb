@@ -45,11 +45,7 @@ class InviteesController < ApplicationController
     respond_to do |format|
       if @invitee.save
         UserMailer.registration_confirmation(@invitee).deliver
-        format.html { redirect_to @invitee, notice: 'Invitee was successfully created.' }
-        format.json { render json: @invitee, status: :created, location: @invitee }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @invitee.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: 'Invitation was successfully sent.' }
       end
     end
   end
