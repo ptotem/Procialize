@@ -40,6 +40,13 @@ class Users::ProfileController < ApplicationController
 
   def edit
     @user=current_user
+    @batchlist=Array.new
+    (2000..2013).each do |year|
+      @batchlist << "Class of #{year}"
+    end
+    @batchlist << "Not from ISB"
+    @batchlist << "ISB Student. Unknown Class"
+    @batchlist.flatten
   end
 
   def update

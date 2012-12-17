@@ -32,9 +32,19 @@ class User < ActiveRecord::Base
   def self.find_for_linkedin_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
-      user = User.create(provider:auth.provider, uid:auth.uid, email:auth.info.email, password:Devise.friendly_token[0, 20], name:auth.info.name, location:auth.info.location, picture:auth.info.image, token:auth.credentials.token, secret:auth.credentials.secret, headline:auth.info.headline, industry:auth.info.industry, positions:auth.extra.raw_info.positions, educations:auth.extra.raw_info.educations)
+      user = User.create(provider: auth.provider, uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0, 20], name: auth.info.name, location: auth.info.location, picture: auth.info.image, token: auth.credentials.token, secret: auth.credentials.secret, headline: auth.info.headline, industry: auth.info.industry, positions: auth.extra.raw_info.positions, educations: auth.extra.raw_info.educations)
       user.educations.values[1].each do |t|
-        user.batchie= ((t.schoolName=="Indian School of Business" and !t.endDate.blank?) ? "Class of #{t.endDate.year}" : "Not from ISB")
+        if t.schoolName=="Indian School of Business"
+          if !t.endDate.blank?
+            user.batchie = "Class of #{t.endDate.year}"
+          elsif t.startDate=="2012"
+            user.batchie = "Class of 2013"
+          else
+            user.batchie = "ISB Student. Unknown Class"
+          end
+        else
+          "Not from ISB"
+        end
         user.save
       end
     end
