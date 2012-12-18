@@ -134,7 +134,7 @@ class MeetingsController < ApplicationController
 
   def decline
     @meeting=Meeting.find(params[:id])
-    @meeter=current_user
+    @meeter=@meeting.meeters.where('user_id=?',current_user.id).first
     @meeter.status=false
     @meeter.save
     redirect_to meetings_path
