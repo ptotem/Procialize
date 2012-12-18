@@ -1,9 +1,6 @@
-
 <%= content_for :page_title do %>
     Profile
 <% end %>
-
-
 <%= content_for :head do %>
     <script type="text/javascript">
         function follow() {
@@ -25,10 +22,9 @@
 
 <%= content_for :page_menu do %>
     <ul>
-
       <% if @user==current_user %>
           <li><%= link_to "Edit Profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false %></li>
-          <li><a href="/search/search" data-ajax=false>Search</a></li>
+          <li><a href="/search/search" data-ajax=false>Find Friends</a></li>
       <% else %>
           <li><%= link_to "Request Meeting", focussed_meeting_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
           <li><%= link_to "Send Message", focussed_message_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
@@ -36,13 +32,10 @@
     </ul>
 <% end %>
 
-
 <% unless @photo.blank? %>
     <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
 <% end %>
 <h4 style="margin-top: 0px;"><%= @name.titlecase %>
-
-
   <br>
   <small><%= @headline %></small>
   <br>
@@ -53,14 +46,15 @@
   <% end %>
 </h4>
 
-<span id="location"><h4>
+<div id="location" style="font-weight: bold;margin-top: 30px;">
   <% if !@last_seen.nil? %>
-   Last Seen at   <%= @last_seen.name %>
+      Last Seen at   <%= @last_seen.name %>
   <% end %>
   <% if !@created_at.nil? %>
-    at   <%= @created_at.created_at %>
+      at <%= @created_at.created_at %>
   <% end %>
-</h4></span>
+</div>
+<br>
 
 <% unless @user==current_user %>
     <%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :'data-role' => "button", :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %>
@@ -68,22 +62,24 @@
 <div id="status_here" class="status" style="font-style: italic;"><%= @post.name unless @post.blank? %></div>
 <br>
 
-<div class="fbinfobox1" >
+<div class="fbinfobox1">
   <h4>Work</h4>
   <hr size=3 color=black>
-  <ul><% @positions.each do |position| %>
-     <li> <%= position %></li>
-  <% end %></ul>
+  <ul>
+    <% @positions.each do |position| %>
+        <li> <%= position %></li>
+    <% end %></ul>
 </div>
 <br>
 
 
-<div class="fbinfobox1" >
+<div class="fbinfobox1">
   <h4>Work</h4>
   <hr size=3 color=black>
-  <ul><% @educations.each do |education| %>
-      <li><%= education %></li>
-  <% end %></ul>
+  <ul>
+    <% @educations.each do |education| %>
+        <li><%= education %></li>
+    <% end %></ul>
 </div>
 
 
@@ -91,9 +87,9 @@
 <br>
 
 
-  <% @posts.each do |post| %>
-    <div class="fbinfobox1" >
-      <div style="background: rgba(96,141,61,0.97); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
+<% @posts.each do |post| %>
+    <div class="fbinfobox1">
+      <div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
         <%= post.user.name %>
         <span style="float:right;margin-right: 0.2em"><%#= post.created_at %></span>
       </div>
@@ -104,15 +100,15 @@
       <p class="ui-li-aside" style="margin-top: -6%;"><strong><%= post.created_at %></strong></p>
     </div>
     <br>
-  <% end %>
+<% end %>
 
 
-   <br>
+<br>
 
 
 
 
-  <% @followers.each do |follower| %>
+<% @followers.each do |follower| %>
 
     <div class="fbinfobox1">
       <div style="background: rgba(96,141,61,0.97); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
@@ -132,7 +128,7 @@
 
 
     <br>
-  <% end %>
+<% end %>
 
 
 

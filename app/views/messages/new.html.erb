@@ -11,16 +11,29 @@
 
 <%= content_for :head do %>
     <script type="text/javascript">
-        $(function () {
-            $('[type="submit"]').button('disable');
-            $('select').change(function () {
-                if ($('select option:selected').length > 0) {
-                    $('[type="submit"]').button('enable');
-                } else {
-                    $('[type="submit"]').button('disable');
-                }
-            });
-        })
+
+      $(function(){
+
+          $('[type="submit"]').button('disable');
+          $(function () {
+              $('[type="submit"]').button('disable');
+              $('select').change && $('#message_body').focus (function () {
+                  if (($('select option:selected') && $('#message_body')).length > 0) {
+                      $('[type="submit"]').button('enable');
+
+                  } else {
+                      $('[type="submit"]').button('disable');
+
+                  }
+              });
+
+          })
+      }) ;
+
+
+
+
+
     </script>
 <% end %>
 
@@ -31,9 +44,7 @@
 
     <%= select_tag 'receipient_users[]', options_for_select(@user_list), :multiple => true %>
 
-    <!--<div class="field">-->
-      <!--<%#= f.text_field :name, :'data-mini' => true, :placeholder => "Add a Quick Note" %>-->
-    <!--</div>-->
+
     <div class="field">
       <%= f.text_area :body, :rows => '5', :placeholder => "Type your message" %>
     </div>

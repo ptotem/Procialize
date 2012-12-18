@@ -1,5 +1,7 @@
 class Message < ActiveRecord::Base
   attr_accessible :body, :name, :user_id, :conference_id, :receipients_attributes
+  validates :body, :presence => true
+
   belongs_to :user
   belongs_to :conference
   has_many :receipients, :dependent => :destroy

@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :conference_id, :name, :user_id
+  attr_accessible :conference_id, :name, :user_id, :created_at
 
   belongs_to :user
   belongs_to :conference

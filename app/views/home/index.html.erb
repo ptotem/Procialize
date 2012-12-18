@@ -1,3 +1,10 @@
+<style type="text/css">
+    a, a:visited {
+        color: black;
+        text-decoration: none;
+    }
+</style>
+
 <%= content_for :page_title do %>
     <span style="color:white">Pro</span><span style="color:darkgray">cialize</span>
 <% end %>
@@ -5,8 +12,8 @@
 <%= content_for :head do %>
     <script type="text/javascript">
         function create_post() {
-            var prev_status=$('#status_here').html();
-            var create_at="<%= Post.find_all_by_user_id(current_user.id).last.created_at %>";
+            var prev_status = $('#status_here').html();
+            var create_at = "<%= @post.created_at unless @post.blank? %>";
 //            alert(create_at);
             var data = {user_id:[], comment:[]}
             data["user_id"].push('<%= @user.id %>');
@@ -20,13 +27,10 @@
 
                     $('#status_here').html(data);
                     $('#comment').val("")
-//                    window.location="/";
-                    //$('#posting').show();
-                   // $('#posting').html(prev_status);
-                    $('.odd').prepend('<div class="fbinfobox1" id="1"><div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold"><%= current_user.name %><span style="float:right;margin-right: 0.2em">'+create_at+'</span></div><table><tr><td style="width:32px;max-width:32px;"><%= image_tag(current_user.picture) %></td><td>'+prev_status+'</td></tr></table></div>');
-                   //$('.content_container').append('<div class="fbinfobox1"><div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold"><span style="float:right;margin-right: 0.2em"><%#= post.created_at %></span></div><table><tr><td style="width:32px;max-width:32px;"></td><td>prev_status</td></tr></table>
-                   //             </div>');
 
+                    if (prev_status != "") {
+                        $('.odd').prepend('<div class="fbinfobox1"><div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold"><%= current_user.name %><span style="float:right;margin-right: 0.2em">' + create_at + '</span></div><table><tr><td style="width:32px;max-width:32px;"><%= image_tag(current_user.picture) unless current_user.picture.blank? %></td><td>' + prev_status + '</td></tr></table></div>');
+                    }
                     $('[type="submit"]').button('disable');
                 }
             });
@@ -49,7 +53,7 @@
 <%= content_for :page_menu do %>
     <ul>
       <li><a href="/users/<%= @user.id %>/profile" data-ajax=false data-theme='b'>View Profile</a></li>
-      <li><a href="/search/search" data-ajax=false data-theme='b'>Search</a></li>
+      <li><a href="/search/search" data-ajax=false data-theme='b'>Find Friends</a></li>
       <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :'data-theme' => 'b' %></li>
     </ul>
 <% end %>
@@ -63,7 +67,9 @@
     <% end %>
     <a href="/invitees/new" data-ajax=false data-role=button>Invite</a>
   </div>
-  <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px;vertical-align:50px;" %>
+  <% unless @photo.blank? %>
+      <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px;vertical-align:50px;" %>
+  <% end %>
   <%= @name.titlecase %>
 
   <br>
@@ -72,7 +78,7 @@
   <small><%= @batch %></small>
 </div>
 
-<div id="location" style="font-weight: bold;margin-top: 20px;">
+<div id="location" style="font-weight: bold;margin-top: 30px;">
   <% if !@last_seen.nil? %>
       Last Seen at   <%= @last_seen.name %>
   <% end %>
@@ -81,30 +87,27 @@
   <% end %>
 </div>
 <br>
-<hr>
 
 
 
 <div id="status_here" class="status" style="font-style: italic;"><%= @post.name unless @post.blank? %></div>
 <div id="text">
-  <%= text_area_tag :comment, "", :placeholder => "Write up your thoughts" %>
+  <%= text_area_tag :comment, "", :placeholder => "Write a post for the Graffiti Wall" %>
 </div>
 <div id="stat_button">
   <%= submit_tag "Post it!", :'data-role' => "button", :'data-theme' => "a", :onclick => "create_post();" %>
 </div>
-<hr>
 
 <% if !@upcoming_meetings.blank? %>
     <% @upcoming_meetings.each do |meeting| %>
         <div class="fbinfobox1">
-          <a style="color: #000000;text-decoration: none" href="<%= meeting_path(meeting) %>" data-ajax="false">
-            <h3><%= ((meeting.meeters.select { |m| m.status }.map { |m| m.user.name } << meeting.user.name).delete_if { |n| n==current_user.name }).join(", ") %></h3>
+          <div style="color:white;background: rgba(46,64,27,0.97); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
+            <%= ((meeting.meeters.select { |m| m.status }.map { |m| m.user.name } << meeting.user.name).delete_if { |n| n==current_user.name }).join(", ") %>
 
-            <p><%= meeting.name %> @ <%= Location.find(meeting.location).name %></p>
-
-            <p class="ui-li-aside">
-              <strong><%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %></strong></p>
-          </a>
+            <span style="float:right;margin-right: 0.2em"><%= meeting.start_time %>
+              hrs on <%= meeting.start_time.strftime("%d %B") %></span>
+          </div>
+          <h3><%= meeting.name %> @ <%= Location.find(meeting.location).name %></h3>
         </div>
     <% end %>
 <% end %>
@@ -112,21 +115,23 @@
 
 <% if !@upcoming_events.blank? %>
     <% @upcoming_events.each do |event| %>
+
         <div class="fbinfobox1">
-          <%= link_to event, :style => "color: #000000;text-decoration: none" do %>
-              <%= event.name %>
-              <p class="ui-li-aside"><%= event.start %></p>
-          <% end %>
+          <div style="color:white;background: rgba(46,64,27,0.97); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
+            <%= event.name %>
+            <span style="float:right;margin-right: 0.2em"><%= event.start %> hrs on <%= event.start.strftime("%d %B") %></span>
+          </div>
+          <h3><%= event.description %></h3>
         </div>
+
     <% end %>
 <% end %>
 
-<hr>
 <% if !@notice_board.blank? %>
     <% @notice_board.each do |post| %>
         <div class="fbinfobox1">
           <div style="color:white;background: rgba(46,64,27,0.97); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
-            <%= post.user.name %>
+            Organizer
             <span style="float:right;margin-right: 0.2em"><%= post.created_at %></span>
           </div>
           <table>
@@ -140,14 +145,13 @@
         </div>
     <% end %>
 <% end %>
-<hr>
 
 <% if !@followed.blank? %>
     <% @followed.each do |post| %>
         <% if !(post.user==current_user and post == @post) %>
             <div class="fbinfobox1">
-              <div style="background: rgba(226,163,34,0.74); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
-                <%= post.user.name %>
+              <div style="background: rgba(187,226,31,0.72); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
+                <%= link_to post.user.name.titlecase, user_profile_path(post.user), :style => "color:black;" %>
                 <span style="float:right;margin-right: 0.2em"><%= post.created_at %></span>
               </div>
               <table>
@@ -167,55 +171,51 @@
     <%= @event_day_name.name %>
 <% end %>
 <div class='odd'>
-<% @graffiti.each do |post| %>
+  <% @graffiti.each do |post| %>
 
-    <div class="fbinfobox1">
-      <div style="background: rgba(96,141,61,0.97); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
-        <%= post.user.name %>
-        <span style="float:right;margin-right: 0.2em"><%= post.created_at %></span>
+      <div class="fbinfobox1">
+        <div style="color:white;background: rgba(129,170,44,0.96); width:98%;padding:2px;padding-left:5px;border-radius:3px;">
+          <%= link_to post.user.name.titlecase, user_profile_path(post.user), :style => "color:white;font-weight:normal" %>
+          <span style="float:right;margin-right: 0.2em"><%= post.created_at %></span>
+        </div>
+        <table>
+          <tr>
+            <% unless post.user.picture.blank? %>
+                <td style="width:32px;max-width:32px;"><%= image_tag(post.user.picture) %></td>
+            <% end %>
+            <td><%= post.name %></td>
+          </tr>
+        </table>
       </div>
-      <table>
-        <tr>
-          <% unless post.user.picture.blank? %>
-              <td style="width:32px;max-width:32px;"><%= image_tag(post.user.picture) %></td>
-          <% end %>
-          <td><%= post.name %></td>
-        </tr>
-      </table>
-    </div>
-<% end %>
+  <% end %>
 </div>
-<hr>
 
 
 
 <div id="posting" class="fbinfobox1" style="display: none;">
-  <%# if @post %>
-      <%# if !@post.user==current_user %>
-  <div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
-    <%= @post.user.name %>
-    <span style="float:right;margin-right: 0.2em"><%= @post.created_at %></span>
-  </div>
-  <table>
-    <tr>
-      <% unless @post.user.picture.blank? %>
-          <td style="width:32px;max-width:32px;"><%= image_tag(@post.user.picture) %></td>
+  <% if @post %>
+      <% if @post.user!=current_user %>
+          <div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
+            <%= @post.user.name.titlecase %>
+            <span style="float:right;margin-right: 0.2em"><%= @post.created_at %></span>
+          </div>
+          <table>
+            <tr>
+              <% unless @post.user.picture.blank? %>
+                  <td style="width:32px;max-width:32px;"><%= image_tag(@post.user.picture) %></td>
+              <% end %>
+              <td><%= @post.name %></td>
+            </tr>
+          </table>
       <% end %>
-      <td><%= @post.name %></td>
-    </tr>
-  </table>
-      <%# end %>
-  <%# end %>
+  <% end %>
 </div>
-
-
-
 
 <% @my_posts.each do |post| %>
     <% if !(post.user==current_user and post == @post) %>
         <div class="fbinfobox1">
           <div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
-            <%= post.user.name %>
+            <%= post.user.name.titlecase %>
             <span style="float:right;margin-right: 0.2em"><%= post.created_at %></span>
           </div>
           <table>
