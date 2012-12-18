@@ -12,15 +12,31 @@
 <%= @event.description %>
 
 <% if @my_attendee.blank? %>
-    <%= link_to "Accept", attend_event_path(@event), :'data-role'=>"button", :'data-ajax' => false,:flash_notice => "Accepted"%>
+    <%= link_to "Accept", attend_event_path(@event), :'data-role' => "button", :'data-ajax' => false, :flash_notice => "Accepted" %>
     <!--<a href="<%#= attend_event_path(@event) %>" data-role="button" >Accept</a>-->
 <% end %>
 
 <h3 style="margin-top: 30px;padding-bottom: 15px;">Confirmed Attendees</h3>
-<ul data-role="listview" data-filter="true">
-  <% @attendees.each do |attendee| %>
-      <li><%= attendee.name.titlecase %></li>
-  <% end %>
-</ul>
 
+<ul data-role="listview" data-theme='a' data-filter-placeholder="Search by industry, name or class" data-split-icon='star' data-filter="true" data-divider-theme="d" data-role="list-divider" data-split-theme="c">
+
+  <% @attendees.each do |user| %>
+      <% if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>
+          <li data-theme='a' data-filtertext=" <%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>">
+            <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a'>
+              <%= user.name.titlecase %>
+              <p class="ui-li-aside"><%= user.batchie %></p>
+            </a>
+          </li>
+      <% else %>
+          <li data-theme='b' data-filtertext="<%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>">
+            <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='b'>
+              <%= user.name.titlecase %>
+              <span id="following<%= user.id %>" class="highlighted">Following</span>
+            </a>
+          </li>
+      <% end %>
+  <% end %>
+
+</ul>
 

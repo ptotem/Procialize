@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   has_many :attendees, :dependent => :destroy
   #has_many :events,:through => :attendees
   has_many :speakers, :dependent => :destroy
-  has_many :organizers, :dependent => :destroy
+  has_one :organizer, :dependent => :destroy
   has_many :participants, :dependent => :destroy
   has_many :statuses, :dependent => :destroy
   has_many :receipients, :dependent => :destroy
