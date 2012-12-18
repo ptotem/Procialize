@@ -5,6 +5,9 @@
 <%= content_for :head do %>
     <script type="text/javascript">
         function create_post() {
+            var prev_status=$('#status_here').html();
+            var create_at="<%= Post.find_all_by_user_id(current_user.id).last.created_at %>";
+//            alert(create_at);
             var data = {user_id:[], comment:[]}
             data["user_id"].push('<%= @user.id %>');
             data["comment"].push($('#comment').val());
@@ -16,7 +19,13 @@
                 success:function (data) {
 
                     $('#status_here').html(data);
-                    $('#comment').val("");
+                    $('#comment').val("")
+//                    window.location="/";
+                    //$('#posting').show();
+                   // $('#posting').html(prev_status);
+                    $('.odd').prepend('<div class="fbinfobox1" id="1"><div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold"><%= current_user.name %><span style="float:right;margin-right: 0.2em">'+create_at+'</span></div><table><tr><td style="width:32px;max-width:32px;"><%= image_tag(current_user.picture) %></td><td>'+prev_status+'</td></tr></table></div>');
+                   //$('.content_container').append('<div class="fbinfobox1"><div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold"><span style="float:right;margin-right: 0.2em"><%#= post.created_at %></span></div><table><tr><td style="width:32px;max-width:32px;"></td><td>prev_status</td></tr></table>
+                   //             </div>');
 
                     $('[type="submit"]').button('disable');
                 }
@@ -157,7 +166,7 @@
 <% if !@event_day_name.nil? %>
     <%= @event_day_name.name %>
 <% end %>
-
+<div class='odd'>
 <% @graffiti.each do |post| %>
 
     <div class="fbinfobox1">
@@ -175,15 +184,31 @@
       </table>
     </div>
 <% end %>
+</div>
 <hr>
 
-<div id="posting">
-  <% if @post %>
-      <% if !@post.user==current_user %>
-          <%= @post.name %>
+
+
+<div id="posting" class="fbinfobox1" style="display: none;">
+  <%# if @post %>
+      <%# if !@post.user==current_user %>
+  <div style="background: rgba(201, 226, 121, 0.98); width:98%;padding:2px;padding-left:5px;border-radius:3px;font-weight: bold">
+    <%= @post.user.name %>
+    <span style="float:right;margin-right: 0.2em"><%= @post.created_at %></span>
+  </div>
+  <table>
+    <tr>
+      <% unless @post.user.picture.blank? %>
+          <td style="width:32px;max-width:32px;"><%= image_tag(@post.user.picture) %></td>
       <% end %>
-  <% end %>
+      <td><%= @post.name %></td>
+    </tr>
+  </table>
+      <%# end %>
+  <%# end %>
 </div>
+
+
 
 
 <% @my_posts.each do |post| %>
