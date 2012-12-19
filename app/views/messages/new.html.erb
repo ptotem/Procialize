@@ -27,7 +27,17 @@
                   }
               });
 
-          })
+          });
+
+          $('#message_body').blur(function () {
+              if ($(this).val().length <= 0) {
+                  $('[type="submit"]').button('disable');
+              }
+              else{
+                  $('[type="submit"]').button('enable');
+              }
+          });
+
       }) ;
 
 

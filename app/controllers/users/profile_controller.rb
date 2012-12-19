@@ -13,7 +13,8 @@ class Users::ProfileController < ApplicationController
     unless @user.educations.blank?
       @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name}" }.uniq
     end
-    @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
+    #@followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
+    @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user }.map { |f| f.user }
     @posts=@user.posts.last(10).reverse
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?
     @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
