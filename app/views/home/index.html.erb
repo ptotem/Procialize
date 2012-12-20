@@ -12,6 +12,7 @@
 <%= content_for :head do %>
     <script type="text/javascript">
         function create_post() {
+
             var prev_status = $('#status_here').html();
             var create_at = "<%= @post.created_at unless @post.blank? %>";
 //            alert(create_at);
@@ -36,25 +37,37 @@
             });
         }
 
-        $(function () {
+
+
+        $(function(){
+
             $('[type="submit"]').button('disable');
-            $('#comment').focus(function () {
-//                alert($('#comment')..length);
-                if ($(this).val().length > 0) {
-                    $('[type="submit"]').button('enable');
-                } else {
-                    $('[type="submit"]').button('disable');
-                }
+            $(function () {
+                $('[type="submit"]').button('disable');
+                $('#comment').focus (function () {
+                    if (( $('#comment')).length > 0) {
+                        $('[type="submit"]').button('enable');
+
+                    } else {
+                        $('[type="submit"]').button('disable');
+
+                    }
+                });
+
             });
+
             $('#comment').blur(function () {
                 if ($(this).val().length <= 0) {
                     $('[type="submit"]').button('disable');
-               }
+                }
                 else{
                     $('[type="submit"]').button('enable');
                 }
             });
-        });
+
+        }) ;
+
+
 
     </script>
 <% end %>
