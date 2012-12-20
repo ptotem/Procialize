@@ -32,27 +32,31 @@ RailsAdmin.config do |config|
   # Include specific models (exclude the others):
   # config.included_models = []
 
-    config.included_models = ["Location", "EventDay", "Event","Post", "User", "Organizer"]
+  config.authorize_with do
+    redirect_to root_path if (current_user.organizer.blank? and current_user.email != "arijit@ptotem.com")
+  end
 
-    config.actions do
-      # root actions
-      dashboard # mandatory
+  config.included_models = ["Location", "EventDay", "Event", "Post", "Organizer"]
 
-      # collection actions
-      index # mandatory
-      new
-      export
-      import
-      history_index
-      bulk_delete
+  config.actions do
+    # root actions
+    dashboard # mandatory
 
-      # member actions
-      show
-      edit
-      delete
-      history_show
-      show_in_app
-    end
+    # collection actions
+    index # mandatory
+    new
+    export
+    import
+    history_index
+    bulk_delete
+
+    # member actions
+    show
+    edit
+    delete
+    history_show
+    show_in_app
+  end
 
 
   # Label methods for model instances:
