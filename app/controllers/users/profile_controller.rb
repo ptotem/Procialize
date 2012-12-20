@@ -7,12 +7,13 @@ class Users::ProfileController < ApplicationController
     @industry=@user.industry
     @educations=[]
     @positions=[]
-    unless @user.educations.blank?
+    unless @user.educations.blank? or @user.educations.values[1].blank?
       @educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "" :"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
     end
-    unless @user.educations.blank?
-      @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name}" }.uniq
+    unless @user.positions.blank? or @user.positions.values[1].blank?
+      @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name unless p.blank?}" }.uniq
     end
+
     #@followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user }.map { |f| f.user }
     @posts=@user.posts.last(10).reverse

@@ -62,26 +62,30 @@
 <div id="status_here" class="status" style="font-style: italic;"><%= @post.name unless @post.blank? %></div>
 <br>
 
+<span><strong>Work</strong></span>
 <div class="fbinfobox1">
-  <h4>Work</h4>
-  <hr size=3 color=black>
   <ul>
     <% @positions.each do |position| %>
-        <li> <%= position %></li>
-    <% end %></ul>
+
+        <li><%= position %></li>
+    <% end %>
+
+  </ul>
 </div>
 <br>
 
 
+
+<span><strong>Education</strong></span>
 <div class="fbinfobox1">
-  <h4>Work</h4>
-  <hr size=3 color=black>
   <ul>
     <% @educations.each do |education| %>
-        <li><%= education %></li>
-    <% end %></ul>
-</div>
 
+        <li><%= education %></li>
+    <% end %>
+
+  </ul>
+</div>
 
 
 <br>
@@ -124,7 +128,6 @@
         </tr>
       </table>
     </div>
-
 
 
     <br>
