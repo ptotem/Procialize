@@ -21,7 +21,7 @@
         })
     </script>
 <% end %>
-
+  <%#= @user_list%>
 <%= form_for :message, url: {action: :create} do |f| %>
 
     <%= f.hidden_field :conference_id, :value => Conference.last.id %>

@@ -2,6 +2,48 @@
     New Meeting
 <% end %>
 
+<%= content_for :head do %>
+    <script type="text/javascript">
+
+        $(function(){
+
+            $('[type="submit"]').button('disable');
+            $(function () {
+                $('[type="submit"]').button('disable');
+                $('select').change && $('#meeting_name').focus (function () {
+                    if (($('select option:selected') && $('#meeting_name')).length > 0) {
+                        $('[type="submit"]').button('enable');
+
+                    } else {
+                        $('[type="submit"]').button('disable');
+
+                    }
+                });
+
+            });
+
+            $('#meeting_name').blur(function () {
+                if ($(this).val().length <= 0) {
+                    $('[type="submit"]').button('disable');
+                }
+                else{
+                    $('[type="submit"]').button('enable');
+                }
+            });
+
+        }) ;
+
+
+
+
+
+    </script>
+<% end %>
+
+
+
+
+
 <%= content_for :page_menu do %>
     <ul>
       <li><a href="/meetings/new" data-ajax='false'>New</a></li>
