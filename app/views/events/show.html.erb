@@ -9,6 +9,8 @@
   <small><%= image_tag "clock.png", :style => "vertical-align:middle;margin-left:-18px;" %><%= @event.start %></small>
 </h3>
 
+<%= @event.locations.map{|l| l.name}.join(", ")%>
+<br>
 <%= @event.description %>
 
 <% if @my_attendee.blank? %>
