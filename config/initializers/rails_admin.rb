@@ -36,7 +36,7 @@ RailsAdmin.config do |config|
     redirect_to root_path if (current_user.organizer.blank? and current_user.email != "arijit@ptotem.com")
   end
 
-  #config.included_models = ["Location", "EventDay", "Event", "Post", "Organizer"]
+  config.included_models = ["Location", "EventDay", "Event", "Post", "Organizer", "User"]
 
   config.actions do
     # root actions
