@@ -29,7 +29,7 @@
           <%= link_to event_path(event_two) do %>
               <%= event_two.name %>
               <p class="ui-li-aside">
-                <%= event_two.start %> at <%= event_one.locations.map{|l| l.name}.join(", ")%></p>
+                <%= event_two.start %> at <%= event_two.locations.map{|l| l.name}.join(", ")%></p>
           <% end %>
         </li>
     <% end %>
@@ -46,7 +46,7 @@
           <%= link_to event_path(event_three) do %>
               <%= event_three.name %>
               <p class="ui-li-aside">
-                <%= event_three.start %> at <%= event_one.locations.map{|l| l.name}.join(", ")%></p>
+                <%= event_three.start %> at <%= event_three.locations.map{|l| l.name}.join(", ")%></p>
           <% end %>
         </li>
     <% end %>
