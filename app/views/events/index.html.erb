@@ -12,7 +12,7 @@
           <%= link_to event_path(event_one) do %>
               <%= event_one.name %>
               <p class="ui-li-aside">
-                <%= event_one.start %> at <%= event_one.locations.map{|l| l.name} %></p>
+                <%= event_one.start %> at <%= event_one.locations.map{|l| l.name}.join(", ") %></p>
           <% end %>
         </li>
     <% end %>
