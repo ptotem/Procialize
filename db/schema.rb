@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217104109) do
+ActiveRecord::Schema.define(:version => 20130124125447) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id"
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(:version => 20121217104109) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "Question"
+    t.boolean  "quest"
   end
 
   create_table "followers", :force => true do |t|
@@ -141,6 +143,18 @@ ActiveRecord::Schema.define(:version => 20121217104109) do
     t.integer  "conference_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "questionables", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.boolean  "approved"
+    t.string   "quest_name"
+    t.integer  "up_votes"
+    t.integer  "down_votes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "hide"
   end
 
   create_table "rails_admin_histories", :force => true do |t|

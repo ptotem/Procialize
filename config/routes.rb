@@ -1,34 +1,50 @@
 ProcializeApp::Application.routes.draw do
 
 
+  get "moderator/moderator_view"
+
+  get "moderator_view/moderator"
+
+  #resources :questionables
 
   resources :invitees
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
   mount RailsAdminImport::Engine => '/rails_admin_import', :as => 'rails_admin_import'
 
   resources :meetings
   resources :messages
-  resources :events
+  resources :events do
+    resources :questionables
+  end
   resources :contacts
 
-  match 'users/:id/profile', :to=>"users/profile#index", :as=>"user_profile"
-  match 'users/:id/profile/edit', :to=>"users/profile#edit", :as=>"edit_user_profile"
-  match 'users/:id/follow', :to=>"users/profile#following", :as=>"follow"
-  match '/update_status', :to=>"home#update_status", :as=>"update_status"
-  match '/messages/focus/new/:id/(:message)/(:all)', :to=>"messages#focussed_new", :as=>"focussed_message"
-  match '/meetings/focus/new/:id', :to=>"meetings#focussed_new", :as=>"focussed_meeting"
+  match 'users/:id/profile', :to => "users/profile#index", :as => "user_profile"
+  match 'users/:id/profile/edit', :to => "users/profile#edit", :as => "edit_user_profile"
+  match 'users/:id/follow', :to => "users/profile#following", :as => "follow"
+  match '/update_status', :to => "home#update_status", :as => "update_status"
+  match '/messages/focus/new/:id/(:message)/(:all)', :to => "messages#focussed_new", :as => "focussed_message"
+  match '/meetings/focus/new/:id', :to => "meetings#focussed_new", :as => "focussed_meeting"
 
-  match '/followers_status',:to => "home#followers_status" ,:as =>"followers_status"
-  match '/accept/event/:id',:to => "events#accept" ,:as =>"attend_event"
-  match '/accept/meeting/:id',:to => "meetings#accept" ,:as =>"accept_meeting"
-  match '/decline/meeting/:id',:to => "meetings#decline" ,:as =>"decline_meeting"
-  match '/update_location', :to=>"application#update_location", :as=>"update_location"
+  match '/followers_status', :to => "home#followers_status", :as => "followers_status"
+  match '/accept/event/:id', :to => "events#accept", :as => "attend_event"
+  match '/accept/meeting/:id', :to => "meetings#accept", :as => "accept_meeting"
+  match '/decline/meeting/:id', :to => "meetings#decline", :as => "decline_meeting"
+  match '/update_location', :to => "application#update_location", :as => "update_location"
   get 'search/search'
-  match 'users/:id/edit' ,:to=>"users/profile#edit",:as=>"edit"
-  match 'users/:id/update',:to=>"users/profile#update",:as=>"update"
-  match '/messages/:id' ,:to=>"messages#show"
+  match 'users/:id/edit', :to => "users/profile#edit", :as => "edit"
+  match 'users/:id/update', :to => "users/profile#update", :as => "update"
+  match '/messages/:id', :to => "messages#show"
+  match '/create_questionables' ,:to => "questionables#create_question" ,:as => "create_question"
+  match '/question_view' ,:to => "questionables#question_view"
+  match '/hide_quest' ,:to => "questionables#hide_quest",:as => "hide_quest"
+  match '/approve_quest' ,:to => "questionables#approve_quest",:as => "approve_quest"
+  match '/questionables/index',:to => "questionables#index"
+  match '/unapproved_view',:to => "questionables#unapproved_view"
+  match '/print',:to => "questionables#print"
+  match '/graffiti' ,:to => "home#graffiti"
+
 
   #put "messages/:id" => "messages#show"
 

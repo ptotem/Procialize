@@ -6,6 +6,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attendees=Attendee.find_all_by_event_id(@event).map { |a| a.user }
     @my_attendee=Attendee.find_by_event_id_and_user_id(@event, current_user)
+    @quest = Questionable.new
   end
 
   def show_page

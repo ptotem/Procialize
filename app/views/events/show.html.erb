@@ -13,6 +13,11 @@
 <br>
 <%= @event.description %>
 
+
+
+
+
+
 <% if @my_attendee.blank? %>
     <%= link_to "Accept", attend_event_path(@event), :'data-role' => "button", :'data-ajax' => false, :flash_notice => "Accepted" %>
     <!--<a href="<%#= attend_event_path(@event) %>" data-role="button" >Accept</a>-->
@@ -42,3 +47,10 @@
 
 </ul>
 
+
+<br>
+<br>
+<br>
+<% if @event.quest==true  %>
+       <%= render "questionables/form" %>
+<% end %>

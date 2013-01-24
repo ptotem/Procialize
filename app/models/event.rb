@@ -1,10 +1,13 @@
 class Event < ActiveRecord::Base
-  attr_accessible :description, :end, :event_day_id, :name, :start, :avatar, :locations_attributes
+  attr_accessible :description, :end, :event_day_id, :name, :start, :avatar, :locations_attributes, :quest,:questionables_attributes
 
   has_many :decks, :dependent => :destroy
   has_many :attendees, :dependent => :destroy
   has_many :event_locations, :dependent => :destroy
   has_many :speakers, :dependent => :destroy
+  has_many :questionables, :dependent => :destroy
+
+
   has_attached_file :avatar, :styles => {:medium => "300x300>", :thumb => "100x100>"}
   has_many :locations, :through => :event_locations
   accepts_nested_attributes_for :locations, :reject_if => proc { |attrs| reject = %w(name).all? { |a| attrs[a].blank? } }, :allow_destroy => true
@@ -36,6 +39,7 @@ class Event < ActiveRecord::Base
       field :description
       field :avatar
       field :locations
+      field :quest
     end
   end
 

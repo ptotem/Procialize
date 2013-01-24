@@ -3,9 +3,11 @@
 /* Start Generic Layout Definitions*/
 
 html, body {
-    background-color: rgba(201, 226, 121, 0.98);
+    background-color: rgba(244, 233, 222, 90);
     overflow-x: hidden;
     min-height: 100%;
+
+
 }
 
 img {
@@ -308,3 +310,24 @@ label {
     margin-left: -1px;
 
 }
+
+
+
+/*----------------------------new procialize style--------------------------*/
+
+
+.ui-grid-b .ui-block-a {
+    margin-top: 3.5%;
+}
+
+.ui-grid-b .ui-block-b {
+    margin-top: 3.5%;
+}
+
+.ui-grid-b .ui-block-c {
+    margin-top: 3.5%;
+}
+
+
+
+

@@ -1,0 +1,102 @@
+<%= content_for :page_title do %>
+    Questions
+<% end %>
+
+
+
+<%= content_for :head do %>
+
+
+<script type="text/javascript">
+
+    function create_quest() {
+
+
+        var data = {user_id:[], event_id:[],quest_name:[]}
+        data["user_id"].push('<%= current_user.id %>');
+        data["event_id"].push('<%= @event.id %>');
+        data["quest_name"].push($('#questionable_quest_name').val());
+
+        $.ajax({
+            url:"<%= questionable_path %>",
+            type:"post",
+            data:JSON.stringify(data),
+            contentType:"application/json",
+            success:function (data) {
+                alert(data);
+
+
+
+                $('[type="submit"]').button('disable');
+            }
+        });
+    }
+
+
+
+
+    $(function(){
+
+        $('[type="submit"]').button('disable');
+        $(function () {
+            $('[type="submit"]').button('disable');
+            $('#questionable_quest_name').focus (function () {
+                if (( $('#questionable_quest_name')).length > 0) {
+                    $('[type="submit"]').button('enable');
+
+                } else {
+                    $('[type="submit"]').button('disable');
+
+                }
+            });
+
+        });
+
+        $('#questionable_quest_name').blur(function () {
+            if ($(this).val().length <= 0) {
+                $('[type="submit"]').button('disable');
+            }
+            else{
+                $('[type="submit"]').button('enable');
+            }
+        });
+
+    }) ;
+
+
+
+</script>
+<% end %>
+
+
+
+
+
+
+<%= form_for([@event, @event.questionables.build]) do |f| %>
+
+    <div class="field">
+      <%= f.hidden_field :event_id, :value => @event.id %>
+
+    </div>
+    <div class="field">
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    </div>
+    <div class="field">
+      <%= f.label :approved %>
+      <%= f.check_box :approved %>
+    </div>
+    <div class="field">
+      <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?" %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :up_votes %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :up_votes %>
+    </div>
+    <div id="stat_button">
+      <%= f.submit "Post it!", :'data-role' => "button", :'data-theme' => "a", :onclick => "create_quest();" %>
+    </div>
+<% end %>

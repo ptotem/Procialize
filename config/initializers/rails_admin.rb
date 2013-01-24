@@ -33,7 +33,7 @@ RailsAdmin.config do |config|
   # config.included_models = []
 
   config.authorize_with do
-    redirect_to root_path if (current_user.organizer.blank? and current_user.email != "arijit@ptotem.com")
+    #redirect_to root_path if (current_user.organizer.blank? and current_user.email != "arijit@ptotem.com")
   end
 
   config.included_models = ["Location", "EventDay", "Event", "Post", "Organizer", "User", "Message", "Meeting"]

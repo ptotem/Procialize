@@ -1,0 +1,2 @@
+module QuestionablesHelper
+end

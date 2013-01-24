@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :set_current_conference
 
+  #check_authorization
+
   def set_current_conference
     User.current = current_user
     if !current_user.blank?
@@ -27,5 +29,8 @@ class ApplicationController < ActionController::Base
 
   end
 
+  #rescue_from CanCan::AccessDenied do |exception|
+  #  redirect_to root_url, :alert => exception.message
+  #end
 
 end
