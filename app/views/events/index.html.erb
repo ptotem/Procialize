@@ -13,11 +13,11 @@
       </li>
   <% end %>
   <li data-role="list-divider"><%= @event2.first.event_day.name %></li>
-  <% @event2.each do |event_one| %>
+  <% @event2.each do |event_two| %>
       <li>
-        <%= link_to event_path(event_one) do %>
-            <h3><%= event_one.start %></h3>
-            <p><%= event_one.name %></p>
+        <%= link_to event_path(event_two) do %>
+            <h3><%= event_two.start %></h3>
+            <p><%= event_two.name %></p>
         <% end %>
       </li>
   <% end %>
