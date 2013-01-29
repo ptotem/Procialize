@@ -1,6 +1,10 @@
 ProcializeApp::Application.routes.draw do
 
 
+  get "ratings/index"
+
+  get "speaker/index"
+
   get "moderator/moderator_view"
 
   get "moderator_view/moderator"
@@ -36,15 +40,19 @@ ProcializeApp::Application.routes.draw do
   match 'users/:id/edit', :to => "users/profile#edit", :as => "edit"
   match 'users/:id/update', :to => "users/profile#update", :as => "update"
   match '/messages/:id', :to => "messages#show"
-  match '/create_questionables' ,:to => "questionables#create_question" ,:as => "create_question"
-  match '/question_view' ,:to => "questionables#question_view"
-  match '/hide_quest' ,:to => "questionables#hide_quest",:as => "hide_quest"
-  match '/approve_quest' ,:to => "questionables#approve_quest",:as => "approve_quest"
-  match '/questionables/index',:to => "questionables#index"
-  match '/unapproved_view',:to => "questionables#unapproved_view"
-  match '/print',:to => "questionables#print"
-  match '/graffiti' ,:to => "home#graffiti"
-
+  match '/create_questionables', :to => "questionables#create_question"
+  match '/question_view', :to => "questionables#question_view"
+  match '/hide_quest', :to => "questionables#hide_quest", :as => "hide_quest"
+  match '/approve_quest', :to => "questionables#approve_quest", :as => "approve_quest"
+  match '/questionables/index', :to => "questionables#index"
+  match '/unapproved_view', :to => "questionables#unapproved_view"
+  match '/print', :to => "questionables#print"
+  match '/graffiti', :to => "home#graffiti"
+  match '/speaker', :to => "speaker#index"
+  match '/ask_question', :to => "questionables#ask_question"
+  match '/ratings', :to => "ratings#index"
+  match '/user_event', :to => "ratings#user_event", :as => "user_event"
+  match '/rating_up', :to => "ratings#rating_up", :as => "rating_up"
 
   #put "messages/:id" => "messages#show"
 

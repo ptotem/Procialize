@@ -3,13 +3,10 @@
 <% end %>
 
 <%= content_for :page_menu do %>
-    <ul>
-      <li><a href="/meetings/new" data-ajax='false'>New</a></li>
-      <li><a href="/meetings" data-ajax='false'>Meetings</a></li>
-    </ul>
+
 <% end %>
 
-<div data-role="collapsible" data-theme="b" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
+<div data-role="collapsible" data-theme="a" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
   <h2>Scheduled Meetings</h2>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
     <li data-role="list-divider">Meetings Count<span class="ui-li-count"><%= @scheduled.size %></span></li>
@@ -24,7 +21,7 @@
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="b" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
+<div data-role="collapsible" data-theme="a" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
   <h2>Pending Invitations</h2>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
     <li data-role="list-divider">Pending Invitation Count<span class="ui-li-count"><%= @pending.size %></span></li>
@@ -39,7 +36,7 @@
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="b" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
+<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
   <h2>Pending Requests</h2>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
     <li data-role="list-divider">Pending Requests Count<span class="ui-li-count"><%= @open.size %></span></li>
@@ -54,7 +51,7 @@
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="b" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
+<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
   <h2>Declined Invitations</h2>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
     <li data-role="list-divider">Declined Invitation Count<span class="ui-li-count"><%= @declined.size %></span></li>
@@ -71,7 +68,14 @@
 </div>
 
 
-
+<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
+  <div data-role="navbar" data-theme='a'>
+    <ul>
+      <li><a href="/meetings/new" data-ajax='false'>New</a></li>
+      <li><a href="/meetings" data-ajax='false'>Meetings</a></li>
+    </ul>
+  </div>
+</div>
 
 
 

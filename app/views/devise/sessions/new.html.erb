@@ -1,17 +1,17 @@
 <h1 id="title_text_front_page">
-  <%= image_tag "logo.png", :style => "width:100px" %>
+  <%= image_tag "Procialize.jpg", :style => "width:150px;border:3px ridge #89602a;" %>
 </h1>
 
 <div class="container">
 
   <%= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-signin"} do |f| %>
       <%= link_to image_tag("log-in-linkedin-large.png", :style => "width:100%;"), user_omniauth_authorize_path(:linkedin), :'data-ajax'=>false %>
-      <hr>
+      <!--<hr>-->
       <h2 class="form-signin-heading">Sign in</h2>
       <%= f.email_field :email, :placeholder => "Enter email address" %>
       <%= f.password_field :password, :placeholder => "Enter password" %>
       <%= f.submit "Sign in", :'data-role'=>"button", :'data-theme'=>"a" %>
-      <%= link_to "Sign Up", new_user_registration_path, :'data-role'=>"button", :'data-theme'=>"a" %>
+      <%#= link_to "Sign Up", new_user_registration_path, :'data-role'=>"button", :'data-theme'=>"a" %>
   <% end %>
 
 

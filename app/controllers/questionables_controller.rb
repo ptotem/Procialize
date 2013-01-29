@@ -61,8 +61,10 @@ class QuestionablesController < ApplicationController
   def create_question
 
     @user=current_user
-    @event = Event.find(params[:event_id])
-    @questionable = @event.questionables.create(params[:questionable])
+    #@event = Event.find(params[:event_id])
+    @event=Questionable.create(:event_id => params[:questionable][:event_id],:quest_name => params[:questionable][:quest_name],:user_id => @user.id,:approved => false )
+   redirect_to :action => "ask_question"
+
 
   end
 
@@ -136,5 +138,21 @@ class QuestionablesController < ApplicationController
     @events=Questionable.all.map{|i| i.event_id}.uniq
 
     render :layout => false
+  end
+
+
+  def ask_question
+    @user=current_user
+    @events=Event.all
+
+
+    #redirect_to event_path(@event)
+    if( ! @event.nil? )
+      @event = Event.find(params[:event_id])
+    end
+
+    if (!@questionable.nil?)
+      @questionable = @event.questionables.create(params[:questionable])
+      end
   end
 end

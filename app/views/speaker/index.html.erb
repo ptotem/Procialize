@@ -1,0 +1,52 @@
+<style>
+
+    .fbinfo {
+        background: white;
+        color: #333333;
+        padding: 10px;
+        /*border-radius: 10px;*/
+
+    }
+
+    .text_style {
+        margin-top: 8%;
+    }
+
+</style>
+
+
+
+
+
+<div data-role="collapsible-set">
+  <% @speaker.each do |s| %>
+      <div data-role="collapsible">
+
+
+        <h3> <%= s.name %></h3>
+
+        <div class="fbinfo">
+          <table>
+            <tr>
+              <td style="vertical-align: top;"><%= image_tag s.avatar, :style => 'max-height:75px;max-width:75px;margin:10px;' %></td>
+              <td><div style="font-size: 0.8em;display: block;text-align: left;font-weight: normal"><%= raw s.speaker_details %></div></td>
+            </tr>
+          </table>
+        </div>
+
+
+      </div>
+  <% end %>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+

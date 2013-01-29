@@ -9,28 +9,28 @@
 
 <script type="text/javascript">
 
-    function create_quest() {
-
-
-        var data = {user_id:[], event_id:[],quest_name:[]}
-        data["user_id"].push('<%= current_user.id %>');
-        data["event_id"].push('<%= @event.id %>');
-        data["quest_name"].push($('#questionable_quest_name').val());
-
-        $.ajax({
-            url:"<%= questionable_path %>",
-            type:"post",
-            data:JSON.stringify(data),
-            contentType:"application/json",
-            success:function (data) {
-                alert(data);
-
-
-
-                $('[type="submit"]').button('disable');
-            }
-        });
-    }
+//    function create_quest() {
+//
+//
+//        var data = {user_id:[], event_id:[],quest_name:[]}
+//        data["user_id"].push('<%#= current_user.id %>');
+//        data["event_id"].push('<%#= @event.id %>');
+//        data["quest_name"].push($('#questionable_quest_name').val());
+//
+//        $.ajax({
+//            url:"<%#= questionable_path %>",
+//            type:"post",
+//            data:JSON.stringify(data),
+//            contentType:"application/json",
+//            success:function (data) {
+//                alert(data);
+//
+//
+//
+//                $('[type="submit"]').button('disable');
+//            }
+//        });
+//    }
 
 
 
@@ -84,11 +84,11 @@
 
     </div>
     <div class="field">
-      <%= f.label :approved %>
-      <%= f.check_box :approved %>
+      <%#= f.label :approved %>
+      <%= f.hidden_field :approved,:value => "false" %>
     </div>
     <div class="field">
-      <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?" %>
+      <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Post your question?" %>
     </div>
     <div class="field">
       <%= f.hidden_field :up_votes %>
@@ -97,6 +97,6 @@
       <%= f.hidden_field :up_votes %>
     </div>
     <div id="stat_button">
-      <%= f.submit "Post it!", :'data-role' => "button", :'data-theme' => "a", :onclick => "create_quest();" %>
+      <%= f.submit "Post it!", :'data-role' => "button", :'data-theme' => "a" %>
     </div>
 <% end %>

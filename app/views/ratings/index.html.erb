@@ -1,0 +1,43 @@
+<script type="text/javascript">
+
+
+
+
+    function rating(drop_down,eventid){
+        //alert(event_id);
+        var data = {user_id:[], event_id:[],rate:[]}
+        data["user_id"].push('<%= @user.id %>');
+        data["event_id"].push(eventid);
+        data["rate"].push(drop_down);
+        $.ajax({
+            url:"<%= user_event_path %>",
+            type:"post",
+            data:JSON.stringify(data),
+            contentType:"application/json",
+            success:function (data) {
+//                alert(data);
+
+            }
+        });
+
+    }
+</script>
+
+<div data-role="listview" id="list">
+  <% @events.each do |e| %>
+      <div>
+        <li id="<%= e %>">
+          <%= e.name %>
+          <select id="select_menu" onchange="rating($(this).val(),<%= e.id %>);">
+            <option value="1">Bad</option>
+            <option value="2">Average</option>
+            <option value="3">Good</option>
+            <option value="4">Very Good</option>
+            <option value="5">Excellent</option>
+          </select>
+        </li>
+      </div>
+  <% end %>
+</div>
+
+

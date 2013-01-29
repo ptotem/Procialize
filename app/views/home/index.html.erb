@@ -1,78 +1,316 @@
-<style type="text/css">
-    a, a:visited {
-        color: green;
-        text-decoration: none;
-    }
-</style>
-
-
-
-
-
-<div class="ui-grid-b" style="text-align:center">
+<div class="ui-grid-a">
   <div class="ui-block-a">
+    <div class="ui-bar ui-bar-e" style="height:150px;">
+
+      <a href="/speaker" class="image" rel="external">
+        <img src="/assets/speakers.png"  />
+      </a>
 
 
-    <a href="/events" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procevents3.png"><br>Events</a>
-
+    </div>
   </div>
   <div class="ui-block-b">
-
-
-    <a href="/meetings" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procmeetings.png"><br>Meetings</a>
-
-
+    <div class="ui-bar ui-bar-e" style="height:150px;">
+      <a href="/ask_question" class="image" rel="external">
+        <img src="/assets/questions.png"  />
+      </a>
+    </div>
   </div>
-  <div class="ui-block-c">
-
-
-    <a href="/messages" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procmessages.png"><br>Messages</a>
-
-  </div>
-
   <div class="ui-block-a">
-
-
-    <a href="/users/<%= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procview_profile.png"><br>View Profile</a>
-
-
+    <div class="ui-bar ui-bar-e" style="height:150px;">
+      <a href="/search/search" class="image" rel="external">
+        <img src="/assets/delegates.png"  />
+      </a>
+    </div>
   </div>
   <div class="ui-block-b">
-
-
-    <!--<a href="" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"><br>Downloads</a>-->
-    <a href="/assets/RBI.pdf" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"><br>Downloads</a>
-
-
+    <div class="ui-bar ui-bar-e" style="height:150px;">
+      <a href="/ratings" class="image" rel="external">
+        <img src="/assets/feedback.png"  />
+      </a>
+    </div>
   </div>
-  <div class="ui-block-c">
-
-
-    <a href="/graffiti" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procgraffiti.png"><br>Graffiti</a>
-
-  </div>
-
-  <div class="ui-block-a">
-
-
-    <a href="/search/search" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procfind_friends.png"><br>Find Friends</a>
-
-
-  </div>
-  <div class="ui-block-b">
-
-
-    <a href="/contacts/new" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/proccontact_us.png"><br>Contact us</a>
-
-
-  </div>
-  <div class="ui-block-c">
-
-
-    <a href="/invitees/new" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procinvite.png"><br>Invite People</a>
-  </div>
-
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<style type="text/css">-->
+<!--/*a, a:visited {*/-->
+<!--/*color: green;*/-->
+<!--/*text-decoration: none;*/-->
+<!--/*}*/-->
+<!--</style>-->
+
+
+
+
+
+<!--<div class="ui-grid-b" style="text-align:center">-->
+<!--<div class="ui-block-a">-->
+
+
+<!--<a href="/events" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procevents3.png"><br>Events</a>-->
+
+<!--</div>-->
+<!--<div class="ui-block-b">-->
+
+
+<!--<a href="/meetings" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procmeetings.png"><br>Meetings</a>-->
+
+
+<!--</div>-->
+<!--<div class="ui-block-c">-->
+
+
+<!--<a href="/messages" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procmessages.png"><br>Messages</a>-->
+
+<!--</div>-->
+
+<!--<div class="ui-block-a">-->
+
+
+<!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procview_profile.png"><br>View Profile</a>-->
+
+
+<!--</div>-->
+<!--<div class="ui-block-b">-->
+
+
+<!--<a href="" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"><br>Downloads</a>-->
+<!--<a href="/assets/RBI.pdf" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"><br>Downloads</a>-->
+
+
+<!--</div>-->
+<!--<div class="ui-block-c">-->
+
+
+<!--<a href="/graffiti" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procgraffiti.png"><br>Graffiti</a>-->
+
+<!--</div>-->
+
+<!--<div class="ui-block-a">-->
+
+
+<!--<a href="/search/search" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procfind_friends.png"><br>Find Friends</a>-->
+
+
+<!--</div>-->
+<!--<div class="ui-block-b">-->
+
+
+<!--<a href="/contacts/new" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/proccontact_us.png"><br>Contact us</a>-->
+
+
+<!--</div>-->
+<!--<div class="ui-block-c">-->
+
+
+<!--<a href="/invitees/new" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procinvite.png"><br>Invite People</a>-->
+<!--</div>-->
+
+<!--</div>-->
 
 
 

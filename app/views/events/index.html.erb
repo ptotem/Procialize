@@ -2,54 +2,24 @@
     <%= @conference.name %>
 <% end %>
 
-<div data-role="collapsible" data-inset="false" data-collapsed="true">
-  <h3>Day One</h3>
-
-
-  <ul data-role="listview">
-    <% @event1.each do |event_one| %>
-        <li>
-          <%= link_to event_path(event_one) do %>
-              <%= event_one.name %>
-              <p class="ui-li-aside">
-                <%= event_one.start %> at <%= event_one.locations.map{|l| l.name}.join(", ") %></p>
-          <% end %>
-        </li>
-    <% end %>
-  </ul>
-</div>
- <br>
-<div data-role="collapsible" data-inset="false" data-collapsed="true">
-  <h3>Day Two</h3>
-
-
-  <ul data-role="listview">
-    <% @event2.each do |event_two| %>
-        <li>
-          <%= link_to event_path(event_two) do %>
-              <%= event_two.name %>
-              <p class="ui-li-aside">
-                <%= event_two.start %> at <%= event_two.locations.map{|l| l.name}.join(", ")%></p>
-          <% end %>
-        </li>
-    <% end %>
-  </ul>
-</div>
+<ul data-role="listview">
+  <li data-role="list-divider"><%= @event1.first.event_day.name %></li>
+  <% @event1.each do |event_one| %>
+      <li>
+        <%= link_to event_path(event_one) do %>
+            <h3><%= event_one.start %></h3>
+            <p><%= event_one.name %></p>
+        <% end %>
+      </li>
+  <% end %>
+  <li data-role="list-divider"><%= @event2.first.event_day.name %></li>
+  <% @event2.each do |event_one| %>
+      <li>
+        <%= link_to event_path(event_one) do %>
+            <h3><%= event_one.start %></h3>
+            <p><%= event_one.name %></p>
+        <% end %>
+      </li>
+  <% end %>
+</ul>
 <br>
-<div data-role="collapsible" data-inset="false" data-collapsed="true">
-  <h3>Day Three</h3>
-
-
-  <ul data-role="listview">
-    <% @event3.each do |event_three| %>
-        <li>
-          <%= link_to event_path(event_three) do %>
-              <%= event_three.name %>
-              <p class="ui-li-aside">
-                <%= event_three.start %> at <%= event_three.locations.map{|l| l.name}.join(", ")%></p>
-          <% end %>
-        </li>
-    <% end %>
-  </ul>
-</div>
-

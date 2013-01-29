@@ -3,10 +3,7 @@
 <% end %>
 
 <%= content_for :page_menu do %>
-    <ul>
-      <li><a href="/messages/new" data-ajax='false'>New</a></li>
-      <li><a href="/messages" data-ajax='false'>Messages</a></li>
-    </ul>
+
 <% end %>
 
 <%= content_for :head do %>
@@ -62,3 +59,14 @@
       <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
     </div>
 <% end %>
+
+
+<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
+  <div data-role="navbar" data-theme='a'>
+
+    <ul>
+      <li><a href="/messages/new" data-ajax='false'>New</a></li>
+      <li><a href="/messages" data-ajax='false'>Messages</a></li>
+    </ul>
+  </div>
+</div>

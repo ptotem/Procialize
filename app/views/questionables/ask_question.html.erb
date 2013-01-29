@@ -1,0 +1,66 @@
+
+<script type="text/javascript">
+
+
+
+
+            $(function create_quest() {
+
+
+
+                $("#questionable_event_id").onChange(function() {
+                    var state = $('select#questionable_event_id :selected').val();
+
+
+                    var data = {event_id:[],quest_name:[]}
+                    data["event_id"].push( state);
+                    data["quest_name"].push($('#questionable_quest_name').val());
+
+                    $.ajax({
+                        url:"<%= create_question_path %>",
+                        type:"post",
+                        data:JSON.stringify(data),
+                        contentType:"application/json",
+                        success:function (data) {
+
+
+                        }
+                    });
+
+                });
+            })
+
+
+</script>
+
+<%= form_for :questionable, url: {action: :create_question} do |f| %>
+
+    <div class="field">
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    </div>
+
+
+
+    <div class="field">
+      <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?" %>
+    </div>
+
+    <div class="field">
+
+      <%= f.select :event_id, options_for_select(@events.collect{ |u| [u.name, u.id] }), :'data-mini' => true %>
+    </div>
+
+
+
+
+
+
+    <div data-role="controlgroup" data-type="horizontal" style="float: right;">
+      <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false",:onclick => "create_quest();" %>
+    </div>
+
+<% end %>
+
+
+
+

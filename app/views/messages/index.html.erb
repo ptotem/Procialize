@@ -3,14 +3,11 @@
 <% end %>
 
 <%= content_for :page_menu do %>
-    <ul>
-      <li><a href="/messages/new" data-ajax='false'>New</a></li>
-      <li><a href="/messages" data-ajax='false'>Messages</a></li>
-    </ul>
+
 <% end %>
 
 
-<div data-role="collapsible" data-theme="b" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
+<div data-role="collapsible" data-theme="a" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
   <h2>Unread Messages</h2>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
     <li data-role="list-divider">Unread Message Count<span class="ui-li-count"><%= @unread.size %></span></li>
@@ -25,7 +22,7 @@
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="b" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
+<div data-role="collapsible" data-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
   <h2>Read Messages</h2>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
     <li data-role="list-divider">Read Message Count<span class="ui-li-count"><%= @read.size %></span></li>
@@ -40,7 +37,7 @@
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="b" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
+<div data-role="collapsible" data-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
   <h2>Sent Messages</h2>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
     <li data-role="list-divider">Sent Message Count<span class="ui-li-count"><%= @sent.size %></span></li>
@@ -57,6 +54,15 @@
 </div>
 
 
+<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
+  <div data-role="navbar" data-theme='a'>
+
+    <ul>
+      <li><a href="/messages/new" data-ajax='false'>New</a></li>
+      <li><a href="/messages" data-ajax='false'>Messages</a></li>
+    </ul>
+  </div>
+</div>
 
 
 

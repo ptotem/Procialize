@@ -56,8 +56,8 @@
 <div data-role="page" id="home">
   <div data-role="header" data-fullscreen="true">
 
-    <!--<a href="#" data-rel="back" data-icon="arrow-l" data-prefetch data-theme='b'>Back</a>-->
-    <a href="#"  data-prefetch data-theme='b'><span style="color:#f5deb3;">Pro</span><span style="color:#f5f5f5;">cialize</span></a>
+
+    <a>Procialize</a>
     <h1><%= yield :page_title %></h1>
 
     <!--<a href="#search_menu" id="main_menu" data-icon="search" data-prefetch data-theme='b'>I am at </a>-->
@@ -71,6 +71,13 @@
 
     <div data-role="navbar">
       <%= yield :page_menu %>
+      <ul>
+        <li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>
+        <li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>
+        <li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>
+        <li><a href="/contacts/new" data-icon="home" data-theme='a' data-ajax=false>Contact us</a></li>
+
+      </ul>
     </div>
   </div>
   <div data-role="content" data-theme='a'>
@@ -85,13 +92,13 @@
   </div>
   <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
     <div data-role="navbar" data-theme='a'>
-      <ul>
+      <!--<ul>-->
         <!--<li><a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a></li>-->
         <!--<li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>-->
         <!--<li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>-->
         <!--<li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>-->
-        <li><a href="/" data-icon="home" data-theme='a' data-ajax=false>ADS</a></li>
-      </ul>
+        <!--<li><a href="/" data-icon="home" data-theme='a' data-ajax=false>ADS</a></li>-->
+      <!--</ul>-->
     </div>
   </div>
 </div>
