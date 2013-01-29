@@ -41,7 +41,7 @@ ProcializeApp::Application.routes.draw do
   match 'users/:id/update', :to => "users/profile#update", :as => "update"
   match '/messages/:id', :to => "messages#show"
   match '/create_questionables', :to => "questionables#create_question"
-  match '/question_view', :to => "questionables#question_view"
+  match '/question_view', :to => "questionables#question_view",:as => "create_question"
   match '/hide_quest', :to => "questionables#hide_quest", :as => "hide_quest"
   match '/approve_quest', :to => "questionables#approve_quest", :as => "approve_quest"
   match '/questionables/index', :to => "questionables#index"
