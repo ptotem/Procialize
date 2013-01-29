@@ -1,11 +1,9 @@
 <script type="text/javascript">
 
 
-
-
-    function rating(drop_down,eventid){
+    function rating(drop_down, eventid) {
         //alert(event_id);
-        var data = {user_id:[], event_id:[],rate:[]}
+        var data = {user_id:[], event_id:[], rate:[]}
         data["user_id"].push('<%= @user.id %>');
         data["event_id"].push(eventid);
         data["rate"].push(drop_down);
@@ -21,13 +19,38 @@
         });
 
     }
+
+
+    $("tr:odd").css("background-color", "#bbbbff");
 </script>
 
-<div data-role="listview" id="list">
+<!--<div data-role="listview" id="list">-->
+<!--<%# @events.each do |e| %>-->
+<!--<div>-->
+<!--<li id="<%#= e %>">-->
+<!--<%#= e.name %>-->
+<!--<select id="select_menu" onchange="rating($(this).val(),<%#= e.id %>);">-->
+<!--<option value="1">Bad</option>-->
+<!--<option value="2">Average</option>-->
+<!--<option value="3">Good</option>-->
+<!--<option value="4">Very Good</option>-->
+<!--<option value="5">Excellent</option>-->
+<!--</select>-->
+<!--</li>-->
+<!--</div>-->
+<!--<%# end %>-->
+<!--</div>-->
+
+
+<table>
   <% @events.each do |e| %>
-      <div>
-        <li id="<%= e %>">
+      <tr id="<%= e %>">
+
+        <td style="font-size: 0.75em;border-bottom: 1px solid gray;">
           <%= e.name %>
+        </td>
+
+        <td>
           <select id="select_menu" onchange="rating($(this).val(),<%= e.id %>);">
             <option value="1">Bad</option>
             <option value="2">Average</option>
@@ -35,9 +58,13 @@
             <option value="4">Very Good</option>
             <option value="5">Excellent</option>
           </select>
-        </li>
-      </div>
+        </td>
+      </tr>
   <% end %>
-</div>
+</table>
+
+
+
+
 
 
