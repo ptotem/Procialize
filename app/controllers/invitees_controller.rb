@@ -77,4 +77,21 @@ class InviteesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def send_mailers
+    @rejected = []
+    User.all.each do |user|
+      @invitee=Invitee.create!(:name=>user.name, :email=>user.email)
+      if @invitee.save
+        UserMailer.registration_confirmation(@invitee).deliver
+        @rejected<<"Ok"
+      else
+        @rejected<<user.email
+      end
+      render :text=> @rejected
+    end
+  end
+
+
 end
