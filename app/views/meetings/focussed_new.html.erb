@@ -59,9 +59,9 @@
     </div>
     <%= select_tag 'meeter_users[]', options_for_select(@user_list, @meeter), :multiple => true %>
 
-    <div class="field">
-      <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true %>
-    </div>
+    <!--<div class="field">-->
+      <!--<%#= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true %>-->
+    <!--</div>-->
 
     <div class="field">
       <%= f.select :event_day_id, options_for_select(@conference.event_days.map { |e| [e.name, e.id] }), :'data-mini' => true %>
@@ -88,10 +88,10 @@
 
 <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
   <div data-role="navbar" data-theme='a'>
-    <ul>
-      <li><a href="/meetings/new" data-ajax='false'>New</a></li>
-      <li><a href="/meetings" data-ajax='false'>Meetings</a></li>
-    </ul>
+    <!--<ul>-->
+      <!--<li><a href="/meetings/new" data-ajax='false'>New</a></li>-->
+      <!--<li><a href="/meetings" data-ajax='false'>Meetings</a></li>-->
+    <!--</ul>-->
   </div>
 </div>
 
