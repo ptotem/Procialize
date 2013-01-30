@@ -14,7 +14,7 @@ def new
   @users<<@followed
   @users<<(User.all - @followed)
   @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
-  @use=@users.flatten.select{|u| (u.name=="Administrator")}.map{|u| u.name }
+  @use=@users.flatten.select{|u| (u.email=="abhay_bhatia2013@pgp.isb.edu")}.map{|u| u.email }
 
 end
 
