@@ -89,8 +89,9 @@ class InviteesController < ApplicationController
       else
         @rejected<<user.email
       end
-      render :text=> @rejected
+
     end
+    render :text=> @rejected
   end
 
 
