@@ -6,20 +6,21 @@
   <li data-role="list-divider"><%= @event1.first.event_day.name %></li>
   <% @event1.each do |event_one| %>
       <li>
-        <%= link_to event_path(event_one) do %>
-            <h3><%= event_one.start %></h3>
-            <p><%= event_one.name %></p>
-        <% end %>
+        <a href="<%= event_path(event_one) %>" data-ajax=false>
+          <h3><%= event_one.start %></h3>
+          <p><%= event_one.name %></p>
+        </a>
       </li>
   <% end %>
   <li data-role="list-divider"><%= @event2.first.event_day.name %></li>
-  <% @event2.each do |event_two| %>
+  <% @event2.each do |event_one| %>
       <li>
-        <%= link_to event_path(event_two) do %>
-            <h3><%= event_two.start %></h3>
-            <p><%= event_two.name %></p>
-        <% end %>
+        <a href="<%= event_path(event_one) %>" data-ajax=false>
+          <h3><%= event_one.start %></h3>
+          <p><%= event_one.name %></p>
+        </a>
       </li>
+
   <% end %>
 </ul>
-<br>
+
