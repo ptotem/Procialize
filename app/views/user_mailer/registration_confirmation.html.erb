@@ -32,12 +32,18 @@
 
   <ol>
     <% @user=User.find_by_email(@invitee.email) %>
+    <% unless !@user.industry_recco.blank? %>
     <% @user.industry_recco.split(",").each do |r| %>
         <li> <%= r.titlecase %> who is also in <%= @user.industry %> </li>
     <% end %>
+    <% end %>
+
+    <% unless !@user.location_recco.blank? %>
     <% @user.location_recco.split(",").each do |r| %>
         <li> <%= r.titlecase %> who is also in <%= @user.location %> </li>
     <% end %>
+    <% end %>
+
 
   </ol>
 
