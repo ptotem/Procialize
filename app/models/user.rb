@@ -8,10 +8,13 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :provider, :uid, :name, :location, :industry, :picture, :token, :secret, :headline, :positions, :educations, :avatar, :batchie
+  attr_accessible :provider, :uid, :name, :location, :industry, :picture, :token, :secret, :headline, :positions, :educations,  :avatar, :batchie,:industry_recco ,:location_recco, :company
+  #attr_readonly  :positions, :educations
   serialize :positions
   serialize :educations
 
+
+  #attr accesable =>
   has_attached_file :avatar
 
   has_many :followers, :dependent => :destroy
@@ -24,10 +27,12 @@ class User < ActiveRecord::Base
   has_many :speakers, :dependent => :destroy
   has_one :organizer, :dependent => :destroy
   has_many :participants, :dependent => :destroy
-  has_many :statuses, :dependent => :destroy
+  #has_many :statuses, :dependent => :destroy
   has_many :receipients, :dependent => :destroy
   has_many :user_locations, :dependent => :destroy
   has_one  :rating,:dependent => :destroy
+
+  after_save :create_participant
 
 
   def self.find_for_linkedin_oauth(auth, signed_in_resource=nil)
@@ -71,5 +76,11 @@ class User < ActiveRecord::Base
   rails_admin do
     weight 1
     navigation_label 'User Management'
+  end
+
+
+
+  def create_participant
+    Participant.create!(:conference_id => 1, :user_id => self.id)
   end
 end

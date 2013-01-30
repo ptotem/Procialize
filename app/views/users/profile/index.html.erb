@@ -9,36 +9,29 @@
 
 <% end %>
 
-<% unless @photo.blank? %>
-    <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
-<% end %>
+<%# unless @photo.blank? %>
+    <%#= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+<%# end %>
 <h4 style="margin-top: 0px;"><%= @name.titlecase %>
   <br>
-  <small><%= @headline %></small>
+  <!--<small><%#= @headline %></small>-->
   <br>
-  <small><%= "#{@industry} background" unless @industry.blank? %> </small>
+  <small><%= @user.company %></small>
   <br>
+  <small><%= @user.industry %></small>
+  <br>
+  <small><%= @user.location %></small>
   <div class="ui-li-aside">
-    <a href="/assets/RBI.pdf" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
+    <a href=<%= @user.avatar.url %> data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
   </div>
+
 </h4>
 
 
 
-
-
-<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
-  <div data-role="navbar" data-theme='a'>
-    <ul>
-
-
-      <li><%= link_to "Request Meeting", focussed_meeting_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
-      <li><%= link_to "Send Message", focussed_message_path(@user), :'data-role' => "button", :'data-theme' => "a" %></li>
-
-
-    </ul>
-  </div>
-</div>
+<% if @user==current_user %>
+    <%= link_to "Edit Profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false,:'data-inline' => true %>
+<% end %>
 
 
 

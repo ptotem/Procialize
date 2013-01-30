@@ -9,9 +9,12 @@
       </p>
 
       <p>
-        <%= f.label :headline %>
-        <%= f.text_area :headline %>
+        <%= f.label :company %>
+        <%= f.text_area :company %>
       </p>
+
+
+
 
       <p>
         <%= f.label :industry %>
@@ -147,18 +150,12 @@
                                                    ], :selected => @user.industry), :'data-mini' => true %>
 
 
+      <p>
+        <%= f.label :location %>
+        <%= f.text_area :location %>
       </p>
 
-      <p>
-        <%= f.label :class_of %>
-        <%= f.select :batchie, options_for_select(@batchlist, :selected => @user.batchie), :'data-mini' => true %>
-
-
-      </p>
-
-
-      <p>
-        <%= f.submit "Save" %>
+      <%= f.submit "Save" %>
       </p>
   <% end %>
 </div>

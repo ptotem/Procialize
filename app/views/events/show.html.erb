@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-    <%= @event.event_day.name.titlecase %> Event
+    <%= @event.event_day.name.titleize %> Event
 <% end %>
 
 <table>
@@ -14,11 +14,12 @@
 </table>
 
 <br>
+<% unless @event.name=="Coffee / Tea Break" or @event.name=="Lunch" or @event.name=="Registration" or @event.name=="Gala Dinner" %>
 <div class="fbinfo">
   <p><%= raw @event.description %></p>
 </div>
 <br>
 <br>
-<% if @event.quest==true %>
+
     <%= render "questionables/form" %>
 <% end %>

@@ -14,11 +14,15 @@ class EventsController < ApplicationController
   end
 
   def index
+    #render :text => @conference.participants.map { |participant| participant.user }
+    #return
+    #@conference= current_user.participants.map { |p| p.conference }[1]
+    #return
     @event_days = @conference.event_days
     @ev1=@event_days.find_by_name_and_sequence("Day One",1).id
-    @event1=Event.find_all_by_event_day_id(@ev1)
+    @event1=Event.group(:start).find_all_by_event_day_id(@ev1)
     @ev2=@event_days.find_by_name_and_sequence("Day Two",2).id
-    @event2=Event.find_all_by_event_day_id(@ev2)
+    @event2=Event.group(:start).find_all_by_event_day_id(@ev2)
 
     @locations = @conference.locations
     @events = @event_days.map { |ed| ed.events }.flatten

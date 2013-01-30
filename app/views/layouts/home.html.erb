@@ -58,13 +58,14 @@
   <div data-role="header" data-fullscreen="true">
 
 
-    <a>Procialize</a>
+    <a href="/" data-icon="grid" data-theme='a' data-ajax=false>Procialize</a>
 
     <h1><%= yield :page_title %></h1>
 
     <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
-      <a href="/contacts/new" data-role="button" data-icon="gear" data-prefetch data-theme='b' data-iconpos="notext"></a>
-      <a href="#search_menu" data-role="button" data-icon="search" data-prefetch data-theme='b' data-iconpos="notext"></a>
+
+      <a href="/users/<%= @user.id %>/profile" data-role="button" data-icon="search" data-prefetch data-theme='b' data-iconpos="notext"></a>
+      <!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false data-icon="search"></a>-->
 
       <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :'data-prefetch data-theme' => 'b', :'data-icon' => "delete", :'data-role' => "button", :'data-iconpos' => "notext" %>
 
@@ -97,13 +98,14 @@
   </div>
   <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
     <div data-role="navbar" data-theme='a'>
-      <!--<ul>-->
-      <!--<li><a href="/" data-icon="home" data-theme='a' data-ajax=false>ADS</a></li>-->
+      <ul>
+      <li><a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false>Contact Administrator</a></li>
       <!--<li><a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a></li>-->
       <!--<li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>-->
       <!--<li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>-->
       <!--<li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>-->
-      <!--</ul>-->
+      </ul>
+
     </div>
   </div>
 </div>
@@ -117,7 +119,7 @@
   </div>
 
   <div class="field">
-    <%= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :onchange => "location_update($(this));" %>
+    <%#= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :onchange => "location_update($(this));" %>
   </div>
   <% if !@last_seen.blank? %>
       <!--<h3>Your are currently at-->
@@ -151,6 +153,14 @@
 
 
 
+<!--<ul>-->
+  <!--<%# if @user==current_user %>-->
+      <!--<li><%#= link_to "Edit Profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false %></li>-->
+
+  <!--<%# else %>-->
+      <!--<a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false>Contact Administrator</a>-->
+  <!--<%# end %>-->
+<!--</ul>-->
 
 
 
