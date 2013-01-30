@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :user_locations, :dependent => :destroy
   has_one  :rating,:dependent => :destroy
 
-  after_save :create_participant
+  after_create :create_participant
 
 
   def self.find_for_linkedin_oauth(auth, signed_in_resource=nil)

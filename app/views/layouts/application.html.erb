@@ -66,7 +66,7 @@
       <a href="/users/<%= current_user.id %>/profile" data-role="button" data-icon="search" data-prefetch data-theme='b' data-iconpos="notext"></a>
       <!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false data-icon="search"></a>-->
 
-      <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :'data-prefetch data-theme' => 'b', :'data-icon' => "delete", :'data-role' => "button", :'data-iconpos' => "notext" %>
+      <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false,  :'data-icon' => "delete", :'data-role' => "button", :'data-iconpos' => "notext" %>
 
     </div>
 
