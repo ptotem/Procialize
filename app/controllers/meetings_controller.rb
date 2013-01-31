@@ -117,11 +117,11 @@ class MeetingsController < ApplicationController
   def destroy
     @meeting = Meeting.find(params[:id])
     @meeting.destroy
-
-    respond_to do |format|
-      format.html { redirect_to meetings_url }
-      format.json { head :no_content }
-    end
+    redirect_to meetings_path
+    #respond_to do |format|
+    #  format.html { redirect_to meetings_url }
+    #  format.json { head :no_content }
+    #end
   end
 
   def accept

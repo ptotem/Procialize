@@ -51,7 +51,7 @@
 <% end %>
 
 
-<%= form_for :meeting, url: {action: :create} do |f| %>
+<%= form_for :meeting, url: {action: :create},:html => {:class => "meeting", :'data-ajax'=>"false"} do |f| %>
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <div class="field">
@@ -78,7 +78,7 @@
     </div>
 
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
-      <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
+      <%= f.submit "Send", :'data-role' => "button"%>
     </div>
 
 <% end %>

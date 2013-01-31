@@ -30,11 +30,7 @@
       <td class="normtd"><%= EventDay.find(@meeting.event_day_id).name %></td>
     </tr>
 
-    <tr>
-      <td class="headtd">Location</td>
-      <td class="normtd"><%= Location.find(@meeting.location).name %></td>
-    </tr>
-  </table>
+   </table>
 </h3>
 
 <% unless @meeting.name.blank? %>
