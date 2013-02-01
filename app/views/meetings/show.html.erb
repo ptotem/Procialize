@@ -25,10 +25,10 @@
       <td class="normtd">at <%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
     </tr>
 
-    <tr>
-      <td class="headtd">Event day</td>
-      <td class="normtd"><%= EventDay.find(@meeting.event_day_id).name %></td>
-    </tr>
+    <!--<tr>-->
+      <!--&lt;!&ndash;<td class="headtd">Event day</td>&ndash;&gt;-->
+      <!--<td class="normtd"><%#= EventDay.find(@meeting.event_day_id).name %></td>-->
+    <!--</tr>-->
 
    </table>
 </h3>

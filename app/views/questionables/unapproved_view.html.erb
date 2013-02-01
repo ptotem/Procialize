@@ -69,7 +69,7 @@
 
 
 
-<%= @events.each do |e| %>
+<% @events.each do |e| %>
     <% @event_name =Event.find(e).name %>
     <h1>  <%= @event_name %>  </h1>
     <%# @questionable = Questionable.find_all_by_event_id(e) %>
