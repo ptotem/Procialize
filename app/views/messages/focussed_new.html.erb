@@ -19,7 +19,7 @@
     </script>
 <% end %>
   <%#= @user_list%>
-<%= form_for :message, url: {action: :create} do |f| %>
+<%= form_for :message, url: {action: :create},:html => {:class => "meeting", :'data-ajax'=>"false"} do |f| %>
 
     <%= f.hidden_field :conference_id, :value => Conference.last.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -32,10 +32,10 @@
       <!--<%#= f.text_field :name, :value => (@last_message.name unless @last_message.nil?), :'data-mini' => true, :placeholder => "Add a Quick Note" %>-->
     <!--</div>-->
     <div class="field">
-      <%= f.text_area :body, :rows => '5', :placeholder => "Add more details, if you want to" %>
+      <%= f.text_area :body, :rows => '5', :placeholder => "Type in your message" %>
     </div>
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
-      <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
+      <%= f.submit "Send", :'data-role' => "button"%>
     </div>
 <% end %>
 

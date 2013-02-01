@@ -51,22 +51,6 @@
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
-  <h2>Declined Invitations</h2>
-  <ul data-role="listview" data-theme="a" data-divider-theme="d">
-    <li data-role="list-divider">Declined Invitation Count<span class="ui-li-count"><%= @declined.size %></span></li>
-    <% @declined.each do |meeting| %>
-        <li>
-          <a href="<%= meeting_path(meeting) %>" data-ajax="false">
-            <h3><%= meeting.user.name %></h3>
-            <p><%= meeting.name %></p>
-            <p class="ui-li-aside"><strong><%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %></strong></p>
-          </a>
-        </li>
-    <% end %>
-  </ul>
-</div>
-
 
 <!--<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">-->
   <!--<div data-role="navbar" data-theme='a'>-->

@@ -18,10 +18,6 @@
       <td class="normtd"><%= @message.receipients.map { |r| r.user.name.titlecase }.join(", ") %></td>
     </tr>
     <tr>
-      <td class="headtd">Quick Note:</td>
-      <td class="normtd"><%= @message.name %></td>
-    </tr>
-    <tr>
       <td class="headtd">Sent at:</td>
       <td class="normtd"><%= @message.created_at %> hrs on <%= @message.created_at.strftime("%m/%d/%Y") %></td>
     </tr>
@@ -35,8 +31,8 @@
 
 <div data-role="navbar">
   <ul>
-    <li><%= link_to "Reply", focussed_message_path(@message.user, @message) %></li>
-    <li><%= link_to "Reply All", focussed_message_path(@message.user, @message, "all") %></li>
+    <li><a href="<%= focussed_message_path(@message.user, @message) %>" data-ajax=false>Reply</a></li>
+    <li><a href="<%= focussed_message_path(@message.user, @message, "all")%>" data-ajax=false>Reply All</a></li>
   </ul>
 </div>
 

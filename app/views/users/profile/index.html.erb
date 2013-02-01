@@ -22,8 +22,11 @@
   <br>
   <small><%= @user.location %></small>
   <div class="ui-li-aside">
-    <a href=<%= @user.avatar.url %> data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
-  </div>
+        <%#@link=@user.avatar.url unless @user.avatar.url=='/avatars/original/missing.png'%>
+        <%if @user.avatar.url!='/avatars/original/missing.png'%>
+	<a href="<%=@user.avatar.url%>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
+	<%end%>  
+</div>
 
 </h4>
 
@@ -31,6 +34,7 @@
 
 <% if @user==current_user %>
     <%= link_to "Edit Profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false,:'data-inline' => true %>
+    
 <% end %>
 
 

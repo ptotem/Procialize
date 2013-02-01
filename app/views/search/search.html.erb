@@ -1,6 +1,6 @@
 
 <%= content_for :page_title do %>
-    Find Friends
+    Find Delegates 
 <% end %>
 
   <script type="text/javascript">
@@ -26,7 +26,7 @@
   <ul data-role="listview"   data-theme='a' data-filter-placeholder="Search by industry, name or class" data-split-icon='star' data-filter="true" data-divider-theme="d" data-role="list-divider" data-split-theme="c">
 
     <% @conference.participants.map { |participant| participant.user }.sort_by { |u| u[:name] }.each do |user| %>
-        <% unless (user==current_user or !user.organizer.blank? or user.name=="Administrator") %>
+        <% unless (!user.organizer.blank? or user.name=="Administrator") %>
             <% if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>
                 <li data-theme='a' data-filtertext=" <%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>" >
                   <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a'>
