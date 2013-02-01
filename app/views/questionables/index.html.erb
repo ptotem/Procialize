@@ -67,29 +67,24 @@
 </script>
 
 
+<% if params[:id].blank? %>
+<a href="/print" data-role="button" target="_blank" data-mini="true">Print all</a>
+ <% end %>
 
-<a href="/print" data-role="button" target="_blank" data-mini="true">Print</a>
 <% @events.each do |e| %>
     <% @event_name =Event.find(e).name %>
-    <h3>  <%= @event_name %>  </h3>
-    <%# @questionable = Questionable.find_all_by_event_id(e) %>
-    <%# @questionable1 = Questionable.find_all_by_event_id_and_hide(e,nil) %>
+
+    <h3>  <%= @event_name %> <a href="/print/<%= e %>" data-role="button" target="_blank" data-mini="true">Print</a> </h3>
     <% @questionable = Questionable.find_all_by_event_id_and_approved(e,true) %>
-    <%# @questionable3 = Questionable.find_all_by_event_id(e) %>
-
-    <%# @questionable = (@questionable2&@questionable1).uniq %>
-
     <% @questionable.each do |q| %>
         <div class="fbinfo" id="question_div_<%= q.id %>">
           <table>
             <tr>
-
               <td><%= User.find(q.user_id).name.titleize %></td>
               <td>asked</td>
               <td><h3> <%= q.quest_name.titleize %></h3></td>
 
 
-              <%# hidden_field_tag q.id %>
 
 
 

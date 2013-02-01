@@ -109,21 +109,22 @@
   <div data-role="header" data-fullscreen="true">
     <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
 
-    <h1>Select Location</h1>
-  </div>
+    <!--<h1>Select Location</h1>-->
+  <!--</div>-->
 
-  <div class="field">
-    <%= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :onchange => "location_update($(this));" %>
-  </div>
-  <% if !@last_seen.blank? %>
+  <!--<div class="field">-->
+    <!--<%#= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :onchange => "location_update($(this));" %>-->
+  <!--</div>-->
+  <%# if !@last_seen.blank? %>
       <!--<h3>Your are currently at-->
-      <br>
+      <!--<br>-->
 
-      <div id="location12">
-        <b>
-          <% @last_seen.name %></b>
+      <!--<div id="location12">-->
+        <!--<b>-->
+          <%# @last_seen.name %>
+  <!--</b>-->
       </div>
-  <% end %>
+  <%# end %>
   <!--</h3>-->
 
 </div>

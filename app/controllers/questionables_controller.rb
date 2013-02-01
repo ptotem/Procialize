@@ -4,12 +4,17 @@ class QuestionablesController < ApplicationController
   #load_and_authorize_resource
 
 
-
-
   def index
 
     @user=current_user
-    @events=Questionable.all.map{|i| i.event_id}.uniq
+    if params[:id].blank?
+      @events=Questionable.all.map { |i| i.event_id }.uniq
+    else
+      @event=Event.find(params[:id]).id
+      @events=Array.new
+      @events<<@event
+    end
+
     #@questionables = Questionable.where(:approved => true).all
 
 
@@ -62,8 +67,8 @@ class QuestionablesController < ApplicationController
 
     @user=current_user
     #@event = Event.find(params[:event_id])
-    @event=Questionable.create(:event_id => params[:questionable][:event_id],:quest_name => params[:questionable][:quest_name],:user_id => @user.id,:approved => false )
-   redirect_to :action => "ask_question"
+    @event=Questionable.create(:event_id => params[:questionable][:event_id], :quest_name => params[:questionable][:quest_name], :user_id => @user.id, :approved => false)
+    redirect_to :action => "ask_question"
 
 
   end
@@ -101,20 +106,20 @@ class QuestionablesController < ApplicationController
     #end
   end
 
-    def question_view
-      @event=Event.find(44)
-      @events=Questionable.all.map{|i| i.event_id}.uniq
-    end
+  def question_view
+    @event=Event.find(44)
+    @events=Questionable.all.map { |i| i.event_id }.uniq
+  end
 
 
-   def hide_quest
+  def hide_quest
 
-     @questionable=Questionable.find(params[:question_id][0])
-     @questionable.hide=true
-     @questionable.save
-     render :text => @questionable.id
-     return
-   end
+    @questionable=Questionable.find(params[:question_id][0])
+    @questionable.hide=true
+    @questionable.save
+    render :text => @questionable.id
+    return
+  end
 
 
   def approve_quest
@@ -129,13 +134,19 @@ class QuestionablesController < ApplicationController
 
 
   def unapproved_view
-    @events=Questionable.all.map{|i| i.event_id}.uniq
+    @events=Questionable.all.map { |i| i.event_id }.uniq
     @unapproved = Questionable.where(:hide => true).all
   end
 
   def print
     @user=current_user
-    @events=Questionable.all.map{|i| i.event_id}.uniq
+    if params[:id].blank?
+      @events=Questionable.all.map { |i| i.event_id }.uniq
+    else
+      @event=Event.find(params[:id])
+      @events=Array.new
+      @events<<@event
+    end
 
     render :layout => false
   end
@@ -147,12 +158,12 @@ class QuestionablesController < ApplicationController
 
 
     #redirect_to event_path(@event)
-    if( ! @event.nil? )
+    if (!@event.nil?)
       @event = Event.find(params[:event_id])
     end
 
     if (!@questionable.nil?)
       @questionable = @event.questionables.create(params[:questionable])
-      end
+    end
   end
 end
