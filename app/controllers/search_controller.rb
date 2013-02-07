@@ -1,6 +1,10 @@
 class SearchController < ApplicationController
+  skip_before_filter :authenticate_user! ,:set_current_conference,:only => :search_delegates
+
   def index
   end
+
+
 
   def search
     #@user=User.find(params[:id])
@@ -27,5 +31,12 @@ class SearchController < ApplicationController
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?
       @created=UserLocation.find_all_by_user_id(@user.id).last
     end
+  end
+
+
+
+  def search_delegates
+   @users=User.all - User.find_all_by_email("organizer@procialize.com")
+    render :layout => "search_delegates"
   end
 end

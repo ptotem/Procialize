@@ -55,6 +55,7 @@ ProcializeApp::Application.routes.draw do
   match '/user_event', :to => "ratings#user_event", :as => "user_event"
   match '/rating_up', :to => "ratings#rating_up", :as => "rating_up"
   match "/send_mailers", :to=> "invitees#send_mailers"
+  match "/search_delegates", :to => "search#search_delegates"
 
   #put "messages/:id" => "messages#show"
 

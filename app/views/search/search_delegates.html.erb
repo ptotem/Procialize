@@ -1,0 +1,124 @@
+
+<%= content_for :page_title do %>
+    Find Delegates
+<% end %>
+
+<script type="text/javascript">
+
+
+
+
+
+
+     $(function(){
+
+
+       $('.showme').hide();
+        $('[type="submit"]').button('disable');
+         $(function () {
+             $('[type="submit"]').button('disable');
+             $('.ui-input-search input.ui-input-text ').focus (function () {
+                 if ($('.ui-input-search input.ui-input-text ').length > 0) {
+                     $('[type="submit"]').button('enable');
+                     $('#searching').click(function(){
+
+                         $('.showme').show();
+                     });
+
+                     $('.showme').hide();
+
+                 }
+
+                 else {
+
+                     $('[type="submit"]').button('disable');
+
+                     $('.showme').hide();
+
+                 }
+             });
+
+         });
+
+             $('.ui-input-search input.ui-input-text').blur(function () {
+                 if ($(this).val().length <= 0)  {
+                     $('.showme').hide();
+                     $('[type="submit"]').button('disable');
+
+                 }
+
+                 else{
+                     $('[type="submit"]').button('enable');
+                     $('#searching').click(function(){
+                         $('.showme').show();
+                     })
+                 }
+
+                 $('.showme').hide();
+             });
+
+     }) ;
+
+
+</script>
+
+
+
+<div data-role="controlgroup" data-type="horizontal">
+  <input type="submit" value="Search Delegates" id="searching"  />
+
+</div>
+<br><br>
+<ul data-role="listview"   data-theme='a' data-filter-placeholder="Search by industry, name or location" data-split-icon='star' data-filter="true" data-divider-theme="d" data-role="list-divider" data-split-theme="c" id="search_delegates">
+   <br>
+
+  <br>
+<% @users.each do |users| %>
+
+
+
+  <li data-theme='a' data-filtertext=" <%= users.name %> <%= users.location %> <%= users.industry %>" >
+
+      <table>
+        <!--<thead class="showme">-->
+            <!--<tr>-->
+              <!--<td>-->
+                <!--Name-->
+              <!--</td>-->
+              <!--<td>-->
+                <!--Location-->
+              <!--</td>-->
+              <!--<td>-->
+                <!--Industry-->
+              <!--</td>-->
+            <!--</tr>-->
+        <!--</thead>-->
+        <tr>
+          <td>
+            <%= users.name.titlecase %>
+          </td>
+
+          <td class="showme" style="position: absolute;margin-left: 50px;">
+            <%= users.location.titlecase %>
+          </td>
+          <td class="showme" style="position: absolute;margin-left: 400px;">
+            <%= users.industry.titlecase %>
+          </td>
+
+          <td class="showme" style="position: absolute;margin-left: 700px;">
+            <%if users.avatar.url!='/avatars/original/missing.png'%>
+                <a href="<%= users.avatar.url%>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
+            <%end%>
+          </td>
+
+        </tr>
+
+      </table>
+
+
+
+
+  </li>
+  <% end %>
+
+</ul>
