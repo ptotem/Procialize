@@ -80,35 +80,37 @@
   <li data-theme='a' data-filtertext=" <%= users.name %> <%= users.location %> <%= users.industry %>" >
 
       <table>
-        <!--<thead class="showme">-->
-            <!--<tr>-->
-              <!--<td>-->
-                <!--Name-->
-              <!--</td>-->
-              <!--<td>-->
-                <!--Location-->
-              <!--</td>-->
-              <!--<td>-->
-                <!--Industry-->
-              <!--</td>-->
-            <!--</tr>-->
-        <!--</thead>-->
+
         <tr>
           <td>
             <%= users.name.titlecase %>
           </td>
-
-          <td class="showme" style="position: absolute;margin-left: 50px;">
-            <%= users.location.titlecase %>
+       </table>
+        <table>
+          <tr>
+          <td class="showme">
+            <% unless users.location.blank? %>
+           <span>Location:  <%= users.location.titlecase %></span>
+                <% end %>
           </td>
-          <td class="showme" style="position: absolute;margin-left: 400px;">
-            <%= users.industry.titlecase %>
+          </tr>
+        </table>
+        <table>
+          <tr>
+          <td class="showme">
+             <% unless users.industry.blank? %>
+            <span>Industry: <%= users.industry.titlecase %></span>
+                <% end %>
           </td>
+          </tr>
+        </table>
+           <table>
+             <tr>
+          <td class="showme">
 
-          <td class="showme" style="position: absolute;margin-left: 700px;">
             <%if users.avatar.url!='/avatars/original/missing.png'%>
-                <a href="<%= users.avatar.url%>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
-            <%end%>
+              <span>PDF:    <a href="<%= users.avatar.url%>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a></span>
+          <%end%>
           </td>
 
         </tr>
