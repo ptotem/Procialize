@@ -9,6 +9,7 @@ class RatingsController < ApplicationController
 
   def user_event
     #@rating=Rating.create(:user_id => params[:rating][:user_id], :eveent_id => params[:rating][:event_id])
+
     @rating=Rating.create(:user_id => params[:user_id][0], :event_id => params[:event_id][0],:rate => params[:rate][0])
     #@rating.save
     render :text => @rating.save
