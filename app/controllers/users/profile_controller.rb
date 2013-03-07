@@ -18,34 +18,29 @@ class Users::ProfileController < ApplicationController
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user }.map { |f| f.user }
     @posts=@user.posts.last(10).reverse
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?
-    @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
+      @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
     end
     #if !UserLocation.find_all_by_user_id(@user.id).last.blank?
     #@created=UserLocation.find_all_by_user_id(@user.id).last
     #end
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?
-    @created_at=UserLocation.find_all_by_user_id_and_location_id(@user.id,@last_seen.id).last
+      @created_at=UserLocation.find_all_by_user_id_and_location_id(@user.id, @last_seen.id).last
     end
     @post=Post.find_all_by_user_id(@user.id).last
 
 
-  if @user!=current_user
-    if !@user.viewers_name.blank?
-    @viewers_name=@user.viewers_name
-    @person_name=@viewers_name.split('|').last
-    @person=@person_name.split(':').first.to_i + 1
-
-
-    @viewing=@person.to_s+':'+current_user.name
-
-    @user.viewers_name=@viewers_name +'|'+@viewing
-    else
-      @user.viewers_name="1:#{current_user.name}"
+    if @user!=current_user
+      if !@user.viewers_name.blank?
+        @viewers_name=@user.viewers_name
+        @person_name=@viewers_name.split('|').last
+        @person=@person_name.split(':').first.to_i + 1
+        @viewing=@person.to_s+':'+current_user.name
+        @user.viewers_name=@viewers_name +'|'+@viewing
+      else
+        @user.viewers_name="1:#{current_user.name}"
+      end
+      @user.save
     end
-    @user.save
-    end
-
-
   end
 
   def following
@@ -79,9 +74,6 @@ class Users::ProfileController < ApplicationController
       render 'edit'
     end
   end
-
-
-
 
 
 end
