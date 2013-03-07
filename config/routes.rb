@@ -56,6 +56,8 @@ ProcializeApp::Application.routes.draw do
   match '/rating_up', :to => "ratings#rating_up", :as => "rating_up"
   match "/send_mailers", :to=> "invitees#send_mailers"
   match "/search_delegates", :to => "search#search_delegates"
+  #match "/no_of_views" ,:to => "users/profile#no_of_views" ,:as => "views"
+
 
   #put "messages/:id" => "messages#show"
 
@@ -108,8 +110,9 @@ ProcializeApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
 
+  root :to => 'home#index'
+  #root :to => "cms_content#render_html"
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

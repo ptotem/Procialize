@@ -3,6 +3,10 @@
 <% end %>
 <%= content_for :head do %>
 
+
+
+
+
 <% end %>
 
 <%= content_for :page_menu do %>
@@ -14,7 +18,7 @@
 <%# end %>
 <h4 style="margin-top: 0px;"><%= @name.titlecase %>
   <br>
-  <!--<small><%#= @headline %></small>-->
+  <!--<small><%#= current_user.name %></small>-->
   <br>
   <small><%= @user.company %></small>
   <br>
@@ -25,7 +29,7 @@
         <%#@link=@user.avatar.url unless @user.avatar.url=='/avatars/original/missing.png'%>
         <%if @user.avatar.url!='/avatars/original/missing.png'%>
 	<a href="<%=@user.avatar.url%>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
-	<%end%>  
+	<%end%>
 </div>
 
 </h4>
@@ -34,7 +38,7 @@
 
 <% if @user==current_user %>
     <%= link_to "Edit Profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false,:'data-inline' => true %>
-    
+
 <% end %>
 
 

@@ -7,7 +7,9 @@ gem 'authlogic'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'jquery-rails'
+#gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.1.4'
+ #gem 'jquery-rails' ,'>= 2.2.0'
 gem "mail"
 
 gem 'rails_admin'
@@ -29,6 +31,7 @@ gem 'linkedin'
 
 gem 'awesome_nested_fields'
 gem "combined_time_select"
+gem 'comfortable_mexican_sofa' #, :path => '/home/neel/Downloads/comfortable-mexican-sofa-1.7'
 
 
 

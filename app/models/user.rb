@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :provider, :uid, :name, :location, :industry, :picture, :token, :secret, :headline, :positions, :educations,  :avatar, :batchie,:industry_recco ,:location_recco, :company
+  attr_accessible :provider, :uid, :name, :location, :industry, :picture, :token, :secret, :headline, :positions, :educations,  :avatar, :batchie,:industry_recco ,:location_recco, :company,:no_of_views
   #attr_readonly  :positions, :educations
   serialize :positions
   serialize :educations
