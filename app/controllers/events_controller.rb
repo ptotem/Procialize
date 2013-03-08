@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  require "faker"
   def edit
   end
 

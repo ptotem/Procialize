@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!(:name=>"Administrator",:email => 'organizer@procialize.com', :password => 'secret', :password_confirmation => 'secret')
+#User.create!(:name=>"Administrator",:email => 'organizer@procialize.com', :password => 'secret', :password_confirmation => 'secret')
 
-Conference.create!(:name => 'Solstice 2012', :description => 'Solstice, an annual celebration of ISB\'s alumni community, brings together alumni from across the country to take a trip down memory lane, reconnect with their alma mater and relive their fondest memories. The students, faculty and staff at ISB unite to extend a warm welcome to all our alums and provide them with the opportunity to create new and long-lasting bonds with the current class. The three day event is jam packed with exciting events that range from networking and knowledge sharing opportunities to fun, games and entertainment. Solstice provides a platform for the alumni to meet some of the fellow influential people in the corporate world, engage with renowned personalities, and create new bridges between their past lives at ISB and the new road that lies ahead.<br/><br/>Solstice 2012 promises to be bigger and grander than ever before and provide our alums with an experience they would never forget. It marks the homecoming of alumni from the Co 2003 and Co 2008. With the inauguration of the Mohali campus this year we envisage a good turnout of students and alumni as the ISB family comes together to celebrate.<br/><br/>An event of this magnitude would be incomplete without the involvement and presence of the illustrious ISB Alumni Community, Faculty and Staff. We invite you to be an integral part of this momentous occasion where the Class of 2013, will leave no stone unturned to make this event a remarkable experience for each and every one involved.', :starting => '2012-12-21', :ending => '2012-12-23')
-
+#Conference.create!(:name => 'Solstice 2012', :description => 'Solstice, an annual celebration of ISB\'s alumni community, brings together alumni from across the country to take a trip down memory lane, reconnect with their alma mater and relive their fondest memories. The students, faculty and staff at ISB unite to extend a warm welcome to all our alums and provide them with the opportunity to create new and long-lasting bonds with the current class. The three day event is jam packed with exciting events that range from networking and knowledge sharing opportunities to fun, games and entertainment. Solstice provides a platform for the alumni to meet some of the fellow influential people in the corporate world, engage with renowned personalities, and create new bridges between their past lives at ISB and the new road that lies ahead.<br/><br/>Solstice 2012 promises to be bigger and grander than ever before and provide our alums with an experience they would never forget. It marks the homecoming of alumni from the Co 2003 and Co 2008. With the inauguration of the Mohali campus this year we envisage a good turnout of students and alumni as the ISB family comes together to celebrate.<br/><br/>An event of this magnitude would be incomplete without the involvement and presence of the illustrious ISB Alumni Community, Faculty and Staff. We invite you to be an integral part of this momentous occasion where the Class of 2013, will leave no stone unturned to make this event a remarkable experience for each and every one involved.', :starting => '2012-12-21', :ending => '2012-12-23')
+require "faker"
 
 #Attendee.create!(:user_id => '1', :event_id => '1', :feedback => 'Not good enough,still unable to get the point')
 #Attendee.create!(:user_id => '2', :event_id => '2', :feedback => 'Good enough,to believe')
@@ -21,9 +21,9 @@ Conference.create!(:name => 'Solstice 2012', :description => 'Solstice, an annua
 #Attendee.create!(:user_id => '4', :event_id => '2', :feedback => 'Goooooood job,well presented')
 #
 #
-#EventDay.create!(:name => 'Day one', :conference_id => '1', :sequence => '1')
-#EventDay.create!(:name => 'Day one', :conference_id => '2', :sequence => '1')
-#EventDay.create!(:name => 'Day two', :conference_id => '2', :sequence => '2')
+EventDay.create!(:name => 'Day One', :conference_id => '1', :sequence => '1')
+EventDay.create!(:name => 'Day Two', :conference_id => '1', :sequence => '2')
+EventDay.create!(:name => 'Day Three', :conference_id => '1', :sequence => '3')
 #EventDay.create!(:name => 'Day three', :conference_id => '2', :sequence => '3')
 #EventDay.create!(:name => 'Day one', :conference_id => '3', :sequence => '1')
 #EventDay.create!(:name => 'Day two', :conference_id => '3', :sequence => '2')
@@ -118,14 +118,14 @@ Conference.create!(:name => 'Solstice 2012', :description => 'Solstice, an annua
 #Organizer.create!(:conference_id => '8', :user_id => '4')
 #
 #
-#Participant.create!(:conference_id => '1', :user_id => '1')
-#Participant.create!(:conference_id => '2', :user_id => '2')
-#Participant.create!(:conference_id => '3', :user_id => '3')
-#Participant.create!(:conference_id => '4', :user_id => '4')
-#Participant.create!(:conference_id => '5', :user_id => '1')
-#Participant.create!(:conference_id => '6', :user_id => '2')
-#Participant.create!(:conference_id => '7', :user_id => '3')
-#Participant.create!(:conference_id => '8', :user_id => '4')
+#Participant.create!(:conference_id => '1', :user_id => (5...30).sort_by{rand}[1..20])
+#Participant.create!(:conference_id => '1', :user_id => '2')
+#Participant.create!(:conference_id => '1', :user_id => '3')
+#Participant.create!(:conference_id => '1', :user_id => '4')
+#Participant.create!(:conference_id => '1', :user_id => '5')
+#Participant.create!(:conference_id => '1', :user_id => '6')
+#Participant.create!(:conference_id => '1', :user_id => '7')
+#Participant.create!(:conference_id => '1', :user_id => '8')
 #
 #Post.create!(:name => 'Indrajeet', :conference_id => '1', :user_id => '1')
 #Post.create!(:name => 'Nilesh', :conference_id => '2', :user_id => '2')

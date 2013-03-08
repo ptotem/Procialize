@@ -1,4 +1,5 @@
 class MeetingsController < ApplicationController
+  require "faker"
   # GET /meetings
   # GET /meetings.json
   def index

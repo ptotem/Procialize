@@ -1,5 +1,7 @@
 class InviteesController < ApplicationController
+  require "faker"
   # GET /invitees
+
   # GET /invitees.json
   def index
     @invitees = Invitee.all

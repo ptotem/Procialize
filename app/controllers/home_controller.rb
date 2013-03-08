@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  require "faker"
 
   def index
 

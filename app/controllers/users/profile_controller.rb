@@ -1,4 +1,6 @@
 class Users::ProfileController < ApplicationController
+  require "faker"
+
   def index
     @user=User.find(params[:id])
     @name=@user.name
@@ -7,12 +9,19 @@ class Users::ProfileController < ApplicationController
     @industry=@user.industry
     @educations=[]
     @positions=[]
-    unless @user.educations.blank? or @user.educations.values[1].blank?
-      @educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "" :"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
-    end
-    unless @user.positions.blank? or @user.positions.values[1].blank?
-      @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name unless p.blank?}" }.uniq
-    end
+
+
+
+    #commented for faker
+    #unless @user.educations.blank? or @user.educations.values[1].blank?
+      #@educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "" :"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
+    #end
+    #unless @user.positions.blank? or @user.positions.values[1].blank?
+      #@positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name unless p.blank?}" }.uniq
+    #end
+    #commented for faker
+
+
 
     #@followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user }.map { |f| f.user }

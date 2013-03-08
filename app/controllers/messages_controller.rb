@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  require "faker"
   def index
 
     @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message }

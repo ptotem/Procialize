@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  require "faker"
+
   protect_from_forgery
   before_filter :authenticate_user!
   before_filter :set_current_conference
