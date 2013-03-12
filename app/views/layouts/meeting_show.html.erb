@@ -4,9 +4,11 @@
   <title>Procialize: <%= yield :page_title %></title>
   <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css"/>
+  <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css"/>-->
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
   <%= javascript_include_tag "application" %>
-  <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <!--<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>-->
+  <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
   <%= csrf_meta_tags %>
 
   <script type="text/javascript">
@@ -59,7 +61,7 @@
   <div data-role="header" data-fullscreen="true">
 
     <!--<a href="/meetings"  data-icon="arrow-l" data-ajax="false">Back</a>-->
-    <a href="/" data-icon="grid" data-theme='a' data-ajax=false>Procialize</a>
+    <a href="/" data-icon="grid" data-theme='a' data-ajax=false>Alumni</a>
     <h1><%= yield :page_title %></h1>
     <!--<a href="#search_menu" id="main_menu" data-icon="search" data-prefetch>I am at </a>-->
 
