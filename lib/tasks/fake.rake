@@ -10,17 +10,17 @@ namespace :db do
 
 
       100.times do |c|
-        user=User.create!(:name =>Faker::Name.name ,
+        user=User.create!({:name =>Faker::Name.name ,
                           :email =>Faker::Internet.email ,
                           :password => "alumnport",
                           :password_confirmation => "alumnport",
                           :headline =>   Faker::Company.name,
-                          :educations => Faker::Company.name,)
+                          :educations => Faker::Company.name})
       end
 
         # Create entries for test_user's course
         100.times do |e|
-          participants = Participant.create!(:user_id => Random.rand(0...User.all.count) + User.first.id,:conference_id => "1")
+          participants = Participant.create!({:user_id => Random.rand(0...User.all.count) + User.first.id,:conference_id => "1"})
 
         end
 
@@ -38,11 +38,11 @@ namespace :db do
 
 
   25.times do |event|
-      event = Event.create!(:name => Faker::Name.name,
+      event = Event.create!({:name => Faker::Name.name,
                             :description =>  Faker::Lorem.paragraph(sentence_count = 3),
                             :start => Random.rand(3.months.ago..Time.now),
                             :end => Random.rand(3.months.ago..Time.now),
-                            :event_day_id => 1+rand(3)
+                            :event_day_id => 1+rand(3)}
       )
     end
 
@@ -51,15 +51,15 @@ namespace :db do
 
 
     10.times do |location|
-      location = Location.create!(:name => Faker::Name.name,
-                                  :conference_id => "1"
+      location = Location.create!({:name => Faker::Address.city,
+                                  :conference_id => "1"}
       )
     end
 
 
     15.times do |event_loaction|
-      event_loaction = EventLocation.create!(:event_id =>  1+rand(25),
-                                            :location_id =>  1+rand(10)
+      event_loaction = EventLocation.create!({:event_id =>  Random.rand(0...Event.all.count) + Event.first.id,
+                                            :location_id =>  Random.rand(0...Location.all.count) + Location.first.id}
       )
 
 
