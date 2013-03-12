@@ -36,6 +36,24 @@ class Users::ProfileController < ApplicationController
     @created_at=UserLocation.find_all_by_user_id_and_location_id(@user.id,@last_seen.id).last
     end
     @post=Post.find_all_by_user_id(@user.id).last
+
+
+    if @user!=current_user
+      if !@user.viewers_name.blank?
+        @viewers_name=@user.viewers_name
+        @person_name=@viewers_name.split('|').last
+        @person=@person_name.split(':').first.to_i + 1
+        @viewing=@person.to_s+':'+current_user.name
+        @user.viewers_name=@viewers_name +'|'+@viewing
+      else
+        @user.viewers_name="1:#{current_user.name}"
+      end
+      @user.save
+    end
+
+
+
+
   end
 
   def following
