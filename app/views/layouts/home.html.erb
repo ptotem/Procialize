@@ -5,11 +5,18 @@
   <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
   <%= stylesheet_link_tag "application", :media => "all" %>
   <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css"/>-->
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css"/>
 
   <%= javascript_include_tag "application" %>
+
+  <%#= javascript_include_tag "jquery-1.8.2.min.js" %>
   <!--<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>-->
   <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+
+
+
+
+
   <%= csrf_meta_tags %>
 
   <script type="text/javascript">
@@ -60,14 +67,15 @@
   <div data-role="header" data-fullscreen="true">
 
 
-    <a href="/" data-icon="grid" data-theme='a' data-ajax=false>Alumni</a>
+    <a href="/" data-icon="grid" data-theme='a' data-ajax=false>Procialize</a>
 
     <h1><%= yield :page_title %></h1>
 
-    <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
+    <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal" style="float: left;">
 
-       <!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false data-icon="search"></a>-->
-
+      <!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false data-icon="search"></a>-->
+      <a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"> </a>
+      <a href="/users/<%= @user.id %>/profile" data-icon="search" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"></a>
       <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :'data-icon' => "delete", :'data-role' => "button", :'data-iconpos' => "notext" %>
 
     </div>
@@ -81,7 +89,7 @@
         <li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>
         <li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>
         <li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>
-
+        <li><a href="/graffiti" data-icon="info" data-theme='a' data-ajax=false data-transition="pop">Graffiti</a></li>
 
 
       </ul>
@@ -98,16 +106,23 @@
     </div>
   </div>
   <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
-    <div data-role="navbar" data-theme='a'>
+    <div data-role="navbar" data-theme='b'>
       <ul>
-      <li><a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false>Talk to us</a></li>
-      <li><a href="/users/<%= @user.id %>/profile" data-icon="search"  data-theme='a' data-ajax=false>My Profile</a></li>
-      <!--<li><a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a></li>-->
-      <!--<li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>-->
-      <!--<li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>-->
-      <!--<li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>-->
-      </ul>
+        <li>
+          <a href="" data-icon="gear" data-theme='a' data-ajax=false>
+            <marquee>
+              <%= image_tag "ptotem_logo.png", :style => "max-width:25px;" %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Do it with games. To know more visit us on
+              www.ptotem.com. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <%= image_tag "Procialize.jpg", :style => "max-width:30px;max-height:30px;" %>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Procialize, a mobile-based app, provides a one-stop solution for event organizations. Find us on
+              www.procialize.net to know more.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+            </marquee>
+          </a>
+        </li>
+
+      </ul>
     </div>
   </div>
 </div>
@@ -156,12 +171,12 @@
 
 
 <!--<ul>-->
-  <!--<%# if @user==current_user %>-->
-      <!--<li><%#= link_to "Edit Profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false %></li>-->
+<!--<%# if @user==current_user %>-->
+<!--<li><%#= link_to "Edit Profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false %></li>-->
 
-  <!--<%# else %>-->
-      <!--<a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false>Contact Administrator</a>-->
-  <!--<%# end %>-->
+<!--<%# else %>-->
+<!--<a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false>Contact Administrator</a>-->
+<!--<%# end %>-->
 <!--</ul>-->
 
 

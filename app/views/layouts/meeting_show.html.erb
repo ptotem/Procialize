@@ -64,6 +64,17 @@
     <a href="/" data-icon="grid" data-theme='a' data-ajax=false>Alumni</a>
     <h1><%= yield :page_title %></h1>
     <!--<a href="#search_menu" id="main_menu" data-icon="search" data-prefetch>I am at </a>-->
+    <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal" style="float: left;">
+
+      <!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false data-icon="search"></a>-->
+      <a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"> </a>
+      <a href="/users/<%= current_user.id %>/profile" data-icon="search"  data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"></a>
+      <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :'data-icon' => "delete", :'data-role' => "button", :'data-iconpos' => "notext" %>
+
+    </div>
+
+
+
 
     <div data-role="navbar">
       <%= yield :page_menu %>
@@ -72,7 +83,7 @@
         <li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>
         <li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>
         <li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>
-
+        <li><a href="/graffiti" data-icon="info" data-theme='a' data-ajax=false data-transition="pop">Graffiti</a></li>
 
 
       </ul>
@@ -91,13 +102,30 @@
   <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
     <div data-role="navbar" data-theme='a'>
       <ul>
-        <li><a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false>Contact Administrator</a></li>
-        <!--<li><a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a></li>-->
+        <li><a href="" data-icon="gear" data-theme='a' data-ajax=false>
+          <marquee>
+            <%= image_tag "ptotem_logo.png", :style => "max-width:100px;" %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Do it with games. To know more visit us on
+            www.ptotem.com. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= image_tag "Procialize.jpg", :style => "max-width:50px;max-height:50px;" %>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Procialize, a mobile-based app, provides a one-stop solution for event organizations. Find us on
+            www.procialize.net to know more.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          </marquee>
+        </a>
+        </li>
+
+      </ul>
+    </div>
+    <!--<div data-role="navbar" data-theme='a'>-->
+      <!--<ul>-->
+        <!--<li><a href="" data-icon="gear" data-theme='a' data-ajax=false>Sponsors</a></li>-->
         <!--<li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>-->
         <!--<li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>-->
         <!--<li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>-->
-      </ul>
-    </div>
+        <!--<li><a href="/" data-icon="home" data-theme='a' data-ajax=false>ADS</a></li>-->
+      <!--</ul>-->
+    <!--</div>-->
   </div>
 </div>
 
