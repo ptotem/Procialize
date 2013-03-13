@@ -15,7 +15,8 @@ namespace :db do
                           :password => "alumnport",
                           :password_confirmation => "alumnport",
                           :headline =>   Faker::Company.name,
-                          :educations => Faker::Company.name})
+                          :educations => Faker::Company.name,
+                          })
       end
 
         # Create entries for test_user's course
