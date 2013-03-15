@@ -59,25 +59,28 @@
 <body>
 <div data-role="page" id="home">
   <div data-role="header" data-fullscreen="true">
-    <a href="/" data-icon="grid" data-theme='a' data-ajax=false>Procialize</a>
+    <a href="/" data-icon="home" data-theme='a' data-ajax=false>Procialize</a>
         <h1><%= yield :page_title %></h1>
+
     <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal" style="float: left;">
+
       <!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false data-icon="search"></a>-->
       <a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"> </a>
-      <a href="/users/<%= current_user.id %>/profile" data-icon="search" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"></a>
+      <!--<a href="/users/<%#= @user.id %>/profile" data-icon="search" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"></a>-->
       <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :'data-icon' => "delete", :'data-role' => "button", :'data-iconpos' => "notext" %>
-    </div>
 
+    </div>
 
     <div data-role="navbar">
       <%= yield :page_menu %>
       <ul>
-        <li><a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a></li>
+        <li><a href="/users/<%= current_user.id %>/profile" data-icon="search" data-theme='a' data-ajax=false  data-role="button">Profile</a></li>
         <li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>
         <li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>
         <li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>
         <li><a href="/graffiti" data-icon="info" data-theme='a' data-ajax=false data-transition="pop">Graffiti</a></li>
-        <!--<a href="index.html" data-transition="pop">I'll pop</a>-->
+
+
       </ul>
     </div>
   </div>

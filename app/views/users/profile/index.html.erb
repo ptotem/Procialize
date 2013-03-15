@@ -44,10 +44,11 @@
 
 <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
 <div data-role="navbar" data-theme='a'>
-<!--<ul>-->
-  <!--<li><%#= link_to "Request Meeting", focussed_meeting_path(@user), :'data-role' => "button", :'data-theme' => "a",:'data-ajax' => false %></li>-->
-  <!--<li><%#= link_to "Send Message", focussed_message_path(@user), :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false %></li>-->
-<!--</ul>-->
+<ul>
+
+  <li><%= link_to "Request Meeting", focussed_meeting_path(@user), :'data-role' => "button", :'data-theme' => "a",:'data-ajax' => false %></li>
+  <li><%= link_to "Send Message", focussed_message_path(@user), :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false %></li>
+</ul>
 </div>
 </div>
 

@@ -63,14 +63,14 @@
   <div data-role="header" data-fullscreen="true">
 
     <!--<a href="/messages"  data-icon="arrow-l" data-ajax="false">Back</a>-->
-    <a href="/" data-icon="grid" data-theme='a' data-ajax=false>Alumni</a>
+    <a href="/" data-icon="home" data-theme='a' data-ajax=false>Procialize</a>
     <h1><%= yield :page_title %></h1>
     <!--<a href="#search_menu" id="main_menu" data-icon="search" data-prefetch>I am at </a>-->
     <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal" style="float: left;">
 
       <!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false data-icon="search"></a>-->
       <a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"> </a>
-      <a href="/users/<%= current_user.id %>/profile" data-icon="search"  data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"></a>
+      <!--<a href="/users/<%#= @user.id %>/profile" data-icon="search" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"></a>-->
       <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :'data-icon' => "delete", :'data-role' => "button", :'data-iconpos' => "notext" %>
 
     </div>
@@ -78,15 +78,16 @@
 
 
 
-
     <div data-role="navbar">
       <%= yield :page_menu %>
+
       <ul>
-        <li><a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a></li>
+        <li><a href="/users/<%= current_user.id %>/profile" data-icon="search" data-theme='a' data-ajax=false  data-role="button">Profile</a></li>
         <li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>
         <li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>
         <li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>
         <li><a href="/graffiti" data-icon="info" data-theme='a' data-ajax=false data-transition="pop">Graffiti</a></li>
+
 
       </ul>
     </div>
@@ -101,11 +102,11 @@
       <br/>
     </div>
   </div>
-  <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
+  <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true" class="big">
     <div data-role="navbar" data-theme='b'>
       <ul>
         <li>
-          <a href="" data-icon="gear" data-theme='a' data-ajax=false>
+          <a href=""  data-theme='a' data-ajax=false>
             <marquee>
               <%= image_tag "ptotem_logo.png", :style => "max-width:25px;" %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               Do it with games. To know more visit us on
