@@ -1,0 +1,421 @@
+<%= content_for :jj do %>
+    <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"></script>
+<% end %>
+
+
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span7">
+<div class="row-fluid">
+  <div class="span12">
+    <div style="margin-bottom: 20px;">
+      <div class="big-button-bar">
+
+        <a class="button large eventer" href="/desktop_events">
+          <i class=" icon-calendar "></i>
+          <span>Events</span>
+        </a>
+
+
+        <a class="button large delegater" href="/delegates_search">
+          <i class="icon-group"></i>
+          <span>Delegates</span>
+        </a>
+
+        <a class="button large speakinger" href="/desktop_speaker">
+          <i class="icon-user"></i>
+          <span>Speakers</span>
+        </a>
+
+        <a class="button large questioner" href="/desktop_ask_question">
+          <i class="icon-question-sign "></i>
+          <span>Questions</span>
+        </a>
+
+        <a class="button large feedbacker" href="/desktop_ratings">
+          <i class="icon-volume-up"></i>
+          <span>Feedback</span>
+        </a>
+
+        <a class="button large downloadables" href="/desktop_assets_download">
+          <i class=" icon-folder-open"></i>
+          <span>Download</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!----------------------Start of delegates------------------------------>
+
+<div class="black-box tex" id="delegate_profile_of_user">
+  <div class="tab-header">
+    Delegate
+  </div>
+  <ul class="recent-comments">
+
+    <li class="separator">
+
+
+
+
+      <%# unless @photo.blank? %>
+          <%#= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+      <%# end %>
+
+      <% if !@photo.blank? %>
+          <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+       <% elsif @user.user_photo.blank? %>
+          <%= image_tag "avatar.png", :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+       <% else %>
+          <%= image_tag @user.user_photo,:style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+      <% end %>
+
+
+      <h4 style="margin-top: 0px;"><%= @name.titlecase %>
+        <%if @user.avatar.url!='/avatars/original/missing.png'%>
+            <a target="_blank" style="float:right;color: #f5f5f5;font-size: 1em;" href="<%=@user.avatar.url%>"><span style="font-size: 0.8em;">Profile</span><i class=" icon-download  "></i></a>
+        <%end%>
+
+        <table>
+
+          <% unless @headline.blank? %>
+          <tr>
+            <td>
+              <small><%= @headline %></small>
+            </td>
+          </tr>
+           <% end %>
+
+          <% unless @industry.blank? %>
+          <tr>
+            <td>
+              <small><strong style="color: #c0c0c0;">Background: </strong><%= @industry  %> </small>
+            </td>
+          </tr>
+           <% end %>
+
+
+          <% unless @educations.blank? %>
+          <tr>
+            <td>
+              <small><strong style="color: #c0c0c0;">Education: </strong><%= @educations %></small><br>
+            </td>
+          </tr>
+          <% end %>
+
+          <% unless @location.blank? %>
+          <tr>
+            <td>
+              <small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br>
+            </td>
+          </tr>
+          <% end %>
+
+
+          <% unless @skills.blank? %>
+          <tr>
+            <td>
+              <small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br>
+            </td>
+          </tr>
+           <% end %>
+
+          <% unless @interest.blank? %>
+          <tr>
+            <td>
+              <small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br>
+            </td>
+          </tr>
+          <% end %>
+
+        </table>
+
+        <br>
+
+
+        <% if @user==current_user %>
+              <%= link_to "Edit own profile", edit_user_profile_path,:class => "button gray" %>
+        <% end %>
+      </h4>
+      <br>
+
+      <div id="status_here" class="status" style="font-style: italic;"><%= @post.name unless @post.blank? %></div>
+
+      <hr>
+
+
+
+   <script type="text/javascript">
+        $(function() {
+                    $( "#accordion" ).accordion({
+                        collapsible: true
+                    });
+                });
+            </script>
+
+
+      <% unless @user==current_user %>
+          <span  id="follow_notice" style="text-align: center;"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not followed yet, to follow click on" :"Following" %></span>
+      <% end %> &nbsp;&nbsp;
+      <% unless @user==current_user %>
+          <%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :onclick => "following()", :id => "follow_button" ,:class => "button gray" %>
+      <% end %>
+                <br>
+                <br>
+
+            <div id="accordion">
+              <h5><%= @user.name %>'s Followers</h5>
+              <div>
+                <% @followers.each do |follower| %>
+                        <p>
+                        <%= link_to follower.name.titlecase, delegate_profile_index_path(follower)%>
+                          <% unless follower.picture.blank? %>
+                       <%= image_tag follower.picture, :style => "float:left; border-radius:5px;margin-right:10px;max-width:40px" %>
+                    <% end %>
+                    </p>
+                        <hr>
+                    <% end %>
+              </div>
+            </div>
+
+         <br>
+        <a class="button gray" href="<%= desktop_focussed_meeting_path(@user) %>">Request
+          Meeting</a>
+
+        <a style="float: right;" class="button gray" href="<%= desktop_focussed_message_path(@user) %>/?reply=true">Send
+          Message</a>
+
+    </li>
+  </ul>
+</div>
+
+  <script type="text/javascript">
+      function following() {
+          $.ajax({
+              url:"<%= desktop_following_path(@user.id) %>",
+              type:"post",
+              success:function (data) {
+                  $("#follow_button .ui-btn-text").html(data);
+                  if (data == "Follow") {
+                      $('#follow_notice').html("Not Followed yet, to follow click on");
+                  } else {
+                      $('#follow_notice').html("Following");
+                  }
+
+                  location.reload();
+              }
+          });
+      }
+  </script>
+<!----------------------End of delegates------------------------------>
+
+
+
+
+</div>
+
+
+<div class="span5">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="black-box tex" style="max-height: 150px;">
+        <div class="tab-header">
+          Event Wall
+        </div>
+        <ul class="recent-comments" style="list-style: none;">
+          <% @conference=Conference.last %>
+          <% @user=current_user %>
+          <% @graffiti=(User.all-(Follower.find_all_by_user_id_and_conference_id(@user.id, @conference.id).map { |f| User.find(f.follower_id) })-[current_user]-Organizer.all.map { |o| o.user }).map { |u| u.posts }.flatten.last(30).sort_by(&:created_at).reverse %>
+          <% @graffiti.each do |post| %>
+
+              <li class="separator">
+                <div class="avatar pull-left">
+                  <% if post.user.picture.blank? %>
+                      <%= image_tag "avatar.png" %>
+                  <% else %>
+                      <%= image_tag(post.user.picture) %>
+                  <% end %>
+                </div>
+                <div class="article-post">
+                  <div class="user-info"> Posted
+                    by <%= link_to post.user.name.titlecase, delegate_profile_index_path(post.user) %>
+                    at <%= post.created_at %> </div>
+                  <div class="user-content">"<%= post.name.truncate(10) %>"</div>
+                </div>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-------------------------->
+
+<div class="span5">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="black-box tex" style="max-height: 350px;">
+        <div class="tab-header">
+          Splash Zone
+        </div>
+        <script>
+            $(document).ready(function() {
+                $("#slider1").responsiveSlides({
+                    auto:true, // Boolean: Animate automatically, true or false
+                    speed:1500, // Integer: Speed of the transition, in milliseconds
+                    timeout:4000, // Integer: Time between slide transitions, in milliseconds
+                    random:true, // Boolean: Randomize the order of the slides, true or false
+                    pause:false, // Boolean: Pause on hover, true or false
+                    pauseControls:true, // Boolean: Pause when hovering controls, true or false
+                    maxwidth:"", // Integer: Max-width of the slideshow, in pixels
+                    navContainer:"", // Selector: Where controls should be appended to, default is after the 'ul'
+                    manualControls:"", // Selector: Declare custom pager navigation
+                    namespace:"rslides" // String: Change the default namespace used
+                });
+            });
+        </script>
+
+        <style type="text/css">
+            .img_style {
+                max-height: 200px;
+            }
+        </style>
+
+        <ul class="recent-comments">
+          <li class="separator" style="max-height: 300px;">
+            <ul class="rslides" id="slider1">
+              <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.image_four.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.image_five.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.image_six.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.image_seven.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.image_eight.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.image_nine.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.image_ten.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" %></li>
+              <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" %></li>
+
+
+              <% @survey_q= SurveyQuestion.all %>
+              <% @survey_q.each do |s| %>
+                  <div id="surveys">
+                    <li class="img_style" id="<%= s.id %>"><%= s.quest %>
+                      <table>
+                        <tr>
+                          <td><%= radio_button_tag "survey_options", "1", true%></td>
+                          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_a %></td>
+
+                        </tr>
+                        <tr>
+                          <td><%= radio_button_tag "survey_options", "2", true%></td>
+                          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_b %></td>
+
+                        </tr>
+                        <% if !s.option_c.blank? %>
+                            <tr>
+                              <td><%= radio_button_tag "survey_options", "3", true%></td>
+                              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_c %></td>
+                            </tr>
+                        <% end %>
+
+                        <% if !s.option_d.blank? %>
+                            <tr>
+                              <td><%= radio_button_tag "survey_options", "4", true%></td>
+                              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_d %></td>
+                            </tr>
+                        <% end %>
+                      </table>
+                    </li>
+                  </div>
+              <% end %>
+            </ul>
+          </li>
+          <li class="separator">
+
+            <marquee id="tweet" style="color: white;">
+              <%= image_tag "ptotem_logo.png", :style => "max-width:25px;" %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Do it with games. To know more visit us on
+              www.ptotem.com. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <%= image_tag "Procialize.jpg", :style => "max-width:30px;max-height:30px;" %>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Procialize, a mobile-based app, provides a one-stop solution for event organizations. Find us on
+              www.procialize.net to know more.&nbsp;&nbsp;&nbsp;
+              <% @newsfeed=NewsFeed.all %>
+              <% @newsfeed.each do |n| %>
+                  <%= n.feed_news %>
+              <% end %>
+            </marquee>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+    $(function () {
+        $("input[name=survey_options]").click(function () {
+            var a = $(this).parent().parent().parent().parent().parent().parent().attr('id');
+            var value = $(this).val();
+            var data = { user_id:[], survey_question_id:[], ans:[]}
+            data["user_id"].push('<%= current_user.id%>');
+            data["survey_question_id"].push(a);
+            data["ans"].push(value);
+            $.ajax({
+                url:"<%= survey_storing_path %>",
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function (data) {
+                    <%= add_gritter("Thank You", :title => "Success",:image => :success,:time => 1000) %>
+                }
+            });
+
+        });
+
+
+    });
+
+
+    $(function () {
+        $.get('/gettweets', function (data) {
+
+            data = data.split('", "')
+            $.each(data, function (index, val) {
+                val = val.toString().replace(/"/, '').replace('[', '').replace(']', '');
+                $('#tweet').append(val + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+            });
+        });
+
+    });
+
+</script>
+
+
+
+
+</div>
+</div>
+
+
+
+
+

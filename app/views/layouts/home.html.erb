@@ -1,25 +1,127 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Procialize Home</title>
+<link rel="shortcut icon" type="image/x-icon" href="/assets/pro_browser_tile_blackbg.ico">
   <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css"/>-->
+
+
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css"/>
+  <%= stylesheet_link_tag "new_procialize_k.min" %>
 
   <%= javascript_include_tag "application" %>
-
-  <%#= javascript_include_tag "jquery-1.8.2.min.js" %>
-  <!--<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>-->
   <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
-
-
-
-
-
+  <%= stylesheet_link_tag "jqm-icon-pack-2.0-original" %>
   <%= csrf_meta_tags %>
+  <%= include_gon %>
+  <%= analytics_init :local => Rails.env.development? %>
+
+  <%#= stylesheet_link_tag "demo" %>
+  <%#= stylesheet_link_tag "style" %>
+
+  <%#= javascript_include_tag "jmpress.min" %>
+  <%#= javascript_include_tag "jquery.jmslideshow" %>
+  <%#= javascript_include_tag "modernizr.custom.48780" %>
+
+  <style type="text/css">
+      .circle{
+          border:0.3em solid black;
+          height:12px;
+          width:12px;
+          -webkit-border-radius: 40px;
+          -moz-border-radius: 40px;
+          border-radius: 40px;
+          background-color: #8b0000;
+          font-size: 0.7em;
+          color: #d3d3d3;
+          text-align: center;
+          vertical-align:middle;
+          padding: 2px;
+
+      }
+  </style>
+
+
+  <noscript>
+    <style>
+        .step {
+            width: 100%;
+            position: relative;
+        }
+        .step:not(.active) {
+            opacity: 1;
+            filter: alpha(opacity=99);
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=99)";
+        }
+        .step:not(.active) a.jms-link{
+            opacity: 1;
+            margin-top: 40px;
+        }
+    </style>
+  </noscript>
+
+
+
+
+
 
   <script type="text/javascript">
+       $(function(){
+           $('.sponsors').hide();
+           $('#home_body').hide();
+
+
+           $.blockUI({
+               overlayCSS: { backgroundColor: 'black'},
+               message:$('#splash_pic'),
+               css: {
+                   width: '200px'
+               }
+           });
+
+           setTimeout($.unblockUI, 2000);
+           
+
+
+
+           if(!isMobile.any()) {
+               window.location="/desktop_events?desk=1";
+           }
+           else {
+               $('#home_body').show();
+           }
+
+       });
+
+
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+
+
+
+
+
+
       function follow_search(id) {
           $.ajax({
               url:"/users/" + id + "/follow",
@@ -62,22 +164,21 @@
   <%= yield(:head) %>
 </head>
 
-<body>
+<body id="home_body">
+
 <div data-role="page" id="home">
   <div data-role="header" data-fullscreen="true">
 
 
-    <a href="/" data-icon="home" data-theme='a' data-ajax=false>Procialize</a>
+    <a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a>
+
 
     <h1><%= yield :page_title %></h1>
+      <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :"data-icon"=>"signout", :'data-role' => "button" %>
 
-    <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal" style="float: left;">
 
-      <!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false data-icon="search"></a>-->
-      <a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"> </a>
-      <!--<a href="/users/<%#= @user.id %>/profile" data-icon="search" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"></a>-->
-      <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :'data-icon' => "delete", :'data-role' => "button", :'data-iconpos' => "notext" %>
-
+    <div id="splash_pic" style="display: none;">
+      <%= image_tag Logos.first.splash_pic.url %>
     </div>
 
 
@@ -85,20 +186,35 @@
       <%= yield :page_menu %>
 
       <ul>
-        <li><a href="/users/<%= @user.id %>/profile" data-icon="search" data-theme='a' data-ajax=false  data-role="button">Profile</a></li>
-        <li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>
-        <li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>
-        <li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>
-        <li><a href="/graffiti" data-icon="info" data-theme='a' data-ajax=false data-transition="pop">Graffiti</a></li>
 
+        <% @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting }  %>
+        <% @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message } %>
 
+        <li><a href="/events" data-icon="calendar" data-theme='a' data-ajax=false>Events</a></li>
+        <li>
+          <a href="/meetings" data-icon="suitcase" data-theme='a' data-ajax=false>
+            <% if @pending.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @pending.size %></span> <% end %>
+            Meetings
+          </a>
+        </li>
+        <li>
+          <a href="/messages" data-icon="envelope" data-theme='a' data-ajax=false>
+            <% if @unread.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @unread.size %></span> <% end %>
+            Messages
+          </a>
+        </li>
+        <li><a href="/users/<%= current_user.id %>/profile" data-icon="user" data-theme='a' data-ajax=false  data-role="button">Profile</a></li>
       </ul>
     </div>
   </div>
+
+
   <div data-role="content" data-theme='a'>
     <%= js extend_gritter :position => :bottom_right %>
     <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
+    <%= js add_gritter(flash[:message], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
     <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
+
     <div class="content_container">
       <%= yield %>
       <br/>
@@ -110,14 +226,18 @@
       <ul>
         <li>
           <a href=""  data-theme='a' data-ajax=false>
-            <marquee>
-              <%= image_tag "ptotem_logo.png", :style => "max-width:25px;" %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <marquee id="tweet">
+              <%= image_tag "ptotem_logo.png", :style => "max-width:25px;" %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               Do it with games. To know more visit us on
-              www.ptotem.com. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <%= image_tag "Procialize.jpg", :style => "max-width:30px;max-height:30px;" %>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              www.ptotem.com. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <%= image_tag "Procialize.jpg", :style => "max-width:30px;max-height:30px;" %>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               Procialize, a mobile-based app, provides a one-stop solution for event organizations. Find us on
-              www.procialize.net to know more.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              www.procialize.net to know more.&nbsp;&nbsp;&nbsp;
+              <% @newsfeed=NewsFeed.all %>
+              <% @newsfeed.each do |n| %>
+                  <%= n.feed_news %>
 
+              <% end %>
             </marquee>
           </a>
         </li>
@@ -134,12 +254,9 @@
 
     <h1>Select Location</h1>
   </div>
-
   <div class="field">
-    <%#= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :onchange => "location_update($(this));" %>
   </div>
   <% if !@last_seen.blank? %>
-      <!--<h3>Your are currently at-->
       <br>
 
       <div id="location12">
@@ -147,9 +264,36 @@
           <% @last_seen.name %></b>
       </div>
   <% end %>
-  <!--</h3>-->
 
 </div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $.get('/gettweets', function (data) {
+
+            data = data.split('", "')
+            $.each(data, function (index, val) {
+                val = val.toString().replace(/"/, '').replace('[', '').replace(']', '');
+                $('#tweet').append(val + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+            });
+        });
+
+    });
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41279198-1', '127.0.0.1:3000');
+    ga('send', 'pageview');
+
+</script>
+
+
 </body>
 </html>
 
@@ -229,3 +373,4 @@
 
 <!--</ul>-->
 <!--</div>-->
+

@@ -1,6 +1,7 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  #Devise::TRUE_VALUES<<["on"]
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
@@ -103,7 +104,8 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+
+  #config.remember_for = 2.weeks
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
@@ -124,7 +126,7 @@ Devise.setup do |config|
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
-  # config.timeout_in = 30.minutes
+  config.timeout_in = 3.weeks
   
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
@@ -231,11 +233,22 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
   require "omniauth-linkedin"
-  config.omniauth :linkedin, 'dr6pt80d3n8a', 'EO46hBzTps3IsEvF', :scope => 'r_fullprofile r_emailaddress r_network', :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location", "positions", "educations"]
+  config.omniauth :linkedin, 'dr6pt80d3n8a', 'EO46hBzTps3IsEvF', :scope => 'r_fullprofile r_emailaddress r_network', :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location", "positions", "educations", "skills", "interests"]
 
+  require "omniauth-facebook"
+  config.omniauth :facebook, '636324466384812', 'f65a3e41c1c8d6d97038cdf638a15387',{:client_options => {:ssl => {:ca_path => "/etc/ssl/certs/"}}}
+  #config.omniauth :facebook, '636324466384812', 'f65a3e41c1c8d6d97038cdf638a15387',{:client_options => {:ssl => {:ca_path => "/etc/ssl/certs/"},:scope => 'offline_access,email'}}
 end
 
 LinkedIn.configure do |config|
   config.token = 'dr6pt80d3n8a'
   config.secret = 'EO46hBzTps3IsEvF'
+end
+
+
+Twitter.configure do |config|
+  config.consumer_key = 'k338JAEntAeF33lFkOIQ'
+  config.consumer_secret = 'U3hszX1mxfhjPFSoZ2nixF8nJFCFCPqFcpSS10Ec'
+  config.oauth_token = '163893865-ONQsIvGHLQlpAOQRIYzFy4Lnix5oY3NZwGEso5Xw'
+  config.oauth_token_secret = 'tXZwUmcysNh19KwqkdgSZ9WojtzNEUoDZzadq2YCPH4'
 end

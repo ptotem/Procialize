@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  image_one: 
+  image_two: 
+  image_three: 
+  image_four: 
+  image_five: 
+  image_six: 
+  image_seven: 
+  image_eight: 
+  image_nine: 
+  image_ten: 
+
+two:
+  image_one: 
+  image_two: 
+  image_three: 
+  image_four: 
+  image_five: 
+  image_six: 
+  image_seven: 
+  image_eight: 
+  image_nine: 
+  image_ten: 

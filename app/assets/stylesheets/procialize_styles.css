@@ -3,10 +3,11 @@
 /* Start Generic Layout Definitions*/
 
 html, body {
-    background-color: rgb(238, 231, 221);
+   
     overflow-x: hidden;
     min-height: 100%;
-
+    background: url("bg.png");
+    /*background: #f5f5f5;*/
 
 }
 
@@ -16,6 +17,7 @@ img {
 
 .content_container {
     padding: 20px;
+
 }
 
 .search_container {
@@ -72,7 +74,7 @@ img {
     max-width: 300px;
     padding: 19px 29px 29px;
     margin: 0 auto 20px;
-    background-color: #dedede;
+    background: url('backdrop.jpg');
     border: 1px solid #e5e5e5;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -85,6 +87,8 @@ img {
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
     margin-bottom: 10px;
+    color:#ffffff;
+    font-weight: normal;
 }
 
 .form-signin input {
@@ -92,6 +96,7 @@ img {
     height: auto;
     margin-bottom: 15px;
     padding: 7px 9px;
+
 }
 
 /* End Login Page Definitions */
@@ -304,25 +309,19 @@ label {
 
 
 /*----------------------------new procialize style--------------------------*/
+/*----------------------------new procialize style--------------------------*/
+
+.event_name{
+    font-size: 1em;
+    line-height: 1.2em;
+}
+
+.event_show{
+    /*font-weight: bold;*/
+
+}
 
 
-/*.ui-grid-b .ui-block-a {*/
-    /*width:100%;*/
-    /*margin-top: 2%;*/
-    /*margin-left: 11%;*/
-
-/*}*/
-
-/*.ui-grid-b .ui-block-b {*/
-    /*margin-top: 2%;*/
-    /*margin-left: 11%;*/
-/*}*/
-
-/*.ui-grid-b .ui-block-c {*/
-    /*margin-top: 5%;*/
-    /*margin-left: 6%;*/
-/*}*/
-
-
-
-
+.index_styling{
+    font-size: 0.8em;
+}

@@ -9,33 +9,33 @@
 <%= content_for :head do %>
     <script type="text/javascript">
 
-      $(function(){
+        $(function(){
 
-          $('[type="submit"]').button('disable');
-          $(function () {
-              $('[type="submit"]').button('disable');
-              $('select').change && $('#message_body').focus (function () {
-                  if (($('select option:selected') && $('#message_body')).length > 0) {
-                      $('[type="submit"]').button('enable');
+            $('[type="submit"]').button('disable');
+            $(function () {
+                $('[type="submit"]').button('disable');
+                $('select').change && $('#message_body').focus (function () {
+                    if (($('select option:selected') && $('#message_body')).length > 0) {
+                        $('[type="submit"]').button('enable');
 
-                  } else {
-                      $('[type="submit"]').button('disable');
+                    } else {
+                        $('[type="submit"]').button('disable');
 
-                  }
-              });
+                    }
+                });
 
-          });
+            });
 
-          $('#message_body').blur(function () {
-              if ($(this).val().length <= 0) {
-                  $('[type="submit"]').button('disable');
-              }
-              else{
-                  $('[type="submit"]').button('enable');
-              }
-          });
+            $('#message_body').blur(function () {
+                if ($(this).val().length <= 0) {
+                    $('[type="submit"]').button('disable');
+                }
+                else{
+                    $('[type="submit"]').button('enable');
+                }
+            });
 
-      }) ;
+        }) ;
 
 
 
@@ -44,29 +44,92 @@
     </script>
 <% end %>
 
-<%= form_for :message, url: {action: :create} do |f| %>
+
+<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" data-filter="true">
+  <h3 style="font-size: 0.8em;"><div  id="search_delegates" class="search_dele">Select Recepients</div></h3>
+  <ul data-role="listview" data-theme="a" data-divider-theme="d"  data-split-icon='star' data-mini="true" data-filter="true">
+    <% @users = User.all  %>
+    <% @use = @users - [current_user]  %>
+
+
+    <% @use.each do |e| %>
+        <li id="<%= e.id %>">
+          <input type="checkbox" style="margin-left: -30px;margin-top: 8px" class="custom check_custom"/>
+          <h3 style="font-size: 0.8em;margin-left: 10px;" id="delegates_name"><%= e.name %></h3>
+        </li>
+    <% end %>
+  </ul>
+</div>
+
+<br>
+<br>
+
+<%= form_for :message,:html => { :id => "message_form" },  :url => {:action => :create} do |f| %>
 
     <%= f.hidden_field :conference_id, :value => Conference.last.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
 
-    <%= select_tag 'receipient_users[]', options_for_select(@user_list), :multiple => true %>
+    <!--<div data-role="controlgroup" data-mini="true"  data-placeholder="true">-->
+      <!--<%#= select_tag 'receipient_users[]', options_for_select(@user_list),:prompt =>"Select Delegates", :multiple => true,:'data-mini' => true %>-->
+    <!--</div>-->
 
 
     <div class="field">
-      <%= f.text_area :body, :rows => '5', :placeholder => "Type your message" %>
+      <%= f.text_area :body, :rows => '5', :placeholder => "Type your message",:'data-mini' => true %>
     </div>
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
-      <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
+      <%#= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false",:'data-mini' => true %>
+      <a class="index_styling" href="#" data-ajax=false data-role="button" class="form_btn" id="form_btn_id" data-mini="true">Send</a>
     </div>
 <% end %>
 
 
-<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
-  <div data-role="navbar" data-theme='a'>
 
-    <!--<ul>-->
-      <!--<li><a href="/messages/new" data-ajax='false'>New</a></li>-->
-      <!--<li><a href="/messages" data-ajax='false'>Messages</a></li>-->
-    <!--</ul>-->
-  </div>
-</div>
+<script type="text/javascript">
+
+
+    $(function () {
+        $('.custom').live('click',function () {
+            var checked;
+            if ($(this).is(':checked')) {
+                checked = true;
+                var adding = ($(this).parent().parent().attr('id'));
+                var b=($(this).parent().parent().find('#delegates_name').text());
+                $('#search_delegates').text().replace(/Select Recepients/,"");
+                $('#search_delegates').html($('#search_delegates').text().replace(/Select Recepients/,"") + b + ", ");
+                $('#message_form').append('<input id='+adding+' type="hidden" name="receipient_users[]" value='+adding+'>');
+            }
+
+            else {
+                checked = false;
+                var deleting = ($(this).parent().parent().attr('id'));
+                var string = $(this).parent().parent().find('#delegates_name').text();
+                var new_string = $('#search_delegates').text().replace(string+",", '');
+                $('#search_delegates').text(new_string);
+                $('#message_form').find('#'+deleting).empty().remove();
+            }
+
+        });
+
+        $('#form_btn_id').click(function(){
+            if (($(":checkbox").filter(":checked").size()==0))
+            {
+            <%= add_gritter("Please select Delegates", :title => "Error!",:image => :warning,:time => 2000  ) %>
+            }
+
+            else if ($('#message_body').val()==""){
+            <%= add_gritter("Please fill Message", :title => "Error!",:image => :warning,:time => 2000  ) %>
+            }
+            else
+            {
+
+                $('#message_form').submit();
+            }
+        });
+
+
+    });
+
+</script>
+
+

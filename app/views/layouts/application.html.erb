@@ -3,17 +3,69 @@
 
 
 <head>
-  <title>Procialize: <%= yield :page_title %></title>
+<link rel="shortcut icon" type="image/x-icon" href="/assets/pro_browser_tile_blackbg.ico">
+  <title>Procialize:<%= yield :page_title %></title>
   <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css"/>-->
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css"/>
+  <%= stylesheet_link_tag "new_procialize_k.min" %>
+  <%= stylesheet_link_tag "jqm-icon-pack-2.0-original" %>
   <%= javascript_include_tag "application" %>
-  <!--<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>-->
   <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
   <%= csrf_meta_tags %>
 
+  <style type="text/css">
+      .circle{
+          border:1px solid #d3d3d3;
+          height:12px;
+          width:12px;
+          -webkit-border-radius: 40px;
+          -moz-border-radius: 40px;
+          border-radius: 40px;
+          background-color: #8b0000;
+          font-size: 0.7em;
+          color: #d3d3d3;
+          text-align: center;
+          vertical-align:middle;
+          padding: 2px;
+
+      }
+  </style>
+
+
   <script type="text/javascript">
+
+          $(function(){
+           if(!isMobile.any()) {
+               window.location="/desktop_events?desk=1";
+           }
+       });
+
+
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+
+
+
+
       function follow_search(id) {
           $.ajax({
               url:"/users/" + id + "/follow",
@@ -57,30 +109,40 @@
 </head>
 
 <body>
+
+<% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+<% end %>
+
 <div data-role="page" id="home">
   <div data-role="header" data-fullscreen="true">
-    <a href="/" data-icon="home" data-theme='a' data-ajax=false>Procialize</a>
-        <h1><%= yield :page_title %></h1>
+    <a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a>
+    <h1><%= yield :page_title %></h1>
 
-    <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal" style="float: left;">
 
-      <!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false data-icon="search"></a>-->
-      <a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"> </a>
-      <!--<a href="/users/<%#= @user.id %>/profile" data-icon="search" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button"></a>-->
-      <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :'data-icon' => "delete", :'data-role' => "button", :'data-iconpos' => "notext" %>
+    <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :"data-icon"=>"signout", :'data-role' => "button" %>
 
-    </div>
 
     <div data-role="navbar">
       <%= yield :page_menu %>
       <ul>
-        <li><a href="/users/<%= current_user.id %>/profile" data-icon="search" data-theme='a' data-ajax=false  data-role="button">Profile</a></li>
-        <li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>
-        <li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>
-        <li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>
-        <li><a href="/graffiti" data-icon="info" data-theme='a' data-ajax=false data-transition="pop">Graffiti</a></li>
+        <% @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting }  %>
+        <% @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message } %>
 
-
+        <li><a href="/events" data-icon="calendar" data-theme='a' data-ajax=false>Events</a></li>
+        <li>
+          <a href="/meetings" data-icon="suitcase" data-theme='a' data-ajax=false>
+            <% if @pending.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @pending.size %></span> <% end %>
+            Meetings
+          </a>
+        </li>
+        <li>
+          <a href="/messages" data-icon="envelope" data-theme='a' data-ajax=false>
+            <% if @unread.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @unread.size %></span> <% end %>
+            Messages
+          </a>
+        </li>
+        <li><a href="/users/<%= current_user.id %>/profile" data-icon="user" data-theme='a' data-ajax=false  data-role="button">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -97,34 +159,28 @@
       <br/>
     </div>
   </div>
-  <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
+  <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true" class="big">
     <div data-role="navbar" data-theme='b'>
       <ul>
         <li>
-          <a href="" data-icon="gear" data-theme='a' data-ajax=false>
-            <marquee>
+          <a href=""  data-theme='a' data-ajax=false>
+            <marquee id="tweeter_feed">
               <%= image_tag "ptotem_logo.png", :style => "max-width:25px;" %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               Do it with games. To know more visit us on
               www.ptotem.com. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <%= image_tag "Procialize.jpg", :style => "max-width:30px;max-height:30px;" %>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               Procialize, a mobile-based app, provides a one-stop solution for event organizations. Find us on
-              www.procialize.net to know more.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+              www.procialize.net to know more.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <% @newsfeed=NewsFeed.all %>
+              <% @newsfeed.each do |n| %>
+                  <%= n.feed_news %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <% end %>
             </marquee>
           </a>
         </li>
 
       </ul>
     </div>
-  <!--<div data-role="navbar" data-theme='a'>-->
-  <!--<ul>-->
-  <!--<li><a href="" data-icon="gear" data-theme='a' data-ajax=false>Sponsors</a></li>-->
-  <!--<li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>-->
-  <!--<li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>-->
-  <!--<li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>-->
-  <!--<li><a href="/" data-icon="home" data-theme='a' data-ajax=false>ADS</a></li>-->
-  <!--</ul>-->
-  <!--</div>-->
   </div>
 </div>
 
@@ -133,55 +189,40 @@
   <div data-role="header" data-fullscreen="true">
     <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
 
-    <!--<h1>Select Location</h1>-->
-    <!--</div>-->
-
-    <!--<div class="field">-->
-    <!--<%#= select_tag :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :onchange => "location_update($(this));" %>-->
-    <!--</div>-->
-    <%# if !@last_seen.blank? %>
-    <!--<h3>Your are currently at-->
-    <!--<br>-->
-
-    <!--<div id="location12">-->
-    <!--<b>-->
-    <%# @last_seen.name %>
-    <!--</b>-->
   </div>
-  <%# end %>
-  <!--</h3>-->
 
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $.get('/gettweets', function (data) {
+
+            data = data.split('", "')
+            $.each(data, function (index, val) {
+                val = val.toString().replace(/"/, '').replace('[', '').replace(']', '');
+                $('#tweet').append(val + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+            });
+        });
+
+    });
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41279198-1', '127.0.0.1:3000');
+    ga('send', 'pageview');
+
+</script>
+
+
+
 </body>
 </html>
 
 
 
 
-
-<!--<div data-role="content" data-theme='b' style="padding-top: 20px;">-->
-<!--<ul data-role="listview" data-filter="true" data-autodividers="true" data-theme='a' data-split-icon='star' data-split-theme="c">-->
-
-<!--<%# @conference.participants.map { |participant| participant.user }.sort_by { |u| u[:name] }.each do |user| %>-->
-<!--<%# unless user==current_user %>-->
-<!--<%# if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>-->
-<!--<li data-theme='a' data-filtertext="<%#= user.name %> <%#= user.batchie %> <%#= user.headline %> <%#= user.industry %>">-->
-<!--<a href="<%#= user_profile_path(user) %>" data-ajax=false data-theme='a'>-->
-<!--<%#= user.name.titlecase %>-->
-<!--</a>-->
-<!--<%#= link_to "Follow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>-->
-<!--</li>-->
-<!--<%# else %>-->
-<!--<li data-theme='b' data-filtertext="<%#= user.name %> <%#= user.batchie %> <%#= user.headline %> <%#= user.industry %>">-->
-<!--<a href="<%#= user_profile_path(user) %>" data-ajax=false data-theme='b'>-->
-<!--<%#= user.name.titlecase %>-->
-<!--<span id="following<%#= user.id %>" class="highlighted">Following</span>-->
-<!--</a>-->
-<!--<%#= link_to "Unfollow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>-->
-<!--</li>-->
-<!--<%# end %>-->
-<!--<%# end %>-->
-<!--<%# end %>-->
-
-<!--</ul>-->
-<!--</div>-->

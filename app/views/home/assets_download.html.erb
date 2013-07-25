@@ -1,0 +1,38 @@
+<%= content_for :page_title do %>
+    Knowledge Center
+<% end %>
+
+<!--<div data-role="collapsible" data-theme="a" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" data-filter="true">-->
+  <!--<h3 style="font-size: 0.8em;">Events</h3>-->
+  <!--<ul data-role="listview" data-theme="a" data-divider-theme="d" data-filter-placeholder="Search by events" data-split-icon='star' data-mini="true" data-filter="true">-->
+    <!--<%# @assets_downloads.each do |e| %>-->
+        <!--<%#if e.downloadable.url!='/avatars/original/missing.png'%>-->
+            <!--<%# @event_id= e.event_id%>-->
+            <!--<li  data-icon="file-text">-->
+              <!--<h3 style="font-size: 0.8em;"></h3>-->
+              <!--<p><b><%#= @event_name=Event.find(@event_id).name %></b></p>-->
+              <!--<p>-->
+                <!--<a href="<%#=e.downloadable.url%>"  data-theme='b' data-iconpos="notext" data-ajax=false>-->
+                <!--</a> -->
+                <%#= e.downloadable.original_filename %>
+              <!--</p>-->
+            <!--</li>-->
+        <!--<%# end %>-->
+    <!--<%# end %>-->
+  <!--</ul>-->
+<!--</div>-->
+
+
+<ul data-role="listview" data-theme="a" data-divider-theme="d" data-filter-placeholder="Search by events to download" data-split-icon='star' data-mini="true" data-filter="true">
+  <% @assets_downloads.each do |e| %>
+      <%if e.downloadable.url!='/avatars/original/missing.png'%>
+          <% @event_id= e.event_id%>
+
+          <li data-icon="file-text"><a class="index_styling" href="<%=e.downloadable.url%>" data-ajax=false>
+            <p><%= @event_name=Event.find(@event_id).name %></p>
+            <%= e.downloadable.original_filename %></a></li>
+      <% end %>
+  <% end %>
+</ul>
+
+

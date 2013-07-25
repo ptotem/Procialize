@@ -1,309 +1,184 @@
-<div class="ui-grid-a">
-  <div class="ui-block-a" >
-      <a href="/speaker" class="image" rel="external">
-       <img style="width: 95%;padding: 5px;" src="/assets/speakers.png"  />
-      </a>
-  </div>
-  <div class="ui-block-b">
-      <a href="/ask_question" class="image" rel="external">
-        <img style="width: 95%;padding: 5px;" src="/assets/questions.png"  />
-      </a>
-  </div>
-  <div class="ui-block-a" >
-      <a href="/search/search" class="image" rel="external">
-        <img style="width: 95%;padding: 5px;"src="/assets/delegates.png"  />
-      </a>
-  </div>
-  <div class="ui-block-b" >
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= content_for :page_title do %>
+      Procialize
+  <% end %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= stylesheet_link_tag "responsiveslides" %>
+  <%= javascript_include_tag "responsiveslides.min" %>
 
-      <a href="/ratings" class="image" rel="external">
-        <img style="width: 95%;padding: 5px;"src="/assets/feedback.png"  />
-      </a>
 
-  </div>
+
+  <style type="text/css">
+      .img_style {
+          max-height: 200px;
+
+      }
+
+  </style>
+
+  <style type="text/css">
+      body {
+          background-size: 100% 100%;
+      }
+
+      .ui-page {
+          background: transparent;
+      }
+
+      .ui-content {
+          background: transparent;
+      }
+
+      /*table, td, th*/
+
+        /*td {*/
+          /*text-align: left;*/
+      /*}*/
+
+  </style>
+
+
+  <script>
+
+      $(function () {
+          $("#slider1").responsiveSlides({
+              auto:true, // Boolean: Animate automatically, true or false
+              speed:1500, // Integer: Speed of the transition, in milliseconds
+              timeout:4000, // Integer: Time between slide transitions, in milliseconds
+              random:true, // Boolean: Randomize the order of the slides, true or false
+              pause:false, // Boolean: Pause on hover, true or false
+              pauseControls:true, // Boolean: Pause when hovering controls, true or false
+              maxwidth:"", // Integer: Max-width of the slideshow, in pixels
+              navContainer:"", // Selector: Where controls should be appended to, default is after the 'ul'
+              manualControls:"", // Selector: Declare custom pager navigation
+              namespace:"rslides" // String: Change the default namespace used
+          });
+
+          setTimeout(function(){
+
+          },6000)
+
+      });
+  </script>
+</head>
+<body>
+
+
+<div id="wrapper" style="height: 200px;">
+  <ul class="rslides" id="slider1">
+    <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_four.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_five.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_six.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_seven.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_eight.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_nine.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_ten.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" %></li>
+    <!--<li><%#= image_tag HomePageLogo.first.event_one_image.url, :class => "img_style" %></li>-->
+    <!--<li><%#= image_tag HomePageLogo.first.event_two_image.url, :class => "img_style" %></li>-->
+
+    <% @survey_q= SurveyQuestion.all %>
+    <% @survey_q.each do |s| %>
+        <div id="surveys"  style="font-size: 1em;padding: 7px;">
+          <li class="img_style" id="<%= s.id %>"><%= s.quest %>
+            <br>
+            <table cellpadding="3">
+              <tr>
+                <td style="vertical-align:top;"><%= s.option_a %></td>
+                <td></td>
+                <td  style="vertical-align:middle;width:2em"><%= radio_button_tag "survey_options", "1", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
+              </tr>
+              <br>
+              <tr>
+                <td style="vertical-align:top;"><%= s.option_b %></td>
+                <td></td>
+                <td  style="vertical-align:middle;width:2em;"><%= radio_button_tag "survey_options", "2", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
+              </tr>
+              <% if !s.option_c.blank? %>
+                  <tr>
+                    <td style="vertical-align:top;"><%= s.option_c %></td>
+                    <td></td>
+                    <td  style="vertical-align:middle;width:2em;"><%= radio_button_tag "survey_options", "3", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
+                  </tr>
+              <% end %>
+
+              <% if !s.option_d.blank? %>
+                  <tr>
+                    <td style="vertical-align:top;"><%= s.option_d %></td>
+                    <td></td>
+                    <td  style="vertical-align:middle;width:2em;"><%= radio_button_tag "survey_options", "4", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
+                  </tr>
+              <% end %>
+            </table>
+          </li>
+        </div>
+    <% end %>
+  </ul>
+  <!--<div>-->
+  <!--<ul data-role="listview">-->
+  <!--<li data-icon="microphone"><a class="index_styling" href="/speaker" data-ajax=false>Speakers</a></li>-->
+  <!--<li data-icon="question"><a class="index_styling" href="/ask_question" data-ajax=false>Questions</a></li>-->
+  <!--<li data-icon="group"><a class="index_styling" href="/search/search" data-ajax=false > Delegates</a></li>-->
+  <!--<li data-icon="exchange"><a class="index_styling" href="/ratings" data-ajax=false >Feedback</a></li>-->
+  <!--<li data-icon="comment"><a class="index_styling" href="/graffiti" data-ajax=false >Graffiti</a></li>-->
+  <!--<li data-icon="phone"><a class="index_styling" href="/contacts/new" data-ajax=false >Contact Us</a></li>-->
+  <!--<li data-icon="coffee"><a class="index_styling" href="/concierge_service" data-ajax=false >Concierge Service</a></li>-->
+  <!--<li data-icon="download-alt"><a class="index_styling" href="/assets_download" data-ajax=false >Knowledge center</a></li>-->
+  <!--</ul>-->
+
+  <!--</div>-->
+
+
+  <script type="text/javascript">
+      $(function () {
+
+          $("input[name=survey_options]").click(function () {
+              var a = $(this).parent().parent().parent().parent().parent().parent().attr('id');
+              var value = $(this).val();
+              var data = { user_id:[], survey_question_id:[], ans:[]}
+              data["user_id"].push('<%= current_user.id%>');
+              data["survey_question_id"].push(a);
+              data["ans"].push(value);
+              $.ajax({
+                  url:"<%= survey_storing_path %>",
+                  type:"post",
+                  data:JSON.stringify(data),
+                  contentType:"application/json",
+                  success:function (data) {
+                      <%= add_gritter("Thank You", :title => "Success",:image => :success,:time => 1000  ) %>
+                  }
+              });
+
+          });
+
+      });
+
+  </script>
+</div>
+
+<div>
+
+  <a class="index_styling" href="/speaker" data-ajax=false data-role="button" data-icon="microphone" data-mini="true">Speakers</a>
+  <a class="index_styling" href="/ask_question" data-ajax=false data-role="button" data-icon="question" data-mini="true">Questions</a>
+  <a class="index_styling" href="/ratings" data-ajax=false data-role="button" data-icon="exchange" data-mini="true">Feedback</a>
+  <a class="index_styling" href="/search/search" data-ajax=false data-role="button" data-icon="group" data-mini="true">Delegates</a>
+
+  <a class="index_styling" href="/graffiti" data-ajax=false data-role="button" data-icon="comment" data-mini="true">Updates</a>
+  <a class="index_styling" href="/contacts/new" data-ajax=false data-role="button" data-icon="phone" data-mini="true">Contact
+    Us</a>
+  <a class="index_styling" href="/concierge_service" data-ajax=false data-role="button" data-icon="coffee" data-mini="true">Concierge</a>
+  <a class="index_styling" href="/assets_download" data-ajax=false data-role="button" data-icon="download-alt" data-mini="true">Downloadables</a>
+
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<style type="text/css">-->
-<!--/*a, a:visited {*/-->
-<!--/*color: green;*/-->
-<!--/*text-decoration: none;*/-->
-<!--/*}*/-->
-<!--</style>-->
-
-
-
-
-
-<!--<div class="ui-grid-b" style="text-align:center">-->
-<!--<div class="ui-block-a">-->
-
-
-<!--<a href="/events" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procevents3.png"><br>Events</a>-->
-
-<!--</div>-->
-<!--<div class="ui-block-b">-->
-
-
-<!--<a href="/meetings" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procmeetings.png"><br>Meetings</a>-->
-
-
-<!--</div>-->
-<!--<div class="ui-block-c">-->
-
-
-<!--<a href="/messages" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procmessages.png"><br>Messages</a>-->
-
-<!--</div>-->
-
-<!--<div class="ui-block-a">-->
-
-
-<!--<a href="/users/<%#= @user.id %>/profile" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procview_profile.png"><br>View Profile</a>-->
-
-
-<!--</div>-->
-<!--<div class="ui-block-b">-->
-
-
-<!--<a href="" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"><br>Downloads</a>-->
-<!--<a href="/assets/RBI.pdf" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"><br>Downloads</a>-->
-
-
-<!--</div>-->
-<!--<div class="ui-block-c">-->
-
-
-<!--<a href="/graffiti" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procgraffiti.png"><br>Graffiti</a>-->
-
-<!--</div>-->
-
-<!--<div class="ui-block-a">-->
-
-
-<!--<a href="/search/search" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procfind_friends.png"><br>Find Friends</a>-->
-
-
-<!--</div>-->
-<!--<div class="ui-block-b">-->
-
-
-<!--<a href="/contacts/new" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/proccontact_us.png"><br>Contact us</a>-->
-
-
-<!--</div>-->
-<!--<div class="ui-block-c">-->
-
-
-<!--<a href="/invitees/new" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procinvite.png"><br>Invite People</a>-->
-<!--</div>-->
-
-<!--</div>-->
-
-
-
-
-
+</body>
+</html>

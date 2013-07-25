@@ -2,6 +2,7 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
+
     @meetings = Meeting.all
     @user = current_user
     @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting }
@@ -11,7 +12,8 @@ class MeetingsController < ApplicationController
     @open=[]
 
     @sent.each do |meeting|
-      if meeting.meeters.select{|meeter| meeter.status}.length==meeting.meeters.length
+      #if meeting.meeters.select{|meeter| meeter.status}.length==meeting.meeters.length
+      if meeting.meeters.select{|meeter| meeter.status}.length>=1
         @scheduled << meeting
       else
         @open<<meeting
@@ -49,7 +51,7 @@ class MeetingsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @meeting }
+      format.json { render :json => @meeting }
     end
   end
 
@@ -62,10 +64,9 @@ class MeetingsController < ApplicationController
     @users<<@followed
     @users<<(User.all - @followed)
     @user_list=@users.flatten.map {|u| [u.name, u.id]}
-
     respond_to do |format|
       format.html # focussed_new.html.erb
-      format.json { render json: @meeting }
+      format.json { render :json => @meeting }
     end
   end
 
@@ -76,38 +77,41 @@ class MeetingsController < ApplicationController
 
   # POST /meetings
   # POST /meetings.json
+  #def meeting_new_user
+  #  @me=Mezeter.create!(:user_id => params[:meeter_users][0])
+  #end
+
+
+
   def create
     params[:meeting].parse_time_select! :start_time
     @meeting = Meeting.new(params[:meeting])
-
     respond_to do |format|
       if @meeting.save
-
-        params[:meeter_users].each do |uid|
-          Meeter.create!(:meeting_id => @meeting.id, :user_id => uid)
-        end
-        format.html { redirect_to meeting_path(@meeting.id), notice: 'Meeting was successfully created.' }
+        params[:meeter_use].each do |uid|
+         Meeter.create!(:meeting_id => @meeting.id, :user_id =>uid )
+       end
+        format.html { redirect_to meetings_path, :notice => 'Meeting was successfully created.' }
         format.json { head :no_content }
       else
-        format.html { render action: "new" }
-        format.json { render json: @meeting.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @meeting.errors, :status => :unprocessable_entity }
       end
     end
-
   end
+
 
   # PUT /meetings/1
   # PUT /meetings/1.json
   def update
     @meeting = Meeting.find(params[:id])
-
     respond_to do |format|
       if @meeting.update_attributes(params[:meeting])
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully updated.' }
+        format.html { redirect_to @meeting, :notice => 'Meeting was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @meeting.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @meeting.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -139,5 +143,19 @@ class MeetingsController < ApplicationController
     @meeter.save
     redirect_to meetings_path
   end
+
+  def search
+    @meeting = Meeting.new
+    @meeter = params[:id]
+    @users=[]
+    @followed=Follower.find_all_by_user_id(current_user.id).map { |f| User.find(f.follower_id) }
+    @users<<@followed
+    @users<<(User.all - @followed)
+    @user_list=@users.flatten.map {|u| [u.name, u.id]}
+    #@user_list.search params[:teacher][:search_by],params[:teacher][:search]
+
+  end
+
+
 
 end

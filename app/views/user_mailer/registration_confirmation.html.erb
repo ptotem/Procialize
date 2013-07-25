@@ -32,17 +32,31 @@
 
   <ol>
     <% @user=User.find_by_email(@invitee.email) %>
-    <% unless @user.industry_recco.nil? %>
-    <% @user.industry_recco.split(",").each do |r| %>
-        <li> <%= r.titlecase %> who is also in <%= @user.industry %> </li>
-    <% end %>
+
+
+
+    <%# unless @user.industry_recco.nil? %>
+    <%# @user.industry_recco.split(",").each do |r| %>
+        <!--<li> <%#= r.titlecase %> who is also in <%#= @user.industry %> </li>-->
+    <%# end %>
+    <%# end %>
+
+    <%# unless @user.location_recco.nil? %>
+    <%# @user.location_recco.split(",").each do |r| %>
+        <!--<li> <%#= r.titlecase %> who is also in <%#= @user.location %> </li>-->
+    <%# end %>
+    <%# end %>
+
+
+
+    <!--TO do -->
+    <% unless @user.recommend.nil? %>
+        <% @user.recommend.split(",").each do |r| %>
+            <li> <%= r.titlecase %> who is in <%= @user.interest %> </li>
+        <% end %>
     <% end %>
 
-    <% unless @user.location_recco.nil? %>
-    <% @user.location_recco.split(",").each do |r| %>
-        <li> <%= r.titlecase %> who is also in <%= @user.location %> </li>
-    <% end %>
-    <% end %>
+
 
 
   </ol>

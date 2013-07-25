@@ -37,4 +37,8 @@ ProcializeApp::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+
+  # replace this with your development tracker code
+  GA.tracker = "UA-41279198-1"
 end

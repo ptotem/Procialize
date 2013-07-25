@@ -2,13 +2,9 @@
     Message
 <% end %>
 
-<%= content_for :page_menu do %>
-
-<% end %>
-
 
 <h3>
-  <table>
+  <table class="index_styling">
     <tr>
       <td class="headtd">From:</td>
       <td class="normtd"><%= @message.user.name.titlecase %></td>
@@ -23,28 +19,22 @@
     </tr>
   </table>
 </h3>
+<hr>
 <% unless @message.body.blank? %>
-    <div class="padded" style="min-height: 5em; border:solid 1px black; border-radius: 5px;background: white;color:black;">
+    <div class="padded" style="font-size:0.8em;font-weight:normal;min-height: 5em;border-radius: 5px;">
       <%= raw @message.body %>
     </div>
 <% end %>
 
-<div data-role="navbar">
-  <ul>
-    <li><a href="<%= focussed_message_path(@message.user, @message) %>" data-ajax=false>Reply</a></li>
-    <li><a href="<%= focussed_message_path(@message.user, @message, "all")%>" data-ajax=false>Reply All</a></li>
-  </ul>
-</div>
+
+<% if !params[:sent] %>
+    <a href="<%= focussed_message_path(@message.user, @message) %>/?reply=true" data-ajax=false data-role=button data-mini="true">Reply</a>
+<% end %>
+<a href="<%= focussed_message_path(@message.user, @message, "all") %>" data-ajax=false data-mini="true" data-role=button>Forward</a>
 
 
 
 
-<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
-  <!--<div data-role="navbar" data-theme='a'>-->
 
-    <!--<ul>-->
-      <!--<li><a href="/messages/new" data-ajax='false'>New</a></li>-->
-      <!--<li><a href="/messages" data-ajax='false'>Messages</a></li>-->
-    <!--</ul>-->
-  <!--</div>-->
-</div>
+
+

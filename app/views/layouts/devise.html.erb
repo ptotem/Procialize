@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" type="image/x-icon" href="/assets/pro_browser_tile_blackbg.ico">
   <title>Procialize</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
+  <%= stylesheet_link_tag "new_procialize_k.min" %>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
@@ -11,8 +13,13 @@
   <%= yield(:head) %>
 </head>
 <body>
+<div data-role="content" data-theme='a'>
+  <%= js extend_gritter :position => :bottom_right %>
+  <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
+  <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
+</div>
 <div data-role="page" data-theme="f">
-  <%= yield %>
+    <%= yield %>
 </div>
 </body>
 </html>

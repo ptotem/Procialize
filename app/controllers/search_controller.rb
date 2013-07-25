@@ -15,14 +15,15 @@ class SearchController < ApplicationController
     @industry=@user.industry
     @educations=[]
     @positions=[]
-    unless @user.educations.blank?
-      @educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "" :"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
-    end
-    unless @user.positions.blank?
-      unless @user.positions.values[1].blank?
-        @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name}" }.uniq
-      end
-    end
+
+    #unless @user.educations.blank?
+    #  @educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "" :"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
+    #end
+    #unless @user.positions.blank?
+    #  unless @user.positions.values[1].blank?
+    #    @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name}" }.uniq
+    #  end
+    #end
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
     @posts=@user.posts
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?
@@ -31,6 +32,8 @@ class SearchController < ApplicationController
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?
       @created=UserLocation.find_all_by_user_id(@user.id).last
     end
+
+
   end
 
 

@@ -1,23 +1,59 @@
-<h1 id="title_text_front_page">
-  <%= image_tag "Procialize.jpg", :style => "width:150px;border:3px ridge #89602a;" %>
+<%= javascript_include_tag "jquery.blockUI" %>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.sponsors').hide();
+
+
+        $.blockUI({
+            message:$('#splash_pic'),
+            css: {
+                border: 'none',
+                padding: '3px',
+                backgroundColor: '#000' ,
+                top:  ($(window).height() - 400) /2 + 'px',
+                left: ($(window).width() - 400) /2 + 'px',
+                width: '400px'
+
+            }
+        });
+
+        setTimeout($.unblockUI, 3000);
+        setTimeout(function(){$('.sponsors').show();}, 3500);
+
+    });
+
+
+</script>
+
+
+
+<h1 id="title_text_front_page" class="sponsors">
+  <%= image_tag Logos.first.cheif_sponsor.url, {:style => "max-height:300px;"} %>
 </h1>
 
-<div class="container">
-
-  <%= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-signin", :'data-ajax'=>"false"} do |f| %>
-      <%#= link_to image_tag("log-in-linkedin-large.png", :style => "width:100%;"), user_omniauth_authorize_path(:linkedin), :'data-ajax'=>false %>
-      <!--<hr>-->
-      <h2 class="form-signin-heading">Sign in</h2>
-      <%= f.email_field :email, :placeholder => "Enter email address" %>
-      <%= f.password_field :password, :placeholder => "Enter password" %>
-      <%= f.submit "Sign in", :'data-role'=>"button", :'data-theme'=>"a" %>
-      <%#= link_to "Sign Up", new_user_registration_path, :'data-role'=>"button", :'data-theme'=>"a" %>
-  <% end %>
-
-
+<div id="splash_pic" style="display: none;">
+  <%= image_tag Logos.first.splash_pic.url %>
 </div>
 
 
+<div class="container sponsors">
 
+  <%= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-signin", :'data-ajax' => "false"} do |f| %>
+      <%= devise_error_messages! %>
+      <br>
+      <%= link_to image_tag("linkedin.png", :style => "width:100%;"), user_omniauth_authorize_path(:linkedin), :'data-ajax' => false %>
+      <%= link_to image_tag("facebook_logo.png", :style => "width:100%;"), '/users/auth/facebook', :'data-ajax'=>false %>
+      <hr>
+      <h2 class="form-signin-heading">Sign in</h2>
+      <%= f.email_field :email, :placeholder => "Enter email address" %>
+      <%= f.password_field :password, :placeholder => "Enter password" %>
+      <%= f.submit "Sign in", :'data-role' => "button", :'data-theme' => "a" %>
+      <% if devise_mapping.rememberable? -%> <p><%= f.check_box :remember_me%> <%= f.label :remember_me,:style=>"border-left:2px solid silver;border-top:2px solid silver;color:white;" %></p> <% end %>
+      <hr>
+      <p style="color: #f5f5f5;">Sponsored by:</p>
+      <%= image_tag Logos.first.oragnizer_pic.url,:style => "max-width:150px;"  %>
+  <% end %>
 
+</div>
 

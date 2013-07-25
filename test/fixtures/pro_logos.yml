@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  splash_pic: 
+  organizer_pic: 
+  cheif_sponsor: 
+
+two:
+  splash_pic: 
+  organizer_pic: 
+  cheif_sponsor: 

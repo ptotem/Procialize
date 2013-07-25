@@ -45,7 +45,7 @@ class InviteesController < ApplicationController
     respond_to do |format|
       if @invitee.save
         UserMailer.registration_confirmation(@invitee).deliver
-        format.html { redirect_to root_path, notice: 'Invitation was successfully sent.' }
+        format.html { redirect_to root_path,notice: 'Invitation was successfully sent.' }
       end
     end
   end
@@ -80,6 +80,7 @@ class InviteesController < ApplicationController
 
 
   def send_mailers
+
     @rejected = []
     User.all.each do |user|
       @invitee=Invitee.create!(:name=>user.name, :email=>user.email)
@@ -91,8 +92,39 @@ class InviteesController < ApplicationController
       end
 
     end
-    render :text=> @rejected
+
+
+    #----------For testing---------------#
+   # User.all.each do |user|#
+
+    #user=User.find(447)
+    #  @invitee=Invitee.create!(:name=>user.name, :email=>user.email)
+    #  if @invitee.save
+    #    UserMailer.registration_confirmation(@invitee).deliver
+    #    @rejected<<"Ok"
+    #  else
+    #    @rejected<<user.email
+    #  end
+
+    #end
+
   end
+
+
+  def send_mailers_recommend
+
+    @recommended_users=User.where(:recommend_select => "t")
+    @recommended_users.each do |user|
+      @invitee=Invitee.create!(:name=>user.name, :email=>user.email)
+      if @invitee.save
+        UserMailer.registration_confirmation(@invitee).deliver
+        @rejected<<"Ok"
+      else
+        @rejected<<user.email
+      end
+    end
+  end
+
 
 
 end

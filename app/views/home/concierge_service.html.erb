@@ -1,0 +1,44 @@
+<style type="text/css">
+    #comment{
+        font-size: 0.8em;
+    }
+</style>
+<%= content_for :page_title do %>
+    <span style="color:white;font-size: 0.8em;">Concierge Services</span>
+<% end %>
+
+<p>
+<div class="index_styling">Choose Service</div>
+<%= select_tag 'service', options_for_select(@concierge_services_name),:"data-mini" => "true" %>
+</p>
+<p>
+<div class="index_styling" id="hide_manual">Create manual request</div>
+<%= text_area_tag 'comment' %>
+</p>
+<p><%= button_tag 'Send',:id=>"request",:"data-mini" => "true" %></p>
+<script type="text/javascript">
+    $(function(){
+        $('#hide_manual').hide();
+        $('#comment').prop("disabled", true);
+        $('#comment').val(gon.services_comment[$("#service").prop("selectedIndex")]);
+        $('#service').change(function(){
+           if ($(this).val()=="other") {
+               $('#hide_manual').show();
+           }
+            $('#comment').val(gon.services_comment[$("#service").prop("selectedIndex")]);
+            if($("#service").prop("selectedIndex")==gon.services_comment.length-1){
+                $('#comment').prop("disabled", false);
+            }
+            else{
+                $('#comment').prop("disabled", true);
+            }
+        });
+
+        $('#request').click(function(){
+            window.location='/order_services/'+$('#comment').val();
+        });
+
+
+
+    });
+</script>

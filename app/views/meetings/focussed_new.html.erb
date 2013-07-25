@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-    New meetings
+    New Meetings
 <% end %>
 
 
@@ -51,51 +51,65 @@
 <% end %>
 
 
-<%= form_for :meeting, url: {action: :create},:html => {:class => "meeting", :'data-ajax'=>"false"} do |f| %>
+<%= form_for :meeting, :url => {:action => :create},:html => {:class => "meeting",:id=> "meeting_form", :'data-ajax'=>"false"} do |f| %>
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
-    <div class="field">
-      <%= f.text_field :name, :'data-mini' => true, :placeholder => "Enter meeting agenda" %>
+    <div data-role="listview" data-mini="true"  data-placeholder="true"  data-split-icon='star' data-mini="true" data-filter="true">
+      <%= select_tag 'meeter_use[]', options_for_select(@users.flatten.map {|u| [u.name, u.id]}, @meeter), :multiple => true,:include_blank =>"Select Delegates", :multiple => true,:'data-mini' => true,:prompt => "Select Delegates" %>
     </div>
-    <%= select_tag 'meeter_users[]', options_for_select(@user_list, @meeter), :multiple => true %>
-
-    <!--<div class="field">-->
-      <!--<%#= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true %>-->
-    <!--</div>-->
-
-    <!--<div class="field">-->
-      <!--<%#= f.select :event_day_id, options_for_select(@conference.event_days.map { |e| [e.name, e.id] }), :'data-mini' => true %>-->
-    <!--</div>-->
-
+     <br>
     <div class="field">
       <%= f.time_select :start_time,
                         :combined => true,
-                        :default => Time.now.change(:hour => 11, :min => 30),
+                        #:default => Time.now.change(:hour => 11, :min => 30),
                         :minute_interval => 30,
                         :time_separator => "",
                         :start_hour => 00,
-                        :end_hour => 23 %>
+                        :end_hour => 23,:prompt => "Select Time" %>
+    </div>
+     <br>
+    <div class="field">
+      <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true,:prompt => "Select Location" %>
+    </div>
+      <br>
+    <div class="field">
+      <%= f.text_field :name, :'data-mini' => true, :placeholder => "Enter meeting agenda" %>
     </div>
 
+
+
+
+
+
+
+
+
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
-      <%= f.submit "Send", :'data-role' => "button"%>
+      <a class="index_styling" href="#" data-ajax=false data-role="button" class="form_btn" id="form_btn_id" data-mini="true">Send</a>
+      <%#= f.submit "Send", :'data-role' => "button"%>
     </div>
 
 <% end %>
 
 
+<script type="text/javascript">
+    $('#form_btn_id').click(function(){
+        if ($("#meeting_start_time_5i").val()==""){
+        <%= add_gritter("Please select Time", :title => "Error!",:image => :warning,:time => 2000  ) %>
+        }
+        else if ($("#meeting_location").val()==""){
+        <%= add_gritter("Please select Location", :title => "Error!",:image => :warning,:time => 2000  ) %>
+        }
+        else if ($('#meeting_name').val()==""){
+        <%= add_gritter("Please fill meeting Agenda", :title => "Error!",:image => :warning,:time => 2000  ) %>
+        }
+        else
+        {
+            $('#meeting_form').submit();
+        }
+    });
 
-
-<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
-  <div data-role="navbar" data-theme='a'>
-    <!--<ul>-->
-      <!--<li><a href="/meetings/new" data-ajax='false'>New</a></li>-->
-      <!--<li><a href="/meetings" data-ajax='false'>Meetings</a></li>-->
-    <!--</ul>-->
-  </div>
-</div>
-
-
+</script>
 
 
 
@@ -160,6 +174,7 @@
 
 
 <!--</form>-->
+
 
 
 

@@ -4,7 +4,7 @@ class Conference < ActiveRecord::Base
 
   has_many :locations, :dependent => :destroy
   has_many :event_days, :dependent => :destroy
-  has_many :events, :through=> :event_days
+  #has_many :events, :through=> :event_days
   has_many :messages, :dependent => :destroy
   has_many :followers, :dependent => :destroy
   has_many :organizers, :dependent => :destroy

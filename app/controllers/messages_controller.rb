@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
   def show
 
     @message = Message.find(params[:id])
+    @sent = Message.find_all_by_user_id(current_user.id).last(10).reverse
     if @receipient=Receipient.find_by_user_id_and_message_id(current_user.id, @message.id)
       @receipient.status=true
       @receipient.save
@@ -57,17 +58,23 @@ class MessagesController < ApplicationController
     @message = Message.new(params[:message])
     respond_to do |format|
       if @message.save
+
         params[:receipient_users].each do |uid|
           Receipient.create!(:message_id => @message.id, :user_id => uid)
         end
-        format.html { redirect_to message_path( @message) , notice: 'Message was successfully created.' }
+        format.html { redirect_to messages_path , :notice=> 'Message was successfully sent.' }
         #format.json { render json: @message, status: :created, location: @message }
       else
-        format.html { render action: "new" }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.html { render :action=> "new" }
+        format.json { render :json=> @message.errors, :status=> :unprocessable_entity }
       end
     end
   end
+
+  def message_new_user
+    render :text =>  params[:receipient_users][0]
+  end
+
 
 
   def update
@@ -75,11 +82,11 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.update_attributes(params[:message])
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
+        format.html { redirect_to @message, :notice =>'Message was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.html { render :action=> "edit" }
+        format.json { render :json=> @message.errors, :status => :unprocessable_entity }
       end
     end
   end

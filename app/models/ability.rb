@@ -2,12 +2,35 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+
+    user ||= User.new
+    case user.role
+      when "admin"
+        can :access, :rails_admin # grant access to rails_admin
+        can :dashboard
+        can :manage, :all
+      when "proops"
+        can :access, :rails_admin # grant access to rails_admin
+        can :dashboard
+        can :manage, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
+      when "orgops"
+        can :access, :rails_admin # grant access to rails_admin
+        can :dashboard
+        can :manage, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
+      else
+        cannot :manage, :all
+        cannot :access, :rails_admin # grant access to rails_admin
+        cannot :dashboard
+    end
+
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
-    #   if user.email=="moderator@procialize.com"
-    #     can :access, :questionables
-    #
+    #   if user.admin?
+    #     can :manage, :all
+    #   else
+    #     can :read, :all
     #   end
     #
     # The first argument to `can` is the action you are giving the user permission to do.
@@ -23,30 +46,5 @@ class Ability
     #   can :update, Article, :published => true
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
-
-
-       user ||= User.new
-       case user.email= "organizer@procialize.com"
-         when "organizer@procialize.com"
-           can :access, :questionables # grant access to rails_admin
-           #can :dashboard
-           #can :manage, :all
-         #when "Projects"
-         #  can :access, :rails_admin # grant access to rails_admin
-         #  can :dashboard
-         #  can :manage, [Project, Task, User, Page, Feature, TaskAsset, TaskCompetence, Competence]
-         #when "DevTeam"
-         #  can [:read, :edit], Task
-         #  can :read, Guideline
-         #  can :manage, TaskAsset
-         #  can :access, :rails_admin # grant access to rails_admin
-         #  can :dashboard
-         else
-           cannot :manage, :all
-           can :access, :rails_admin # grant access to rails_admin
-           can :dashboard
-
-       end
-
   end
 end

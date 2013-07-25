@@ -20,10 +20,8 @@
 <script type="text/javascript">
     $(function () {
         $('.approve').click(function () {
-//          alert($(this).parent().parent().prev().attr('id'));
             var data = {question_id:[]}
             data["question_id"].push($(this).parent().parent().prev().attr('id'));
-//          alert($(this).parent().parent().prev().prev().attr('id'));
 
             $.ajax({
                 url:"<%= approve_quest_path %>",
@@ -42,11 +40,9 @@
 
 
         $('.hide').click(function () {
-//          alert($(this).parent().parent().prev().prev().attr('id'));
 
             var data = {question_id:[]}
             data["question_id"].push($(this).parent().parent().prev().prev().attr('id'));
-//          alert($(this).parent().parent().prev().prev().attr('id'));
 
             $.ajax({
                 url:"<%= hide_quest_path %>",
@@ -72,12 +68,8 @@
 <% @events.each do |e| %>
     <% @event_name =Event.find(e).name %>
     <h1>  <%= @event_name %>  </h1>
-    <%# @questionable = Questionable.find_all_by_event_id(e) %>
     <% @questionable = Questionable.find_all_by_event_id_and_hide(e,true) %>
-    <%# @questionable2 = Questionable.find_all_by_event_id_and_approved(e,false) %>
-    <%# @questionable3 = Questionable.find_all_by_event_id(e) %>
 
-    <%# @questionable = (@questionable2&@questionable1).uniq %>
 
     <% @questionable.each do |q| %>
         <div class="fbinfo" id="question_div_<%= q.id %>">

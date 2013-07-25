@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Procialize Home</title>
+  <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
+  <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/Datatables/extra/ColumnFilterWidgets.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/Datatables/jquery_dataTables_themeroller.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/desktop_view.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/jqmProcialize.min.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/jquery.bxslider.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/mobiscroll-2.2.custom.min.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/moderator.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/moderator_view.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/procialize_styles.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/questionables.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/ratings.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/slidy.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/speaker.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/themes/agent_yellow.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/themes/carbon_dust.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/themes/chinese_rose_garden.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/themes/dystopian_bubble.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/themes/eco_future.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/themes/grazing_meadows.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/themes/hud.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/themes/jazzy_blues.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/themes/lady_hulk.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/themes/theme_suits.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/gritter.css?body=1" media="all" rel="stylesheet" type="text/css" />
+
+
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css"/>
+
+  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/Datatables/jquery_datable.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script src="/assets/Datatables/extra/ColumnFilterWidgets.js?body=1" type="text/javascript"></script>
+<script src="/assets/desktop_view.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.blockUI.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.bxslider.min.js?body=1" type="text/javascript"></script>
+<script src="/assets/moderator.js?body=1" type="text/javascript"></script>
+<script src="/assets/moderator_view.js?body=1" type="text/javascript"></script>
+<script src="/assets/prototype-snippet.js?body=1" type="text/javascript"></script>
+<script src="/assets/questionables.js?body=1" type="text/javascript"></script>
+<script src="/assets/ratings.js?body=1" type="text/javascript"></script>
+<script src="/assets/slidy.js?body=1" type="text/javascript"></script>
+<script src="/assets/speaker.js?body=1" type="text/javascript"></script>
+<script src="/assets/gritter.js?body=1" type="text/javascript"></script>
+<script src="/assets/application.js?body=1" type="text/javascript"></script>
+  <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="les58b3QoE3u9XmHGqIAu2XM2ZJ+bvSHpEUwLbLd+J8=" name="csrf-token" />
+  
+  <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-41279198-1']);
+_gaq.push(['_setAllowLinker',true]);
+_gaq.push(['_setDomainName','none']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+  <script type="text/javascript">
+
+
+
+
+      //      ---------------------------------start Theme change function----------------------
+      //      -----------------------------------------------------------------------------
+
+
+
+      $(function apply_selected_theme(){
+
+
+          if ((7) == 0) {
+              $('head').append('<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" type="text/css" />');
+          } else if ((7) == 1) {
+              $('head').append('<link rel="stylesheet" href="/assets/themes/agent_yellow.css" type="text/css" />');
+          } else if ((7) == 2) {
+              $('head').append('<link rel="stylesheet" href="/assets/themes/carbon_dust.css" type="text/css" />');
+          } else if ((7) == 3) {
+              $('head').append('<link rel="stylesheet" href="/assets/themes/chinese_rose_garden.css" type="text/css" />');
+          } else if ((7) == 4) {
+              $('head').append('<link rel="stylesheet" href="/assets/themes/dystopian_bubble.css" type="text/css" />');
+          } else if ((7) == 5) {
+              $('head').append('<link rel="stylesheet" href="/assets/themes/eco_future.css" type="text/css" />');
+          } else if ((7) == 6) {
+              $('head').append('<link rel="stylesheet" href="/assets/themes/grazing_meadows.css" type="text/css" />');
+          }else if ((7) == 7) {
+              $('head').append('<link rel="stylesheet" href="/assets/themes/hud.css" type="text/css" />');
+          }else if ((7) == 8) {
+              $('head').append('<link rel="stylesheet" href="/assets/themes/jazzy_blues.css" type="text/css" />');
+          }else if ((7) == 9) {
+              $('head').append('<link rel="stylesheet" href="/assets/themes/lady_hulk.css" type="text/css" />');
+          }else if ((7) == 10) {
+              $('head').append('<link rel="stylesheet" href="/assets/themes/theme_suits.css" type="text/css" />');
+          }
+      } );
+
+
+
+      function themes() {
+
+
+          var data = {user_id:[], themes:[]}
+          data["user_id"].push('419');
+          data["themes"].push($('#select_menu').val());
+
+          $.ajax({
+              url:"/themes",
+              type:"post",
+              data:JSON.stringify(data),
+              contentType:"application/json",
+              success:function (data) {
+
+
+
+                  if (data == 0) {
+                      $('head').append('<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" type="text/css" />');
+                  } else if (data == 1) {
+                      $('head').append('<link rel="stylesheet" href="/assets/themes/agent_yellow.css" type="text/css" />');
+                  } else if (data == 2) {
+                      $('head').append('<link rel="stylesheet" href="/assets/themes/carbon_dust.css" type="text/css" />');
+                  } else if (data == 3) {
+                      $('head').append('<link rel="stylesheet" href="/assets/themes/chinese_rose_garden.css" type="text/css" />');
+                  } else if (data == 4) {
+                      $('head').append('<link rel="stylesheet" href="/assets/themes/dystopian_bubble.css" type="text/css" />');
+                  } else if (data == 5) {
+                      $('head').append('<link rel="stylesheet" href="/assets/themes/eco_future.css" type="text/css" />');
+                  } else if (data == 6) {
+                      $('head').append('<link rel="stylesheet" href="/assets/themes/grazing_meadows.css" type="text/css" />');
+                  }else if (data == 7) {
+                      $('head').append('<link rel="stylesheet" href="/assets/themes/hud.css" type="text/css" />');
+                  }else if (data == 8) {
+                      $('head').append('<link rel="stylesheet" href="/assets/themes/jazzy_blues.css" type="text/css" />');
+                  }else if (data == 9) {
+                      $('head').append('<link rel="stylesheet" href="/assets/themes/lady_hulk.css" type="text/css" />');
+                  }else if (data == 10) {
+                      $('head').append('<link rel="stylesheet" href="/assets/themes/theme_suits.css" type="text/css" />');
+                  }
+
+
+
+              }
+
+          });
+
+      }
+
+      //      ---------------------------------end Theme change function----------------------
+      //      -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+      function follow_search(id) {
+          $.ajax({
+              url:"/users/" + id + "/follow",
+              type:"post",
+              success:function (data) {
+                  if (data == "Unfollow") {
+                      $('#user' + id).parent().attr('data-theme', 'b').removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
+                      $('#user' + id).prev().find('.ui-link-inherit').append('<span id="following' + id + '" class="highlighted" >Following</span>');
+                  } else {
+                      $('#user' + id).parent().attr('data-theme', 'a').removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
+                      $("#following" + id).remove();
+                  }
+              }
+          });
+      }
+
+
+      function location_update(this_select) {
+          var data = {user:[], location:[]}
+          data["user"].push(419);
+          data["location"].push($(this_select).val())
+          $.ajax({
+              url:"/update_location",
+              type:"delete",
+              async:false,
+              data:JSON.stringify(data),
+              contentType:"application/json",
+              success:function (data) {
+                  window.location = "/"
+                  // alert(data);
+
+
+              }
+          });
+      }
+
+
+  </script>
+
+  
+</head>
+
+<body>
+
+<div data-role="page" id="home">
+  <div data-role="header" data-fullscreen="true">
+
+
+    <a href="/" data-icon="home" data-theme='a' data-ajax=false>Procialize</a>
+
+    <h1>
+    <span style="color:white">Proci</span><span style="color:darkgray">alize</span>
+</h1>
+
+    <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal" data-theme='a' data-ajax=false data-iconpos="notext" data-role="button" style="float: left;">
+
+      <!-----------------------------Theme Changing-------------------------------------------------------------->
+      <!------------------------------------------------------------------------------------------->
+
+
+      <select id="select_menu" onchange="themes();"  data-iconpos="notext" data-role="menu">
+          <option value="0">Default</option>
+          <option value="1">Agent Yellow</option>
+          <option value="2">Carbon Dust</option>
+          <option value="3">Chinese Rose Garden</option>
+          <option value="4">Dystopian Bubble</option>
+          <option value="5">Eco Future</option>
+          <option value="6">Grazing Meadows</option>
+          <option value="7">HUD</option>
+          <option value="8">Jazzy Blues</option>
+          <option value="9">Lady Hulk</option>
+          <option value="10">Theme Suits</option>
+        </select>
+
+      <!------------------------------------------------------------------------------------------->
+      <!------------------------------------------------------------------------------------------->
+
+
+
+      <a href="/users/sign_out" data-ajax="false" data-icon="delete" data-iconpos="notext" data-method="delete" data-role="button" rel="nofollow">Logout</a>
+
+    </div>
+
+
+    <div data-role="navbar">
+      
+
+      <ul>
+        <li><a href="/events" data-icon="grid" data-theme='a' data-ajax=false>Events</a></li>
+        <li><a href="/meetings" data-icon="star" data-theme='a' data-ajax=false>Meetings</a></li>
+        <li><a href="/messages" data-icon="alert" data-theme='a' data-ajax=false>Messages</a></li>
+        <li><a href="/users/419/profile" data-icon="search" data-theme='a' data-ajax=false  data-role="button">Profile</a></li>
+
+
+      </ul>
+    </div>
+  </div>
+  <div data-role="content" data-theme='a'>
+    <script type="text/javascript">
+//<![CDATA[
+jQuery.extend($.gritter.options,{position:'bottom-right'});
+//]]>
+</script>
+    <script type="text/javascript">
+//<![CDATA[
+jQuery(function(){jQuery.gritter.add({image:'/assets/success.png',time:2000,title:'Notice',text:'Signed in successfully.'});});
+//]]>
+</script>
+    <script type="text/javascript">
+//<![CDATA[
+
+//]]>
+</script>
+    <div class="content_container">
+      
+
+<div id="slidyBanner" class="slidyContainer">
+  <div class="slidySlides">
+
+    <figure class="slidyCurrent">
+      <img src="/assets/2 Shanghai - 38 - Banner.jpg">
+      </br>
+    </figure>
+
+
+    <figure>
+      <img  src="/assets/16 Uyuni Salt Flats - 61 - Banner.jpg">
+      </br>
+    </figure>
+
+
+  </div>
+
+
+  <script type="text/javascript">
+
+     $(function(){
+
+         $('.slidyContainer').slidy({
+             throttle: false, // Set to true, and include jQuery throttle plugin (http://benalman.com/projects/jquery-throttle-debounce-plugin/)
+             throttleTime: 500, // number of ms to wait for throttling
+             showArrows: true, // Show arrows for next/prev image
+             movePrev: 'movePrev', // Div id to use for previous button
+             moveNext: 'moveNext', // Div id to use for next button
+             useKeybord: true, // use keys defined below to expand / collapse sections
+             auto: true,       // Start slideshow automatically
+             interval: 10000,     // Time between each slide
+             initialInterval: 10000  // Initial interval when page loads
+         });
+
+     });
+
+  </script>
+
+</div>
+
+
+<div>
+  <ul data-role="listview">
+    <li><a href="/speaker" data-ajax=false>Speakers</a></li>
+    <li><a href="/ask_question" data-ajax=false>Questions</a></li>
+    <li><a href="/search/search" data-ajax=false> Delegates</a></li>
+    <li><a href="/ratings" data-ajax=false>Feedback</a></li>
+    <li><a href="/graffiti" data-ajax=false>Graffiti</a></li>
+    <li><a href="/contacts/new" data-ajax=false>Contact Us</a></li>
+    <li><a href="/concierge_service" data-ajax=false>Concierge Service</a></li>
+    <li><a href="/assets_download" data-ajax=false>Assets</a></li>
+  </ul>
+
+</div>
+
+
+
+
+
+
+      <br/>
+      <br/>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true" class="big">
+    <div data-role="navbar" data-theme='b'>
+      <ul>
+        <li>
+          <a href=""  data-theme='a' data-ajax=false>
+            <marquee id="tweet">
+              <img alt="Ptotem_logo" src="/assets/ptotem_logo.png" style="max-width:25px;" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Do it with games. To know more visit us on
+              www.ptotem.com. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img alt="Procialize" src="/assets/Procialize.jpg" style="max-width:30px;max-height:30px;" />  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Procialize, a mobile-based app, provides a one-stop solution for event organizations. Find us on
+              www.procialize.net to know more.&nbsp;&nbsp;&nbsp;
+              This is procialize testing for the news feed
+            </marquee>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div id="search_menu" data-role="page">
+  <div data-role="header" data-fullscreen="true">
+    <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
+
+    <h1>Select Location</h1>
+  </div>
+
+  <div class="field">
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $.get('/gettweets', function (data) {
+
+            data = data.split('", "')
+            $.each(data, function (index, val) {
+                val = val.toString().replace(/"/, '').replace('[', '').replace(']', '');
+                $('#tweet').append(val + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+            });
+        });
+
+    });
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41279198-1', '127.0.0.1:3000');
+    ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<ul>-->
+<!---->
+<!--<li></li>-->
+
+<!---->
+<!--<a href="/contacts/new" data-icon="gear" data-theme='a' data-ajax=false>Contact Administrator</a>-->
+<!---->
+<!--</ul>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div data-role="content" data-theme='b' style="padding-top: 20px;">-->
+<!--<ul data-role="listview" data-filter="true" data-autodividers="true" data-theme='a' data-split-icon='star' data-split-theme="c">-->
+
+<!---->
+<!---->
+<!---->
+<!--<li data-theme='a' data-filtertext="   ">-->
+<!--<a href="" data-ajax=false data-theme='a'>-->
+<!---->
+<!--</a>-->
+<!---->
+<!--</li>-->
+<!---->
+<!--<li data-theme='b' data-filtertext="   ">-->
+<!--<a href="" data-ajax=false data-theme='b'>-->
+<!---->
+<!--<span id="following" class="highlighted">Following</span>-->
+<!--</a>-->
+<!---->
+<!--</li>-->
+<!---->
+<!---->
+<!---->
+
+<!--</ul>-->
+<!--</div>-->

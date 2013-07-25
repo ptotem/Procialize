@@ -1,6 +1,12 @@
 class HomeController < ApplicationController
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied."
+    redirect_to root_url
+  end
+
   def index
+
 
     #@now=Time.at(Time.now.hour * 60 * 60 + Time.now.min * 60 + Time.now.sec)
     Time.zone = "New Delhi"
@@ -21,15 +27,20 @@ class HomeController < ApplicationController
 
     if !UserLocation.find_all_by_user_id(@user.id).blank?
       @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
-
     end
     unless @last_seen.blank?
       @created_at=UserLocation.find_all_by_user_id_and_location_id(@user.id, @last_seen.id).last
     end
     unless @user.id.blank?
-    @post=Post.find_all_by_user_id(@user.id).last
+      @post=Post.find_all_by_user_id(@user.id).last
     end
     @event_day_name=EventDay.find_by_event_date(Time.now)
+    @user_themes=@user.themes
+
+    if params[:first_time]
+      flash[:message]="welcome #{current_user.name}"
+    end
+
   end
 
   def update_status
@@ -74,6 +85,160 @@ class HomeController < ApplicationController
       @post=Post.find_all_by_user_id(@user.id).last
     end
     @event_day_name=EventDay.find_by_event_date(Time.now)
+  end
+
+
+  def theme_changer
+    @user=User.find(params[:user_id][0])
+    @user.themes=params[:themes][0]
+    @user.save
+    render :text => @user.themes
+  end
+
+  def concierge_service
+    @user=current_user
+    @user_themes=@user.themes
+    @concierge_services_name=  ConciergeService.all.map{|i| i.name}
+    @concierge_services_comments=  ConciergeService.all.map{|i| i.comment}
+    gon.services_comment=@concierge_services_comments
+  end
+
+
+  def order_services
+    @message = Message.new
+    @message.body=params[:message]
+    @message.user_id=current_user.id
+    @message.conference_id=@conference.id
+    @message.save
+    @user=User.find_by_email("admin@organizer.com")
+    @receipient=Receipient.create!(:user_id => @user.id, :message_id => @message.id)
+    @receipient.status=nil
+    @receipient.save
+
+    respond_to do |format|
+      if @message.save
+        format.html { redirect_to root_path, :notice=> 'Request Sent to Admin' }
+        format.json { render :json => @message, :status => :created, :location => @message }
+      else
+        format.html { render :action =>"new" }
+        format.json { render :json =>@message.errors, :status=> :unprocessable_entity }
+      end
+    end
+  end
+
+
+
+
+
+  def gettweets
+    @tweets=Twitter.search("#rajnikanth", :lang => "en", :count => 10,:result_type => "recent").results.map do |status|
+      "#{status.from_user}: #{status.text}"
+    end
+    render :text=>@tweets
+    return
+  end
+
+
+  def settweetcounter
+    @logo=Logos.first
+    @logo.tweet_count=params[:count].to_i
+    @logo.save
+    render :text=>@logo.tweet_count
+  end
+
+
+  def assets_download
+    @user=current_user
+    @user_themes=@user.themes
+    @assets_downloads=AssetsDownload.all
+  end
+
+
+  def trigger_recommend
+    @users=User.all
+    @user=current_user.id
+    render :layout => "application1"
+  end
+
+
+  #def send_mail_to_recommended_users
+  #  @users=params[:user_id]
+  #  @users.each do  |l|
+  #    @user=User.find(l)
+  #    if !@user.interest.nil?
+  #      @user_industry=User.find_all_by_industry(@user.interest).map{|i| i.name}
+  #      @user_industry.delete(@user.name )
+  #      @user.recommend = @user_industry.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
+  #      @user.recommend_select="t"
+  #      @user.save
+  #      redirect_to send_mailers_recommend_path
+  #      #render :text => @user.recommend_select
+  #    end
+  #  end
+  #end
+
+  def send_mail_to_recommended_users
+    @users=params[:user_id]
+    @users.each do  |l|
+      @user=User.find(l)
+      if !@user.industry.nil?
+        @user_interest=User.find_all_by_industry(@user.industry).map{|i| i.name}
+        @user_interest.delete(@user.name)
+        @user.recommend=@user_interest.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
+        @user.recommend_select="t"
+        @user.save
+      elsif !@user.interest.nil?
+        @user_industry=User.find_all_by_industry(@user.interest).map{|i| i.name}
+        @user_industry.delete(@user.name)
+        @user.recommend=@user_industry.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
+        @user.recommend_select="t"
+        @user.save
+      end
+    end
+  end
+
+
+  def recommendation
+    #@user_industry=Array.new
+    #@user=User.find(447)
+    #@user_industry=User.find_all_by_industry(@user.interest).map{|i| i.name}
+    #@user_industry.delete(@user.name )
+    #
+
+    #----------To be used later----------------#
+    @users=User.all
+    @users.each do  |l|
+      if !l.interest.nil?
+        @user_industry=User.find_all_by_industry(l.interest).map{|i| i.name}
+        @user_industry.delete(l.name )
+        l.recommend = @user_industry.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
+        l.save
+      end
+    end
+
+  end
+
+
+
+
+  def survey
+
+  end
+
+
+  def survey_storing
+    @survey_storing=SurveyAnswer.create(:user_id => params[:user_id][0], :survey_question_id => params[:survey_question_id][0],:ans => params[:ans][0])
+    render :text => @survey_storing.save
+    return
+  end
+
+
+  def editing_profile
+    @industry_edit=User.find(params[:user_id][0])
+    @industry_edit.industry= params[:industry][0]
+    @industry_edit.save
+    render :text =>  @industry_edit.save
+    return
   end
 
 

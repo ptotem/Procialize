@@ -1,18 +1,24 @@
 class Users::ProfileController < ApplicationController
+  require 'linkedin'
+
+
   def index
     @user=User.find(params[:id])
     @name=@user.name
     @photo=@user.picture
     @headline=@user.headline
     @industry=@user.industry
-    @educations=[]
+    @interest=@user.interest
+    @educations=@user.educations
+    @location=@user.location
+    @skills=@user.skills
     @positions=[]
-    unless @user.educations.blank? or @user.educations.values[1].blank?
-      @educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "" :"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
-    end
-    unless @user.positions.blank? or @user.positions.values[1].blank?
-      @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name unless p.blank?}" }.uniq
-    end
+    #unless @user.educations.blank? or @user.educations.values[1].blank?
+    #  @educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "" :"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
+    #end
+    #unless @user.positions.blank? or @user.positions.values[1].blank?
+    #  @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name unless p.blank?}" }.uniq
+    #end
 
     #@followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user }.map { |f| f.user }
@@ -55,6 +61,7 @@ class Users::ProfileController < ApplicationController
 
   end
 
+
   def edit
     @user=current_user
     @batchlist=Array.new
@@ -66,15 +73,44 @@ class Users::ProfileController < ApplicationController
     @batchlist.flatten
   end
 
+
   def update
     @user = User.find(params[:id])
-
     if @user.update_attributes(params[:user])
-      redirect_to action: :index
+      redirect_to :action => :index
+      flash[:notice] = 'Successfully Updated Profile'
+
     else
       render 'edit'
     end
   end
+
+
+  #def callback
+  #  client = LinkedIn::Client.new("ljzad7w5p948", "sUZB5WRK34cmt0FN")
+  #  if session[:atoken].nil?
+  #    pin = params[:oauth_verifier]
+  #    atoken, asecret = client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
+  #    session[:atoken] = atoken
+  #    session[:asecret] = asecret
+  #  else
+  #    client.authorize_from_access(session[:atoken], session[:asecret])
+  #  end
+  #  @profile = client.profile
+  #  @connections = client.connections
+  #end
+  #
+  #
+  #def  index_for_linkedin
+  #  client = LinkedIn::Client.new("ljzad7w5p948", "sUZB5WRK34cmt0FN")
+  #  request_token = client.request_token(:oauth_callback =>
+  #                                           "http://localhost:3000/auth/callback")
+  #                                           #"http://#{request.host_with_port}/auth/callback")
+  #  session[:rtoken] = request_token.token
+  #  session[:rsecret] = request_token.secret
+  #  redirect_to client.request_token.authorize_url
+  #
+  #end
 
 
 end

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307110829) do
+ActiveRecord::Schema.define(:version => 20130723134747) do
+
+  create_table "assets_downloads", :force => true do |t|
+    t.string   "downloadable_file_name"
+    t.string   "downloadable_content_type"
+    t.integer  "downloadable_file_size"
+    t.datetime "downloadable_updated_at"
+    t.integer  "event_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.text     "feedback"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "track_id"
   end
 
   create_table "cms_blocks", :force => true do |t|
@@ -138,6 +149,13 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
   add_index "cms_snippets", ["site_id", "identifier"], :name => "index_cms_snippets_on_site_id_and_identifier", :unique => true
   add_index "cms_snippets", ["site_id", "position"], :name => "index_cms_snippets_on_site_id_and_position"
 
+  create_table "concierge_services", :force => true do |t|
+    t.string   "name"
+    t.text     "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "conferences", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -155,6 +173,12 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+  end
+
+  create_table "event", :force => true do |t|
+    t.integer  "sequence"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "event_days", :force => true do |t|
@@ -186,16 +210,8 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.boolean  "Question"
     t.boolean  "quest"
-  end
-
-  create_table "feedbacks", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "conference_id"
-    t.integer  "rating"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "tracking_id"
   end
 
   create_table "followers", :force => true do |t|
@@ -204,6 +220,71 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.integer  "conference_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "home_page_logos", :force => true do |t|
+    t.string   "image_one_file_name"
+    t.string   "image_one_content_type"
+    t.integer  "image_one_file_size"
+    t.datetime "image_one_updated_at"
+    t.string   "image_two_file_name"
+    t.string   "image_two_content_type"
+    t.integer  "image_two_file_size"
+    t.datetime "image_two_updated_at"
+    t.string   "image_three_file_name"
+    t.string   "image_three_content_type"
+    t.integer  "image_three_file_size"
+    t.datetime "image_three_updated_at"
+    t.string   "image_four_file_name"
+    t.string   "image_four_content_type"
+    t.integer  "image_four_file_size"
+    t.datetime "image_four_updated_at"
+    t.string   "image_five_file_name"
+    t.string   "image_five_content_type"
+    t.integer  "image_five_file_size"
+    t.datetime "image_five_updated_at"
+    t.string   "image_six_file_name"
+    t.string   "image_six_content_type"
+    t.integer  "image_six_file_size"
+    t.datetime "image_six_updated_at"
+    t.string   "image_seven_file_name"
+    t.string   "image_seven_content_type"
+    t.integer  "image_seven_file_size"
+    t.datetime "image_seven_updated_at"
+    t.string   "image_eight_file_name"
+    t.string   "image_eight_content_type"
+    t.integer  "image_eight_file_size"
+    t.datetime "image_eight_updated_at"
+    t.string   "image_nine_file_name"
+    t.string   "image_nine_content_type"
+    t.integer  "image_nine_file_size"
+    t.datetime "image_nine_updated_at"
+    t.string   "image_ten_file_name"
+    t.string   "image_ten_content_type"
+    t.integer  "image_ten_file_size"
+    t.datetime "image_ten_updated_at"
+    t.string   "event_image_file_name"
+    t.string   "event_image_content_type"
+    t.integer  "event_image_file_size"
+    t.datetime "event_image_updated_at"
+    t.string   "conference_image_file_name"
+    t.string   "conference_image_content_type"
+    t.integer  "conference_image_file_size"
+    t.datetime "conference_image_updated_at"
+    t.string   "sponsor_image_file_name"
+    t.string   "sponsor_image_content_type"
+    t.integer  "sponsor_image_file_size"
+    t.datetime "sponsor_image_updated_at"
+    t.string   "event_one_image_file_name"
+    t.string   "event_one_image_content_type"
+    t.integer  "event_one_image_file_size"
+    t.datetime "event_one_image_updated_at"
+    t.string   "event_two_image_file_name"
+    t.string   "event_two_image_content_type"
+    t.integer  "event_two_image_file_size"
+    t.datetime "event_two_image_updated_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "invitees", :force => true do |t|
@@ -220,12 +301,30 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "logos", :force => true do |t|
+    t.string   "splash_pic_file_name"
+    t.string   "splash_pic_content_type"
+    t.integer  "splash_pic_file_size"
+    t.datetime "splash_pic_updated_at"
+    t.string   "oragnizer_pic_file_name"
+    t.string   "oragnizer_pic_content_type"
+    t.integer  "oragnizer_pic_file_size"
+    t.datetime "oragnizer_pic_updated_at"
+    t.string   "cheif_sponsor_file_name"
+    t.string   "cheif_sponsor_content_type"
+    t.integer  "cheif_sponsor_file_size"
+    t.datetime "cheif_sponsor_updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
   create_table "meeters", :force => true do |t|
     t.integer  "meeting_id"
     t.integer  "user_id"
     t.text     "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "check"
   end
 
   create_table "meetings", :force => true do |t|
@@ -237,6 +336,7 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.datetime "updated_at",   :null => false
     t.integer  "user_id"
     t.integer  "event_day_id"
+    t.boolean  "checking"
   end
 
   create_table "messages", :force => true do |t|
@@ -246,6 +346,12 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.integer  "conference_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "news_feeds", :force => true do |t|
+    t.text     "feed_news"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "organizers", :force => true do |t|
@@ -270,6 +376,15 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "pro_logos", :force => true do |t|
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
   create_table "questionables", :force => true do |t|
     t.integer  "event_id"
     t.integer  "user_id"
@@ -277,9 +392,12 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.string   "quest_name"
     t.integer  "up_votes"
     t.integer  "down_votes"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.boolean  "hide"
+    t.integer  "like",       :default => 0
+    t.string   "liking_by",  :default => "0"
+    t.integer  "track_id"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -288,7 +406,7 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
@@ -301,6 +419,7 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.integer  "rate"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "track_id"
   end
 
   create_table "receipients", :force => true do |t|
@@ -310,6 +429,16 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.datetime "updated_at", :null => false
     t.boolean  "status"
   end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "speakers", :force => true do |t|
     t.integer  "event_id"
@@ -333,6 +462,38 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.boolean  "public"
   end
 
+  create_table "survey_answers", :force => true do |t|
+    t.integer  "survey_question_id"
+    t.integer  "user_id"
+    t.string   "ans"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "survey_questions", :force => true do |t|
+    t.text     "quest"
+    t.string   "option_a"
+    t.string   "option_b"
+    t.string   "option_c"
+    t.string   "option_d"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tracks", :force => true do |t|
+    t.integer  "event_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "start"
+    t.datetime "end"
+    t.string   "track_img_file_name"
+    t.string   "track_img_content_type"
+    t.integer  "track_img_file_size"
+    t.datetime "track_img_updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
   create_table "user_locations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "location_id"
@@ -341,18 +502,18 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                   :default => "",    :null => false
+    t.string   "encrypted_password",      :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",           :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
@@ -373,8 +534,19 @@ ActiveRecord::Schema.define(:version => 20130307110829) do
     t.text     "location_recco"
     t.text     "industry_recco"
     t.text     "company"
-    t.integer  "no_of_views",            :default => 0
+    t.integer  "no_of_views",             :default => 0
     t.text     "viewers_name"
+    t.integer  "themes",                  :default => 0
+    t.string   "interest"
+    t.string   "recommend"
+    t.string   "role"
+    t.boolean  "recommend_select",        :default => false
+    t.string   "user_name"
+    t.string   "user_photo_file_name"
+    t.string   "user_photo_content_type"
+    t.integer  "user_photo_file_size"
+    t.datetime "user_photo_updated_at"
+    t.text     "skills"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

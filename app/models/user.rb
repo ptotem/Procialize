@@ -3,12 +3,22 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and
+
+
+
+
+
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
+         #:recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable
+
+  #validates_uniqueness_of    :email,     :allow_blank => true, :if => :email_changed?
+  #validates_format_of :email, :allow_blank => true, :if => :email_changed?
+
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :provider, :uid, :name, :location, :industry, :picture, :token, :secret, :headline, :positions, :educations,  :avatar, :batchie,:industry_recco ,:location_recco, :company,:no_of_views
+  attr_accessible :skills, :provider, :uid, :name, :location, :industry, :picture, :token, :secret, :headline, :positions, :educations,  :avatar, :batchie,:industry_recco ,:location_recco, :company,:no_of_views,:recommend,:role,:recommend_select,:interest,:user_photo
   #attr_readonly  :positions, :educations
   serialize :positions
   serialize :educations
@@ -16,6 +26,7 @@ class User < ActiveRecord::Base
 
   #attr accesable =>
   has_attached_file :avatar
+  has_attached_file :user_photo
 
   has_many :followers, :dependent => :destroy
   has_many :messages, :dependent => :destroy
@@ -32,7 +43,13 @@ class User < ActiveRecord::Base
   has_many :user_locations, :dependent => :destroy
   has_one  :rating,:dependent => :destroy
 
+
+  #ROLES = %w[proops orgops admin]
+
+
+
   after_create :create_participant
+
 
 
   def self.find_for_linkedin_oauth(auth, signed_in_resource=nil)
@@ -54,6 +71,23 @@ class User < ActiveRecord::Base
         user.save
       end
     end
+    user
+  end
+
+
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    if auth.info.email.blank?
+      user = User.create(provider: auth.provider, uid: auth.uid, email: "#{auth.info.name.gsub(" ","_").downcase}_fb_user@procialize.com", password: Devise.friendly_token[0, 20], name: auth.info.name, location: auth.info.location, picture: auth.info.image, token: auth.credentials.token)
+      user.save
+    else
+      user = User.create(provider: auth.provider, uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0, 20], name: auth.info.name, location: auth.info.location, picture: auth.info.image, token: auth.credentials.token, secret: auth.credentials.secret, headline: "", industry: "", positions: "", educations: "")
+      user.save
+    end
+    #unless user
+    #    user = User.create(provider: auth.provider, uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0, 20], name: auth.info.name, location: auth.info.location, picture: auth.info.image, token: auth.credentials.token, secret: auth.credentials.secret, headline: auth.info.headline, industry: auth.info.industry, positions: auth.extra.raw_info.positions, educations: auth.extra.raw_info.educations)
+    #    user.save
+    #end
     user
   end
 

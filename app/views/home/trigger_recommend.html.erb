@@ -1,0 +1,136 @@
+<%= content_for :jj do %>
+    <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"></script>
+
+    <div class="pull-left">
+      <div class="avatar">
+        <%= image_tag current_user.picture %>
+      </div>
+    </div>
+
+
+    <div class="pull-left">
+      <div class="title">
+        <br>
+        <h4 style="margin-top: 0px;"><%= current_user.name.titlecase %>
+
+          <br>
+          <small><%= current_user.headline %></small>
+          <br>
+          <small><%= "#{current_user.industry} background" unless current_user.industry.blank? %> </small>
+        </h4>
+      </div>
+
+      <a class="button large questioner" href="/<%= current_user.id %>/desktop_edit_profile" ><span>Edit</span></a>
+    </div>
+
+
+<% end %>
+
+
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="row-fluid">
+        <div class="span12">
+          <div style="margin-bottom: 20px;">
+
+            <div class="big-button-bar">
+
+              <a class="button large" href="/index?=0">
+                <i class="icon-bookmark"></i>
+                <span>Questions</span>
+              </a>
+
+
+              <a class="button large" href="/index?=1" id="raters">
+                <i class="icon-briefcase"></i>
+                <span>Feedback</span>
+              </a>
+
+              <a class="button large" href="/index?=2">
+                <i class="icon-user"></i>
+                <span>Contact us</span>
+              </a>
+
+              <a class="button large" href="/index?=3">
+                <i class="icon-bookmark"></i>
+                <span>Graffiti</span>
+              </a>
+
+              <a class="button large" href="/index?=4">
+                <i class="icon-bookmark"></i>
+                <span>Concierge</span>
+              </a>
+
+
+              <a class="button large servicer" href="/desktop_assets_download" >
+                <i class="icon-bookmark"></i>
+                <span>Assets</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+      <!----------------------Start of send_recommendation_ontrigger------------------------------>
+
+      <div class="black-box tex" >
+        <div class="tab-header">
+          Event Show
+        </div>
+        <ul class="recent-comments">
+
+          <li class="separator">
+
+            <%= button_tag "Send", :onclick => 'trigger_recommendation();' %>
+            <ul data-role="listview" data-theme='a' data-filter-placeholder="Search by industry, name or class" data-split-icon='star' data-filter="true" data-divider-theme="d" data-role="list-divider" data-split-theme="c">
+              <% @conference.participants.map { |participant| participant.user }.sort_by { |u| u[:name] }.each do |user| %>
+                  <% unless (!user.organizer.blank? or user.name=="Administrator") %>
+                      <li data-theme='a' data-filtertext=" <%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>">
+                        <%= user.name %>
+                        <%= check_box_tag :recommend_select,user.id %>
+                      </li>
+                  <% end %>
+              <% end %>
+            </ul>
+
+          </li>
+        </ul>
+      </div>
+      <!----------------------End of send_recommendation_ontrigger------------------------------>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+  function trigger_recommendation (){
+          var data = { user_id:[]}
+        $('input[name=recommend_select]:checked').each(function() {
+          data["user_id"].push($(this).val());
+          $.ajax({
+              url:"<%= send_mail_to_recommended_users_path %>",
+              type:"post",
+              data:JSON.stringify(data),
+              contentType:"application/json",
+              success:function (data) {
+               alert(data);
+              }
+          });
+
+
+      });
+  }
+</script>

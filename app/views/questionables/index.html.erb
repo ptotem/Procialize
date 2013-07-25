@@ -3,17 +3,6 @@
         padding: 10px;
     }
 
-    .fbinfo {
-        background-color: rgb(244, 191, 71);
-        color: #333333;
-        padding: 10px;
-        border-radius: 10px;
-        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-        font-size: 0.7em;
-
-    }
 
 </style>
 
@@ -41,7 +30,6 @@
         });
 
 
-
         $('.hide').click(function () {
 //          alert($(this).parent().parent().prev().prev().attr('id'));
 
@@ -64,38 +52,72 @@
 
 
     })
+
+
+    $(function () {
+        $('.likes').bind("click",function () {
+            var a = $(this).parent().parent().parent().parent().parent().parent().attr('id');
+            $(this).unbind('click');
+            a = a.replace('question_div_', "");
+            var data = {question_id:[]}
+            data["question_id"].push(a);
+            $.ajax({
+                url:"<%= voting_path %>",
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function (data) {
+                    $('#like_' + a).html(data);
+
+                }
+            });
+
+        });
+
+    });
+
+
 </script>
 
 
-<% if params[:id].blank? %>
-<a href="/print" data-role="button" target="_blank" data-mini="true">Print all</a>
- <% end %>
-
-<% @events.each do |e| %>
-    <% @event_name =Event.find(e).name %>
-
-    <h3>  <%= @event_name %> <a href="/print/<%= e %>" data-role="button" target="_blank" data-mini="true">Print</a> </h3>
-    <% @questionable = Questionable.find_all_by_event_id_and_approved(e,true) %>
-    <% @questionable.each do |q| %>
-        <div class="fbinfo" id="question_div_<%= q.id %>">
-          <table>
-            <tr>
-              <td><%= User.find(q.user_id).name.titleize %></td>
-              <td>asked</td>
-              <td><h3> <%= q.quest_name.titleize %></h3></td>
-
-
-
-
-
-            </tr>
-          </table>
-        </div>
-        <br>
+<div>
+  <ul data-role="listview" data-theme="a" data-divider-theme="d" data-filter-placeholder="Search by events" data-split-icon='star' data-mini="true" data-filter="true">
+    <% if params[:id].blank? %>
+        <% if @user.role=="proops" || @user.role=="orgops" %>
+            <a href="/print" data-role="button" data-icon="print" data-iconpos="notext" target="_blank" data-mini="true">Print
+              all</a>
+        <% end %>
     <% end %>
-    <br>
+    <% @tracks.each do |e| %>
+        <% unless e.nil? %>
+            <% @track_name =Track.find(e).name %>
+        <% end %>
 
-
-<% end %>
-
-
+        <% @questionable = Questionable.order("like DESC").order("created_at DESC").find_all_by_track_id_and_approved(e, true) %>
+        <% @questionable.each do |q| %>
+            <li>
+              <h2 style="font-size: 0.8em;"><%= @track_name %></h2>
+              <% if @user.role=="proops" || @user.role=="orgops" %>
+                  <a href="/print/<%= e.id %>" data-role="button" data-icon="print" data-iconpos="notext" target="_blank" data-mini="true">Print</a>
+              <% end %>
+              <div id="question_div_<%= q.id %>">
+                <p><%= User.find(q.user_id).name.titleize %><span style="font-size: 0.8em;font-weight: normal;">&nbsp;&nbsp;
+                  asked</span> &nbsp;&nbsp;" <%= q.quest_name.titleize %>"
+                </p>
+                <table>
+                  <tr>
+                    <% if !q.liking_by.split(",").include? current_user.id.to_s %>
+                        <td id="<%= q.id %>">
+                          <input data-icon="thumbs-up" data-iconpos="notext" type="button" value="Likes" class="likes" id="liking">
+                        </td>
+                    <% end %>
+                    <td><h5 id="like_<%= q.id %>"><%= q.like %> Likes </h5></td>
+                  </tr>
+                </table>
+              </div>
+            </li>
+        <% end %>
+    <% end %>
+  </ul>
+  <br>
+</div>

@@ -1,70 +1,146 @@
 <%= content_for :page_title do %>
-    Profile
+    <span style="color:white;font-size: 0.8em;">Profile</span>
 <% end %>
+<style type="text/css">
+    a, a:visited {
+        color: black;
+        text-decoration: none;
+    }
+</style>
+
 <%= content_for :head do %>
+    <script type="text/javascript">
+        function follow() {
+            $.ajax({
+                url:"<%= follow_path(@user.id) %>",
+                type:"post",
+                success:function (data) {
+                    $("#follow_button .ui-btn-text").html(data);
+                    if (data == "Follow") {
+                        $('#follow_notice').html("Not Followed");
+                    } else {
+                        $('#follow_notice').html("Followed");
+                    }
 
-
-
-
-
+                    location.reload();
+                }
+            });
+        }
+    </script>
 <% end %>
-
 <%= content_for :page_menu do %>
-
 <% end %>
 
 <%# unless @photo.blank? %>
     <%#= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
 <%# end %>
-<h4 style="margin-top: 0px;"><%= @name.titlecase %>
-  <br>
-  <!--<small><%#= current_user.name %></small>-->
-  <br>
-  <small><%= @user.company %></small>
-  <br>
-  <small><%= @user.industry %></small>
-  <br>
-  <small><%= @user.location %></small>
-  <div class="ui-li-aside">
-        <%#@link=@user.avatar.url unless @user.avatar.url=='/avatars/original/missing.png'%>
-        <%if @user.avatar.url!='/avatars/original/missing.png'%>
-	<a href="<%=@user.avatar.url%>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
-	<%end%>
-</div>
 
-</h4>
-
-
-
-<% if @user==current_user %>
-    <%= link_to "Edit Profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false,:'data-inline' => true %>
-
+<% if !@photo.blank? %>
+    <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+<% elsif @user.user_photo.blank? %>
+    <%= image_tag "avatar.png", :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+<% else %>
+    <%= image_tag @user.user_photo,:style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
 <% end %>
 
 
+
+<h4 style="margin-top: 0px;"><%= @name.titlecase %>
+  <%if @user.avatar.url!='/avatars/original/missing.png'%>
+      <a style="float:right;" href="<%=@user.avatar.url%>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
+  <%end%>
+
+  <!--<br>-->
+  <!--<small><%#= @headline %></small>-->
+  <!--<br>-->
+  <!--<small><%#= "#{@industry} background" unless @industry.blank? %> </small>-->
+  <!--<br>-->
+  <!--<small><%#= "Interested in #{@interest}" unless @interest.blank? %> </small>-->
+  <!--<hr>-->
+
+  <table>
+    <tr>
+      <td>
+        <small><%= @headline %></small>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <small><strong style="color: #c0c0c0;">Background: </strong><%= @industry unless @industry.blank? %> </small>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <small><strong style="color: #c0c0c0;">Education: </strong><%= @educations unless @educations.blank?%></small><br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br>
+      </td>
+    </tr>
+  </table>
+
+
+  <% unless @user==current_user %>
+      <span  id="follow_notice" style="text-align: center;"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not Followed" :"Followed" %></span>
+  <% end %>
+
+  <% if @user==current_user %>
+      <div id="edit_profile" style="width:10px; ">
+        <%= link_to "Edit own profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false, :'data-inline' => true, :class => "anchor_link",:'data-mini' => "true", :"data-icon"=>"edit-sign" %>
+      </div>
+  <% end %>
+</h4>
+ <br>
+<% unless @user==current_user %>
+    <%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :'data-role' => "button",:'data-mini'=>'true', :'data-theme' => "a", :onclick => "follow()", :id => "follow_button" %>
+<% end %>
+<hr>
+<br>
+
+<div id="status_here" class="status" style="font-size: 0.8em;"><%= @post.name unless @post.blank? %></div>
+<%# if @user==current_user %>
+    <!--<a href="/graffiti" data-ajax=false data-role="button"  data-mini="true" style="float: left;">Add Updates</a>-->
+<%# end %>
+<br>
+<br><br>
+<hr>
+<div style="font-size: 0.8em;font-weight: bold;line-height: 3em">Followers</div>
+<% @followers.each do |follower| %>
+    <div class="fbinfobox1">
+      <div style="background: rgba(204,255,178,0.96); width:100%;padding-left:5px;padding-top:4px;padding-bottom:4px;border-radius:5px;font-weight: normal;">
+
+        <span style="color:#333333;font-size:0.8em;font-weight:normal;"><%= link_to follower.name.titlecase, user_profile_path(follower), :style => "color:#333333;font-size:0.8em;font-weight:normal;"  %></span>
+      </div>
+      <table>
+        <tr>
+          <% unless follower.picture.blank? %>
+              <td style="width:32px;max-width:32px;"><%= image_tag follower.picture, :style => "float:left; border-radius:5px;margin-right:10px;max-width:40px" %></td>
+          <% end %>
+
+        </tr>
+      </table>
+    </div>
+<% end %>
+
 <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
-<div data-role="navbar" data-theme='a'>
-<ul>
-
-  <li><%= link_to "Request Meeting", focussed_meeting_path(@user), :'data-role' => "button", :'data-theme' => "a",:'data-ajax' => false %></li>
-  <li><%= link_to "Send Message", focussed_message_path(@user), :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false %></li>
-</ul>
+  <div data-role="navbar" data-theme='a'>
+    <ul>
+      <li><%= link_to "Request Meeting", focussed_meeting_path(@user), :'data-role' => "button", :'data-theme' => "a",:'data-ajax' => false %></li>
+      <li><%= link_to "Send Message", focussed_message_path(@user)+'/?reply=true', :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false %></li>
+    </ul>
+  </div>
 </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

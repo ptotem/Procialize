@@ -1,52 +1,54 @@
 <%= content_for :page_title do %>
     Messages
 <% end %>
-
 <%= content_for :page_menu do %>
-
 <% end %>
 
 
-<div data-role="collapsible" data-theme="a" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
-  <h2>Unread Messages</h2>
+<%= link_to "Create New",new_message_path,:'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false, :'data-inline' => true, :class => "anchor_link",:'data-mini' => "true",:style => "float:right;" %>
+<br>
+<br>
+<br>
+
+<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+  <h3 style="font-size: 0.8em;">Unread Messages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @unread.size %></h3>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
-    <li data-role="list-divider">Unread Message Count<span class="ui-li-count"><%= @unread.size %></span></li>
     <% @unread.each do |message| %>
         <li>
           <a href="<%= message_path(message) %>" data-ajax="false">
-            <h3><%= message.user.name %></h3>
+            <h3 style="font-size: 0.8em;"><%= message.created_at %></h3>
+            <p><b><%= message.user.name %></b></p>
             <p><%= message.name %></p>
-            <p class="ui-li-aside"><strong><%= message.created_at %></strong></p>
+
           </a>
         </li>
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
-  <h2>Read Messages</h2>
+<div data-role="collapsible" data-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+  <h3 style="font-size: 0.8em;">Read Messages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @read.size %></h3>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
-    <li data-role="list-divider">Read Message Count<span class="ui-li-count"><%= @read.size %></span></li>
+
     <% @read.each do |message| %>
         <li>
           <a href="<%= message_path(message) %>" data-ajax="false">
-            <h3><%= message.user.name %></h3>
+            <h3 style="font-size: 0.8em;"><%= message.created_at %></h3>
+            <p><b><%= message.user.name %></b></p>
             <p><%= message.name %></p>
-            <p class="ui-li-aside"><strong><%= message.created_at %></strong></p>
           </a>
         </li>
     <% end %>
   </ul>
 </div>
-<div data-role="collapsible" data-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false">
-  <h2>Sent Messages</h2>
+<div data-role="collapsible" data-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+  <h3 style="font-size: 0.8em;">Sent Messages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @sent.size %></h3>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
-    <li data-role="list-divider">Sent Message Count<span class="ui-li-count"><%= @sent.size %></span></li>
     <% @sent.each do |message| %>
         <li>
-          <a href="<%= message_path(message) %>" data-ajax="false">
-            <h3><%= message.receipients.map{|r| r.user.name}.join(", ") %></h3>
+          <a href="<%= message_path(message) %>/?sent=true" data-ajax="false">
+            <h3 style="font-size: 0.8em;"><%= message.created_at %></h3>
+            <p><b><%= message.receipients.map{|r| r.user.name}.join(", ") %></b></p>
             <p><%= message.name %></p>
-            <p class="ui-li-aside"><strong><%= message.created_at %></strong></p>
           </a>
         </li>
     <% end %>
@@ -54,15 +56,7 @@
 </div>
 
 
-<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
-  <div data-role="navbar" data-theme='a'>
 
-    <!--<ul>-->
-      <!--<li><a href="/messages/new" data-ajax='false'>New</a></li>-->
-      <!--<li><a href="/messages" data-ajax='false'>Messages</a></li>-->
-    <!--</ul>-->
-  </div>
-</div>
 
 
 

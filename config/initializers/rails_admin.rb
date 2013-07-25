@@ -4,6 +4,11 @@
 RailsAdmin.config do |config|
 
 
+
+
+
+
+
   ################  Global configuration  ################
 
   # Set the admin name here (optional second array element will appear in red). For example:
@@ -13,6 +18,8 @@ RailsAdmin.config do |config|
 
   # RailsAdmin may need a way to know who the current user is]
   config.current_user_method { current_user } # auto-generated
+  config.authorize_with :cancan
+
 
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'
@@ -32,10 +39,13 @@ RailsAdmin.config do |config|
   # Include specific models (exclude the others):
   # config.included_models = []
 
-  config.authorize_with do
-    #redirect_to root_path if (current_user.organizer.blank? and current_user.email != "arijit@ptotem.com")
-  end
+  #imp
+  #config.authorize_with do
+  #  redirect_to "/index" if (current_user.organizer.blank? and current_user.email != "arijit@ptotem.com")
+  #end
 
+
+  #imp
   #config.included_models = ["Location", "EventDay", "Event", "Post", "Organizer", "User", "Message", "Meeting"]
 
   config.actions do

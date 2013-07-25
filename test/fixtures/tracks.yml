@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  event_id: 1
+  name: MyString
+  description: MyText
+  start: 2013-06-21 15:15:44
+  end: 2013-06-21 15:15:44
+  track_img: 
+
+two:
+  event_id: 1
+  name: MyString
+  description: MyText
+  start: 2013-06-21 15:15:44
+  end: 2013-06-21 15:15:44
+  track_img: 

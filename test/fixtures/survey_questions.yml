@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  quest: MyText
+  option_a: MyString
+  option_b: MyString
+  option_c: MyString
+  option_d: MyString
+
+two:
+  quest: MyText
+  option_a: MyString
+  option_b: MyString
+  option_c: MyString
+  option_d: MyString

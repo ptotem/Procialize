@@ -7,34 +7,44 @@
 <% end %>
 
 <h3>
-  <table>
+  <table class="index_styling">
     <tr>
-      <td class="headtd">Requestor</td>
+      <td class="headtd">Requestor:</td>
       <td class="normtd"><%= @meeting.user.name.titlecase %></td>
     </tr>
+
+    <%# if !@meeter.status.nil? %>
     <tr>
-      <td class="headtd">Confirmed</td>
-      <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status }.map { |m| m.user.name }).delete_if { |n| n==current_user.name }).join(", ") %></td>
+      <td class="headtd">Confirmed:</td>
+      <!--<td class="normtd"><%#= ((@meeting.meeters.select { |m| m.status }.map { |m| m.user.name }).delete_if { |n| n==current_user.name }).join(", ") %></td>-->
+      <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status }.map { |m| m.user.name })).join(", ") %></td>
+    </tr>
+    <%# end %>
+
+    <%# if @meeter.status.nil? %>
+    <tr>
+      <td class="headtd">Tentative:</td>
+      <!--<td class="normtd"><%#= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name }).delete_if { |n| n==current_user.name }).join(", ") %></td>-->
+      <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name })).join(", ") %></td>
+    </tr>
+      <%# end %>
+
+    <tr>
+      <td class="headtd">Scheduled:</td>
+      <td class="normtd"> <%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
     </tr>
     <tr>
-      <td class="headtd">Tentative</td>
-      <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name }).delete_if { |n| n==current_user.name }).join(", ") %></td>
-    </tr>
-    <tr>
-      <td class="headtd">Scheduled</td>
-      <td class="normtd">at <%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
+      <td class="headtd">Location:</td>
+      <td class="normtd"><%= Location.find(@meeting.location).name %></td>
     </tr>
 
-    <!--<tr>-->
-      <!--&lt;!&ndash;<td class="headtd">Event day</td>&ndash;&gt;-->
-      <!--<td class="normtd"><%#= EventDay.find(@meeting.event_day_id).name %></td>-->
-    <!--</tr>-->
 
-   </table>
+  </table>
 </h3>
+<hr>
 
 <% unless @meeting.name.blank? %>
-    <div class="padded" style="min-height: 5em; border:solid 1px black; border-radius: 5px;background: white;color:black;">
+    <div class="padded" style="font-size:0.8em;font-weight:normal;min-height: 5em;border-radius: 5px;">
       <%= @meeting.name %>
     </div>
 <% end %>
@@ -42,12 +52,12 @@
     <%#= link_to "Cancel",@meeting, :method => :delete, :'data-role' => "button" %>
 <% else %>
     <% if @meeter.status.nil? %>
-        <%= link_to "Accept", accept_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
+        <%= link_to "Accept", accept_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false,:'data-mini' => true %>
         <%#= link_to "Decline", decline_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
-    <%# elsif @meeter.status %>
+        <%# elsif @meeter.status %>
         <%#= link_to "Decline", decline_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
         <!--<h1>Accepted</h1>-->
-    <%# else %>
+        <%# else %>
         <%#= link_to "Accept", decline_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
         <!--<h1>Declined</h1>-->
     <% end %>
@@ -55,10 +65,10 @@
 
 
 <!--<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">-->
-  <!--<div data-role="navbar" data-theme='a'>-->
-    <!--<ul>-->
-      <!--<li><a href="/meetings/new" data-ajax='false'>New</a></li>-->
-      <!--<li><a href="/meetings" data-ajax='false'>Meetings</a></li>-->
-    <!--</ul>-->
-  <!--</div>-->
+<!--<div data-role="navbar" data-theme='a'>-->
+<!--<ul>-->
+<!--<li><a href="/meetings/new" data-ajax='false'>New</a></li>-->
+<!--<li><a href="/meetings" data-ajax='false'>Meetings</a></li>-->
+<!--</ul>-->
+<!--</div>-->
 <!--</div>-->

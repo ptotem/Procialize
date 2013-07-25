@@ -1,70 +1,125 @@
 <script type="text/javascript">
 
-
-    function rating(drop_down, eventid) {
-        //alert(event_id);
-        var data = {user_id:[], event_id:[], rate:[]}
-        data["user_id"].push('<%= @user.id %>');
-        data["event_id"].push(eventid);
-        data["rate"].push(drop_down);
-        $.ajax({
-            url:"<%= user_event_path %>",
-            type:"post",
-            data:JSON.stringify(data),
-            contentType:"application/json",
-            success:function (data) {
-//                alert(data);
-
-            }
-        });
-
-    }
-
-
-    $("tr:odd").css("background-color", "#bbbbff");
 </script>
 
-<!--<div data-role="listview" id="list">-->
-<!--<%# @events.each do |e| %>-->
-<!--<div>-->
-<!--<li id="<%#= e %>">-->
-<!--<%#= e.name %>-->
-<!--<select id="select_menu" onchange="rating($(this).val(),<%#= e.id %>);">-->
-<!--<option value="1">Bad</option>-->
-<!--<option value="2">Average</option>-->
-<!--<option value="3">Good</option>-->
-<!--<option value="4">Very Good</option>-->
-<!--<option value="5">Excellent</option>-->
-<!--</select>-->
-<!--</li>-->
-<!--</div>-->
-<!--<%# end %>-->
-<!--</div>-->
+<%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %>
+<br/>
+<%= collection_select(nil, :event_id, @events, :id, :name, {:prompt => "Select the Track Day"}, {:id => 'artists_select'}) %>
+<br>
+<%= collection_select(nil, :track_id, @tracks, :id, :name, {:prompt => "Select the Event"}, {:id => 'songs_select'}) %>
 
-
-<table>
-  <% @events.each do |e| %>
-      <tr id="<%= e %>">
-
-        <td style="font-size: 0.75em;border-bottom: 1px solid gray;">
-          <%= e.name %>
-        </td>
-
-        <td>
-          <select id="select_menu" onchange="rating($(this).val(),<%= e.id %>);">
-            <option value="1">Immense Value Add</option>
-            <option value="2">Great session and topic</option>
-            <option value="3">A good talk and topic</option>
-            <option value="4">Satisfactory</option>
-            <option value="5">Could have matched expectations</option>
-          </select>
-        </td>
-      </tr>
-  <% end %>
-</table>
+<%= include_gon %>
 
 
 
+<script type="text/javascript">
+
+    $(function () {
+        $('#artists_select').hide();
+        $('#songs_select').hide();
+        $('#categoriesContent').hide();
+        $('#genres_select').change(function () {
+            var data = {event_day_id:[]}
+            data["event_day_id"].push($('#genres_select').val());
+            $.getJSON("events/update_artists/" + data["event_day_id"], function (data) {
+                $('#artists_select').empty();
+                $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
+                $.each(data, function (key, val) {
+                    val = val.split('|');
+                    $('#artists_select').append($('<option>', {
+                        value:val[0],
+                        text:val[1]
+                    }));
+
+
+                });
+                $('#artists_select').show();
+                $('#songs_select').hide();
+                $('#categoriesContent').hide();
+            });
+        });
+        $('#artists_select').change(function () {
+            var data = {event_id:[]}
+            data["event_id"].push($('#artists_select').val());
+            $.getJSON("events/update_songs/" + data["event_id"], function (data) {
+                $('#songs_select').empty();
+                $("#songs_select").prepend("<option value='' selected='selected'>Select Event</option>");
+                $.each(data, function (key, val) {
+                    val = val.split('|');
+                    $('#songs_select').append($('<option>', {
+                        value:val[0],
+                        text:val[1]
+                    }));
+                });
+                $('#songs_select').show();
+            });
+
+        });
+
+
+        $('#songs_select').change(function () {
+            a = $('#songs_select').val();
+            var data = {track_id:[]}
+            data["track_id"].push($('#songs_select').val());
+            $.getJSON("/questions_appending/" + data["track_id"], function (data) {
+                $('#categoriesContent').show();
+                $('#categoriesContent ul').listview('refresh');
+                $('#question_form').append('<input type="hidden"  name="question_appending" value=' +a+'>');
+                $.each(data, function (key, val) {
+                    val=val.split('|');
+
+                    $('#categoriesContent ul').listview('refresh');
+                });
+
+            });
+
+            $('#select_menu').change(function(){
+                var data = {user_id:[], track_id:[], rate:[]}
+                data["user_id"].push('<%= @user.id %>');
+                data["track_id"].push(a);
+                data["rate"].push($(this).val());
+                $.ajax({
+                    url:"<%= user_event_path %>",
+                    type:"post",
+                    data:JSON.stringify(data),
+                    contentType:"application/json",
+                    success:function (data) {
+                        <%= add_gritter("Thank You for your feedback", :title => "Success",:image => :success,:time => 1000  ) %>
+                       setTimeout(function(){
+                           location.reload();
+                           $("select").val("0");
+                       },2000);
+
+                    }
+                });
+
+            });
+
+        });
+
+
+
+
+
+
+    });
+
+
+</script>
+
+
+<div data-role="content" id="categoriesContent">
+  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b">
+   <h4>Rate the Event</h4>
+    <select id="select_menu" data-mini="true">
+      <option value="1">Immense Value Add</option>
+      <option value="2">Great session and topic</option>
+      <option value="3">A good talk and topic</option>
+      <option value="4">Satisfactory</option>
+      <option value="5">Could have matched expectations</option>
+    </select>
+  </ul>
+</div>
 
 
 
