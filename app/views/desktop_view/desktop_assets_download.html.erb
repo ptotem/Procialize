@@ -11,7 +11,6 @@
         <div class="span12">
           <div style="margin-bottom: 20px;">
             <div class="big-button-bar">
-
               <a class="button large eventer" href="/desktop_events">
                 <i class=" icon-calendar "></i>
                 <span>Events</span>
@@ -42,9 +41,6 @@
                 <i class=" icon-folder-open"></i>
                 <span>Download</span>
               </a>
-
-
-
             </div>
           </div>
         </div>
@@ -58,6 +54,7 @@
 
       <!----------------------Start of events------------------------------>
 
+
       <div class="black-box tex" >
         <div class="tab-header">
           Assets Download
@@ -67,7 +64,7 @@
           <li class="separator">
             <div>
               <div class="box" style="position:relative;padding: 10px;color: black;">
-              <table class="table data-table">
+              <table class="table data-table" id="example">
                 <thead>
                 <tr>
                   <th>Event Name</th>
@@ -78,9 +75,19 @@
                 <% @assets_downloads.each do |e| %>
                     <%if e.downloadable.url!='/avatars/original/missing.png'%>
                         <% @event_id= e.event_id %>
-                    <tr class="gradeX"  id="<%= e %>">
+                    <tr class="gradeA even"  id="<%= e %>">
                       <td><%= @event_name=Event.find(@event_id).name %></td>
-                      <td><a href="<%=e.downloadable.url%>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img style="background: #ffffff;" src="/assets/procdownload.png"></a><%= e.downloadable.original_filename %></td>
+                      <td style="border-left: 1px solid #DDDDDD">
+                        <a target="_blank" href="<%=e.downloadable.url%>"><img src="/assets/procdownload.png"></a>&nbsp;&nbsp;<%= e.downloadable.original_filename %>
+                        <%# if e.downloadable.url!='/avatars/original/missing.png' %>
+                            <!--<a target="_blank" style="background: none;" href="<%#= e.downloadable.url %>"><img src="/assets/procdownload.png">&nbsp;Click to download profile</a>-->
+                        <%# else %>
+                            <!--<h6 style="font-weight: normal;"></h6>-->
+                        <%# end %>
+                      </td>
+
+
+                      <!--<td></td>-->
                     </tr>
                 <% end %>
                 <% end %>

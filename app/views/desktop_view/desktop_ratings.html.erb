@@ -10,42 +10,40 @@
 <div class="container-fluid">
 <div class="row-fluid">
 <div class="span7">
-  <div style="margin-bottom: 20px;">
-    <div class="big-button-bar">
-      <a class="button large eventer" href="/desktop_events">
-        <i class=" icon-calendar "></i>
-        <span>Events</span>
-      </a>
+<div style="margin-bottom: 20px;">
+  <div class="big-button-bar">
+    <a class="button large eventer" href="/desktop_events">
+      <i class=" icon-calendar "></i>
+      <span>Events</span>
+    </a>
 
 
-      <a class="button large delegater" href="/delegates_search">
-        <i class="icon-group"></i>
-        <span>Delegates</span>
-      </a>
+    <a class="button large delegater" href="/delegates_search">
+      <i class="icon-group"></i>
+      <span>Delegates</span>
+    </a>
 
-      <a class="button large speakinger" href="/desktop_speaker">
-        <i class="icon-user"></i>
-        <span>Speakers</span>
-      </a>
+    <a class="button large speakinger" href="/desktop_speaker">
+      <i class="icon-user"></i>
+      <span>Speakers</span>
+    </a>
 
-      <a class="button large questioner" href="/desktop_ask_question">
-        <i class="icon-question-sign "></i>
-        <span>Questions</span>
-      </a>
+    <a class="button large questioner" href="/desktop_ask_question">
+      <i class="icon-question-sign "></i>
+      <span>Questions</span>
+    </a>
 
-      <a class="button large feedbacker" href="/desktop_ratings">
-        <i class="icon-volume-up"></i>
-        <span>Feedback</span>
-      </a>
+    <a class="button large feedbacker" href="/desktop_ratings">
+      <i class="icon-volume-up"></i>
+      <span>Feedback</span>
+    </a>
 
-      <a class="button large downloadables" href="/desktop_assets_download">
-        <i class=" icon-folder-open"></i>
-        <span>Download</span>
-      </a>
-
-
-    </div>
+    <a class="button large downloadables" href="/desktop_assets_download">
+      <i class=" icon-folder-open"></i>
+      <span>Download</span>
+    </a>
   </div>
+</div>
   <div class="black-box tex" >
     <div class="tab-header">
       Give your Feedback
@@ -68,10 +66,16 @@
         <script type="text/javascript">
 
             $(function () {
+                $("select#genres_select").prop('selectedIndex', 1);
+                $("select#artists_select").prop('selectedIndex', 1);
+                $("select#songs_select").prop('selectedIndex', 1);
+                feedback_default();
+
+
                 $(document).ready(function () {
-                    $('#artists_select').hide();
-                    $('#songs_select').hide();
-                    $('#categoriesContent').hide();
+                    $('#artists_select').prop("disabled", true);
+                    $('#songs_select').prop("disabled", true);
+                    $('#categoriesContent').prop("disabled", true);
                     $('#genres_select').change(function () {
                         var data = {event_day_id:[]}
                         data["event_day_id"].push($('#genres_select').val());
@@ -87,9 +91,9 @@
 
 
                             });
-                            $('#artists_select').show();
-                            $('#songs_select').hide();
-                            $('#categoriesContent').hide();
+                            $('#artists_select').prop("disabled", false);
+                            $('#songs_select').prop("disabled", true);
+                            $('#categoriesContent').prop("disabled", true);
                         });
                     });
                     $('#artists_select').change(function () {
@@ -107,7 +111,7 @@
 
 
                             });
-                            $('#songs_select').show();
+                            $('#songs_select').prop("disabled", false);
                         });
 
                     });
@@ -127,7 +131,7 @@
                                     ele = ele.toString().replace('[', '').replace(']', '').replace(/,/g, '').replace(/ /g, '');
                                     if (ele != '') {
                                         ele = ele.split('|');
-                                        $('#categoriesContent').show();
+                                        $('#categoriesContent').prop("disabled", false);;
                                     }
                                 });
 
@@ -163,6 +167,35 @@
 
                 });
             });
+
+
+           function feedback_default(){
+
+               $('#select_menu').change(function(){
+                   var data = {user_id:[], track_id:[], rate:[]}
+                   data["user_id"].push('<%= @user.id %>');
+                   data["track_id"].push($('#songs_select').val());
+                   data["rate"].push($(this).val());
+
+                   $.ajax({
+                       url:"<%= feed_me_path %>",
+                       type:"post",
+                       data:JSON.stringify(data),
+                       contentType:"application/json",
+                       success:function (data) {
+                           <%= add_gritter("Thank You for Valuable Feedback", :title => "Success",:image => :success,:time => 2000) %>
+                           setTimeout(function(){
+                               location.reload();
+                               $("select").val("0");
+                           },1500)
+
+                       }
+                   });
+
+
+               });
+
+           }
 
 
 

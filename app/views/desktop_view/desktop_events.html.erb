@@ -45,6 +45,7 @@
                             val=val.split('|');
                             $('#categoriesContent').show();
                             $('#categoriesContent ul').append('<li><a href="http://proconf.ptotemy.com/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
+//                            $('#categoriesContent ul').append('<li><a href="http://localhost:3000/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
 
                         });
 
@@ -63,6 +64,7 @@
                 val=val.split('|');
                 $('#categoriesContent').show();
                 $('#categoriesContent ul').append('<li><a href="http://proconf.ptotemy.com/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
+//                $('#categoriesContent ul').append('<li><a href="http://localhost:3000/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
 
             });
 
@@ -128,6 +130,7 @@
                          title: 'Hi <%= current_user.name.titlecase %>',
                          text: 'you have  signed in successfully',
                          image: 'http://proconf.ptotemy.com/assets/testing/dashboard/stylesheets/success.png',
+//                         image: 'http://localhost:3000/assets/testing/dashboard/stylesheets/success.png',
                          sticky: false,
                          before_open: function(){
                              if($('.gritter-item-wrapper').length == 3)

@@ -240,7 +240,8 @@ ProcializeApp::Application.routes.draw do
 
 #----------Questionables-------------#
   match '/desktop_ask_question', :to => "desktop_view#desktop_ask_question", :as => "desktop_ask_question"
-  match '/desktop_questions_appending', :to => "desktop_view#desktop_questions_appending", :as => "desktop_questions_appending"
+  #match '/questions_appending/:track_id', :to => "questionables#questions_appending", :as => "questions_appending"
+  match '/desktop_questions_appending/:track_id', :to => "desktop_view#desktop_questions_appending", :as => "desktop_questions_appending"
   match '/desktop_create_question', :to => "desktop_view#desktop_create_question", :as => "desktop_create_question"
   #----------Questionables-------------#
 

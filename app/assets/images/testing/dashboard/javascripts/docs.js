@@ -179,6 +179,7 @@
       "bJQueryUI": true,
       "sPaginationType": "full_numbers",
       "sDom": '<""l>t<"F"fp>'
+
     });
     return $("#calendar").fullCalendar({
       header: {

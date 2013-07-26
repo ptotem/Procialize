@@ -39,7 +39,8 @@
                         $.each(data, function(key, val) {
                             val=val.split('|');
                             $('#categoriesContent').show();
-                            $('#categoriesContent ul').append('<li><a href="http://localhost:3000/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
+                            $('#categoriesContent ul').append('<li><a href="http://proconf.ptotemy.com/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
+//                            $('#categoriesContent ul').append('<li><a href="http://localhost:3000/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
 
                         });
 
@@ -64,9 +65,7 @@
       <div class="row-fluid">
         <div class="span12">
           <div style="margin-bottom: 20px;">
-
             <div class="big-button-bar">
-
               <a class="button large eventer" href="/desktop_events">
                 <i class=" icon-calendar "></i>
                 <span>Events</span>
@@ -97,8 +96,6 @@
                 <i class=" icon-folder-open"></i>
                 <span>Download</span>
               </a>
-
-
             </div>
           </div>
         </div>
@@ -134,12 +131,12 @@
             </script>
 
             <div id="accordion">
-              <h5>Scheduled Meetings <span class="pull-right badge black"><%= @scheduled.size %></span></h5>
+              <h5 style="font-size: 1em;">Scheduled Meetings <span class="pull-right badge black"><%= @scheduled.size %></span></h5>
 
               <div>
                 <% @scheduled.each do |meeting| %>
                     <p>
-                      <a href="<%= meetings_show_path(meeting) %>">
+                      <a href="<%= meetings_show_path(meeting) %>?scheduled=true">
                         <%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %> , invited by
                         <%= ((meeting.meeters.select{|m| m.status}.map{|m| m.user.name} << meeting.user.name).delete_if{|n| n==current_user.name}).join(", ") %>
                         regarding "<%= meeting.name.truncate(15) %>"
@@ -149,11 +146,11 @@
                 <% end %>
               </div>
 
-              <h5>Pending Invitations <span class="pull-right badge black"><%= @pending.size %></span></h5>
+              <h5 style="font-size: 1em;">Pending Invitations <span class="pull-right badge black"><%= @pending.size %></span></h5>
               <div>
                 <% @pending.each do |meeting| %>
                     <p>
-                      <a href="<%= meetings_show_path(meeting) %>">
+                      <a href="<%= meetings_show_path(meeting) %>?pending=true">
                         <%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %> , invited by
                         <%= ((meeting.meeters.select{|m| m.status}.map{|m| m.user.name} << meeting.user.name).delete_if{|n| n==current_user.name}).join(", ") %>
                         regarding "<%= meeting.name.truncate(15) %>"
@@ -163,14 +160,12 @@
                 <% end %>
 
               </div>
-              <h5>
-                Sent Request<span class="pull-right badge black"><%= @open.size %></span>
-              </h5>
+              <h5 style="font-size: 1em;">Sent Request<span class="pull-right badge black"><%= @open.size %></span></h5>
 
               <div>
                 <% @open.each do |meeting| %>
                     <p style="color: white;">
-                      <a href="<%= meetings_show_path(meeting) %>">
+                      <a href="<%= meetings_show_path(meeting) %>?open=true">
                         <%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %>
                         , you invited - <%= meeting.meeters.map{|m| m.user.name}.join(", ") %>
                         regarding "<%= meeting.name.truncate(15) %>"

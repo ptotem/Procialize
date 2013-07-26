@@ -371,6 +371,7 @@ class DesktopViewController < ApplicationController
     end
   end
 
+
   # PUT /meetings/1
   # PUT /meetings/1.json
   def messages_update
@@ -500,8 +501,8 @@ class DesktopViewController < ApplicationController
     @headline=@user.headline
     @batch=@user.batchie
     @industry=@user.industry
-    @educations=[]
-    @positions=[]
+    #@educations=[]
+    #@positions=[]
 
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
     @posts=@user.posts
@@ -525,7 +526,7 @@ class DesktopViewController < ApplicationController
     @location=@user.location
     @skills=@user.location
     #@educations=[]
-    @positions=[]
+    #@positions=[]
 
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user }.map { |f| f.user }
     @posts=@user.posts.last(10).reverse
@@ -732,7 +733,7 @@ class DesktopViewController < ApplicationController
   end
 
   def desktop_questions_appending
-    @quest=Questionable.find_all_by_track_id_and_approved(params[:track_id][0], true)
+    @quest=Questionable.find_all_by_track_id_and_approved(params[:track_id], true)
     @return_data=Array.new
     @quest.each do |i|
       if i.liking_by.include? current_user.id.to_s

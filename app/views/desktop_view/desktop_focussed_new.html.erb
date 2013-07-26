@@ -12,7 +12,6 @@
         <div class="span12">
           <div style="margin-bottom: 20px;">
             <div class="big-button-bar">
-
               <a class="button large eventer" href="/desktop_events">
                 <i class=" icon-calendar "></i>
                 <span>Events</span>
@@ -39,7 +38,10 @@
                 <span>Feedback</span>
               </a>
 
-
+              <a class="button large downloadables" href="/desktop_assets_download">
+                <i class=" icon-folder-open"></i>
+                <span>Download</span>
+              </a>
             </div>
           </div>
         </div>
@@ -85,7 +87,6 @@
 
             <script type="text/javascript">
                 $('#add_max').click(function(){
-                    $("form").submit(function() {
                         if ($("#meeting_name").val()==""){
                         <%= add_gritter("Please Fill Meeting Agenda", :title => "Error!",:image => :warning,:time => 2000  ) %>
                             return false;
@@ -99,25 +100,13 @@
                             return false;
                         }
                         else {
-                            $.gritter.add({
-                                title: 'Success',
-                                text: 'Meeting successfully created',
-                                image: 'http://localhost:3000/assets/testing/dashboard/stylesheets/success.png',
-                                sticky: true,
-                                before_open: function(){
-                                    if($('.gritter-item-wrapper').length == 3)
-                                    {
-                                        return false;
-                                    }
-                                }
-                            });
+                           $('#notification').show();
+                        <%= add_gritter("Meeting Created Successfully", :title => "Success",:time => 1000) %>
                             setTimeout(function(){
                                 $("form").submit();
-                            },8000);
+                            },1000);
                             return true;
                         }
-
-                    });
 
                 });
 
@@ -127,6 +116,10 @@
 
           </li>
         </ul>
+      </div>
+
+      <div id="notification" style="display: none;">
+        hiiiii
       </div>
       <!----------------------End of focus_new------------------------------>
 

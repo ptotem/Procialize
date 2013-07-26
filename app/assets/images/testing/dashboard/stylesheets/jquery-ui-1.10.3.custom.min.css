@@ -161,13 +161,17 @@
 }
 
 .ui-accordion .ui-accordion-header {
-    color:black;
-    display: block;
+    color: black;
     cursor: pointer;
-    position: relative;
+    display: block;
+    font-family: "Helvetica Neue";
+    font-size: 1em;
+    font-weight: normal;
     margin-top: 2px;
-    padding: .5em .5em .5em .7em;
-    min-height: 0
+    min-height: 0;
+    padding: 0.5em 0.5em 0.5em 0.7em;
+    position: relative;
+    /*text-shadow: none !important;*/
 }
 
 .ui-accordion .ui-accordion-icons {

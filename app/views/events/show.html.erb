@@ -1,10 +1,8 @@
 <%= content_for :page_title do %>
+Event Details
 <% end %>
 
 
-<%= content_for :page_title do %>
-
-<% end %>
 
 
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
@@ -99,7 +97,7 @@
 
 
 <ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
-
+   <h6>Would you like to pose a question regarding the 	event?</h6>
   <%= form_for :questionable, url: {action: :create_quest} do |f| %>
 
       <div class="field">

@@ -6,7 +6,7 @@
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
   <title>Procialize</title>
-<link rel="shortcut icon" type="image/x-icon" href="/assets/pro_browser_tile_blackbg.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/pro_browser_tile_blackbg.ico">
   <%= csrf_meta_tag %>
   <%= javascript_tag "var AUTH_TOKEN = '#{form_authenticity_token}';" if protect_against_forgery? %>
   <%= javascript_include_tag "application" %>
@@ -35,12 +35,11 @@
   <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
 
 
-
   <style type="text/css">
-      .circle{
-          border:1px solid #000000;
-          height:12px;
-          width:12px;
+      .circle {
+          border: 1px solid #000000;
+          height: 12px;
+          width: 12px;
           -webkit-border-radius: 40px;
           -moz-border-radius: 40px;
           border-radius: 40px;
@@ -48,7 +47,7 @@
           font-size: 0.7em;
           color: #d3d3d3;
           text-align: center;
-          vertical-align:middle;
+          vertical-align: middle;
           padding: 2px;
       }
 
@@ -56,12 +55,12 @@
           /*margin-top: 45px;*/
           /*}*/
 
-      section{
+      section {
           margin-top: 20px;
       }
 
-      #my-top-bar{
-          height: 46px;
+      #my-top-bar {
+          height: 60px;
           left: 0;
           overflow: visible;
           position: fixed;
@@ -70,41 +69,39 @@
           z-index: 10000;
       }
 
-      .black-box.tex{
+      .black-box.tex {
           max-width: 625px;
           max-height: 364px;
       }
 
-.black-box.tex a {
-         color:white;
-font-size:0.8em;
-font-family:Helvetica;
+      .black-box.tex a {
+          color: #c0c0c0;
+          font-size: 1em;
+          font-family: Helvetica;
       }
 
-      nav#primary{
+      nav#primary {
           margin-left: 20px;
           height: auto;
           margin-top: 20px;
       }
 
       @media (min-width: 768px) and (max-width: 979px) {
-          nav#primary{
+          nav#primary {
               margin-top: 22px;
               margin-left: 39px;
               width: 91%;
           }
 
-          section{
+          section {
               margin-top: 22px;
           }
 
-          .black-box.tex{
+          .black-box.tex {
               max-width: 100%;
           }
       }
   </style>
-
-
 
 
 </head>
@@ -121,45 +118,47 @@ font-family:Helvetica;
   </div>
 </div>
 
-<div id="modal-gallery" class="black-box modal modal-gallery hide fade">
-  <div class="modal-header tab-header">
-    <span class="modal-title"></span>
-  </div>
-  <div class="modal-body">
-    <div class="modal-image"></div>
-  </div>
-  <div class="modal-footer">
-    <div class="pull-left">
-    </div>
-    <div class="pull-right">
+<!--<div id="modal-gallery" class="black-box modal modal-gallery hide fade">-->
+<!--<div class="modal-header tab-header">-->
+<!--<span class="modal-title"></span>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<div class="modal-image"></div>-->
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<div class="pull-left">-->
+<!--</div>-->
+<!--<div class="pull-right">-->
 
-    </div>
-  </div>
-</div>
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
-<nav id="primary" class="main-nav">
+<nav id="primary" class="main-nav" style="margin-top: 90px;">
   <ul>
-    <% @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting }  %>
+    <% @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting } %>
     <% @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message } %>
 
     <li class="">
       <a href="/meetings_index" id="meeters" class="large">
         <i class="icon-briefcase"></i> Meetings
-        <% if @pending.size>0 %> <span class="circle"><%= @pending.size %></span> <% end %>
+        <% if @pending.size>0 %> <span class="circle"><%= @pending.size %></span>
+        <% end %>
       </a>
     </li>
 
     <li class="">
       <a href="/messages_index" id="messager" class="large">
         <i class=" icon-comments-alt  "></i> Messages
-        <% if @unread.size>0 %> <span class="circle"><%= @unread.size %></span> <% end %>
+        <% if @unread.size>0 %> <span class="circle"><%= @unread.size %></span>
+        <% end %>
       </a>
     </li>
 
     <!--<li class="">-->
-      <!--<a href="/desktop_assets_download" id="downloader" class="large">-->
-        <!--<i class="icon-inbox"></i> Downloadables-->
-      <!--</a>-->
+    <!--<a href="/desktop_assets_download" id="downloader" class="large">-->
+    <!--<i class="icon-inbox"></i> Downloadables-->
+    <!--</a>-->
     <!--</li>-->
 
     <li class="">
@@ -188,8 +187,6 @@ font-family:Helvetica;
     </li>
 
 
-
-
   </ul>
 </nav>
 
@@ -200,31 +197,31 @@ font-family:Helvetica;
 
 
 <section id="main">
-  <!--<div class="top-nav" id="my-top-bar">-->
-    <!--<div class="container-fluid">-->
-      <!--<div class="row-fluid search-button-bar-container">-->
-        <!--<div class="span12">-->
-          <!--<ul class="breadcrumb">-->
-            <!--<li><a href="#">Welcome <%#= current_user.name %></a></li>-->
-            <!--<%#= yield :breadcrumb %>-->
-            <!--<li class="" style="float: right;">-->
-              <!--<a href="<%#= destroy_user_session_path %>" data-method="delete">-->
-                <!--<i class="icon-off"></i> Logout-->
-              <!--</a>-->
-            <!--</li>-->
-          <!--</ul>-->
-        <!--</div>-->
-      <!--</div>-->
 
-      <!--<div class="row-fluid search-bar-nav">-->
-        <!--<div class="span12">-->
-          <!--<form>-->
-            <!--<input type="text" class="search" placeholder="Search...">-->
-          <!--</form>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
+  <div class="top-nav" id="my-top-bar">
+    <div class="container-fluid">
+      <div class="row-fluid search-button-bar-container">
+        <div class="span12">
+          <ul class="breadcrumb" style="margin-top: -22px;">
+            <li><a href="#">Welcome to "<%= @conference.name %>"</a></li>
+            <%= yield :breadcrumb %>
+            <li class="" style="float: right;margin-right: 19px;">
+              <a href="#">You have signed in as "<%= current_user.name %>"</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row-fluid search-bar-nav">
+        <div class="span12">
+          <form>
+            <input type="text" class="search" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="container-fluid">
     <div class="row-fluid">
@@ -282,28 +279,13 @@ font-family:Helvetica;
 
 
 
-<%#= javascript_include_tag "jquery.noty" %>
-<%#= javascript_include_tag "bottom" %>
-<%#= javascript_include_tag "bottomCenter" %>
-<%#= javascript_include_tag "bottomLeft" %>
-<%#= javascript_include_tag "bottomRight" %>
-<%#= javascript_include_tag "center" %>
-<%#= javascript_include_tag "centerLeft" %>
-<%#= javascript_include_tag "centerRight" %>
-<%#= javascript_include_tag "centerRight" %>
-<%#= javascript_include_tag "top" %>
-<%#= javascript_include_tag "topCenter" %>
-<%#= javascript_include_tag "topRight" %>
-<%#= javascript_include_tag "topLeft" %>
-<%#= javascript_include_tag "default" %>
-
 
 
 <%= javascript_include_tag "responsiveslides.min" %>
 <%= stylesheet_link_tag "responsiveslides" %>
 
 <% if params[:desk] %>
-    <%= add_gritter("Welcome",current_user.name,"You are successfully Signed in", :title => "Success",:image => :success,:time => 1000) %>
+    <%= add_gritter("Welcome", current_user.name, "You are successfully Signed in", :title => "Success", :image => :success, :time => 1000) %>
 <% end %>
 
 
@@ -311,28 +293,25 @@ font-family:Helvetica;
     prettyPrint()
     $(function () {
         $('.active-result').css('color', 'black');
-        setTimeout(function(){
+        setTimeout(function () {
             $('.notifications').fadeOut();
-        },6000);
-//        $(window).height();   // returns height of browser viewport
-//        $(document).height(); // returns height of HTML document
-//        $(window).width();   // returns width of browser viewport
-//        $(document).width(); // returns width of HTML document
-//        console.log("Width : " + $(window).width());
-//        $(window).resize(function() {
-//            console.clear()
-//            console.log("Window Width : " + $(window).width());
-//            console.log("Document Width : " + $(document).width());
-//        });
+        }, 6000);
 
     })
 </script>
 
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-41279198-1', '127.0.0.1:3000');
     ga('send', 'pageview');

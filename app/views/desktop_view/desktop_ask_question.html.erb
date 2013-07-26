@@ -11,7 +11,6 @@
         <div class="span12">
           <div style="margin-bottom: 20px;">
             <div class="big-button-bar">
-
               <a class="button large eventer" href="/desktop_events">
                 <i class=" icon-calendar "></i>
                 <span>Events</span>
@@ -42,9 +41,6 @@
                 <i class=" icon-folder-open"></i>
                 <span>Download</span>
               </a>
-
-
-
             </div>
           </div>
         </div>
@@ -121,10 +117,18 @@
 
 
                   $(function () {
+                      $("select#genres_select").prop('selectedIndex', 1);
+                      $("select#artists_select").prop('selectedIndex', 1);
+                      $("select#songs_select").prop('selectedIndex', 1);
+                      setTimeout(function(){
+                          question_default();
+                      },2000);
+
+
                       $(document).ready(function () {
-                          $('#artists_select').hide();
-                          $('#songs_select').hide();
-                          $('#categoriesContent').hide();
+                          $('#artists_select').prop("disabled", true);
+                          $('#songs_select').prop("disabled", true);
+                          $('#categoriesContent').prop("disabled", true);
                           $('#genres_select').change(function () {
                               var data = {event_day_id:[]}
                               data["event_day_id"].push($('#genres_select').val());
@@ -140,9 +144,9 @@
 
 
                                   });
-                                  $('#artists_select').show();
-                                  $('#songs_select').hide();
-                                  $('#categoriesContent').hide();
+                                  $('#artists_select').prop("disabled", false);
+                                  $('#songs_select').prop("disabled", true);
+                                  $('#categoriesContent').prop("disabled", true);
                               });
                           });
                           $('#artists_select').change(function () {
@@ -160,7 +164,7 @@
                                   });
 
 
-                                  $('#songs_select').show();
+                                  $('#songs_select').prop("disabled", false);
 
                               });
 
@@ -170,71 +174,58 @@
                               var a = $('#songs_select').val();
                               var data = {track_id:[]}
                               data["track_id"].push($('#songs_select').val());
-                              $.ajax({
-                                  url:"<%= desktop_questions_appending_path %>",
-                                  type:"post",
-                                  data:JSON.stringify(data),
-                                  contentType:"application/json",
-                                  success:function (data) {
-                                      $('#question_form').append('<input type="hidden"  name="question_appending" value=' + a + '>');
-                                      $('#categoriesContent ul').empty();
-
-                                      $.each(data.split('"'), function (d, ele) {
-                                          ele = ele.toString().replace('[', '').replace(']', '').replace(/,/g, '');
-                                          if (ele != '') {
-                                              ele = ele.split('|');
-                                              $('#categoriesContent').show();
-                                              if (ele[6] == 1) {
-                                                  $('#categoriesContent ul').append('<li  id=' + ele[0] + '>' +
-                                                          '<a href="#"><h6>' + ele[1] + ' asked ' + ele[3] + '</h6>' +
-                                                          '<table>' +
-                                                          '<tr>' +
-                                                          '<td  id="like_table">' +
-                                                          '<h5 id="like_' + ele[0] + '">' + ele[4] + 'Likes</h5>' +
-                                                          '</td>' +
-                                                          '</tr>' +
-                                                          '</table>' +
-                                                          '</a>' +
-                                                          '</li>');
-                                              }
-                                              else {
-                                                  $('#categoriesContent ul').append('<li  id=' + ele[0] + '>' +
-                                                          '<a href="#"><h6>' + ele[1] + ' asked ' + ele[3] + '</h6>' +
-                                                          '<table>' +
-                                                          '<tr>' +
-                                                          '<td id="like_table">  ' +
-                                                          '<input type="button" value="Likes" class="likes button gray" id="liking">' +
-                                                          '</td> ' +
-                                                          '<td>' +
-                                                          ' <h5 id="like_' + ele[0] + '">' + ele[4] + 'Likes</h5>' +
-                                                          '</td>' +
-                                                          '</tr>' +
-                                                          '</table>' +
-                                                          '</a>' +
-                                                          '</li>');
+                              $.getJSON("/desktop_questions_appending/" + data["track_id"], function (data) {
+//                                  $('#categoriesContent').show();
+                                  $('#categoriesContent ul').html("");
+                                  $('#question_form').append('<input type="hidden"  name="question_appending" value=' + a + '>');
+                                  $.each(data, function (key, val) {
+                                      val=val.split('|');
+                                      if (val[6] == 1) {
+                                          $('#categoriesContent ul').append('<li  id=' + val[0] + '>' +
+                                                  '<a href="#"><h6>' + val[1] + ' asked ' + val[3] + '</h6>' +
+                                                  '<table>' +
+                                                  '<tr>' +
+                                                  '<td  id="like_table">' +
+                                                  '<h5 id="like_' + val[0] + '">' + val[4] + 'Likes</h5>' +
+                                                  '</td>' +
+                                                  '</tr>' +
+                                                  '</table>' +
+                                                  '</a>' +
+                                                  '</li>');
+                                      }
+                                      else {
+                                          $('#categoriesContent ul').append('<li  id=' + val[0] + '>' +
+                                                  '<a href="#"><h6>' + val[1] + ' asked ' + val[3] + '</h6>' +
+                                                  '<table>' +
+                                                  '<tr>' +
+                                                  '<td id="like_table">  ' +
+                                                  '<input type="button" value="Likes" class="likes button gray" id="liking">' +
+                                                  '</td> ' +
+                                                  '<td>' +
+                                                  ' <h5 id="like_' + val[0] + '">' + val[4] + 'Likes</h5>' +
+                                                  '</td>' +
+                                                  '</tr>' +
+                                                  '</table>' +
+                                                  '</a>' +
+                                                  '</li>');
 
 
-
-                                              }
-                                          }
-                                      });
-
-
-                                      function create_quest() {
-                                          var data = {question_appending:[], quest_name:[]}
-                                          data["question_appending"].push(a);
-                                          data["quest_name"].push($('#questionable_quest_name').val());
-                                          $.ajax({
-                                              url:"<%= desktop_create_question_path %>",
-                                              type:"post",
-                                              data:JSON.stringify(data),
-                                              contentType:"application/json",
-                                              success:function (data) {
-
-                                              }
-                                          });
 
                                       }
+                                  });
+                                  function create_quest() {
+                                      var data = {question_appending:[], quest_name:[]}
+                                      data["question_appending"].push(a);
+                                      data["quest_name"].push($('#questionable_quest_name').val());
+                                      $.ajax({
+                                          url:"<%= desktop_create_question_path %>",
+                                          type:"post",
+                                          data:JSON.stringify(data),
+                                          contentType:"application/json",
+                                          success:function (data) {
+
+                                          }
+                                      });
 
                                   }
                               });
@@ -248,10 +239,69 @@
 
 
                   });
+
                   });
 
+             function question_default(){
+                 var a = $('#songs_select').val();
+                 var data = {track_id:[]}
+                 data["track_id"].push($('#songs_select').val());
+                 $.getJSON("/desktop_questions_appending/" + data["track_id"], function (data) {
+//                     $('#categoriesContent').show();
+                     $('#categoriesContent ul').html("");
+                     $('#question_form').append('<input type="hidden"  name="question_appending" value=' + a + '>');
+                     $.each(data, function (key, val) {
+                         val=val.split('|');
+                         if (val[6] == 1) {
+                             $('#categoriesContent ul').append('<li  id=' + val[0] + '>' +
+                                     '<a href="#"><h6>' + val[1] + ' asked ' + val[3] + '</h6>' +
+                                     '<table>' +
+                                     '<tr>' +
+                                     '<td  id="like_table">' +
+                                     '<h5 id="like_' + val[0] + '">' + val[4] + 'Likes</h5>' +
+                                     '</td>' +
+                                     '</tr>' +
+                                     '</table>' +
+                                     '</a>' +
+                                     '</li>');
+                         }
+                         else {
+                             $('#categoriesContent ul').append('<li  id=' + val[0] + '>' +
+                                     '<a href="#"><h6>' + val[1] + ' asked ' + val[3] + '</h6>' +
+                                     '<table>' +
+                                     '<tr>' +
+                                     '<td id="like_table">  ' +
+                                     '<input type="button" value="Likes" class="likes button gray" id="liking">' +
+                                     '</td> ' +
+                                     '<td>' +
+                                     ' <h5 id="like_' + val[0] + '">' + val[4] + 'Likes</h5>' +
+                                     '</td>' +
+                                     '</tr>' +
+                                     '</table>' +
+                                     '</a>' +
+                                     '</li>');
 
 
+
+                         }
+                     });
+                     function create_quest() {
+                         var data = {question_appending:[], quest_name:[]}
+                         data["question_appending"].push(a);
+                         data["quest_name"].push($('#questionable_quest_name').val());
+                         $.ajax({
+                             url:"<%= desktop_create_question_path %>",
+                             type:"post",
+                             data:JSON.stringify(data),
+                             contentType:"application/json",
+                             success:function (data) {
+
+                             }
+                         });
+
+                     }
+                 });
+              }
 
 
 
@@ -264,9 +314,7 @@
 
 
               $('#form_btn_id').click(function(){
-
                   if ($("#genres_select").val()==""){
-
                   <%= add_gritter("Please Select Event Day", :title => "Error!",:image => :warning,:time => 2000  ) %>
                   }
                   else if ($("#artists_select").val()==""){
@@ -282,19 +330,11 @@
                   }
                   else
                   {
-                      $.gritter.add({
-                          title: 'Success',
-                          text: 'Message was sucessfully sent',
-                          image: 'http://localhost:3000/assets/testing/dashboard/stylesheets/success.png',
-                          sticky: true,
-                          before_open: function(){
-                              if($('.gritter-item-wrapper').length == 3)
-                              {
-                                  return false;
-                              }
-                          }
-                      });
-                       $('#question_form').submit();
+                  <%= add_gritter("Your Question to the moderator for approval", :title => "Success",:image => :success,:time => 1000) %>
+                      setTimeout(function(){
+                          $('#question_form').submit();
+                      },2000);
+
 
 
                   }
@@ -305,7 +345,7 @@
 
 
 
-          <div class="nav-menu box" id="categoriesContent" style="display: none;">
+          <div class="nav-menu box" id="categoriesContent">
             <ul class="nav nav-list">
               <br>
             </ul>

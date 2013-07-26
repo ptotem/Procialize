@@ -13,7 +13,6 @@
         <div class="span12">
           <div style="margin-bottom: 20px;">
             <div class="big-button-bar">
-
               <a class="button large eventer" href="/desktop_events">
                 <i class=" icon-calendar "></i>
                 <span>Events</span>
@@ -44,9 +43,6 @@
                 <i class=" icon-folder-open"></i>
                 <span>Download</span>
               </a>
-
-
-
             </div>
           </div>
         </div>
@@ -146,7 +142,7 @@
                   </td>
                 </tr>
               </table>
-
+                 <br>
               <div style="float: right;">
                 <% if @user==current_user %>
                     <a class="button gray" href="<%= current_user.id %>/desktop_edit_profile">Edit your profile</a>
@@ -165,7 +161,7 @@
                 <%= text_area_tag :comment, "", :placeholder => "Pen down your thoughts" %>
               </div>
               <div id="stat_button">
-                <div id="err_msg"></div>
+
 
                 <a class="button gray" href="#" class="form_btn" id="form_btn_id">Post it now!</a>
                 <%#= submit_tag "Post it now!", :onclick => "create_post();", :class => "button gray", :style => "width:15%;" %>
@@ -200,12 +196,14 @@
               <div>
                 <% @graffiti.each do |post| %>
                         <p style="color: white;">
+                          <% unless post.user.picture.blank? %>
+                            <p style="width:32px;max-width:32px;"><%= image_tag(post.user.picture) %></p>
+                          <% end %>
+
                         <%= link_to post.user.name.titlecase, delegate_profile_index_path(post.user)%>
                           <%= post.created_at %>
                          <%= post.name.truncate(15) %>
-                          <% unless post.user.picture.blank? %>
-                              <%= image_tag(post.user.picture) %>
-                          <% end %>
+
                         </p>
                         <hr>
                     <% end %>

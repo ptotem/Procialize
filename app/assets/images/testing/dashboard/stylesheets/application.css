@@ -493,7 +493,9 @@ a:hover {
   .container-fluid:before, .container-fluid:after {
     display: table;
     content: "";
-    line-height: 0; }
+    line-height: 0;
+    margin-top: 35px;
+  }
   /* line 22, bootstrap/_mixins.scss */
   .container-fluid:after {
     clear: both; }
@@ -1581,11 +1583,16 @@ table {
   /* line 24, bootstrap/_tables.scss */
   .table th,
   .table td {
-    padding: 8px;
-    line-height: 20px;
-    text-align: left;
-    vertical-align: top;
-    border-top: 1px solid #dddddd; }
+      border-top: 1px solid #DDDDDD;
+      font-size: 1.3em;
+      line-height: 20px;
+      padding: 8px;
+      text-align: left;
+      vertical-align: top;
+      font-family: helveticaneue;
+      font-weight: normal;
+      text-shadow: none;
+  }
   /* line 31, bootstrap/_tables.scss */
   .table th {
     font-weight: bold; }
@@ -6933,7 +6940,9 @@ nav#primary {
   background: url('../images/linen-gray.png');
   float: left;
   height: 100%;
-  width: 80px; }
+  width: 80px;
+
+}
   /* line 93, layout.css.scss */
   nav#primary > ul > li > a {
     font-size: 9px;
@@ -7035,10 +7044,11 @@ section#main {
   background: #3B3B42;
   color: #fff;
   text-shadow: 0 1px rgba(0, 0, 0, 0.5);
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  overflow: auto;}
   /* line 34, mixin_helpers.css.scss */
   .black-box.tex {
-    background: url('../images/linen-light.png');padding:5px;max-width: 600px;max-height: 400px;overflow-x: hidden;overflow-y: scroll; }
+    background: url('../images/linen-light.png');padding:5px;max-width: 600px;max-height: 400px;overflow-x: hidden;overflow-y: auto;font-size: 1em;font-family: helveticaneue; }
   /* line 41, mixin_helpers.css.scss */
   .black-box .separator a {
     color: gray;
@@ -9407,7 +9417,11 @@ label.checky {
 
 /* line 9, typography.css.scss */
 p {
-  line-height: 20px; }
+  line-height: 20px;
+  font-family: helveticaneue;
+  font-weight: normal;
+  font-size: 0.9em;
+}
 
 /* line 4, docs.css.scss */
 .profile-menu {

@@ -11,7 +11,6 @@
         <div class="span12">
           <div style="margin-bottom: 20px;">
             <div class="big-button-bar">
-
               <a class="button large eventer" href="/desktop_events">
                 <i class=" icon-calendar "></i>
                 <span>Events</span>
@@ -42,9 +41,6 @@
                 <i class=" icon-folder-open"></i>
                 <span>Download</span>
               </a>
-
-
-
             </div>
           </div>
         </div>
@@ -58,36 +54,6 @@
 
       <!----------------------Start of events------------------------------>
 
-      <script type="text/javascript">
-          $(function () {
-
-              $('[type="submit"]').hide();
-              $(function () {
-                  $('[type="submit"]').hide();
-                  $('#message_body').focus(function () {
-                      $('[type="submit"]').show();
-                      if (( $('#message_body')).length > 0) {
-
-                      } else {
-                          $('[type="submit"]').hide();
-
-                      }
-                  });
-
-              });
-
-              $('#message_body').blur(function () {
-                  if ($(this).val().length <= 0) {
-                      $('[type="submit"]').hide();
-                  }
-                  else {
-                      $('[type="submit"]').show();
-                  }
-              });
-
-          });
-
-      </script>
 
       <div class="black-box tex" >
         <div class="tab-header">
@@ -96,35 +62,30 @@
         <ul class="recent-comments">
 
           <li class="separator">
-            <%= form_for :message, :url => {:action => :contact_us_create},:html => {:class => " fill-up" } do |f| %>
+            <%#= form_for :message, :url => {:action => :contact_us_create},:html => {:class => " fill-up" } do |f| %>
+            <%= form_for :message, :html => {:id => "message_form", :class => "fill-up cmxform"} do |f| %>
                 <%= f.hidden_field :conference_id, :value => Conference.last.id %>
                 <%= f.hidden_field :user_id, :value => current_user.id %>
-
-
                 <%= select_tag 'receipient_users[]', options_for_select(@use) %>
                 <br>
                   <%= f.text_area :body, :rows => '5', :style => "height:85px;", :placeholder => "'We hope and sincerely wish that this conference is a value add to you. We further trust that you would have found Procialize an enjoyable experience. We would love to have your comments, thoughts, complaints or feedback. Please do let us know by typing your comments in this space and clicking on the send button. We will definitely get back to you in the shortest possible time.'" %>
                 <br>
-                  <%= f.submit "Send",:class=>"button gray",:style=>"width:15%;",:id => "add_max" %>
+                  <%#= f.submit "Send",:class=>"button gray",:style=>"width:15%;",:id => "add_max" %>
             <% end %>
-
+            <a class="button gray" href="#" class="form_btn" id="form_btn_id">Send</a>
             <script type="text/javascript">
                 $(function(){
-                    $('#add_max').click(function(){
-                        $.gritter.add({
-                            title: 'Success',
-                            text: 'Request Send to the Admin',
-                            image: 'http://localhost:3000/assets/testing/dashboard/stylesheets/success.png',
-                            sticky: false,
-                            time:2000,
-                            before_open: function(){
-                                if($('.gritter-item-wrapper').length == 3)
-                                {
-                                    return false;
-                                }
-                            }
+
+                    $('#form_btn_id').click(function(){
+                        $('#message_form').attr({
+                            action:'contact_us_create',
+                            method:'post'
                         });
-                    });
+                        <%= add_gritter("Request send to Admin", :title => "Success",:image => :success,:time => 1000) %>
+                        setTimeout(function(){
+                            $('#message_form').submit();
+                        },1500);
+                })
                 });
 
             </script>
@@ -132,29 +93,36 @@
 
 
 
+            <script type="text/javascript">
+                $(function () {
+                    $('#form_btn_id').hide();
+                    $(function () {
+                        $('#form_btn_id').hide();
+                        $('#message_body').focus(function () {
+                            $('#form_btn_id').show();
+                            if (( $('#message_body')).length > 0) {
 
+                            } else {
+                                $('#form_btn_id').hide();
 
-            <br>
-            <!--<h3>Contact Us</h3>-->
-            <!--<div>-->
-              <!--<ul>Professor K Ramachandran</ul>-->
-              <!--<ul>Thomas Schmidheiny Chair Professor of Family Business and Wealth Management.</ul>-->
-              <!--<ul>Indian School of Business</ul>-->
-              <!--<ul>Gachibowli</ul>-->
-              <!--<ul>Hyderabad-500032</ul>-->
-            <!--</div>-->
-            <!--<br>-->
-            <!--<h4>Regarding conference information, please contact our co-ordinators</h4>-->
+                            }
+                        });
 
-            <!--<div>-->
-              <!--<ul>Sushma GNVS</ul>-->
-              <!--<ul>Email: GNVS_Sushma@isb.edu</ul>-->
-              <!--<ul>Phone: +91 40 2318 7189</ul>-->
-              <!--<br>-->
-              <!--<ul>Abhay Bhatia</ul>-->
-              <!--<ul>Email: Abhay_Bhatia2013@pgp.isb.edu</ul>-->
-              <!--<ul>Mobile: +91 8146-662047</ul>-->
-            <!--</div>-->
+                    });
+
+                    $('#message_body').blur(function () {
+                        if ($(this).val().length <= 0) {
+                            $('#form_btn_id').hide();
+                        }
+                        else {
+                            $('#form_btn_id').show();
+                        }
+                    });
+
+                });
+
+            </script>
+
           </li>
         </ul>
         <div id="notying"></div>

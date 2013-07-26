@@ -10,43 +10,40 @@
     <div class="span7">
       <div class="row-fluid">
 
-          <div style="margin-bottom: 20px;">
-            <div class="big-button-bar">
-
-              <a class="button large eventer" href="/desktop_events">
-                <i class=" icon-calendar "></i>
-                <span>Events</span>
-              </a>
-
-
-              <a class="button large delegater" href="/delegates_search">
-                <i class="icon-group"></i>
-                <span>Delegates</span>
-              </a>
-
-              <a class="button large speakinger" href="/desktop_speaker">
-                <i class="icon-user"></i>
-                <span>Speakers</span>
-              </a>
-
-              <a class="button large questioner" href="/desktop_ask_question">
-                <i class="icon-question-sign "></i>
-                <span>Questions</span>
-              </a>
-
-              <a class="button large feedbacker" href="/desktop_ratings">
-                <i class="icon-volume-up"></i>
-                <span>Feedback</span>
-              </a>
-
-              <a class="button large downloadables" href="/desktop_assets_download">
-                <i class=" icon-folder-open"></i>
-                <span>Download</span>
-              </a>
+        <div style="margin-bottom: 20px;">
+          <div class="big-button-bar">
+            <a class="button large eventer" href="/desktop_events">
+              <i class=" icon-calendar "></i>
+              <span>Events</span>
+            </a>
 
 
-            </div>
+            <a class="button large delegater" href="/delegates_search">
+              <i class="icon-group"></i>
+              <span>Delegates</span>
+            </a>
+
+            <a class="button large speakinger" href="/desktop_speaker">
+              <i class="icon-user"></i>
+              <span>Speakers</span>
+            </a>
+
+            <a class="button large questioner" href="/desktop_ask_question">
+              <i class="icon-question-sign "></i>
+              <span>Questions</span>
+            </a>
+
+            <a class="button large feedbacker" href="/desktop_ratings">
+              <i class="icon-volume-up"></i>
+              <span>Feedback</span>
+            </a>
+
+            <a class="button large downloadables" href="/desktop_assets_download">
+              <i class=" icon-folder-open"></i>
+              <span>Download</span>
+            </a>
           </div>
+        </div>
           <!----------------------Start of edit profile------------------------------>
 
           <div class="black-box tex" >
@@ -59,8 +56,8 @@
 
                 <a href="/users/auth/linkedin?desktop=true"><%= image_tag("log-in-linkedin-large.png", :style => "width:20%;") %></a>
                 
-                <%= form_for :user, :url => {:action => :desktop_update_profile},:html => {:class => "fill-up"}, :method => :put do |f| %>
-
+                <%#= form_for :user, :url => {:action => :desktop_update_profile},:html => {:class => "fill-up"}, :method => :put do |f| %>
+                <%= form_for :user, :html => {:id => "user_form", :class => "fill-up cmxform"} do |f| %>
                     <p>
                       <%= f.label :name %>
                       <%= f.text_field :name %>
@@ -97,23 +94,30 @@
                     </p>
 
 
-                    <p>
-                      <%= f.submit "Save",:class => "button gray",:style => "width:15%;",:id=>"add_max" %>
-                    </p>
-                <% end %>
+                    <!--<p>-->
+                      <%#= f.submit "Save",:class => "button gray",:style => "width:15%;",:id=>"add_max" %>
+                    <!--</p>-->
 
+                <% end %>
+                <a class="button gray" href="#" class="form_btn" id="form_btn_id">Save</a>
 
                 <script type="text/javascript">
-                  $(function(){
-                      $('#add_max').click(function(){
-                          $.gritter.add({
-                              image: 'http://localhost:3000/assets/testing/dashboard/stylesheets/success.png',
-                              title: 'Success',
-                              text: 'Sucessfully Updated',
-                              time:15000
-                          });
+
+                      $(function(){
+
+                          $('#form_btn_id').click(function(){
+                              $('#user_form').attr({
+                                  action:'desktop_update_profile',
+                                  method:'post'
+                              });
+                              <%= add_gritter("Successfully Updated", :title => "Success",:image => :success,:time => 1000) %>
+                              setTimeout(function(){
+                                  $('#user_form').submit();
+                              },1500);
+                          })
                       });
-                  });
+
+
 
                 </script>
 

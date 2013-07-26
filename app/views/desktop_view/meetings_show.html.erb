@@ -16,39 +16,40 @@
     <div class="span7">
       <div class="row-fluid">
 
-          <div style="margin-bottom: 20px;">
-            <div class="big-button-bar">
-
-              <a class="button large eventer" href="/desktop_events">
-                <i class=" icon-calendar "></i>
-                <span>Events</span>
-              </a>
-
-
-              <a class="button large delegater" href="/delegates_search">
-                <i class="icon-group"></i>
-                <span>Delegates</span>
-              </a>
-
-              <a class="button large speakinger" href="/desktop_speaker">
-                <i class="icon-user"></i>
-                <span>Speakers</span>
-              </a>
-
-              <a class="button large questioner" href="/desktop_ask_question">
-                <i class="icon-question-sign "></i>
-                <span>Questions</span>
-              </a>
-
-              <a class="button large feedbacker" href="/desktop_ratings">
-                <i class="icon-volume-up"></i>
-                <span>Feedback</span>
-              </a>
+        <div style="margin-bottom: 20px;">
+          <div class="big-button-bar">
+            <a class="button large eventer" href="/desktop_events">
+              <i class=" icon-calendar "></i>
+              <span>Events</span>
+            </a>
 
 
+            <a class="button large delegater" href="/delegates_search">
+              <i class="icon-group"></i>
+              <span>Delegates</span>
+            </a>
 
-            </div>
+            <a class="button large speakinger" href="/desktop_speaker">
+              <i class="icon-user"></i>
+              <span>Speakers</span>
+            </a>
+
+            <a class="button large questioner" href="/desktop_ask_question">
+              <i class="icon-question-sign "></i>
+              <span>Questions</span>
+            </a>
+
+            <a class="button large feedbacker" href="/desktop_ratings">
+              <i class="icon-volume-up"></i>
+              <span>Feedback</span>
+            </a>
+
+            <a class="button large downloadables" href="/desktop_assets_download">
+              <i class=" icon-folder-open"></i>
+              <span>Download</span>
+            </a>
           </div>
+        </div>
         </div>
 
 
@@ -62,7 +63,15 @@
 
       <div class="black-box tex" >
         <div class="tab-header">
-          Meeting Show
+          <% if params[:open] %>
+              Meetings Requested
+          <% end %>
+          <% if params[:pending] %>
+              Meetings Pending for Acceptance
+          <% end %>
+          <% if params[:scheduled] %>
+              Scheduled Meetings
+          <% end %>
         </div>
         <ul class="recent-comments">
           <li class="separator">
@@ -85,7 +94,7 @@
                   <td class="normtd">&nbsp;&nbsp;at <%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
                 </tr>
                 <tr>
-                  <td class="headtd">Location:</td>
+                  <td class="headtd">Location:-</td>
                   <td class="normtd">&nbsp;&nbsp;<%= Location.find(@meeting.location).name %></td>
                 </tr>
 
@@ -158,7 +167,7 @@
     <div class="span5">
       <div class="row-fluid">
         <div class="span12">
-          <div class="black-box tex" style="max-height: 350px;overflow: hidden;">
+          <div class="black-box tex" style="max-height: 350px;overflow: auto;">
             <div class="tab-header">
               Splash Zone
             </div>
