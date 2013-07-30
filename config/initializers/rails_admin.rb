@@ -51,7 +51,6 @@ RailsAdmin.config do |config|
   config.actions do
     # root actions
     dashboard # mandatory
-
     # collection actions
     index # mandatory
     new

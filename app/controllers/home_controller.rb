@@ -161,68 +161,25 @@ class HomeController < ApplicationController
   end
 
 
-  #def send_mail_to_recommended_users
-  #  @users=params[:user_id]
-  #  @users.each do  |l|
-  #    @user=User.find(l)
-  #    if !@user.interest.nil?
-  #      @user_industry=User.find_all_by_industry(@user.interest).map{|i| i.name}
-  #      @user_industry.delete(@user.name )
-  #      @user.recommend = @user_industry.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
-  #      @user.recommend_select="t"
-  #      @user.save
-  #      redirect_to send_mailers_recommend_path
-  #      #render :text => @user.recommend_select
-  #    end
-  #  end
-  #end
 
   def send_mail_to_recommended_users
     @users=params[:user_id]
     @users.each do  |l|
       @user=User.find(l)
-      if !@user.industry.nil?
-        @user_interest=User.find_all_by_industry(@user.industry).map{|i| i.name}
-        @user_interest.delete(@user.name)
-        @user.recommend=@user_interest.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
-        @user.recommend_select="t"
-        @user.save
-      elsif !@user.interest.nil?
-        @user_industry=User.find_all_by_industry(@user.interest).map{|i| i.name}
-        @user_industry.delete(@user.name)
-        @user.recommend=@user_industry.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
-        @user.recommend_select="t"
-        @user.save
+      if @user.interest != ""
+        @user_in=User.find_all_by_industry(@user.interest).shuffle[0..2].map{|i| i.name}
+      elsif @user.interest == "" and @user.industry != ""
+        @user_in=User.find_all_by_industry(@user.industry).shuffle[0..2].map{|i| i.name}
+      else
+        @user_in=User.all.shuffle[0..2].map{|i| i.name}
       end
     end
-  end
-
-
-  def recommendation
-    #@user_industry=Array.new
-    #@user=User.find(447)
-    #@user_industry=User.find_all_by_industry(@user.interest).map{|i| i.name}
-    #@user_industry.delete(@user.name )
-    #
-
-    #----------To be used later----------------#
-    @users=User.all
-    @users.each do  |l|
-      if !l.interest.nil?
-        @user_industry=User.find_all_by_industry(l.interest).map{|i| i.name}
-        @user_industry.delete(l.name )
-        l.recommend = @user_industry.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
-        l.save
-      end
-    end
-
-  end
-
-
-
-
-  def survey
-
+    @user_in.delete(@user.name)
+    @user.recommend=@user_in.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
+    @user.recommend_select=true
+    @user.save
+    render :text =>@user.recommend_select
+    return
   end
 
 

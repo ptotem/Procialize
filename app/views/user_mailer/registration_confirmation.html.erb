@@ -4,92 +4,108 @@
 <body>
 
 
-
 <!--<b>Subject: Your login/password to access Procialize</b><br><br>-->
 <span>Dear <%= @invitee.name %>,</span><br><br>
 
-<p>Once again, on behalf of the Thomas Schmidheiny Chair of Family Business and Wealth Management and the Indian School of Business, we welcome you to the Fourth Asian Invitational Conference on Family Business. This conference promises to be an immense value add, where we have chosen some crucial topics related to Family Business, and have been fortunate to have them delivered by highly coveted speakers. </p>
+<p>Once again, on behalf of the Thomas Schmidheiny Chair of Family Business and Wealth Management and the Indian School
+  of Business, we welcome you to the Fourth Asian Invitational Conference on Family Business. This conference promises
+  to be an immense value add, where we have chosen some crucial topics related to Family Business, and have been
+  fortunate to have them delivered by highly coveted speakers. </p>
 
-<p>We want to ensure the Conference is the perfect channel for you to build your network. To do this conveniently, we have tied up with the Indian School of Business to ensure you are able to  </p>
+<p>We want to ensure the Conference is the perfect channel for you to build your network. To do this conveniently, we
+  have tied up with the Indian School of Business to ensure you are able to </p>
 <ol>
-  <li>Search, find, message and set up meetings with other delegates based on any specific commonality, before the event begins!</li>
-  <li>Take advantage of our recommendation system to quickly connect with others based on industry/functionality/previous institution or 'Interested in' matches.</li>
+  <li>Search, find, message and set up meetings with other delegates based on any specific commonality, before the event
+    begins!
+  </li>
+  <li>Take advantage of our recommendation system to quickly connect with others based on
+    industry/functionality/previous institution or 'Interested in' matches.
+  </li>
   <li>View other delegate's company profiles, in order to form promising partnerships.</li>
   <li>Communicate with others before, during and after events.</li>
   <li>View event schedule, speaker profiles and rate sessions.</li>
   <li>Interact with speakers by posting questions, viewing profiles, and giving feedback</li>
 </ol>
-<p>To access Procialize, follow these 4 easy steps<p>
+<p>To access Procialize, follow these 4 easy steps
+
+<p>
 
 <ol>
-  <li>From your smartphone, type www.procialize.net (This is a mobile website, <b>you will not need to download any app!</b>)</li>
+  <li>From your smartphone, type www.procialize.net (This is a mobile website,
+    <b>you will not need to download any app!</b>)
+  </li>
   <li><b>Enter your email as: <%= @invitee.email %></b></li>
   <li><b>Enter your password as: procialize </b></li>
-  <li>You will be live on Procialize! Based on our SmartRecommender system we feel you might be interested in interacting with: </li>
+  <li>You will be live on Procialize! Based on our SmartRecommender system we feel you might be interested in
+    interacting with:
+  </li>
   </ul>
   <br>
-  </ol>
+</ol>
 
-  <ol>
-    <% @user=User.find_by_email(@invitee.email) %>
+<ol>
+  <% @user=User.find_by_email(@invitee.email) %>
 
-
-
-    <%# unless @user.industry_recco.nil? %>
-    <%# @user.industry_recco.split(",").each do |r| %>
-        <!--<li> <%#= r.titlecase %> who is also in <%#= @user.industry %> </li>-->
-    <%# end %>
-    <%# end %>
-
-    <%# unless @user.location_recco.nil? %>
-    <%# @user.location_recco.split(",").each do |r| %>
-        <!--<li> <%#= r.titlecase %> who is also in <%#= @user.location %> </li>-->
-    <%# end %>
-    <%# end %>
-
-
-
-    <!--TO do -->
-    <% unless @user.recommend.nil? %>
-        <% @user.recommend.split(",").each do |r| %>
-            <li> <%= r.titlecase %> who is in <%= @user.interest %> </li>
-        <% end %>
-    <% end %>
+  <% unless @user.recommend.nil? %>
+      <% @user.recommend.split(",").each do |r| %>
+          <% @recommended_user=User.find_all_by_name(r).each do |i| %>
+                <li> <%= r.titlecase %>
+                <% if i.interest != "" %>
+                    who is in
+                <%= i.interest %>
+                <% elsif i.interest == "" and i.industry != ""  %>
+                      who is in
+                      <%= i.industry%>
+                <% else  %>
+                  <% unless i.interest or i.industry.blank? %>
+                          who is in
+                  <%= i.interest or i.industry %>
+                <% end %>
+                <% end %>
+               </li>
+          <% end %>
+      <% end %>
+  <% end %>
 
 
+</ol>
 
 
-  </ol>
+<p>Click on Delegates on the home screen to send instant messages or set up meetings to the users listed above. You can
+  also send a message or set up a meeting with any other user attending the conference.</p>
 
+<p><b>View the entire event schedule on your phone :-</b>Use Procialize to see which event is lined up next. On the home
+  screen, click on Events</p>
 
-  <p>Click on Delegates on the home screen to send instant messages or set up meetings to the users listed above. You can also send a message or set up a meeting with any other user attending the conference.</p>
+<p><b>Posting Questions: Have a question / observation you want to share with any particular speaker or topic?</b> Click
+  on questions on the home screen, type your question/comment and select the speaker/session for whom this question is
+  directed towards.
 
-  <p><b>View the entire event schedule on your phone :-</b>Use Procialize to see which event is lined up next. On the home screen, click on Events</p>
+<p><b>Your feedback is important! Rate Session :-</b> After each session, you can now rate how useful or important did
+  you find the session. Click on Feedback on the Home Screen.</p>
 
-  <p><b>Posting Questions: Have a question / observation you want to share with any particular speaker or topic?</b> Click on questions on the home screen, type your question/comment and select the speaker/session for whom this question is directed towards.
-
-  <p><b>Your feedback is important! Rate Session :-</b> After each session, you can now rate how useful or important did you find the session. Click on Feedback on the Home Screen.</p>
-
-  <p><b> Any queries/ troubleshooting:-</b> For any problems, you can click on Contact Admin on the Home Screen.</p>
+<p><b> Any queries/ troubleshooting:-</b> For any problems, you can click on Contact Admin on the Home Screen.</p>
 
 <br>
 
-<p><b>Due to several requests from delegates,  we are extending time for sending the one page company profile' till 12 noon. By 4 pm you will be able to see profiles of several of your delegates.  In case you haven't send in your one page company profile pdf as soon as possible.</b></p>
+<p><b>Due to several requests from delegates, we are extending time for sending the one page company profile' till 12
+  noon. By 4 pm you will be able to see profiles of several of your delegates. In case you haven't send in your one page
+  company profile pdf as soon as possible.</b></p>
 
 
-  <p>So go ahead, make the most of this Conference, and start expanding your professional network now! For any doubts, queries or concerns, you can send me a mail on abhay_bhatia2013@pgp.isb.edu .</p><br>
+<p>So go ahead, make the most of this Conference, and start expanding your professional network now! For any doubts,
+  queries or concerns, you can send me a mail on abhay_bhatia2013@pgp.isb.edu .</p><br>
 
 
-  <p>Thanks and Regards,</p>
+<p>Thanks and Regards,</p>
 
-  <h5>Abhay Bhatia</h5>
-  <h5 style="font-weight:normal;">PGP Class of 2013, Indian School of Business, Mohali Campus<br>
-    Co-Founder and Chief Enthusiast - Procialize Events (www.procialize.net)<br>
-    President - Energy, Manufacturing and Operations Club<br>
-    Mobile :- 8146662047<br>
-    Abhay_Bhatia2013@pgp.isb.edu<br>
-    www.isb.edu</h5>
-
+<h5>Abhay Bhatia</h5>
+<h5 style="font-weight:normal;">PGP Class of 2013, Indian School of Business, Mohali Campus<br>
+  Co-Founder and Chief Enthusiast - Procialize Events (www.procialize.net)<br>
+  President - Energy, Manufacturing and Operations Club<br>
+  Mobile :- 8146662047<br>
+  Abhay_Bhatia2013@pgp.isb.edu<br>
+  www.isb.edu</h5>
 
 
 </body>

@@ -41,7 +41,6 @@ class InviteesController < ApplicationController
   # POST /invitees.json
   def create
     @invitee = Invitee.new(params[:invitee])
-
     respond_to do |format|
       if @invitee.save
         UserMailer.registration_confirmation(@invitee).deliver
@@ -112,17 +111,27 @@ class InviteesController < ApplicationController
 
 
   def send_mailers_recommend
-
-    @recommended_users=User.where(:recommend_select => "t")
-    @recommended_users.each do |user|
+    user=User.find(435)
+    @rejected = []
       @invitee=Invitee.create!(:name=>user.name, :email=>user.email)
-      if @invitee.save
+    if @invitee.save
         UserMailer.registration_confirmation(@invitee).deliver
         @rejected<<"Ok"
       else
         @rejected<<user.email
       end
-    end
+    redirect_to trigger_recommend_path
+#------------------------
+    #@recommended_users=User.where(:recommend_select => "t")
+    #@recommended_users.each do |user|
+    #  @invitee=Invitee.create!(:name=>user.name, :email=>user.email)
+    #  if @invitee.save
+    #    UserMailer.registration_confirmation(@invitee).deliver
+    #    @rejected<<"Ok"
+    #  else
+    #    @rejected<<user.email
+    #  end
+    #end
   end
 
 

@@ -92,7 +92,7 @@ ProcializeApp::Application.routes.draw do
   match '/gettweets', :to => "home#gettweets"
   match '/settweetcounter/:count', :to => "home#settweetcounter"
   match '/assets_download', :to => "home#assets_download", :as => "assets_download"
-  match '/trigger_recommend', :to => "home#trigger_recommend", :as => "trigger_recommend" #----------------for desktop------------------#
+
   match '/send_mail_to_recommended_users', :to => "home#send_mail_to_recommended_users", :as => "send_mail_to_recommended_users"
   match '/survey', :to => "home#survey"
   match '/survey_storing', :to => "home#survey_storing", :as => "survey_storing"
@@ -110,58 +110,6 @@ ProcializeApp::Application.routes.draw do
 
   #-------Desktop_view-----------#
   resources :desktop_view
-
-
-  #match '/index', :to => "desktop_view#index", :as => "desktop_view"
-  #
-  #
-  #
-  #
-  #match '/desktop_followers_status', :to => "desktop_view#desktop_followers_status", :as => "desktop_followers_status"
-  #match '/desktop_update_status', :to => "desktop_view#desktop_update_status", :as => "desktop_update_status"
-  #
-  #
-  #match '/speaking', :to => "desktop_view#speaking", :as => "speaking"
-  #
-  #
-  #
-
-  #
-  #match '/concierge_service_desktop', :to => "desktop_view#concierge_service_desktop", :as => "concierge_service_desktop"
-  #
-  #
-  #match '/question_new', :to => "desktop_view#question_new", :as => "question_new"
-  #match '/desktop_create', :to => "desktop_view#desktop_create", :as => "desktop_create"
-  #match '/create_question_desktop', :to => "desktop_view#create_question_desktop", :as => "create_question_desktop"
-  #match '/desktop_ask_question', :to => "desktop_view#desktop_ask_question"
-  #match '/desktop_create_quest', :to => "desktop_view#desktop_create_quest", :as => "desktop_create_quest"
-  #
-  #
-  #
-
-  #
-  #
-  #match '/events_index', :to => "desktop_view#events_index", :as => "events_index"
-  #match '/events_show/:id', :to => "desktop_view#events_show", :as => "events_show"
-  #match '/desktop_accept/event/:id', :to => "desktop_view#desktop_accept", :as => "desktop_accept"
-  #
-  #match '/meetings_index', :to => "desktop_view#meetings_index", :as => "meetings_index"
-
-  #
-  #
-
-  #match '/meet',:to=>"desktop_view#meet",:as=>'meet'
-  #
-  #
-  #match '/desktop_questionables', :to => "desktop_view#desktop_questionables", :as => 'desktop_questionables'
-  #
-  #match '/desktop_voting' => "desktop_view#desktop_voting", :as => "desktop_voting"
-  #match '/desktop_question_view' => "desktop_view#desktop_question_view", :as => "desktop_question_view"
-  ##match '/desktop_hide_quest', :to => "desktop_view#desktop_hide_quest", :as => "desktop_hide_quest"
-  #match '/desktop_approve_quest', :to => "desktop_view#desktop_approve_quest", :as => "desktop_approve_quest"
-
-
-  #-----------------------------------
 
 
   #---------Events----------#
@@ -240,13 +188,12 @@ ProcializeApp::Application.routes.draw do
 
 #----------Questionables-------------#
   match '/desktop_ask_question', :to => "desktop_view#desktop_ask_question", :as => "desktop_ask_question"
-  #match '/questions_appending/:track_id', :to => "questionables#questions_appending", :as => "questions_appending"
   match '/desktop_questions_appending/:track_id', :to => "desktop_view#desktop_questions_appending", :as => "desktop_questions_appending"
   match '/desktop_create_question', :to => "desktop_view#desktop_create_question", :as => "desktop_create_question"
   #----------Questionables-------------#
 
 
-
+  match '/trigger_recommend', :to => "home#trigger_recommend", :as => "trigger_recommend" #----------------for desktop------------------#
 
 
 
