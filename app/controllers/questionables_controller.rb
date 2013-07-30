@@ -182,8 +182,7 @@ class QuestionablesController < ApplicationController
       end
       @return_data<<"#{i.id}|#{i.quest_name}|#{i.user_id}|#{User.find(i.user_id).name}|#{i.like}|#{i.liking_by}|#{@like_return}"
     end
-    render :text => @return_data
-    return
+    render :json => @return_data
   end
 
 

@@ -66,8 +66,6 @@ class EventsController < ApplicationController
     @tra.each do |i|
       @questionable = Questionable.order("questionables.like DESC").order("questionables.created_at DESC").find_all_by_track_id_and_approved(i.id, true)
       @return_data<<"#{i.id}|#{i.name}|#{i.start}"
-
-
     end
     render :json => @return_data
 
