@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-Event Details
+    Event Details
 <% end %>
 
 
@@ -54,8 +54,23 @@ Event Details
 
 <table cellpadding="7">
   <tr>
-    <th rowspan="2"><%= image_tag @track.track_img.url(:thumb) %></th>
-    <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;"><%= @track.name %>&nbsp;<span style="font-size: 0.8em;">starting at</span>&nbsp;&nbsp;<%= @track.start %></td>
+    <th rowspan="4"><%= image_tag @track.track_img.url(:thumb) %></th>
+    <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;"><%= @track.name %>&nbsp;<span style="font-size: 0.8em;">from</span>&nbsp;&nbsp;<%= @track.start %>
+      <span style="font-size: 0.8em;">to</span> <%= @track.end %> </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
+      <%@count = @speaker_name.count %>
+      <% @countless=@count-1 %>
+      <% @speaker_name.each_with_index do |s, index| %>
+          <% unless s.name.blank? %>
+              <% if index==0 %>
+                  <span style="color: #c0c0c0;">Speakers:</span>
+              <% end %>
+              <%= s.name %><% if index !=@countless %>,<% end %>
+          <% end %>
+      <% end %>
+    </td>
   </tr>
 </table>
 
@@ -93,11 +108,12 @@ Event Details
 </ul>
 <br>
 <br>
+<hr>
 <br>
 
 
 <ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
-   <h6>Would you like to pose a question regarding the 	event?</h6>
+  <h6 style="font-size: 0.8em;">Would you like to pose a question regarding the event?</h6>
   <%= form_for :questionable, url: {action: :create_quest} do |f| %>
 
       <div class="field">
@@ -105,7 +121,7 @@ Event Details
       </div>
 
       <div class="field index_styling">
-        <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Pose your question here" %>
+        <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Pose your question here", :style => "font-size:0.8em;" %>
       </div>
 
 
@@ -115,7 +131,7 @@ Event Details
 
       <br>
 
-      <div data-role="controlgroup" data-type="horizontal" data-mini="true" style="text-align: center;font-size: 0.8em;">
+      <div data-role="controlgroup" data-type="horizontal" data-mini="true" style="text-align: center;font-size: 0.8em;float: left;">
         <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false", :onclick => "create_question();", :'data-mini' => "true" %>
       </div>
 
@@ -124,11 +140,12 @@ Event Details
 </ul>
 
 <br><br><br><br><br><br>
-
+<hr>
+<br>
 <ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
-
+  <h6 style="font-size: 0.8em;">Would you like to rate this event?</h6>
   <select id="select_menu" data-mini="true" onchange="rate_it($(this).val());">
-    <option value="" data-placeholder="true">Give your feedback</option>
+    <option value="" data-placeholder="true">Click here choose your rating</option>
     <option value="1">Immense Value Add</option>
     <option value="2">Great session and topic</option>
     <option value="3">A good talk and topic</option>

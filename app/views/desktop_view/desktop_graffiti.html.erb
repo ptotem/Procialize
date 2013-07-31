@@ -104,7 +104,7 @@
             <% end %>
 
 
-            <h4 style="margin-top: 0px;margin-left: 58px;"><%= @name.titlecase %>
+            <h4 style="margin-top: 0px;margin-left: 58px;"><% unless @name.nil?  %><%= @name.titlecase %>    <% end  %>
               <% if @user.avatar.url!='/avatars/original/missing.png' %>
                   <a style="float:right;background: #ffffff;" href="<%= @user.avatar.url %>"><img src="/assets/procdownload.png"></a>
               <% end %>
@@ -113,32 +113,28 @@
               <table>
                 <tr>
                   <td>
-                    <small><%= @headline %></small>
+                    <% if !@headline.blank? %><small><%= @headline  %></small><% end %>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <small><strong style="color: #c0c0c0;">Background: </strong><%= @industry unless @industry.blank? %> </small>
+                    <% if !@industry.blank? %><small><strong style="color: #c0c0c0;">Background: </strong><%= @industry %> </small><% end %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <% if !@location.blank? %><small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br><% end %>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <small><strong style="color: #c0c0c0;">Education: </strong><%= @educations %></small><br>
+                    <% if !@skills.blank? %><small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br><% end %>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br>
+                    <% if !@interest.blank? %><small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br><% end %>
                   </td>
                 </tr>
               </table>

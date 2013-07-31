@@ -101,16 +101,33 @@
         <div>
           <table cellpadding="7">
             <tr>
-              <th rowspan="2" style="margin-left:10px;">
+              <th rowspan="4" style="margin-left:10px;">
                 <% unless @track.track_img.blank? %><%= image_tag @track.track_img.url(:thumb) %>
                 <% end %></th>
               <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
-                <span style="margin-left: 50px;"><%= @track.name %></span>&nbsp;<span style="font-size: 0.8em;">starting at</span>&nbsp;&nbsp;<%= @track.start %>
+                <span style="margin-left: 50px;"><%= @track.name %></span>&nbsp;&nbsp;<span style="font-size: 0.8em;">from</span>&nbsp;&nbsp;<%= @track.start %>
+                <span style="font-size: 0.8em;">to</span> <%= @track.end %>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
+                <%@count = @speaker_name.count %>
+                <% @countless=@count-1 %>
+                <% @speaker_name.each_with_index do |s, index| %>
+                    <% unless s.name.blank? %>
+                        <% if index==0 %>
+                            <span style="color: #c0c0c0;margin-left: 50px;">Speakers:</span>
+                        <% end %>
+                        <%= s.name %><% if index !=@countless %>,<% end %>
+                    <% end %>
+                <% end %>
               </td>
             </tr>
           </table>
           <hr>
-          <h3 style="font-size: 0.8em;"><%= @track.description %></h3>
+          <h3 style="font-size: 0.8em;">
+            <%= @track.description %>
+          </h3>
           <hr>
         </div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723134747) do
+ActiveRecord::Schema.define(:version => 20130731214434) do
 
   create_table "assets_downloads", :force => true do |t|
     t.string   "downloadable_file_name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20130723134747) do
     t.integer  "event_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+    t.integer  "track_id"
   end
 
   create_table "attendees", :force => true do |t|
@@ -210,8 +211,18 @@ ActiveRecord::Schema.define(:version => 20130723134747) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "Question"
     t.boolean  "quest"
+    t.integer  "track_id"
     t.integer  "tracking_id"
+  end
+
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "conference_id"
+    t.integer  "rating"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "followers", :force => true do |t|
@@ -480,6 +491,13 @@ ActiveRecord::Schema.define(:version => 20130723134747) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "track_speakers", :force => true do |t|
+    t.integer  "track_id"
+    t.integer  "speaker_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "tracks", :force => true do |t|
     t.integer  "event_id"
     t.string   "name"
@@ -492,6 +510,16 @@ ActiveRecord::Schema.define(:version => 20130723134747) do
     t.datetime "track_img_updated_at"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.integer  "speaker_id"
+  end
+
+  create_table "user_imports", :force => true do |t|
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "user_details_file_name"
+    t.string   "user_details_content_type"
+    t.integer  "user_details_file_size"
+    t.datetime "user_details_updated_at"
   end
 
   create_table "user_locations", :force => true do |t|

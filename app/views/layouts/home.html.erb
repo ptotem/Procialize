@@ -68,59 +68,6 @@
 
 
   <script type="text/javascript">
-       $(function(){
-           $('.sponsors').hide();
-           $('#home_body').hide();
-
-
-           $.blockUI({
-               overlayCSS: { backgroundColor: 'black'},
-               message:$('#splash_pic'),
-               css: {
-                   width: '200px'
-               }
-           });
-
-           setTimeout($.unblockUI, 2000);
-
-
-
-
-           if(!isMobile.any()) {
-               window.location="/desktop_events?desk=1";
-           }
-           else {
-               $('#home_body').show();
-           }
-
-       });
-
-
-var isMobile = {
-    Android: function() {
-        return navigator.userAgent.match(/Android/i);
-    },
-    BlackBerry: function() {
-        return navigator.userAgent.match(/BlackBerry/i);
-    },
-    iOS: function() {
-        return navigator.userAgent.match(/iPhone|iPod/i);
-    },
-    Opera: function() {
-        return navigator.userAgent.match(/Opera Mini/i);
-    },
-    Windows: function() {
-        return navigator.userAgent.match(/IEMobile/i);
-    },
-    any: function() {
-        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-    }
-};
-
-
-
-
-
 
       function follow_search(id) {
           $.ajax({
@@ -177,9 +124,6 @@ var isMobile = {
       <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :"data-icon"=>"signout", :'data-role' => "button" %>
 
 
-    <div id="splash_pic" style="display: none;">
-      <%= image_tag Logos.first.splash_pic.url %>
-    </div>
 
 
     <div data-role="navbar">

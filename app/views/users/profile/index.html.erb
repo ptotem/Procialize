@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-    <span style="color:white;font-size: 0.8em;">Profile</span>
+    Profile
 <% end %>
 <style type="text/css">
     a, a:visited {
@@ -47,7 +47,7 @@
 
 <h4 style="margin-top: 0px;"><%= @name.titlecase %>
   <%if @user.avatar.url!='/avatars/original/missing.png'%>
-      <a style="float:right;" href="<%=@user.avatar.url%>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
+      <a target="_blank" style="float:right;" href="<%=@user.avatar.url%>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png"></a>
   <%end%>
 
   <!--<br>-->
@@ -59,34 +59,32 @@
   <!--<hr>-->
 
   <table>
+
     <tr>
       <td>
-        <small><%= @headline %></small>
+        <% if !@headline.blank? %><small><%= @headline  %></small><% end %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <% if !@industry.blank? %><small><strong style="color: #c0c0c0;">Background: </strong><%= @industry %> </small><% end %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <% if !@location.blank? %><small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br><% end %>
       </td>
     </tr>
     <tr>
       <td>
-        <small><strong style="color: #c0c0c0;">Background: </strong><%= @industry unless @industry.blank? %> </small>
-      </td>
-    </tr>
-    <!--<tr>-->
-      <!--<td>-->
-        <!--<small><strong style="color: #c0c0c0;">Education: </strong><%#= @educations unless @educations.blank?%></small><br>-->
-      <!--</td>-->
-    <!--</tr>-->
-    <tr>
-      <td>
-        <small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br>
+        <% if !@skills.blank? %><small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br><% end %>
       </td>
     </tr>
     <tr>
       <td>
-        <small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br>
+        <% if !@interest.blank? %><small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br><% end %>
       </td>
     </tr>
   </table>
@@ -95,7 +93,7 @@
   <% unless @user==current_user %>
       <span  id="follow_notice" style="text-align: center;"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not Followed" :"Followed" %></span>
   <% end %>
-
+  <br><br>
   <% if @user==current_user %>
       <div id="edit_profile" style="width:10px; ">
         <%= link_to "Edit own profile", edit_user_profile_path, :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false, :'data-inline' => true, :class => "anchor_link",:'data-mini' => "true", :"data-icon"=>"edit-sign" %>
@@ -116,23 +114,30 @@
 <br>
 <br><br>
 <hr>
-<div style="font-size: 0.8em;font-weight: bold;line-height: 3em">Followers</div>
-<% @followers.each do |follower| %>
-    <div class="fbinfobox1">
-      <div style="background: rgba(204,255,178,0.96); width:100%;padding-left:5px;padding-top:4px;padding-bottom:4px;border-radius:5px;font-weight: normal;">
 
-        <span style="color:#333333;font-size:0.8em;font-weight:normal;"><%= link_to follower.name.titlecase, user_profile_path(follower), :style => "color:#333333;font-size:0.8em;font-weight:normal;"  %></span>
-      </div>
-      <table>
-        <tr>
+<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+  <h3 style="font-size: 0.8em;">Followers</h3>
+  <ul data-role="listview" data-theme="a" data-divider-theme="d">
+    <% @followers.each do |follower| %>
+        <div class="fbinfobox1">
+          <div style="background: rgba(178,204,255,0.92); width:100%;padding-left:5px;padding-top:4px;padding-bottom:4px;border-radius:5px;font-weight: normal;">
+            <%=  link_to follower.name.titlecase, user_profile_path(follower), :style => "color:#333333;font-size:0.8em;font-weight:normal;" %>
+          </div>
           <% unless follower.picture.blank? %>
               <td style="width:32px;max-width:32px;"><%= image_tag follower.picture, :style => "float:left; border-radius:5px;margin-right:10px;max-width:40px" %></td>
           <% end %>
+        </div>
+    <% end %>
+  </ul>
+</div>
 
-        </tr>
-      </table>
-    </div>
-<% end %>
+
+
+
+
+
+
+
 
 <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">
   <div data-role="navbar" data-theme='a'>

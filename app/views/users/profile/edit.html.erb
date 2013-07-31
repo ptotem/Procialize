@@ -1,68 +1,114 @@
+<%= content_for :page_title do %>
+    Edit Profile
+<% end %>
 <div class="content_container">
-  <h2>Edit <%= link_to image_tag("log-in-linkedin-large.png", :style => "width:50%;"), user_omniauth_authorize_path(:linkedin), :'data-ajax' => false,:style=>"float:right;" %></h2>
-
+  <h6>Update your profile using </h6><%= link_to image_tag("linkedin_button.png", :style => "width:100%;"), user_omniauth_authorize_path(:linkedin), :'data-ajax' => false,:style=>"float:left;" %>
+  <br>
+  <br>
+  <hr>
 
   <%= form_for :user, :url => {:action => :update}, :method => :put do |f| %>
 
+  <h6>Update your profile manually</h6>
+
       <p>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= f.label :name,:style => "font-size:0.8em;" %>
+        <%= f.text_field :name,:style => "font-size:0.8em;" %>
       </p>
 
       <p>
-        <%= f.label :industry %>
-        <%= f.select :industry, options_for_select([ "Farming", "Ranching", "Dairy", "Fishery","Fine Art"],:prompt=>"Select Industry") %>
+        <%= f.label :headline,:style => "font-size:0.8em;" %>
+        <%= f.text_area :headline,:style => "font-size:0.8em;" %>
       </p>
 
       <p>
-        <%= f.label :educations %>
-        <%= f.text_field :educations %>
-      </p>
-
-      <p>
-        <%= f.label :skills %>
-        <%= f.text_field :skills %>
-      </p>
-
-      <p>
-        <%= f.label :headline %>
-        <%= f.text_area :headline %>
-      </p>
-
-      <p>
-        <%= f.label :location %>
-        <%= f.text_field :location %>
-      </p>
-
-      <p>
-        <%= f.label :interest %>
-        <%= f.text_field :interest %>
-      </p>
-
-
-      <p>
-        <%= f.label :industry %>
-      <div data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
-        <h3 style="font-size: 0.8em;"><%= @user.industry %></h3>
+        <%= f.label :industry,:style => "font-size:0.8em;" %>
+      <div id="industry" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
+        <h3  style="font-size: 0.8em;"><%= @user.industry %></h3>
         <ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">
-          <li class="industry"> Farming<input type="radio" name="radio-choice"  value="choice-2"  /> </li>
-          <li class="industry"> Ranching<input type="radio" name="radio-choice"  value="choice-2"  /></li>
-          <li class="industry"> Diary<input type="radio" name="radio-choice"  value="choice-2"  /></li>
-          <li class="industry"> Fishery<input type="radio" name="radio-choice"  value="choice-2"  /></li>
-          <li class="industry"> Fine art<input type="radio" name="radio-choice"  value="choice-2"  /></li>
+          <li class="industry"> Farming</li>
+          <li class="industry"> Ranching</li>
+          <li class="industry"> Diary</li>
+          <li class="industry"> Fishery</li>
+          <li class="industry"> Fine art</li>
         </ul>
       </div>
       </p>
 
+
       <p>
-        <%= f.submit "Save" %>
+        <%= f.label :location,:style => "font-size:0.8em;" %>
+      <div id="location" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
+        <h3 style="font-size: 0.8em;"><%= @user.location %></h3>
+        <ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">
+          <li class="location"> Mumbai</li>
+          <li class="location"> Chennai</li>
+          <li class="location"> Hyderabad</li>
+          <li class="location"> Delhi</li>
+          <li class="location"> Kolkata</li>
+        </ul>
+      </div>
+      </p>
+
+
+
+      <p>
+        <%= f.label :skills,:style => "font-size:0.8em;" %>
+      <div id="skills" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
+        <h3 style="font-size: 0.8em;"><%= @user.skills %></h3>
+        <ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">
+          <li class="skills"> Finance</li>
+          <li class="skills"> Programming</li>
+          <li class="skills"> Design</li>
+          <li class="skills"> Negotiation</li>
+          <li class="skills"> Management</li>
+        </ul>
+      </div>
+      </p>
+
+
+      <p>
+        <%= f.label :interest,:style => "font-size:0.8em;" %>
+      <div id="interest" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
+        <h3 style="font-size: 0.8em;"><%= @user.interest %></h3>
+        <ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">
+          <li class="interest"> Banking</li>
+          <li class="interest"> Telecom</li>
+          <li class="interest"> Insurance</li>
+          <li class="interest"> Garments</li>
+          <li class="interest"> Real Estate</li>
+        </ul>
+      </div>
+      </p>
+
+      <br>
+      <p>
+        <%= f.submit "Save",:'data-mini' => "true"  %>
       </p>
   <% end %>
 </div>
 
 <script type="text/javascript">
     $(function () {
+        if ($('#industry .ui-btn-text').text()==" click to expand contentsclear text") {
+            $('#industry .ui-btn-text').text("Industry");
+        }
+
+        if ($('#location .ui-btn-text').text()==" click to expand contentsclear text") {
+            $('#location .ui-btn-text').text("Location");
+        }
+
+        if ($('#skills .ui-btn-text').text()==" click to expand contentsclear text") {
+            $('#skills .ui-btn-text').text("Skills");
+        }
+
+        if ($('#interest .ui-btn-text').text()==" click to expand contentsclear text") {
+            $('#interest .ui-btn-text').text("Interest");
+        }
+
         $('.industry').click(function () {
+            var adding=$(this).text();
+            $('#industry .ui-btn-text').text(adding);
             var industry = $(this).text();
             var data = {industry:[], user_id:[]}
             data["industry"].push(industry);
@@ -73,11 +119,71 @@
                 data:JSON.stringify(data),
                 contentType:"application/json",
                 success:function (data) {
-
                 }
             });
         });
+
+        $('.location').click(function () {
+            var adding=$(this).text();
+            $('#location .ui-btn-text').text(adding);
+            var location = $(this).text();
+            var data = {location:[], user_id:[]}
+            data["location"].push(location);
+            data["user_id"].push('<%=current_user.id %>');
+            $.ajax({
+                url:"<%= editing_profile_location_path %>",
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function (data) {
+                }
+            });
+        });
+
+        $('.skills').click(function () {
+
+            var adding=$(this).text();
+            $('#skills .ui-btn-text').text(adding);
+            var skills = $(this).text();
+            var data = {skills:[], user_id:[]}
+            data["skills"].push(skills);
+            data["user_id"].push('<%=current_user.id %>');
+            $.ajax({
+                url:"<%= editing_profile_skills_path %>",
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function (data) {
+                }
+            });
+        });
+
+        $('.interest').click(function () {
+            var adding=$(this).text();
+            $('#interest .ui-btn-text').text(adding);
+            var interest = $(this).text();
+            var data = {interest:[], user_id:[]}
+            data["interest"].push(interest);
+            data["user_id"].push('<%=current_user.id %>');
+            $.ajax({
+                url:"<%= editing_profile_interest_path %>",
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function (data) {
+                }
+            });
+        });
+
+
     });
 
 
 </script>
+
+
+<style type="text/css">
+  .industry, .interest, .location ,.skills {
+      font-size: 0.8em;
+  }
+</style>

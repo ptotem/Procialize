@@ -58,14 +58,6 @@
 
 
 
-
-
-
-
-
-
-
-
       <% if !params[:reply]  %>
           <% unless @last_message.body.blank? %>
               <div class="padded" style="min-height: 5em; border:solid 1px black; border-radius: 5px;background: white;color:black;">
@@ -111,8 +103,8 @@
               <%= f.hidden_field :body  %>
               <%= f.submit  "Submit",:onclick => "appending_question();" ,:class => "button gray",:style=>"float:left;width:10%;",:id=>"submit_form"%>
           <% end %>
-          <script type="text/javascript">
 
+          <script type="text/javascript">
               $('#submit_form').click(function(){
                   if (($(":checkbox").filter(":checked").size()==0))
                   {

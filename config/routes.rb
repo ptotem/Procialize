@@ -20,9 +20,16 @@ ProcializeApp::Application.routes.draw do
   match 'desktop_view/update_event/:event_id', :to => "desktop_view#update_event" #, :as => "update_event"
 
 
+
+  #match '/excel_imp', :to => "users/profile#excel_imp" , :as => "excel_imp"
+  #match '/user_excel_imp', :to => "users/profile#excel_imp" , :as => "excel_imp"
+
+
   #resources :questionables
 
   resources :invitees
+  resources :user_imports
+  match '/excel_imp', :to => "user_imports#excel_imp" , :as => "excel_imp"
 
 
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
@@ -99,6 +106,9 @@ ProcializeApp::Application.routes.draw do
 
 
   match '/editing_profile', :to => "home#editing_profile", :as => "editing_profile"
+  match '/editing_profile_location', :to => "home#editing_profile_location", :as => "editing_profile_location"
+  match '/editing_profile_skills', :to => "home#editing_profile_skills", :as => "editing_profile_skills"
+  match '/editing_profile_interest', :to => "home#editing_profile_interest", :as => "editing_profile_interest"
 
 
   match '/questions_appending/:track_id', :to => "questionables#questions_appending", :as => "questions_appending"
@@ -194,6 +204,7 @@ ProcializeApp::Application.routes.draw do
 
 
   match '/trigger_recommend', :to => "home#trigger_recommend", :as => "trigger_recommend" #----------------for desktop------------------#
+  match '/wait', :to => "home#wait", :as => "waiting_to_load" #----------------for desktop------------------#
 
 
 

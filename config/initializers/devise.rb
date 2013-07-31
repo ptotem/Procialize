@@ -236,7 +236,7 @@ Devise.setup do |config|
   config.omniauth :linkedin, 'dr6pt80d3n8a', 'EO46hBzTps3IsEvF', :scope => 'r_fullprofile r_emailaddress r_network', :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location", "positions", "educations", "skills", "interests"]
 
   require "omniauth-facebook"
-  config.omniauth :facebook, '636324466384812', 'f65a3e41c1c8d6d97038cdf638a15387',{:client_options => {:ssl => {:ca_path => "/etc/ssl/certs/"}}}
+  config.omniauth :facebook, '315742525227414', '16be48c8c3de1b7b4f3ee1d6b8b00208',{:client_options => {:ssl => {:ca_path => "/etc/ssl/certs/"}}}
   #config.omniauth :facebook, '636324466384812', 'f65a3e41c1c8d6d97038cdf638a15387',{:client_options => {:ssl => {:ca_path => "/etc/ssl/certs/"},:scope => 'offline_access,email'}}
 end
 

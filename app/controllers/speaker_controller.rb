@@ -1,16 +1,17 @@
 class SpeakerController < ApplicationController
   def index
-
-    @event_days = @conference.event_days
-    @events= Event.find_all_by_event_day_id(@event_days)
-    @speaker=Speaker.find_all_by_event_id(@events)
-    @sp=@events.map { |sp| sp.speakers}.flatten
-    #@se=@sp.map{ |e| e.event }.flatten
-    @locations = @conference.locations
-    @events = @event_days.map { |ed| ed.events }.flatten
-    @event_locations=@events.map { |ev| ev.event_locations }.flatten
     @speak=Speaker.all
+    @speak_id=Array.new
+    @tracker=Array.new
+    @speak.each do |s|
+      @speak_id<<s.id
+    end
+    @speaker_track=TrackSpeaker.find_all_by_speaker_id(@speak_id)
+    @speaker_track.each do |s|
+      @tracker<<s.track_id
+    end
 
+     @track_name=Track.find(@tracker)
 
   end
 end

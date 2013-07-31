@@ -8,6 +8,13 @@ class EventsController < ApplicationController
     @attendees=Attendee.find_all_by_track_id(@track).map { |a| a.user }
     @my_attendee=Attendee.find_by_track_id_and_user_id(@track, current_user)
     @quest = Questionable.new
+
+    @speaking=Array.new
+    @track_speaker=TrackSpeaker.find_all_by_track_id(@track)
+    @track_speaker.each do |t|
+       @speaking<<t.speaker_id
+    end
+    @speaker_name=Speaker.find(@speaking)
   end
 
   def show_page
@@ -15,28 +22,10 @@ class EventsController < ApplicationController
   end
 
   def index
-    #render :text => @conference.participants.map { |participant| participant.user }
-    #return
-    #@conference= current_user.participants.map { |p| p.conference }[1]
-    #return
-
     @event_days=@conference.event_days
     @event_days = EventDay.all
     @events = Event.all
     @tracks = Track.all
-
-
-    #@event_days = @conference.event_days
-    #@ev1=@event_days.find_by_name_and_sequence("Day One",1).id
-    #@event1=Event.group(:start).find_all_by_event_day_id(@ev1)
-    #@ev2=@event_days.find_by_name_and_sequence("Day Two",2).id
-    #@event2=Event.group(:start).find_all_by_event_day_id(@ev2)
-    #
-    #@locations = @conference.locations
-    #@events = @event_days.map { |ed| ed.events }.flatten
-    #@event_locations=@events.map { |ev| ev.event_locations }.flatten
-
-
   end
 
 

@@ -1,6 +1,6 @@
-<script type="text/javascript">
-
-</script>
+<%= content_for :page_title do %>
+    Questions
+<% end %>
 
 <%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %>
 <br/>
@@ -47,7 +47,7 @@
                 data:JSON.stringify(data),
                 contentType:"application/json",
                 success:function (data) {
-                    $('#like_' + a).html(data)
+                    $('#like_' + a).html(data+" likes")
 
                 }
             });
@@ -112,7 +112,7 @@
                 $.each(data, function (key, val) {
                    val=val.split('|');
                     if (val[6] == 1) {
-                        $('#categoriesContent ul').append('<li id=' + val[0] + '> ' +
+                        $('#categoriesContent ul').append('<li data-icon="action-arrow" id=' + val[0] + '> ' +
                                 '<h3>' + val[3] + ' asked:-&nbsp;&nbsp;' + val[1] + '</h3> ' +
                                 '<table>' +
                                 '<tr>' +
@@ -129,7 +129,7 @@
                                 '<table>' +
                                 '<tr>' +
                                 '<td id="like_table">  ' +
-                                '<input data-icon="thumbs-up" data-iconpos="notext" type="button" value="Likes" class="likes" id="liking">' +
+                                '<input name="img_buuton" data-role="none" type="image" src="/assets/thumbs_up.png" value="Likes" class="likes" id="liking" style="max-height: 32px; ">' +
                                 '</td> ' +
                                 '<td>' +
                                 '<h5 id="like_' + val[0] + '">' + val[4] + 'Likes</h5>' +
@@ -178,7 +178,7 @@
                 data:JSON.stringify(data),
                 contentType:"application/json",
                 success:function (data) {
-                    <%= add_gritter("Your question is successfully send to the moderator", :title => "Notice",:image => :success,:time => 2000  ) %>
+                    <%= add_gritter("Your question has been successfully send to the moderator", :title => "Notice",:image => :success,:time => 2000  ) %>
                     setTimeout(function () {
                         location.reload();
                         $("select").val("0");
@@ -203,7 +203,7 @@
 
 
 <div data-role="content" id="categoriesContent">
-  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b">
+  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b" style="font-size: 0.8em;font-family: helveticaneue;">
     <h4>Moderated Questions</h4>
   </ul>
 </div>

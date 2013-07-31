@@ -71,8 +71,29 @@
               <h5> <%= s.name %></h5>
               <div>
                 <p style="color: white;">
-                  <%= image_tag s.avatar.url, :style => 'max-height:75px;max-width:75px;margin:10px;' %>
-                  <%= raw s.speaker_details %>
+                  <%@a = @track_name.count %>
+                <table>
+                  <tr>
+                    <td style="vertical-align: top;"><%= image_tag s.avatar.url, :style => 'max-height:100px;max-width:100px;margin:10px;' %></td>
+                  </tr>
+
+                  <tr>
+                    <td><div style="font-size: 0.8em;font-weight: normal;color: white; ">
+                      <%@count = @track_name.count %>
+                      <% @countless=@count-1 %>
+                      <% @track_name.each_with_index do |t, index|  %>
+                          <% unless t.name.blank? %>
+                              <% if index==0 %>
+                                  Speaking at:
+                              <% end %>
+                              <%= t.name %><% if index !=@countless %>,<% end %>
+                          <% end %>
+                      <% end %>
+                      <hr>
+
+                      <%= raw s.speaker_details %></div></td>
+                  </tr>
+                </table>
                 </p>
 
               </div>

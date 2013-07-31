@@ -30,7 +30,7 @@
 <% if !params[:sent] %>
     <a href="<%= focussed_message_path(@message.user, @message) %>/?reply=true" data-ajax=false data-role=button data-mini="true">Reply</a>
 <% end %>
-<a href="<%= focussed_message_path(@message.user, @message, "all") %>" data-ajax=false data-mini="true" data-role=button>Forward</a>
+<a href="<%= focussed_message_path(@message.user, @message, "all") %>/?forward=true" data-ajax=false data-mini="true" data-role=button>Forward</a>
 
 
 

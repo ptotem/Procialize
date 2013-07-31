@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   skip_before_filter :verify_authenticity_token
   before_filter :set_current_conference
   before_filter :logos
+
   #after_filter :notify
 
 
@@ -26,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    "/?first_time=1"
+    "/wait"
   end
 
 
@@ -39,6 +40,8 @@ class ApplicationController < ActionController::Base
   def logos
     @logos=Logos.all
   end
+
+
 
 
 end

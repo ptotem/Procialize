@@ -102,7 +102,7 @@
                               data:JSON.stringify(data),
                               contentType:"application/json",
                               success:function (data) {
-                                  $('#like_' + a).html(data)
+                                  $('#like_' + a).html(data+" likes")
 
                               }
                           });
@@ -199,7 +199,7 @@
                                                   '<table>' +
                                                   '<tr>' +
                                                   '<td id="like_table">  ' +
-                                                  '<input type="button" value="Likes" class="likes button gray" id="liking">' +
+                                                  '<input type="image" value="Likes" class="likes button grey" id="liking"  src="/assets/thumbs_up.png" style="max-height: 32px; ">' +
                                                   '</td> ' +
                                                   '<td>' +
                                                   ' <h5 id="like_' + val[0] + '">' + val[4] + 'Likes</h5>' +

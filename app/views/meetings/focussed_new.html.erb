@@ -54,10 +54,19 @@
 <%= form_for :meeting, :url => {:action => :create},:html => {:class => "meeting",:id=> "meeting_form", :'data-ajax'=>"false"} do |f| %>
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <div class="field">
+      <%= f.text_field :name, :'data-mini' => true, :placeholder => "Enter meeting agenda" %>
+    </div>
+      <br>
     <div data-role="listview" data-mini="true"  data-placeholder="true"  data-split-icon='star' data-mini="true" data-filter="true">
       <%= select_tag 'meeter_use[]', options_for_select(@users.flatten.map {|u| [u.name, u.id]}, @meeter), :multiple => true,:include_blank =>"Select Delegates", :multiple => true,:'data-mini' => true,:prompt => "Select Delegates" %>
     </div>
      <br>
+    <div class="field">
+      <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true,:prompt => "Select Location" %>
+    </div>
+    <br>
     <div class="field">
       <%= f.time_select :start_time,
                         :combined => true,
@@ -68,16 +77,6 @@
                         :end_hour => 23,:prompt => "Select Time" %>
     </div>
      <br>
-    <div class="field">
-      <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true,:prompt => "Select Location" %>
-    </div>
-      <br>
-    <div class="field">
-      <%= f.text_field :name, :'data-mini' => true, :placeholder => "Enter meeting agenda" %>
-    </div>
-
-
-
 
 
 

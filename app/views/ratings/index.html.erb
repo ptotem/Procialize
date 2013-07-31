@@ -1,6 +1,6 @@
-<script type="text/javascript">
-
-</script>
+<%= content_for :page_title do %>
+    Rate the Event
+<% end %>
 
 <%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %>
 <br/>

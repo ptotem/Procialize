@@ -13,22 +13,11 @@ class Users::ProfileController < ApplicationController
     @location=@user.location
     @skills=@user.skills
     @positions=[]
-    #unless @user.educations.blank? or @user.educations.values[1].blank?
-    #  @educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "" :"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
-    #end
-    #unless @user.positions.blank? or @user.positions.values[1].blank?
-    #  @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name unless p.blank?}" }.uniq
-    #end
-
-    #@followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user }.map { |f| f.user }
     @posts=@user.posts.last(10).reverse
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?
       @last_seen=Location.find(UserLocation.find_all_by_user_id(@user.id).last.location_id)
     end
-    #if !UserLocation.find_all_by_user_id(@user.id).last.blank?
-    #@created=UserLocation.find_all_by_user_id(@user.id).last
-    #end
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?
       @created_at=UserLocation.find_all_by_user_id_and_location_id(@user.id, @last_seen.id).last
     end
@@ -111,6 +100,36 @@ class Users::ProfileController < ApplicationController
   #  redirect_to client.request_token.authorize_url
   #
   #end
+
+
+
+
+
+  #require 'spreadsheet'
+
+  #def excel_imp
+  #  #To open excel and importing it into database
+  #
+  #  #Userimp=UserImp.create(:file=>params[:file]])) userimp.file.url
+  #
+  #
+  #
+  #  @users=Array.new
+  #  Spreadsheet.client_encoding = 'UTF-8'
+  #  book = Spreadsheet.open '/home/neel/Downloads/user_new.xls'
+  #  sheet1 = book.worksheet 0
+  #
+  #
+  #  sheet1.each_with_index do |row, index|
+  #    if index>0
+  #      @users<<User.create!(:email=> row[0], :password => row[1], :password_confirmation => row[2], :name => row[3])
+  #    end
+  #  end
+  # render :text => "completed" ,:layout => "application1"
+  # return
+  #
+  #end
+
 
 
 end

@@ -38,7 +38,7 @@ gem 'mysql2'
 gem 'awesome_nested_fields'
 gem "combined_time_select"
 gem 'comfortable_mexican_sofa' #, :path => '/home/neel/Downloads/comfortable-mexican-sofa-1.7'
-
+gem 'spreadsheet'
 
 
 # Gems used only for assets and not required

@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   has_many :decks, :dependent => :destroy
   #has_many :attendees, :dependent => :destroy
   has_many :event_locations, :dependent => :destroy
-  has_many :speakers, :dependent => :destroy
+  #has_many :speakers, :dependent => :destroy
   #has_many :questionables, :dependent => :destroy
   #has_one  :rating,:dependent => :destroy
   has_many :assets_downloads,:dependent => :destroy

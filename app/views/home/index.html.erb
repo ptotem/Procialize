@@ -41,6 +41,8 @@
   </style>
 
 
+
+
   <script>
 
       $(function () {
@@ -122,19 +124,7 @@
         </div>
     <% end %>
   </ul>
-  <!--<div>-->
-  <!--<ul data-role="listview">-->
-  <!--<li data-icon="microphone"><a class="index_styling" href="/speaker" data-ajax=false>Speakers</a></li>-->
-  <!--<li data-icon="question"><a class="index_styling" href="/ask_question" data-ajax=false>Questions</a></li>-->
-  <!--<li data-icon="group"><a class="index_styling" href="/search/search" data-ajax=false > Delegates</a></li>-->
-  <!--<li data-icon="exchange"><a class="index_styling" href="/ratings" data-ajax=false >Feedback</a></li>-->
-  <!--<li data-icon="comment"><a class="index_styling" href="/graffiti" data-ajax=false >Graffiti</a></li>-->
-  <!--<li data-icon="phone"><a class="index_styling" href="/contacts/new" data-ajax=false >Contact Us</a></li>-->
-  <!--<li data-icon="coffee"><a class="index_styling" href="/concierge_service" data-ajax=false >Concierge Service</a></li>-->
-  <!--<li data-icon="download-alt"><a class="index_styling" href="/assets_download" data-ajax=false >Knowledge center</a></li>-->
-  <!--</ul>-->
 
-  <!--</div>-->
 
 
   <script type="text/javascript">
@@ -153,7 +143,7 @@
                   data:JSON.stringify(data),
                   contentType:"application/json",
                   success:function (data) {
-                      <%= add_gritter("Thank You", :title => "Success",:image => :success,:time => 1000  ) %>
+                      <%= add_gritter("Thank you for your response", :title => "Success",:image => :success,:time => 1000  ) %>
                   }
               });
 
@@ -167,15 +157,16 @@
 <div>
 
   <a class="index_styling" href="/speaker" data-ajax=false data-role="button" data-icon="microphone" data-mini="true">Speakers</a>
-  <a class="index_styling" href="/ask_question" data-ajax=false data-role="button" data-icon="question" data-mini="true">Questions</a>
-  <a class="index_styling" href="/ratings" data-ajax=false data-role="button" data-icon="exchange" data-mini="true">Feedback</a>
   <a class="index_styling" href="/search/search" data-ajax=false data-role="button" data-icon="group" data-mini="true">Delegates</a>
-
+  <a class="index_styling" href="/ask_question" data-ajax=false data-role="button" data-icon="question" data-mini="true">Questions</a>
   <a class="index_styling" href="/graffiti" data-ajax=false data-role="button" data-icon="comment" data-mini="true">Updates</a>
+  <a class="index_styling" href="/assets_download" data-ajax=false data-role="button" data-icon="download-alt" data-mini="true">Downloadables</a>
+  <a class="index_styling" href="/ratings" data-ajax=false data-role="button" data-icon="exchange" data-mini="true">Feedback</a>
+  <a class="index_styling" href="/concierge_service" data-ajax=false data-role="button" data-icon="coffee" data-mini="true">Concierge</a>
   <a class="index_styling" href="/contacts/new" data-ajax=false data-role="button" data-icon="phone" data-mini="true">Contact
     Us</a>
-  <a class="index_styling" href="/concierge_service" data-ajax=false data-role="button" data-icon="coffee" data-mini="true">Concierge</a>
-  <a class="index_styling" href="/assets_download" data-ajax=false data-role="button" data-icon="download-alt" data-mini="true">Downloadables</a>
+
+
 
 </div>
 

@@ -74,9 +74,9 @@
                 <tbody>
                 <% @assets_downloads.each do |e| %>
                     <%if e.downloadable.url!='/avatars/original/missing.png'%>
-                        <% @event_id= e.event_id %>
+                        <% @event_id= e.track_id%>
                     <tr class="gradeA even"  id="<%= e %>">
-                      <td><%= @event_name=Event.find(@event_id).name %></td>
+                      <td><%= @event_name=Track.find(@event_id).name %></td>
                       <td style="border-left: 1px solid #DDDDDD">
                         <a target="_blank" href="<%=e.downloadable.url%>"><img src="/assets/procdownload.png"></a>&nbsp;&nbsp;<%= e.downloadable.original_filename %>
                         <%# if e.downloadable.url!='/avatars/original/missing.png' %>

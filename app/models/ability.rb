@@ -24,7 +24,7 @@ class Ability
         cannot :manage, :all
         cannot :access, :rails_admin # grant access to rails_admin
         cannot :dashboard
-        cannot :import
+
     end
 
 

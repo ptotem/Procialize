@@ -198,5 +198,33 @@ class HomeController < ApplicationController
     return
   end
 
+  def editing_profile_location
+    @location_edit=User.find(params[:user_id][0])
+    @location_edit.location= params[:location][0]
+    @location_edit.save
+    render :text =>  @location_edit.save
+    return
+  end
+
+  def editing_profile_skills
+    @skill_edit=User.find(params[:user_id][0])
+    @skill_edit.skills= params[:skills][0]
+    @skill_edit.save
+    render :text =>  @skill_edit.save
+    return
+  end
+
+  def editing_profile_interest
+    @interest_edit=User.find(params[:user_id][0])
+    @interest_edit.interest= params[:interest][0]
+    @interest_edit.save
+    render :text =>  @interest_edit.save
+    return
+  end
+
+
+  def wait
+    render :layout => "search_delegates"
+  end
 
 end

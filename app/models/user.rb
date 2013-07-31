@@ -113,4 +113,7 @@ class User < ActiveRecord::Base
   def create_participant
     Participant.create!(:conference_id => 1, :user_id => self.id)
   end
+
+
+
 end

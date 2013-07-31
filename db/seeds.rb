@@ -10,7 +10,7 @@
 #
 #
 #
-#User.create!(email: 'manish_mnsp@yahoo.co.uk', name: 'Gupta Manish', company: 'Musaddilal & Sons', industry: '', location: 'Hyderabad, Andhra Pradesh', password: 'procialize', password_confirmation: 'procialize', industry_recco: '', location_recco: ' Parthasarathi ')
+User.create!(email: 'amol@ptotem.com', name: 'Amol', password: 'procialize', password_confirmation: 'procialize',:role => 'admin')
 #User.create!(email: 'navalkishoremalu@gmail.com', name: 'Naval Kishore Malu', company: 'Malu Housing Products', industry: '', location: 'Bangalore, Karnataka', password: 'procialize', password_confirmation: 'procialize', industry_recco: '', location_recco: ' Srikant Rao ')
 #User.create!(email: 'achalj@nucon.net', name: 'Achal Jalan', company: 'Nucon Industries Pvt Ltd', industry: '', location: 'Hyderabad, Andhra Pradesh', password: 'procialize', password_confirmation: 'procialize', industry_recco: '', location_recco: ' Parthasarathi ')
 #User.create!(email: 'uditj@nucon.net', name: 'Udit Jalan', company: 'Nucon Industries Pvt Ltd', industry: '', location: 'Hyderabad, Andhra Pradesh', password: 'procialize', password_confirmation: 'procialize', industry_recco: '', location_recco: ' Parthasarathi,Rashmikant Shah ')

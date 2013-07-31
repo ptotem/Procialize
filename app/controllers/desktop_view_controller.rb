@@ -154,6 +154,13 @@ class DesktopViewController < ApplicationController
     @attendees=Attendee.find_all_by_track_id(@track).map { |a| a.user }
     @my_attendee=Attendee.find_by_track_id_and_user_id(@track, current_user)
     @quest = Questionable.new
+
+    @speaking=Array.new
+    @track_speaker=TrackSpeaker.find_all_by_track_id(@track)
+    @track_speaker.each do |t|
+      @speaking<<t.speaker_id
+    end
+    @speaker_name=Speaker.find(@speaking)
     render :layout => 'application1'
   end
 
@@ -524,7 +531,7 @@ class DesktopViewController < ApplicationController
     @interest=@user.interest
     @educations=@user.educations
     @location=@user.location
-    @skills=@user.location
+    @skills=@user.skills
     #@educations=[]
     #@positions=[]
 
@@ -585,7 +592,7 @@ class DesktopViewController < ApplicationController
     @interest=@user.interest
     @educations=@user.educations
     @location=@user.location
-    @skills=@user.location
+    @skills=@user.skills
 
 
     @batch=@user.batchie
@@ -760,15 +767,19 @@ class DesktopViewController < ApplicationController
 
   #-------------Start of Speakers-------------------#
   def desktop_speaker
-    @event_days = @conference.event_days
-    @events= Event.find_all_by_event_day_id(@event_days)
-    @speaker=Speaker.find_all_by_event_id(@events)
-    @sp=@events.map { |sp| sp.speakers}.flatten
-    #@se=@sp.map{ |e| e.event }.flatten
-    @locations = @conference.locations
-    @events = @event_days.map { |ed| ed.events }.flatten
-    @event_locations=@events.map { |ev| ev.event_locations }.flatten
     @speak=Speaker.all
+    @speak_id=Array.new
+    @tracker=Array.new
+    @speak.each do |s|
+      @speak_id<<s.id
+    end
+    @speaker_track=TrackSpeaker.find_all_by_speaker_id(@speak_id)
+    @speaker_track.each do |s|
+      @tracker<<s.track_id
+    end
+
+    @track_name=Track.find(@tracker)
+
     render :layout => "application1"
   end
   #-------------End of Speakers-------------------#

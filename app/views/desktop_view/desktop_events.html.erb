@@ -127,7 +127,7 @@
               <script type="text/javascript">
                  $(function(){
                      $.gritter.add({
-                         title: 'Hi <%= current_user.name.titlecase %>',
+                         title: 'Hi <% unless current_user.name.nil? %>  <%= current_user.name.titlecase %> <% end %>',
                          text: 'you have  signed in successfully',
                          image: 'http://proconf.ptotemy.com/assets/testing/dashboard/stylesheets/success.png',
 //                         image: 'http://localhost:3000/assets/testing/dashboard/stylesheets/success.png',
