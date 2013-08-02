@@ -168,17 +168,28 @@ class HomeController < ApplicationController
       @user=User.find(l)
       if @user.interest != ""
         @user_in=User.find_all_by_industry(@user.interest).shuffle[0..2].map{|i| i.name}
-      elsif @user.interest == "" and @user.industry != ""
+        @user_in.delete(@user.name)
+
+      elsif @user.industry != ""
         @user_in=User.find_all_by_industry(@user.industry).shuffle[0..2].map{|i| i.name}
+        @user_in.delete(@user.name)
+
+      elsif @user.location !=""
+        @user_in=User.find_all_by_location(@user.location).shuffle[0..2].map{|i| i.name}
+        @user_in.delete(@user.name)
+
       else
+        @user_in=User.all.shuffle[0..2].map{|i| i.name}
+        @user_in.delete(@user.name)
+      end
+      if @user_in==[]
         @user_in=User.all.shuffle[0..2].map{|i| i.name}
       end
     end
-    @user_in.delete(@user.name)
     @user.recommend=@user_in.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
     @user.recommend_select=true
     @user.save
-    render :text =>@user.recommend_select
+    render :text =>@user.recommend
     return
   end
 

@@ -10,7 +10,7 @@
       <%if e.downloadable.url!='/avatars/original/missing.png'%>
           <% @event_id= e.track_id%>
 
-          <li data-icon="file-text"><a target="_blank" class="index_styling" href="<%=e.downloadable.url%>" data-ajax=false>
+          <li data-icon="file-text"><a target="_blank" class="index_styling" href="<%=e.downloadable.path%>" data-ajax=false>
             <p><%= @event_name=Track.find(@event_id).name %></p>
             <%= e.downloadable.original_filename %></a></li>
       <% end %>

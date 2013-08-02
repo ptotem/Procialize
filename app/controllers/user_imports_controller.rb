@@ -22,7 +22,7 @@ def excel_imp
 
   sheet1.each_with_index do |row, index|
     if index>0
-      @users<<User.create!(:email=> row[0], :password => row[1], :password_confirmation => row[2], :name => row[3],:headline => row[4],:industry => row[5],:location => row[6],:company => row[7],:interest => row[8],:skills => row[9])
+      @users<<User.create!(:email=> row[0], :password => row[1], :password_confirmation => row[2], :name => row[3],:headline => row[4],:industry => row[5],:location => row[6],:company => row[7],:interest => row[8],:skills => row[9],:role => row[10])
     end
   end
   redirect_to "/organizer/user"

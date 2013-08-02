@@ -45,7 +45,6 @@
 
 <ol>
   <% @user=User.find_by_email(@invitee.email) %>
-
   <% unless @user.recommend.nil? %>
       <% @user.recommend.split(",").each do |r| %>
           <% @recommended_user=User.find_all_by_name(r).each do |i| %>
@@ -53,13 +52,16 @@
                 <% if i.interest != "" %>
                     who is in
                 <%= i.interest %>
-                <% elsif i.interest == "" and i.industry != ""  %>
+                <% elsif i.industry != ""  %>
                       who is in
-                      <%= i.industry%>
+                      <%= i.industry %>
+                  <% elsif i.location != ""  %>
+                      who is in
+                      <%= i.location %>
                 <% else  %>
-                  <% unless i.interest or i.industry.blank? %>
+                  <% unless i.interest or i.industry or i.location.blank? %>
                           who is in
-                  <%= i.interest or i.industry %>
+                  <%= i.interest or i.industry or i.location %>
                 <% end %>
                 <% end %>
                </li>

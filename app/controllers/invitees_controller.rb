@@ -111,17 +111,6 @@ class InviteesController < ApplicationController
 
 
   def send_mailers_recommend
-    #user=User.find(435)
-    #@rejected = []
-    #  @invitee=Invitee.create!(:name=>user.name, :email=>user.email)
-    #if @invitee.save
-    #    UserMailer.registration_confirmation(@invitee).deliver
-    #    @rejected<<"Ok"
-    #  else
-    #    @rejected<<user.email
-    #  end
-    #redirect_to trigger_recommend_path
-#------------------------
     @recommended_users=User.where(:recommend_select => "t")
     @rejected = []
     @recommended_users.each do |user|
@@ -135,7 +124,24 @@ class InviteesController < ApplicationController
     end
     redirect_to trigger_recommend_path
   end
-
-
-
 end
+
+
+#unless @user.recommend.nil?
+#  @user.recommend.split(",").each do |r|
+#    @recommended_user=User.find_all_by_name(r).each do |i|
+#      r.titlecase
+#      if !i.interest.blank?
+#        i.interest
+#      elsif !i.industry.blank?
+#        i.industry
+#      elsif !i.location.blank?
+#        i.location
+#      else
+#        unless i.interest or i.industry or i.location.blank?
+#          i.interest or i.industry or i.location
+#        end
+#      end
+#    end
+#  end
+#end
