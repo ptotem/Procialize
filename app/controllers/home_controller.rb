@@ -71,7 +71,7 @@ class HomeController < ApplicationController
     @upcoming_events=@conference.event_days.select { |ed| ed.event_date==Date.today }.map { |ed| ed.events }.flatten.select { |e| Time.at(e.start.hour * 60 * 60 + e.start.min * 60 + e.start.sec)>(@now-3600) and Time.at(e.start.hour * 60 * 60 + e.start.min * 60 + e.start.sec)<(@now+1800) }
     @notice_board=@conference.organizers.map { |o| o.user }.map { |u| u.posts }.flatten.last(3).reverse
     @followed=(Follower.find_all_by_user_id_and_conference_id(@user.id, @conference.id).map { |f| User.find(f.follower_id) }).map { |u| u.posts }.flatten.last(10).reverse
-    @graffiti=(User.all-(Follower.find_all_by_user_id_and_conference_id(@user.id, @conference.id).map { |f| User.find(f.follower_id) })-[current_user]-Organizer.all.map{|o| o.user}).map { |u| u.posts}.flatten.last(30).sort_by(&:created_at).reverse
+    @graffiti=(User.all-(Follower.find_all_by_user_id_and_conference_id(@user.id, @conference.id).map { |f| User.find(f.follower_id) })-[current_user]-Organizer.all.map { |o| o.user }).map { |u| u.posts }.flatten.last(30).sort_by(&:created_at).reverse
     @my_posts=current_user.posts.last(3).reverse
 
     if !UserLocation.find_all_by_user_id(@user.id).blank?
@@ -98,8 +98,8 @@ class HomeController < ApplicationController
   def concierge_service
     @user=current_user
     @user_themes=@user.themes
-    @concierge_services_name=  ConciergeService.all.map{|i| i.name}
-    @concierge_services_comments=  ConciergeService.all.map{|i| i.comment}
+    @concierge_services_name= ConciergeService.all.map { |i| i.name }
+    @concierge_services_comments= ConciergeService.all.map { |i| i.comment }
     gon.services_comment=@concierge_services_comments
   end
 
@@ -117,24 +117,21 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to root_path, :notice=> 'Request Sent to Admin' }
+        format.html { redirect_to root_path, :notice => 'Request Sent to Admin' }
         format.json { render :json => @message, :status => :created, :location => @message }
       else
-        format.html { render :action =>"new" }
-        format.json { render :json =>@message.errors, :status=> :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @message.errors, :status => :unprocessable_entity }
       end
     end
   end
 
 
-
-
-
   def gettweets
-    @tweets=Twitter.search("#rajnikanth", :lang => "en", :count => 10,:result_type => "recent").results.map do |status|
+    @tweets=Twitter.search("#rajnikanth", :lang => "en", :count => 10, :result_type => "recent").results.map do |status|
       "#{status.from_user}: #{status.text}"
     end
-    render :text=>@tweets
+    render :text => @tweets
     return
   end
 
@@ -143,7 +140,7 @@ class HomeController < ApplicationController
     @logo=Logos.first
     @logo.tweet_count=params[:count].to_i
     @logo.save
-    render :text=>@logo.tweet_count
+    render :text => @logo.tweet_count
   end
 
 
@@ -160,6 +157,14 @@ class HomeController < ApplicationController
     render :layout => "application1"
   end
 
+
+  #def send_mail_to_recommended_users
+  #  @users = User.find(params[:user_id]).split(",").each do |id|
+  #    @s=User.find(id)
+  #  end
+  #  render :text => @s.name
+  #  return
+  #end
 
 
   def send_mail_to_recommended_users
@@ -195,7 +200,7 @@ class HomeController < ApplicationController
 
 
   def survey_storing
-    @survey_storing=SurveyAnswer.create(:user_id => params[:user_id][0], :survey_question_id => params[:survey_question_id][0],:ans => params[:ans][0])
+    @survey_storing=SurveyAnswer.create(:user_id => params[:user_id][0], :survey_question_id => params[:survey_question_id][0], :ans => params[:ans][0])
     render :text => @survey_storing.save
     return
   end
@@ -205,7 +210,7 @@ class HomeController < ApplicationController
     @industry_edit=User.find(params[:user_id][0])
     @industry_edit.industry= params[:industry][0]
     @industry_edit.save
-    render :text =>  @industry_edit.save
+    render :text => @industry_edit.save
     return
   end
 
@@ -213,7 +218,7 @@ class HomeController < ApplicationController
     @location_edit=User.find(params[:user_id][0])
     @location_edit.location= params[:location][0]
     @location_edit.save
-    render :text =>  @location_edit.save
+    render :text => @location_edit.save
     return
   end
 
@@ -221,7 +226,7 @@ class HomeController < ApplicationController
     @skill_edit=User.find(params[:user_id][0])
     @skill_edit.skills= params[:skills][0]
     @skill_edit.save
-    render :text =>  @skill_edit.save
+    render :text => @skill_edit.save
     return
   end
 
@@ -229,7 +234,7 @@ class HomeController < ApplicationController
     @interest_edit=User.find(params[:user_id][0])
     @interest_edit.interest= params[:interest][0]
     @interest_edit.save
-    render :text =>  @interest_edit.save
+    render :text => @interest_edit.save
     return
   end
 

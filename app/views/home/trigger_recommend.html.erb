@@ -105,16 +105,16 @@
             $('#check_boxing input:checked').each(function() {
                 data["user_id"].push($(this).parent().parent().attr('id'))
             });
+            alert(data["user_id"]);
             $.ajax({
                 url:"<%= send_mail_to_recommended_users_path %>",
                 type:"post",
                 data:JSON.stringify(data),
                 contentType:"application/json",
                 success:function (data) {
-//                    alert(data)
                   window.location="/send_mailers_recommend"
+                 }
 
-                }
             });
         });
     });

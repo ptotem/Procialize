@@ -7,13 +7,12 @@
 <!--<b>Subject: Your login/password to access Procialize</b><br><br>-->
 <span>Dear <%= @invitee.name %>,</span><br><br>
 
-<p>Once again, on behalf of the Thomas Schmidheiny Chair of Family Business and Wealth Management and the Indian School
-  of Business, we welcome you to the Fourth Asian Invitational Conference on Family Business. This conference promises
-  to be an immense value add, where we have chosen some crucial topics related to Family Business, and have been
+<p>We welcome you to the annual "Sports and Games Association" Offsite. This conference promises
+  to be an immense value add, where we have chosen some crucial topics related to Games and Sports in everyday management, and have been
   fortunate to have them delivered by highly coveted speakers. </p>
 
 <p>We want to ensure the Conference is the perfect channel for you to build your network. To do this conveniently, we
-  have tied up with the Indian School of Business to ensure you are able to </p>
+  have tied up with the Sports and Games Association to ensure you are able to </p>
 <ol>
   <li>Search, find, message and set up meetings with other delegates based on any specific commonality, before the event
     begins!
@@ -31,7 +30,7 @@
 <p>
 
 <ol>
-  <li>From your smartphone, type www.procialize.net (This is a mobile website,
+  <li>From your smartphone, type http://proconf.ptotemy.com (This is a mobile website,
     <b>you will not need to download any app!</b>)
   </li>
   <li><b>Enter your email as: <%= @invitee.email %></b></li>
@@ -47,31 +46,11 @@
   <% @user=User.find_by_email(@invitee.email) %>
   <% unless @user.recommend.nil? %>
       <% @user.recommend.split(",").each do |r| %>
-          <% @recommended_user=User.find_all_by_name(r).each do |i| %>
-                <li> <%= r.titlecase %>
-                <% if i.interest != "" %>
-                    who is in
-                <%= i.interest %>
-                <% elsif i.industry != ""  %>
-                      who is in
-                      <%= i.industry %>
-                  <% elsif i.location != ""  %>
-                      who is in
-                      <%= i.location %>
-                <% else  %>
-                  <% unless i.interest or i.industry or i.location.blank? %>
-                          who is in
-                  <%= i.interest or i.industry or i.location %>
-                <% end %>
-                <% end %>
-               </li>
-          <% end %>
+          <li><%= r.titlecase %></li>
+
       <% end %>
   <% end %>
-
-
 </ol>
-
 
 <p>Click on Delegates on the home screen to send instant messages or set up meetings to the users listed above. You can
   also send a message or set up a meeting with any other user attending the conference.</p>
@@ -102,14 +81,9 @@
 <p>Thanks and Regards,</p>
 
 <h5>Abhay Bhatia</h5>
-<h5 style="font-weight:normal;">PGP Class of 2013, Indian School of Business, Mohali Campus<br>
   Co-Founder and Chief Enthusiast - Procialize Events (www.procialize.net)<br>
-  President - Energy, Manufacturing and Operations Club<br>
-  Mobile :- 8146662047<br>
-  Abhay_Bhatia2013@pgp.isb.edu<br>
-  www.isb.edu</h5>
-
 
 </body>
 
 </html>
+

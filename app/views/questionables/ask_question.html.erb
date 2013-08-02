@@ -112,12 +112,12 @@
                 $.each(data, function (key, val) {
                    val=val.split('|');
                     if (val[6] == 1) {
-                        $('#categoriesContent ul').append('<li data-icon="action-arrow" id=' + val[0] + '> ' +
-                                '<h3>' + val[3] + ' asked:-&nbsp;&nbsp;' + val[1] + '</h3> ' +
+                        $('#categoriesContent ul').append('<li id=' + val[0] + '> ' +
+                                '<h6 style="white-space: normal;">' + val[3] + ' asked:-&nbsp;&nbsp;' + val[1] + '</h6> ' +
                                 '<table>' +
                                 '<tr>' +
                                 '<td>' +
-                                '<h5 id="like_' + val[0] + '">' + val[4] + 'Likes</h5>' +
+                                '<h6 id="like_' + val[0] + '">' + val[4] + 'Likes</h6>' +
                                 '</td>' +
                                 '</tr>' +
                                 '</table>' +
@@ -125,14 +125,14 @@
                     }
                     else {
                         $('#categoriesContent ul').append('<li id=' + val[0] + '> ' +
-                                '<h3>' + val[3] + ' asked:-&nbsp;&nbsp;' + val[1] + '</h3> ' +
+                                '<h6 style="white-space: normal;">' + val[3] + ' asked:-&nbsp;&nbsp;' + val[1] + '</h6> ' +
                                 '<table>' +
                                 '<tr>' +
                                 '<td id="like_table">  ' +
                                 '<input name="img_buuton" data-role="none" type="image" src="/assets/thumbs_up.png" value="Likes" class="likes" id="liking" style="max-height: 32px; ">' +
                                 '</td> ' +
                                 '<td>' +
-                                '<h5 id="like_' + val[0] + '">' + val[4] + 'Likes</h5>' +
+                                '<h6 id="like_' + val[0] + '">' + val[4] + 'Likes</h6>' +
                                 '</td>' +
                                 '</tr>' +
                                 '</table>' +
@@ -192,11 +192,7 @@
 
         }
 
-
-
     });
-
-
 
 </script>
 
