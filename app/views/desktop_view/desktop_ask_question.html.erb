@@ -121,6 +121,7 @@
                       $("select#artists_select").prop('selectedIndex', 1);
                       $("select#songs_select").prop('selectedIndex', 1);
                       setTimeout(function(){
+                          $('#categoriesContent').show();
                           question_default();
                       },2000);
 
@@ -175,7 +176,6 @@
                               var data = {track_id:[]}
                               data["track_id"].push($('#songs_select').val());
                               $.getJSON("/desktop_questions_appending/" + data["track_id"], function (data) {
-//                                  $('#categoriesContent').show();
                                   $('#categoriesContent ul').html("");
                                   $('#question_form').append('<input type="hidden"  name="question_appending" value=' + a + '>');
                                   $.each(data, function (key, val) {
@@ -341,7 +341,7 @@
 
 
 
-          <div class="nav-menu box" id="categoriesContent">
+          <div class="nav-menu box" id="categoriesContent" style="display: none;">
             <ul class="nav nav-list">
               <br>
             </ul>
