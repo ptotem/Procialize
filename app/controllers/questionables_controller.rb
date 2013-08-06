@@ -172,7 +172,7 @@ class QuestionablesController < ApplicationController
 
 
   def questions_appending
-    @quest=Questionable.find_all_by_track_id_and_approved(params[:track_id], true)
+    @quest=Questionable.find_all_by_track_id_and_approved(params[:track_id], true).sort_by(&:like).reverse
     @return_data=Array.new
     @quest.each do |i|
       if i.liking_by.include? current_user.id.to_s
