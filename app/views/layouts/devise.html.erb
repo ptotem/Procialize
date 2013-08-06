@@ -12,7 +12,7 @@
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 </head>
-<body>
+<body class="ui-mobile-viewport">
 <div data-role="content" data-theme='a'>
   <%= js extend_gritter :position => :bottom_right %>
   <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
@@ -21,5 +21,9 @@
 <div data-role="page" data-theme="f">
     <%= yield %>
 </div>
+
+
+
+
 </body>
 </html>

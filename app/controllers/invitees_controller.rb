@@ -53,7 +53,6 @@ class InviteesController < ApplicationController
   # PUT /invitees/1.json
   def update
     @invitee = Invitee.find(params[:id])
-
     respond_to do |format|
       if @invitee.update_attributes(params[:invitee])
         format.html { redirect_to @invitee, notice: 'Invitee was successfully updated.' }
@@ -88,7 +87,6 @@ class InviteesController < ApplicationController
       else
         @rejected<<user.email
       end
-
     end
 
 
@@ -103,24 +101,11 @@ class InviteesController < ApplicationController
     #  else
     #    @rejected<<user.email
     #  end
-
     #end
-
   end
 
 
   def send_mailers_recommend
-    #user=User.find(435)
-    #@rejected = []
-    #  @invitee=Invitee.create!(:name=>user.name, :email=>user.email)
-    #if @invitee.save
-    #    UserMailer.registration_confirmation(@invitee).deliver
-    #    @rejected<<"Ok"
-    #  else
-    #    @rejected<<user.email
-    #  end
-    #redirect_to trigger_recommend_path
-#------------------------
     @recommended_users=User.where(:recommend_select => true)
     @rejected = []
     @recommended_users.each do |user|

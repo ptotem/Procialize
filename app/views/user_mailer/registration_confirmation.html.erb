@@ -44,10 +44,22 @@
 
 <ol>
   <% @user=User.find_by_email(@invitee.email) %>
-  <% unless @user.recommend.nil? %>
-      <% @user.recommend.split(",").each do |r| %>
-          <li><%= r.titlecase %></li>
+     <% @user_new=Array.new %>
+  <% if !@user.recommend.nil? %>
+      <% @user.recommend.split(", ").each do |r| %>
+          <%#= @user_new<<User.find_by_name(r) %>
+          <% @reco= User.find_by_name(r)%>
+          <% @user_new << @reco %>
+          <li>
+            <%= @reco.name.titlecase %>
 
+            <% if @reco.location!="" %>
+             who is in  <%= @reco.location %>
+            <% end %>
+            <% if @reco.industry!="" %>
+              in  <%= @reco.industry %> industry
+            <% end %>
+          </li>
       <% end %>
   <% end %>
 </ol>

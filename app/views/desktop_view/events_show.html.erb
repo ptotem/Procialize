@@ -140,31 +140,13 @@
                 });
             });
         </script>
-
-        <div id="accordion">
-          <h5>Friends who are attending</h5>
-
-          <div>
-            <% @attendees.each do |user| %>
-                <% unless user.nil? %>
-                    <p>
-                      <a href="<%= delegate_profile_index_path(user) %>">
-                        <%= user.name.titlecase %>
-                      </a>
-                    </p>
-                    <hr>
-                <% end %>
-            <% end %>
-          </div>
-        </div>
-
-
         <div style="float: left;">
           <% if @my_attendee.blank? %>
               <%= link_to "Accept", desktop_accept_path(@track), :flash_notice => "Accepted", :class => "button gray", :id => "attend" %>
           <% end %>
 
         </div>
+        <br>
         <hr>
         <h6>Would you like to pose a question regarding the event?</h6>
 
@@ -232,6 +214,25 @@
         <hr>
       </li>
     </ul>
+
+
+    <div id="accordion">
+      <h5>Friends who are attending</h5>
+      <div>
+        <% @attendees.each do |user| %>
+            <% unless user.nil? %>
+                <p>
+                  <a href="<%= delegate_profile_index_path(user) %>">
+                    <%= user.name.titlecase %>
+                  </a>
+                </p>
+                <hr>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+      <br>
+
   </div>
   <!----------------------End of events------------------------------>
 

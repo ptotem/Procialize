@@ -76,6 +76,12 @@
 
 
       <!----------------------Start of Search Delegates------------------------------>
+      <script type="text/javascript">
+        $(function(){
+           $(".industry").hide();
+        })
+      </script>
+
 
       <div class="black-box tex">
         <div class="tab-header">
@@ -90,6 +96,9 @@
                 <tr class="gradeA odd">
                   <th>Delegate</th>
                   <th>Download Profile</th>
+                  <th class="industry">Industry</th>
+                  <th class="industry">Interest</th>
+                  <th class="industry">Skills</th>
                 </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -109,6 +118,15 @@
                         <% else %>
                             <h6 style="font-weight: normal;">Profile Not Available</h6>
                         <% end %>
+                      </td>
+                      <td class="industry">
+                        <%= user.industry %>
+                      </td>
+                      <td class="industry">
+                        <%= user.interest %>
+                      </td>
+                      <td class="industry">
+                        <%= user.skills %>
                       </td>
                     </tr>
                 <% end %>

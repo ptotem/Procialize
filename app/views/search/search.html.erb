@@ -1,4 +1,3 @@
-
 <%= content_for :page_title do %>
     Find Delegates
 <% end %>
@@ -22,32 +21,35 @@
 
 </script>
 
-
-<ul style="font-size: 0.8em;" data-role="listview"   data-theme='a' data-filter-placeholder="Search by industry, name or class" data-split-icon='star' data-mini="true" data-filter="true" data-divider-theme="d" data-role="list-divider" data-split-theme="c">
-  <% @conference.participants.map { |participant| participant.user }.sort_by { |u| u[:name] }.each do |user| %>
+<ul data-role="listview" data-theme="a" data-divider-theme="d" data-split-icon='star' data-mini="true" data-filter="true">
+  <% @users = User.all %>
+  <% @use = @users - [current_user] %>
+  <% @use.each_with_index do |user, index| %>
+      <% @a=1 %>
       <% unless (!user.organizer.blank? or user.name=="Administrator") %>
           <% if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>
-              <li data-theme='a' data-filtertext=" <%= user.name %> <%= user.role %> <%= user.headline %> <%= user.industry %>" >
+              <li data-theme='a' data-filtertext=" <%= user.name %> <%= user.role %> <%= user.headline %> <%= user.industry %>">
                 <a style="font-size: 0.8em;" href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a'>
                   <%= user.name.titlecase %>
 
                   <% unless user.role=="proops" or user.role=="orgops" or user.role=="organizer" or user.role=="admin" %>
-                      <p class="ui-li-aside" ><%= user.role %></p>
+                      <p class="ui-li-aside"><%= user.role %></p>
                   <% end %>
-
-
                 </a>
                 <%= link_to "Follow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
-              </li>
           <% else %>
-              <li data-theme='b' data-filtertext="<%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %>">
+              <li data-theme='b' data-filtertext="<%= user.name %> <%= user.role %> <%= user.headline %> <%= user.industry %>">
                 <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='b'>
                   <%= user.name.titlecase %>
                   <span id="following<%= user.id %>" class="highlighted">Following</span>
                 </a>
                 <%= link_to "Unfollow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
               </li>
+              </li>
           <% end %>
       <% end %>
   <% end %>
 </ul>
+
+
+

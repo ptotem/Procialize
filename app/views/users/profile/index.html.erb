@@ -119,10 +119,8 @@
   <h3 style="font-size: 0.8em;">Followers</h3>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
     <% @followers.each do |follower| %>
-        <div class="fbinfobox1">
-          <div style="background: rgba(178,204,255,0.92); width:100%;padding-left:5px;padding-top:4px;padding-bottom:4px;border-radius:5px;font-weight: normal;">
-            <%=  link_to follower.name.titlecase, user_profile_path(follower), :style => "color:#333333;font-size:0.8em;font-weight:normal;" %>
-          </div>
+        <div class="fbinfobox1" style="background: #808080">
+            <%=  link_to follower.name.titlecase, user_profile_path(follower), :style => "color:white;font-size:0.8em;font-weight:normal;" %>
           <% unless follower.picture.blank? %>
               <td style="width:32px;max-width:32px;"><%= image_tag follower.picture, :style => "float:left; border-radius:5px;margin-right:10px;max-width:40px" %></td>
           <% end %>
@@ -130,12 +128,6 @@
     <% end %>
   </ul>
 </div>
-
-
-
-
-
-
 
 
 

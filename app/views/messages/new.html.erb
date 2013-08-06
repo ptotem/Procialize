@@ -73,10 +73,11 @@
     <% @use.each_with_index do |e,index| %>
         <% @a=1 %>
         <li id="<%= e.id %>" class="li_delegate">
-          <fieldset data-role="controlgroup">
-            <input type="checkbox" name="checkbox-1" id="checkbox_<%=(index+1)%>" class="checking_checkbox" />
-            <label for="checkbox_<%=(index+1)%>" class="checking_checkbox" id="delegates_name"><%= e.name %></label>
-          </fieldset>
+          <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+              <label id="delegates_name"><input type="checkbox" name="checkbox-0" class=" checking_checkbox"/><%= e.name %></label>
+            </fieldset>
+          </div>
         </li>
     <% end %>
   </ul>
@@ -89,20 +90,19 @@
 </div>
 
 <script type="text/javascript">
+    $(document).on("pageinit", function(){
+        $( ".checking_checkbox" ).on( "change", function() {
+            if ( $( this ).attr( "checked" ) === "checked" ) {
 
-
-    $(function () {
-        $('.checking_checkbox').live('click', function () {
-            if ($(this).attr("data-icon")=="checkbox-off") {
-                var adding = ($(this).parent().parent().parent().parent().attr('id'));
+                var adding = ($(this).parent().parent().parent().parent().parent().attr('id'));
                 var b = ($(this).parent().parent().find('#delegates_name').text());
                 $('#search_delegates').text().replace(/Select Recepients/, "");
                 $('#search_delegates').html($('#search_delegates').text().replace(/Select Recepients/, "") + b + ", ");
                 $('#message_form').append('<input id=' + adding + ' type="hidden" name="receipient_users[]" value=' + adding + '>');
             }
-
             else {
-                var deleting = ($(this).parent().parent().parent().parent().attr('id'));
+
+                var deleting = ($(this).parent().parent().parent().parent().parent().attr('id'))
                 var string = $(this).parent().parent().find('#delegates_name').text();
                 var new_string = $('#search_delegates').text().replace(string + ",", '');
                 $('#search_delegates').text(new_string);
@@ -111,9 +111,11 @@
                 }
                 $('#message_form').find('#' + deleting).empty().remove();
             }
-
         });
+    });
 
+
+    $(function () {
         $('#form_btn_id').click(function(){
             if (($(":checkbox").filter(":checked").size()==0))
             {

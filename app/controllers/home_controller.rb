@@ -158,43 +158,46 @@ class HomeController < ApplicationController
   end
 
 
-  #def send_mail_to_recommended_users
-  #  @users = User.find(params[:user_id]).split(",").each do |id|
-  #    @s=User.find(id)
-  #  end
-  #  render :text => @s.name
-  #  return
-  #end
-
-
   def send_mail_to_recommended_users
-    @users=params[:user_id]
-    @users.each do  |l|
-      @user=User.find(l)
+    @users = params[:user_id]
+    @user=Array.new
+    @user_in_new=Array.new
+    @user_recommend=Array.new
+    @users.each do |i|
+      @user=User.find(i)
       if @user.interest != ""
-        @user_in=User.find_all_by_industry(@user.interest).shuffle[0..2].map{|i| i.name}
+        @user_in=User.find_all_by_industry(@user.interest).shuffle[0..2].map { |i| i.name }
         @user_in.delete(@user.name)
+          if @user_in.count<=1
+            @user_in_new=User.all.shuffle[0..2].map { |i| i.name }
+            @user_in=(@user_in+@user_in_new).flatten.uniq.delete(@user.name)
+          end
 
-      elsif @user.industry != ""
-        @user_in=User.find_all_by_industry(@user.industry).shuffle[0..2].map{|i| i.name}
+      elsif @user.interest="" and @user.industry != ""
+        @user_in=User.find_all_by_industry(@user.industry).shuffle[0..2].map { |i| i.name }
         @user_in.delete(@user.name)
+          if @user_in.count<=1
+            @user_in<<User.all.shuffle[0..2].map { |i| i.name }
+            @user_in.uniq.delete(@user.name)
+            @user_in=@user_in.flatten
+          end
 
-      elsif @user.location !=""
-        @user_in=User.find_all_by_location(@user.location).shuffle[0..2].map{|i| i.name}
+      elsif @user.interest="" and @user.industry="" and @user.location !=""
+        @user_in=User.find_all_by_location(@user.location).shuffle[0..2].map { |i| i.name }
         @user_in.delete(@user.name)
-
+           if @user_in.count<=1
+            @user_in_new=User.all.shuffle[0..2].map { |i| i.name }
+            @user_in=(@user_in+@user_in_new).flatten
+           end
       else
-        @user_in=User.all.shuffle[0..2].map{|i| i.name}
-        @user_in.delete(@user.name)
+        @user_in=User.all.shuffle[0..2].map { |i| i.name }
       end
-      if @user_in==[]
-        @user_in=User.all.shuffle[0..2].map{|i| i.name}
-      end
+      @user.recommend=@user_in.to_s.gsub(/"/, "").gsub("[", "").gsub("]", "")
+      @user_recommend<<@user
+      @user.recommend_select=true
+      @user.save
     end
-    @user.recommend=@user_in.to_s.gsub(/"/,"").gsub("[","").gsub("]","")
-    @user.recommend_select=true
-    @user.save
-    render :text =>@user.recommend
+    render :text => @user_recommend.map {|i| "#{i.name}=>#{i.recommend}"}
     return
   end
 

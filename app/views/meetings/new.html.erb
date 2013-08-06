@@ -6,21 +6,18 @@
     <script type="text/javascript">
 
         $(function () {
-
             $('[type="submit"]').button('disable');
             $(function () {
                 $('[type="submit"]').button('disable');
                 $('select').change && $('#meeting_name').focus(function () {
                     if (($('select option:selected') && $('#meeting_name')).length > 0) {
                         $('[type="submit"]').button('enable');
-
                     } else {
                         $('[type="submit"]').button('disable');
-
                     }
                 });
-
             });
+
 
             $('#meeting_name').blur(function () {
                 if ($(this).val().length <= 0) {
@@ -30,7 +27,6 @@
                     $('[type="submit"]').button('enable');
                 }
             });
-
         });
 
 
@@ -94,10 +90,11 @@
     <% @use.each_with_index do |e,index| %>
         <% @a=1 %>
         <li id="<%= e.id %>" class="li_delegate">
+          <div data-role="fieldcontain">
             <fieldset data-role="controlgroup">
-              <input type="checkbox" name="checkbox-1" id="checkbox_<%=(index+1)%>" class="checking_checkbox" />
-              <label for="checkbox_<%=(index+1)%>" class="checking_checkbox" id="delegates_name"><%= e.name %></label>
+              <label id="delegates_name"><input type="checkbox" name="checkbox-0" class=" checking_checkbox"/><%= e.name %></label>
             </fieldset>
+          </div>
         </li>
     <% end %>
   </ul>
@@ -106,40 +103,22 @@
 
 <div data-role="controlgroup" data-type="horizontal" style="float: right;">
   <a class="index_styling" href="#" data-ajax=false data-role="button" class="form_btn" id="form_btn_id" data-mini="true">Send</a>
-  <%#= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false", :'data-mini' => true %>
 </div>
 <script type="text/javascript">
 
+    $(document).on("pageinit", function(){
+        $( ".checking_checkbox" ).on( "change", function() {
+            if ( $( this ).attr( "checked" ) === "checked" ) {
 
-
-
-    $(function () {
-
-        $('#meeting_location').change(function(){
-          if ($("#meeting_location :selected").text()=="Others") {
-               $('#location_text').show();
-          }
-          else {
-              $('#location_text').hide();
-          }
-        });
-
-
-
-
-
-
-        $('.checking_checkbox').live('click', function () {
-            if ($(this).attr("data-icon")=="checkbox-off") {
-                var adding = ($(this).parent().parent().parent().parent().attr('id'));
+                var adding = ($(this).parent().parent().parent().parent().parent().attr('id'));
                 var b = ($(this).parent().parent().find('#delegates_name').text());
                 $('#search_delegates').text().replace(/Select Invitees/, "");
                 $('#search_delegates').html($('#search_delegates').text().replace(/Select Invitees/, "") + b + ", ");
                 $('#meeting_form').append('<input id=' + adding + ' type="hidden" name="meeter_use[]" value=' + adding + '>');
             }
-
             else {
-                var deleting = ($(this).parent().parent().parent().parent().attr('id'));
+
+                var deleting = ($(this).parent().parent().parent().parent().parent().attr('id'))
                 var string = $(this).parent().parent().find('#delegates_name').text();
                 var new_string = $('#search_delegates').text().replace(string + ",", '');
                 $('#search_delegates').text(new_string);
@@ -148,34 +127,49 @@
                 }
                 $('#meeting_form').find('#' + deleting).empty().remove();
             }
-
         });
-
-        $('#form_btn_id').click(function(){
-            if (($(":checkbox").filter(":checked").size()==0))
-            {
-            <%= add_gritter("Please select Delegates", :title => "Error!",:image => :warning,:time => 2000  ) %>
-            }
-            else if ($("#meeting_start_time_5i").val()==""){
-            <%= add_gritter("Please select Time", :title => "Error!",:image => :warning,:time => 2000  ) %>
-            }
-            else if ($("#meeting_location").val()==""){
-            <%= add_gritter("Please select Location", :title => "Error!",:image => :warning,:time => 2000  ) %>
-            }
-            else if ($('#meeting_name').val()==""){
-            <%= add_gritter("Please fill meeting Agenda", :title => "Error!",:image => :warning,:time => 2000  ) %>
-            }
-            else
-            {
-
-                $('#meeting_form').submit();
-            }
-        });
-
-
-
-
     });
+
+
+
+
+
+
+
+
+    $('#meeting_location').change(function(){
+        if ($("#meeting_location :selected").text()=="Others") {
+            $('#location_text').show();
+        }
+        else {
+            $('#location_text').hide();
+        }
+    });
+
+
+
+    $('#form_btn_id').click(function(){
+        if (($(":checkbox").filter(":checked").size()==0))
+        {
+        <%= add_gritter("Please select Delegates", :title => "Error!",:image => :warning,:time => 2000  ) %>
+        }
+        else if ($("#meeting_start_time_5i").val()==""){
+        <%= add_gritter("Please select Time", :title => "Error!",:image => :warning,:time => 2000  ) %>
+        }
+        else if ($("#meeting_location").val()==""){
+        <%= add_gritter("Please select Location", :title => "Error!",:image => :warning,:time => 2000  ) %>
+        }
+        else if ($('#meeting_name').val()==""){
+        <%= add_gritter("Please fill meeting Agenda", :title => "Error!",:image => :warning,:time => 2000  ) %>
+        }
+        else
+        {
+            $('#meeting_form').submit();
+
+        }
+    });
+
+
 
 </script>
 
