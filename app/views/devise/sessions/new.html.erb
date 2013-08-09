@@ -27,11 +27,11 @@
 
 
 <h1 id="title_text_front_page" class="sponsors">
-  <%= image_tag Logos.first.cheif_sponsor.url, {:style => "max-height:300px;"} %>
+  <%#= image_tag Logos.first.cheif_sponsor.url, {:style => "max-height:300px;"} %>
 </h1>
 
 <div id="splash_pic" style="display: none;">
-  <%= image_tag Logos.first.splash_pic.url %>
+  <%#= image_tag Logos.first.splash_pic.url %>
 </div>
 
 
@@ -49,7 +49,7 @@
       <% if devise_mapping.rememberable? %> <p><%= f.check_box :remember_me%> <%= f.label :remember_me,:style=>"border-left:2px solid silver;border-top:2px solid silver;color:white;" %></p> <% end %>
       <hr>
       <p style="color: #f5f5f5;">Sponsored by:</p>
-      <%= image_tag Logos.first.oragnizer_pic.url,:style => "max-width:150px;"  %>
+      <%#= image_tag Logos.first.oragnizer_pic.url,:style => "max-width:150px;"  %>
   <% end %>
 </div>
 

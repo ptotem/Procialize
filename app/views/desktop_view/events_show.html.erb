@@ -56,18 +56,18 @@
       <div class="big-button-bar">
         <a class="button large eventer" href="/desktop_events">
           <i class=" icon-calendar "></i>
-          <span>Events</span>
+          <span>Products</span>
         </a>
 
 
         <a class="button large delegater" href="/delegates_search">
           <i class="icon-group"></i>
-          <span>Delegates</span>
+          <span>Attendees</span>
         </a>
 
         <a class="button large speakinger" href="/desktop_speaker">
           <i class="icon-user"></i>
-          <span>Speakers</span>
+          <span>Tata Team</span>
         </a>
 
         <a class="button large questioner" href="/desktop_ask_question">
@@ -75,14 +75,10 @@
           <span>Questions</span>
         </a>
 
-        <a class="button large feedbacker" href="/desktop_ratings">
-          <i class="icon-volume-up"></i>
-          <span>Feedback</span>
-        </a>
 
         <a class="button large downloadables" href="/desktop_assets_download">
           <i class=" icon-folder-open"></i>
-          <span>Download</span>
+          <span>Collateral</span>
         </a>
       </div>
     </div>
@@ -105,22 +101,7 @@
                 <% unless @track.track_img.blank? %><%= image_tag @track.track_img.url(:thumb) %>
                 <% end %></th>
               <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
-                <span style="margin-left: 50px;"><%= @track.name %></span>&nbsp;&nbsp;<span style="font-size: 0.8em;">from</span>&nbsp;&nbsp;<%= @track.start %>
-                <span style="font-size: 0.8em;">to</span> <%= @track.end %>
-              </td>
-            </tr>
-            <tr>
-              <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
-                <%@count = @speaker_name.count %>
-                <% @countless=@count-1 %>
-                <% @speaker_name.each_with_index do |s, index| %>
-                    <% unless s.name.blank? %>
-                        <% if index==0 %>
-                            <span style="color: #c0c0c0;margin-left: 50px;">Speakers:</span>
-                        <% end %>
-                        <%= s.name %><% if index !=@countless %>,<% end %>
-                    <% end %>
-                <% end %>
+                <span style="margin-left: 50px;"><%= @track.name %></span>
               </td>
             </tr>
           </table>
@@ -142,13 +123,13 @@
         </script>
         <div style="float: left;">
           <% if @my_attendee.blank? %>
-              <%= link_to "Accept", desktop_accept_path(@track), :flash_notice => "Accepted", :class => "button gray", :id => "attend" %>
+              <%= link_to "I would like to Know more", desktop_accept_path(@track), :flash_notice => "Accepted", :class => "button gray", :id => "attend" %>
           <% end %>
 
         </div>
         <br>
         <hr>
-        <h6>Would you like to pose a question regarding the event?</h6>
+        <h6>Do you have any queries regarding this product ?</h6>
 
         <%= form_for :questionable, :html => {:class => "fill-up"}, url: {action: :desktop_create_quest} do |f| %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -201,13 +182,12 @@
         </script>
 
         <div>
-          <h6>Would you like to give your feedback on the event?</h6>
+          <h6>What would be your timeframe to procure this product ?</h6>
           <select id="select_menu" data-mini="true" onchange="rate_me($(this).val());" style="float:left;">
-            <option value="1">Immense Value Add</option>
-            <option value="2">Great session and topic</option>
-            <option value="3">A good talk and topic</option>
-            <option value="4">Satisfactory</option>
-            <option value="5">Could have matched expectations</option>
+            <option value="1">0-3 months</option>
+            <option value="2">3-6 months</option>
+            <option value="3">6 months</option>
+            <option value="4">Would like to know more</option>
           </select>
         </div>
         <br><br><br>
@@ -217,7 +197,7 @@
 
 
     <div id="accordion">
-      <h5>Friends who are attending</h5>
+      <h5>Attendees who showed interest</h5>
       <div>
         <% @attendees.each do |user| %>
             <% unless user.nil? %>

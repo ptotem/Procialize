@@ -1,97 +1,29 @@
 <%= content_for :page_title do %>
-    Events
+    Products
 <% end %>
 
-<script type="text/javascript">
-
-
-    $(function () {
-        $("select#genres_select").prop('selectedIndex', 1);
-        $("select#artists_select").prop('selectedIndex', 1);
-        event_default();
-
-
-        $(document).ready(function () {
-            $('#artists_select').prop("disabled", true);
-            $('#songs_select').prop("disabled", true);
-                $('#categoriesContent').hide();
-            $('#genres_select').change(function () {
-                var data = {event_day_id:[]}
-                data["event_day_id"].push($('#genres_select').val());
-                $.getJSON("events/update_artists/"+ data["event_day_id"], function(data) {
-                    $('#artists_select').empty();
-                    $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
-                    $.each(data, function(key, val) {
-                        val=val.split('|');
-                        $('#artists_select').append($('<option>', {
-                            value:val[0],
-                            text:val[1]
-                        }));
-
-                    });
-                    $('#artists_select').prop("disabled", false);
-                    $('#songs_select').prop("disabled", true);
-                        $('#categoriesContent').hide();
-                });
-            });
-            $('#artists_select').change(function () {
-                var data = {event_id:[]}
-                data["event_id"].push($('#artists_select').val());
-                $.getJSON("events/update_songs/"+ data["event_id"], function(data) {
-                    $('#categoriesContent ul').html("");
-                    $.each(data, function(key, val) {
-                        val=val.split('|');
-                            $('#categoriesContent').show();
-                        $('#categoriesContent ul').append('<li><a href="http://proconf.ptotemy.com/events/'+ val [0]+'" data-ajax=false><h3>'+ val[1] +'</h3><p class="ui-li-aside">'+ val[2] +'</p></a></li>');
-                        $('#categoriesContent ul').listview('refresh');
-
-                    });
-
-                });
-
-            });
-
-        });
-    });
-
-
-    function event_default(){
-        var data = {event_id:[]}
-        data["event_id"].push($('#artists_select').val());
-        $.getJSON("events/update_songs/"+ data["event_id"], function(data) {
-            $('#categoriesContent ul').html("");
-            $.each(data, function(key, val) {
-                val=val.split('|');
-                $('#categoriesContent').show();
-                $('#categoriesContent ul').append('<li><a href="http://proconf.ptotemy.com/events/'+ val [0]+'" data-ajax=false><h3>'+ val[1] +'</h3><p class="ui-li-aside">'+ val[2] +'</p></a></li>');
-                $('#categoriesContent ul').listview('refresh');
-            });
-
-        });
-    }
 
 
 
+<% @events.each do |e| %>
+    <div data-role="collapsible" data-collapsed="false" data-collapsed-icon="arrow-r"  data-expanded-icon="arrow-d">
+      <h6><%= e.name %></h6>
+      <ul data-role="listview">
+        <% @tra= Track.find_all_by_event_id(e.id) %>
+        <% @tra.each do |f| %>
+            <li>
+              <a href="/events/<%= f.id %>">
+                <%= f.name %>
+              </a>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+    <br>
+    <br>
+<% end %>
 
 
-
-
-
-
-</script>
-
-<%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:id => 'Select Event Day'}, {:id => 'genres_select'}) %>
-<br/>
-<%= collection_select(nil, :event_id, @events, :id, :name, {:id => 'Select Track Day'}, {:id => 'artists_select'}) %>
-<br>
-
-
-
-<div data-role="content" id="categoriesContent">
-  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b">
-    <h4>Event List</h4>
-  </ul>
-</div>
 
 
 

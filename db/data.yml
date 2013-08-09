@@ -18259,20 +18259,14 @@ events:
   records: 
   - - 44
     - Professionalisation, Professionalism and Governance
-    - ! "<b>Professionalisation and professionalism:</b>\r\n<span>How to respect non-family
-      professionals\r\nEngaging the governing family \r\nLeadership succession in
-      a professionalized environment</span>\r\n<br>\r\n<ul><h4>Eminent Speakers Forum</h4>\r\n\r\n<li>Nabunkar
-      Gupta, Founder, Nobby Brand and Strategic Marketing Consultants</li>\r\n<li>Meher
-      Pudumjee, Chairperson, Thermax Limited</li>\r\n<li>Rohtash Mal, Chairman, Equitigro</li>\r\n<li>Mohan
-      Reddy BVR, Chairman & Managing Director, Infotech Enterprises Ltd</li>\r\n</ul>\r\n<br>\r\n<p><b>Chair:</b>
-      Nabankur Gupta</p>"
+    - ! "Professionalisation, Professionalism and Governance"
     - '2013-06-06 08:30:00.000000'
     - '2013-06-06 10:30:00.000000'
     - 1
     - '2012-12-21 04:59:42.029788'
     - '2013-06-06 06:11:20.268626'
-    - jQuery_Game_Development_Essentials__eBook_.pdf
-    - application/pdf
+    -
+    -
     - 2083731
     - '2013-06-06 06:11:16.331821'
     - false
@@ -18281,16 +18275,14 @@ events:
     - 
   - - 46
     - Sustaining Growth – Role of Innovation
-    - ! "<span><b>Unique Achiever Forum</b></span>\r\n\r\n<ul>\r\n<h4>In conversation
-      with:</h4>\r\n<li> Harsh C Mariwala, Chairman & Managing Director, Marico Limited</li>\r\n<li>Arun
-      Pereira, Professor, Indian School of Business</li>\r\n</ul>"
+    - ! "Sustaining Growth – Role of Innovation"
     - '2013-06-06 06:45:00.000000'
     - '2013-06-06 07:30:00.000000'
     - 1
     - '2012-12-21 04:59:42.059959'
     - '2013-06-06 06:11:48.458458'
-    - intro-to-agile-devel.pdf
-    - application/pdf
+    -
+    -
     - 568447
     - '2013-06-06 06:11:45.750083'
     - false
@@ -18315,10 +18307,7 @@ events:
     - 
   - - 49
     - ISB  & Family Business
-    - ! "<span><b>Keynote speech:</b>\r\nBusiness families’ responsibility to society
-      - The role of philanthropy.\r\nLearnings from a long journey.</span>\r\n\r\n<ul>\r\n<h4>Speakers</h4>\r\n\r\n<li>Thomas
-      Schmidheiny , Founder & Chairman, Spectrum Value Management Ltd, Zurich</li>\r\n\r\n<li>Adi
-      Godrej, Chairman, Godrej Group & Chairman, ISB Board</li>\r\n</ul>"
+    - ! "ISB  & Family Business"
     - '2013-06-06 04:00:00.000000'
     - '2013-06-06 06:00:00.000000'
     - 1
@@ -18350,13 +18339,7 @@ events:
     - 
   - - 94
     - ! 'Building Institutions : Role of Family and Business Governance'
-    - ! "<span><b>Building institutions:</b> developing corporate governance in family
-      controlled businesses\r\nRebuilding a lost dream\r\nWrite your family constitution
-      – challenges and opportunities</span>\r\n\r\n\r\n<ul>\r\n<h4>Keynote Speakers</h4>\r\n\r\n<li>Analjit
-      Singh, Founder & Chairman, Max India Limited</li>\r\n<li>Arun Bharat Ram, Chairman,
-      SRF Limited</li>\r\n<li>Peter Leach, Founder & Chairman, Peter Leach and Partners
-      LLP, London</li>\r\n</ul>\r\n\r\n\r\n<span><b>Chair: </b>Anil Sainani, Director,
-      S & S Empowering Solutions Pvt Ltd & Chief Advisor, Grant Thornton India LLP</span>"
+    - ! "Building Institutions : Role of Family and Business Governance"
     - '2013-02-01 11:00:00.000000'
     - '2013-02-01 13:30:00.000000'
     - 1
@@ -18372,10 +18355,7 @@ events:
     - 
   - - 96
     - Family Entrepreneurship
-    - ! "<span><b>Family Entrepreneurship:</b>\r\n\r\nFrom family business to business
-      family - challenges and opportunities for entrepreneurs</span>\r\n\r\n\r\n<ul><h4>Keynote
-      Speaker</h4>\r\n\r\n<li>Ajay G Piramal, Chairman, Piramal Group</li>\r\n</ul>\r\n\r\n\r\n<span><b>Chairperson
-      :</b> Raveendra Chittoor, Professor, ISB</span>"
+    - ! "Family Entrepreneurship"
     - '2013-02-01 03:30:00.000000'
     - '2013-02-01 04:15:00.000000'
     - 2
@@ -18391,11 +18371,7 @@ events:
     - 
   - - 97
     - Managing family Wealth – Options and Strategies
-    - ! "<span><b>Managing family Wealth:</b> Options and Strategies\r\n\r\nUnique
-      Achiever Forum\r\n\r\n\r\n\r\n<ul><h4>In conversation with:</h4>\r\n<li> Dieter
-      Spaelti, Managing Partner & CEO, Spectrum Value Management Ltd</li>\r\n <li>Zurich
-      and Gopal Srinivasan, Chairman & Managing Director, TVS Capital Funds Ltd</li>\r\n<li>
-      Kavil Ramachandran, ISB</li>\r\n</ul>\r\n"
+    - ! "Managing family Wealth – Options and Strategie"
     - '2013-02-01 04:15:00.000000'
     - '2013-02-01 05:15:00.000000'
     - 2
@@ -18411,14 +18387,7 @@ events:
     - 
   - - 99
     - Family Harmony
-    - ! "<span><b>Family Harmony:</b>\r\n\r\nManaging aspirations\r\nFamily as successful
-      social entrepreneur\r\nGrooming the family\r\nBuilding and sustaining cohesion
-      in business families</span>\r\n\r\n<ul>\r\n<h4>Eminent Speakers Forum</h4>\r\n\r\n<li>Sharad
-      D Amalean, Deputy Chairman, MAS Holdings, Srilanka</li>\r\n<li>Aravind Srinivasan,
-      Director- Projects – Aravind Eye Care System & Administrator, Aravind Eye Hospitals</li>\r\n<li>Prasad
-      M Kumar, Business Chairman, Institution Building & Governance, GMR group</li>\r\n<li>Shobana
-      Kamineni , Executive Director, New Initiatives, Apollo Hospitals Enterprise
-      Ltd</li>\r\n</ul>\r\n\r\n<span><b>Chair :</b> Prasad M Kumar, GMR Group</span>"
+    - ! "Family Harmony"
     - '2013-02-01 05:45:00.000000'
     - '2013-02-01 07:45:00.000000'
     - 2
@@ -18433,12 +18402,8 @@ events:
     - 
     - 
   - - 101
-    - ‘We’ in the Family and Business
-    - ! "<span><b>‘We’ in the Family and Business:</b>\r\n\r\nBuilding lasting empires
-      – learnings from the Munjal story\r\nMeaning of “Togetherness” in a changing
-      world</span>\r\n\r\n<ul>\r\n<h4>Keynote Speakers</h4>\r\n\r\n<li>Sunil Kant
-      Munjal, Jt Managing Director – Hero Moto Corp Ltd, Chairman - Hero Corporate
-      Service Ltd</li>\r\n<li>Kavil Ramachandran & S Ramnarayan – Professors, ISB</li>\r\n</ul>"
+    -  in the Family and Business
+    - ! ""
     - '2013-02-01 08:45:00.000000'
     - '2013-02-01 10:30:00.000000'
     - 2

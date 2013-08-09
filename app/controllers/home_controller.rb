@@ -148,6 +148,7 @@ class HomeController < ApplicationController
     @user=current_user
     @user_themes=@user.themes
     @assets_downloads=AssetsDownload.all
+    @tracks= Track.all
   end
 
 

@@ -14,18 +14,18 @@
           <div class="big-button-bar">
             <a class="button large eventer" href="/desktop_events">
               <i class=" icon-calendar "></i>
-              <span>Events</span>
+              <span>Products</span>
             </a>
 
 
             <a class="button large delegater" href="/delegates_search">
               <i class="icon-group"></i>
-              <span>Delegates</span>
+              <span>Attendees</span>
             </a>
 
             <a class="button large speakinger" href="/desktop_speaker">
               <i class="icon-user"></i>
-              <span>Speakers</span>
+              <span>Tata Team</span>
             </a>
 
             <a class="button large questioner" href="/desktop_ask_question">
@@ -33,14 +33,11 @@
               <span>Questions</span>
             </a>
 
-            <a class="button large feedbacker" href="/desktop_ratings">
-              <i class="icon-volume-up"></i>
-              <span>Feedback</span>
-            </a>
+
 
             <a class="button large downloadables" href="/desktop_assets_download">
               <i class=" icon-folder-open"></i>
-              <span>Download</span>
+              <span>Collateral</span>
             </a>
           </div>
         </div>
@@ -53,9 +50,6 @@
             <ul class="recent-comments">
               <li class="separator">
                 <h5>Edit profile</h5>
-
-                <a href="/users/auth/linkedin?desktop=true"><%= image_tag("log-in-linkedin-large.png", :style => "width:20%;") %></a>
-                
                 <%#= form_for :user, :url => {:action => :desktop_update_profile},:html => {:class => "fill-up"}, :method => :put do |f| %>
                 <%= form_for :user, :html => {:id => "user_form", :class => "fill-up cmxform"} do |f| %>
                     <p>
@@ -70,22 +64,22 @@
 
                     <p>
                       <%= f.label :industry %>
-                      <%= f.select :industry, options_for_select([ "Farming", "Ranching", "Dairy", "Fishery","Fine Art"],:prompt=>"Select Industry") %>
+                      <%= f.text_area :industry,:rows=> "5" %>
                     </p>
 
                     <p>
                       <%= f.label :location %>
-                      <%= f.select :location, options_for_select([ "Mumbai", "Chennai", "Hyderabad", "Delhi","Kolkata"],:prompt=>"Select Location") %>
+                      <%= f.text_area :location,:rows=> "5" %>
                     </p>
 
                     <p>
                       <%= f.label :skills %>
-                      <%= f.select :skills, options_for_select([ "Finance", "Programming", "Design", "Negotiation","Management"],:prompt=>"Select Skills") %>
+                      <%= f.text_area :skills,:rows=> "5" %>
                     </p>
 
                     <p>
                       <%= f.label :interest %>
-                      <%= f.select :interest, options_for_select([ "Banking", "Telecom", "Insurance", "Garments","Real Estate"],:prompt=>"Select Interest") %>
+                      <%= f.text_area :interest,:rows=> "5" %>
                     </p>
 
 

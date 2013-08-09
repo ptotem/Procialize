@@ -9,12 +9,12 @@ class EventsController < ApplicationController
     @my_attendee=Attendee.find_by_track_id_and_user_id(@track, current_user)
     @quest = Questionable.new
 
-    @speaking=Array.new
-    @track_speaker=TrackSpeaker.find_all_by_track_id(@track)
-    @track_speaker.each do |t|
-       @speaking<<t.speaker_id
-    end
-    @speaker_name=Speaker.find(@speaking)
+    #@speaking=Array.new
+    #@track_speaker=TrackSpeaker.find_all_by_track_id(@track)
+    #@track_speaker.each do |t|
+    #   @speaking<<t.speaker_id
+    #end
+    #@speaker_name=Speaker.find(@speaking)
   end
 
   def show_page

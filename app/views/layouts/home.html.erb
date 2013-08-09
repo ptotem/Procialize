@@ -41,6 +41,10 @@
           padding: 2px;
 
       }
+
+      .ui-content ui-body-a{
+          border: none;
+      }
   </style>
 
 
@@ -165,7 +169,7 @@
         <% @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting }  %>
         <% @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message } %>
 
-        <li><a href="/events" data-icon="calendar" data-theme='a' data-ajax=false>Events</a></li>
+        <li><a href="/events" data-icon="calendar" data-theme='a' data-ajax=false>Products</a></li>
         <li>
           <a href="/meetings" data-icon="suitcase" data-theme='a' data-ajax=false>
             <% if @pending.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @pending.size %></span> <% end %>
@@ -184,13 +188,13 @@
   </div>
 
 
-  <div data-role="content" data-theme='a'>
+  <div data-role="content" data-theme='a' style="border: none;">
     <%= js extend_gritter :position => :bottom_right %>
     <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
     <%= js add_gritter(flash[:message], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
     <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
 
-    <div class="content_container">
+    <div class="content_container" >
       <%= yield %>
       <br/>
       <br/>

@@ -55,23 +55,22 @@
 <table cellpadding="7">
   <tr>
     <th rowspan="4"><%= image_tag @track.track_img.url(:thumb) %></th>
-    <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;"><%= @track.name %>&nbsp;<span style="font-size: 0.8em;">from</span>&nbsp;&nbsp;<%= @track.start %>
-      <span style="font-size: 0.8em;">to</span> <%= @track.end %> </td>
+    <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;"><%= @track.name %> </td>
   </tr>
-  <tr>
-    <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
-      <%@count = @speaker_name.count %>
-      <% @countless=@count-1 %>
-      <% @speaker_name.each_with_index do |s, index| %>
-          <% unless s.name.blank? %>
-              <% if index==0 %>
-                  <span style="color: #c0c0c0;">Speakers:</span>
-              <% end %>
-              <%= s.name %><% if index !=@countless %>,<% end %>
-          <% end %>
-      <% end %>
-    </td>
-  </tr>
+  <!--<tr>-->
+    <!--<td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">-->
+      <!--<%#@count = @speaker_name.count %>-->
+      <!--<%# @countless=@count-1 %>-->
+      <!--<%# @speaker_name.each_with_index do |s, index| %>-->
+          <!--<%# unless s.name.blank? %>-->
+              <!--<%# if index==0 %>-->
+                  <!--<span style="color: #c0c0c0;">Speakers:</span>-->
+              <!--<%# end %>-->
+              <!--<%#= s.name %><%# if index !=@countless %>,<%# end %>-->
+          <!--<%# end %>-->
+      <!--<%# end %>-->
+    <!--</td>-->
+  <!--</tr>-->
 </table>
 
 <hr>
@@ -82,28 +81,10 @@
 
 <br>
 
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" data-filter="true">
-  <h4>Friends who are attending</h4>
-  <ul data-role="listview" data-theme='a' data-filter-placeholder="Search by name" data-split-icon='star' data-filter="true" data-divider-theme="d" data-role="list-divider" data-split-theme="c">
-    <% @attendees.each do |user| %>
-        <% unless user.nil? %>
-            <li data-mini="true" data-theme='a' data-filtertext=" <%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %> <%= user.interest %>">
-
-              <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a' data-mini="true">
-                <%= user.name.titlecase %>
-              </a>
-
-            </li>
-        <% end %>
-    <% end %>
-  </ul>
-</div>
-
-<br><br>
 
 <ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
   <% if @my_attendee.blank? %>
-      <%= link_to "Join this event", attend_event_path(@track), :'data-role' => "button", :'data-mini' => "true", :'data-ajax' => false, :flash_notice => "Accepted" %>
+      <%= link_to "I would like to Know more", attend_event_path(@track), :'data-role' => "button", :'data-mini' => "true", :'data-ajax' => false, :flash_notice => "Accepted" %>
   <% end %>
 </ul>
 <br>
@@ -113,7 +94,7 @@
 
 
 <ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
-  <h6 style="font-size: 0.8em;">Would you like to pose a question on the event?</h6>
+  <h6 style="font-size: 0.8em;">Do you have any queries regarding this product ?</h6>
   <%= form_for :questionable, url: {action: :create_quest} do |f| %>
 
       <div class="field">
@@ -128,34 +109,45 @@
       <div data-role="controlgroup" data-mini="true" data-placeholder="true">
         <%= f.hidden_field :track_id, :value => @track.id %>
       </div>
-
       <br>
-
       <div data-role="controlgroup" data-type="horizontal" data-mini="true" style="text-align: center;font-size: 0.8em;float: left;">
         <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false", :onclick => "create_question();", :'data-mini' => "true" %>
       </div>
-
   <% end %>
-
 </ul>
-
 <br><br><br><br><br><br>
 <hr>
 <br>
 <ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
-  <h6 style="font-size: 0.8em;">Would you like to rate this event?</h6>
+  <h6 style="font-size: 0.8em;">What would be your timeframe to procure this product ?</h6>
   <select id="select_menu" data-mini="true" onchange="rate_it($(this).val());">
-    <option value="" data-placeholder="true">Click here choose your rating</option>
-    <option value="1">Immense Value Add</option>
-    <option value="2">Great session and topic</option>
-    <option value="3">A good talk and topic</option>
-    <option value="4">Satisfactory</option>
-    <option value="5">Could have matched expectations</option>
+    <option value="" data-placeholder="true">Click here for Choices</option>
+    <option value="1">0-3 months</option>
+    <option value="2">3-6 months</option>
+    <option value="3">6 months</option>
+    <option value="4">Would like to know more</option>
   </select>
 
 </ul>
-
+<br><br><br>
+<hr>
 <br>
+<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" data-filter="true">
+  <h4>Attendees who showed interest</h4>
+  <ul data-role="listview" data-theme='a' data-filter-placeholder="Search by name" data-split-icon='star' data-filter="true" data-divider-theme="d" data-role="list-divider" data-split-theme="c">
+    <% @attendees.each do |user| %>
+        <% unless user.nil? %>
+            <li data-mini="true" data-theme='a' data-filtertext=" <%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %> <%= user.interest %>">
+
+              <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a' data-mini="true">
+                <%= user.name.titlecase %>
+              </a>
+
+            </li>
+        <% end %>
+    <% end %>
+  </ul>
+</div>
 
 
 
