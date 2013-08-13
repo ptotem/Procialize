@@ -14,7 +14,11 @@
           <table>
             <tr>
               <td style="vertical-align: top;">
-                <%= image_tag s.avatar.url, :style => 'max-height:100px;max-width:100px;margin:10px;' %>
+                <% if s.avatar.blank? %>
+                    <%= image_tag "avatar.png", :style => 'max-height:100px;max-width:100px;margin:10px;'  %>
+                <% else %>
+                    <%= image_tag s.avatar.url, :style => 'max-height:100px;max-width:100px;margin:10px;' %>
+                <% end %>
               </td>
             </tr>
             <tr>
