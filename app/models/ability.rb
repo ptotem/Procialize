@@ -13,13 +13,17 @@ class Ability
       when "proops"
         can :access, :rails_admin # grant access to rails_admin
         can :dashboard
-        can :manage, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
-        can :import, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
+        can :manage, :all
+        can :import, :all
+        #can :manage, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
+        #can :import, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
       when "orgops"
         can :access, :rails_admin # grant access to rails_admin
         can :dashboard
-        can :manage, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
-        can :import, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
+        can :manage, :all
+        can :import, :all
+        #can :manage, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
+        #can :import, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
       else
         cannot :manage, :all
         cannot :access, :rails_admin # grant access to rails_admin

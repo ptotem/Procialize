@@ -293,20 +293,95 @@
         <ul class="recent-comments">
           <li class="separator" style="max-height: 300px;">
             <ul class="rslides" id="slider1">
-              <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_four.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_five.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_six.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_seven.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_eight.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_nine.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_ten.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" %></li>
+              <li>
+                <% if !HomePageLogo.first.image_one.blank? %>
+                    <%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %>
+                <% end %>
+              </li>
 
+              <li>
+                <% if !HomePageLogo.first.image_two.blank? %>
+                    <%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.image_three.blank? %>
+                    <%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.image_four.blank? %>
+                    <%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.image_five.blank? %>
+                    <%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.image_six.blank? %>
+                    <%= image_tag HomePageLogo.first.image_six.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.image_seven.blank? %>
+                    <%= image_tag HomePageLogo.first.image_seven.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.image_eight.blank? %>
+                    <%= image_tag HomePageLogo.first.image_eight.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.image_nine.blank? %>
+                    <%= image_tag HomePageLogo.first.image_nine.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.image_ten.blank? %>
+                    <%= image_tag HomePageLogo.first.image_ten.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.event_image.blank? %>
+                    <%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.conference_image.blank? %>
+                    <%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.sponsor_image.blank? %>
+                    <%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.event_one_image.blank? %>
+                    <%= image_tag HomePageLogo.first.event_one_image.url, :class => "img_style" %>
+                <% end %>
+              </li>
+
+              <li>
+                <% if !HomePageLogo.first.event_two_image.blank? %>
+                    <%= image_tag HomePageLogo.first.event_two_image.url, :class => "img_style" %>
+                <% end %>
+              </li>
 
               <% @survey_q= SurveyQuestion.all %>
               <% @survey_q.each do |s| %>
