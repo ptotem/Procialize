@@ -23,7 +23,7 @@
             </tr>
             <tr>
               <td>
-                <div style="font-size: 0.8em;font-weight: normal">
+                <!--<div style="font-size: 0.8em;font-weight: normal">-->
                 <%#@count = @track_name.count %>
                 <%# @countless=@count-1 %>
                 <%# @track_name.each_with_index do |t, index|  %>
@@ -34,13 +34,13 @@
                      <%#= t.name %><%# if index !=@countless %><%# end %>
                     <%# end %>
                 <%# end %>
-                  <a style="font-size: 0.8em;background: red;" href="<%= user_profile_path(s) %>" data-ajax=false data-theme='a'>
-                  </a>
-                <div class="fbinfobox1">
+                  <!--<a style="font-size: 0.8em;background: red;" href="<%#= user_profile_path(s) %>" data-ajax=false data-theme='a'>-->
+                  <!--</a>-->
+
                   <hr>
+
                 <%= raw s.speaker_details %>
-                </div>
-                </div>
+                <!--</div>-->
               </td>
             </tr>
           </table>
