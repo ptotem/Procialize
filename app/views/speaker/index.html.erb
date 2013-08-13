@@ -12,35 +12,41 @@
         <div class="fbinfo">
           <%# @a = @track_name.count %>
           <table>
+
+
             <tr>
+
               <td style="vertical-align: top;">
                 <% if s.avatar.blank? %>
-                    <%= image_tag "avatar.png", :style => 'max-height:100px;max-width:100px;margin:10px;'  %>
+                <%= image_tag s.avatar.url, :style => 'max-height:75px;max-width:75px;margin:10px;' %>
                 <% else %>
                     <%= image_tag s.avatar.url, :style => 'max-height:100px;max-width:100px;margin:10px;' %>
                 <% end %>
               </td>
-            </tr>
-            <tr>
-              <td>
-                <div style="font-size: 0.7em;font-weight: normal;text-align: left;">
-                <%#@count = @track_name.count %>
-                <%# @countless=@count-1 %>
-                <%# @track_name.each_with_index do |t, index|  %>
-                    <%# unless t.name.blank? %>
-                        <%# if index==0 %>
-                            <!--Speaking at:-->
-                        <%# end %>
-                     <%#= t.name %><%# if index !=@countless %><%# end %>
-                    <%# end %>
-                <%# end %>
-                  <!--<a style="font-size: 0.8em;background: red;" href="<%#= user_profile_path(s) %>" data-ajax=false data-theme='a'>-->
-                  <!--</a>-->
-                  <hr>
-                <%= raw s.speaker_details %>
-                </div>
-              </td>
-            </tr>
+              <td><div style="font-size: 0.8em;display: block;text-align: left;font-weight: normal"><%= raw s.speaker_details %></div></td>
+
+
+            <!--</tr>-->
+            <!--<tr>-->
+              <!--<td>-->
+                <!--<div style="font-size: 0.7em;font-weight: normal;text-align: left;">-->
+                <!--<%#@count = @track_name.count %>-->
+                <!--<%# @countless=@count-1 %>-->
+                <!--<%# @track_name.each_with_index do |t, index|  %>-->
+                    <!--<%# unless t.name.blank? %>-->
+                        <!--<%# if index==0 %>-->
+                            <!--&lt;!&ndash;Speaking at:&ndash;&gt;-->
+                        <!--<%# end %>-->
+                     <!--<%#= t.name %><%# if index !=@countless %><%# end %>-->
+                    <!--<%# end %>-->
+                <!--<%# end %>-->
+                  <!--&lt;!&ndash;<a style="font-size: 0.8em;background: red;" href="<%#= user_profile_path(s) %>" data-ajax=false data-theme='a'>&ndash;&gt;-->
+                  <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                  <!--<hr>-->
+                <!--<%#= raw s.speaker_details %>-->
+                <!--</div>-->
+              <!--</td>-->
+            <!--</tr>-->
           </table>
         </div>
       </div>
