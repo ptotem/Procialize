@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
-
+  before_filter :new_organizer, :only => [ :new_organizer ]
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
@@ -247,7 +247,12 @@ class HomeController < ApplicationController
     render :layout => "search_delegates"
   end
 
-
+  protected
+  def new_organizer
+    authenticate_or_request_with_http_basic do |name, password|
+      name == "admin" && password == "procialize"
+    end
+  end
 
 
 end
