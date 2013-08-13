@@ -276,6 +276,8 @@ ProcializeApp::Application.routes.draw do
   # just remember to delete public/index.html.
 
   root :to => 'home#index'
+  match '/organizer_new' => 'posts#index'
+
   #root :to => "cms_content#render_html"
   # See how all your routes lay out with "rake routes"
 

@@ -1,5 +1,9 @@
 class DesktopViewController < ApplicationController
 
+  #USER, PASSWORD = 'dhh', 'secret'
+  #
+  #after_filter :organizer_new
+
 
   def index
     #-------------start of graffiti and user name-------------------#
@@ -779,9 +783,18 @@ class DesktopViewController < ApplicationController
     end
 
     @track_name=Track.find(@tracker)
-
     render :layout => "application1"
   end
   #-------------End of Speakers-------------------#
+
+
+  #private
+  #def organizer_new
+  #  authenticate_or_request_with_http_basic do |user, password|
+  #    user == USER && password == PASSWORD
+  #  end
+    #redirect_to "/organizer"
+  #end
+
 
 end

@@ -1,13 +1,13 @@
 class HomeController < ApplicationController
 
+
+
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
     redirect_to root_url
   end
 
   def index
-
-
     #@now=Time.at(Time.now.hour * 60 * 60 + Time.now.min * 60 + Time.now.sec)
     Time.zone = "New Delhi"
     @now=Time.at(Time.now.hour * 60 * 60 + Time.now.min * 60 + Time.now.sec).in_time_zone
@@ -246,5 +246,8 @@ class HomeController < ApplicationController
   def wait
     render :layout => "search_delegates"
   end
+
+
+
 
 end

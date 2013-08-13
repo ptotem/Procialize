@@ -388,17 +388,17 @@
         });
 
 
-        $(function () {
-            $.get('/gettweets', function (data) {
-
-                data = data.split('", "')
-                $.each(data, function (index, val) {
-                    val = val.toString().replace(/"/, '').replace('[', '').replace(']', '');
-                    $('#tweet').append(val + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
-                });
-            });
-
-        });
+//        $(function () {
+//            $.get('/gettweets', function (data) {
+//
+//                data = data.split('", "')
+//                $.each(data, function (index, val) {
+//                    val = val.toString().replace(/"/, '').replace('[', '').replace(']', '');
+//                    $('#tweet').append(val + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+//                });
+//            });
+//
+//        });
 
     </script>
 
