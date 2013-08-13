@@ -3,29 +3,29 @@ class Ability
 
   def initialize(user)
 
-    #user ||= User.new
-    #case user.role
-    #  when "admin"
-    #    can :access, :rails_admin # grant access to rails_admin
-    #    can :dashboard
-    #    can :manage, :all
-    #    can :import, :all
-    #  when "proops"
-    #    can :access, :rails_admin # grant access to rails_admin
-    #    can :dashboard
-    #    can :manage, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
-    #    can :import, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
-    #  when "orgops"
-    #    can :access, :rails_admin # grant access to rails_admin
-    #    can :dashboard
-    #    can :manage, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
-    #    can :import, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
-    #  else
-    #    cannot :manage, :all
-    #    cannot :access, :rails_admin # grant access to rails_admin
-    #    cannot :dashboard
-    #
-    #end
+    user ||= User.new
+    case user.role
+      when "admin"
+        can :access, :rails_admin # grant access to rails_admin
+        can :dashboard
+        can :manage, :all
+        can :import, :all
+      when "proops"
+        can :access, :rails_admin # grant access to rails_admin
+        can :dashboard
+        can :manage, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
+        can :import, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
+      when "orgops"
+        can :access, :rails_admin # grant access to rails_admin
+        can :dashboard
+        can :manage, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
+        can :import, [Conference,User,Location, Questionable, NewsFeed, ConciergeService,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo]
+      else
+        cannot :manage, :all
+        cannot :access, :rails_admin # grant access to rails_admin
+        cannot :dashboard
+
+    end
 
 
     # Define abilities for the passed in user here. For example:
