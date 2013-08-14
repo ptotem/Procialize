@@ -21,11 +21,11 @@ ProcializeApp::Application.routes.draw do
 
 
 
-  #match '/excel_imp', :to => "users/profile#excel_imp" , :as => "excel_imp"
-  #match '/user_excel_imp', :to => "users/profile#excel_imp" , :as => "excel_imp"
+#match '/excel_imp', :to => "users/profile#excel_imp" , :as => "excel_imp"
+#match '/user_excel_imp', :to => "users/profile#excel_imp" , :as => "excel_imp"
 
 
-  #resources :questionables
+#resources :questionables
 
   resources :invitees
   resources :user_imports
@@ -38,7 +38,7 @@ ProcializeApp::Application.routes.draw do
   resources :meetings
   resources :messages
   resources :events do
-    resources :questionables
+  resources :questionables
   end
   resources :contacts
 
@@ -118,26 +118,26 @@ ProcializeApp::Application.routes.draw do
   match '/complete', :to => "meetings#complete", :as => "complete"
 
 
-  #-------Desktop_view-----------#
+#---------------------------------------------Desktop_view-----------------------------------------------------------#
   resources :desktop_view
 
 
-  #---------Events----------#
+#---------Events----------#
   match '/desktop_events', :to => 'desktop_view#desktop_events', :as => "desktop_events"
   match '/events_show/:id', :to => "desktop_view#events_show", :as => "events_show"
   match '/desktop_create_quest', :to => "desktop_view#desktop_create_quest", :as => "desktop_create_quest"
   match '/desktop_accept/event/:id', :to => "desktop_view#desktop_accept", :as => "desktop_accept"
-  #---------Events----------#
+#---------Events----------#
 
 
-  #---------Ratings----------#
+#---------Ratings----------#
   match '/feed_me', :to => "desktop_view#feed_me", :as => "feed_me"
   match '/desktop_ratings', :to => "desktop_view#desktop_ratings", :as => "desktop_ratings"
   match '/desktop_rating_appending', :to => "desktop_view#desktop_rating_appending", :as => "desktop_rating_appending"
-  #---------Ratings----------#
+#---------Ratings----------#
 
 
-  #---------Meetings----------#
+#---------Meetings----------#
   match '/meetings_index', :to => 'desktop_view#meetings_index', :as => "meetings_index"
   match '/desktop_focussed_new/:id', :to => "desktop_view#desktop_focussed_new", :as => "desktop_focussed_meeting"
   match '/meetings_new', :to => "desktop_view#meetings_new"
@@ -146,10 +146,10 @@ ProcializeApp::Application.routes.draw do
   match '/meetings_accept/meeting/:id', :to => "desktop_view#meetings_accept", :as => "meetings_accept"
   match '/meetings_edit/:id', :to => "desktop_view#meetings_edit"
   match '/desktop_meeting_new_user', :to => "desktop_view#desktop_meeting_new_user", :as => "desktop_meeting_new_user"
-  #---------Meetings----------#
+#---------Meetings----------#
 
 
-  #---------Messages----------#
+#---------Messages----------#
   match '/messages_index', :to => 'desktop_view#messages_index', :as => "messages_index"
   match '/desktop_message_focussed_new/:id/(:message)/(:all)', :to => "desktop_view#desktop_message_focussed_new", :as => "desktop_focussed_message"
   match '/messages_new', :to => "desktop_view#messages_new", :as => "messages_new"
@@ -157,50 +157,51 @@ ProcializeApp::Application.routes.draw do
   match '/messages_show/:id', :to => "desktop_view#messages_show", :as => "messages_show"
   match '/messages_edit/:id', :to => "desktop_view#messages_edit"
   match '/messages_accept/meeting/:id', :to => "desktop_view#messages_accept", :as => "messages_accept"
-  #---------Messages----------#
+#---------Messages----------#
 
 
-  #----------Delegates and profile-------------#
+#----------Delegates and profile-------------#
   match '/delegates_search', :to => "desktop_view#delegates_search", :as => "delegates_search"
   match ':id/delegate_profile_index', :to => "desktop_view#delegate_profile_index", :as => "delegate_profile_index"
   match ':id/follow', :to => "desktop_view#desktop_following", :as => "desktop_following"
   match '/:id/desktop_edit_profile', :to => "desktop_view#desktop_edit_profile", :as => "desktop_edit_profile"
   match '/:id/desktop_update_profile', :to => "desktop_view#desktop_update_profile", :as => "desktop_update_profile"
-  #----------Delegates and profile-------------#
+#----------Delegates and profile-------------#
 
 
-  #----------Graffiti-------------#
+#----------Graffiti-------------#
   match '/desktop_graffiti', :to => "desktop_view#desktop_graffiti", :as => "desktop_graffiti"
-  #----------Graffiti-------------#
+#----------Graffiti-------------#
 
 
-  #----------Assets_Downloads-------------#
+#----------Assets_Downloads-------------#
   match '/desktop_assets_download', :to => "desktop_view#desktop_assets_download", :as => 'desktop_assets_download'
-  #----------Assets_Downloads-------------#
+#----------Assets_Downloads-------------#
 
 
-  #----------Spaekers-------------#
+#----------Spaekers-------------#
   match '/desktop_speaker', :to => "desktop_view#desktop_speaker", :as => 'desktop_speaker'
-  #----------Speakers-------------#
+#----------Speakers-------------#
 
 
-  #----------Concierge_service-------------#
+#----------Concierge_service-------------#
   match '/concierge_service_desktop', :to => "desktop_view#concierge_service_desktop", :as => "concierge_service_desktop"
   match '/order_services_desktop/:message', :to => "desktop_view#order_services_desktop", :as => "order_services_desktop"
-  #----------Concierge_service-------------#
+#----------Concierge_service-------------#
 
 
 #----------Contact Us-------------#
   match '/contact_us_new', :to => "desktop_view#contact_us_new", :as => "contact_us_new"
   match '/contact_us_create', :to => "desktop_view#contact_us_create", :as => "contact_us_create"
-  #----------Contact Us-------------#
+#----------Contact Us-------------#
 
 
 #----------Questionables-------------#
   match '/desktop_ask_question', :to => "desktop_view#desktop_ask_question", :as => "desktop_ask_question"
   match '/desktop_questions_appending/:track_id', :to => "desktop_view#desktop_questions_appending", :as => "desktop_questions_appending"
   match '/desktop_create_question', :to => "desktop_view#desktop_create_question", :as => "desktop_create_question"
-  #----------Questionables-------------#
+#----------Questionables-------------#
+
 
 
   match '/trigger_recommend', :to => "home#trigger_recommend", :as => "trigger_recommend" #----------------for desktop------------------#
@@ -214,74 +215,75 @@ ProcializeApp::Application.routes.draw do
 
 
 
-
-
-
-
-
-
-
-
-  #---------------------------------------
-  #put "messages/:id" => "messages#show"
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-
+#----------------------root----------------------------#
   root :to => 'home#index'
   match '/new_organizer',:to => 'home#new_organizer'
+#----------------------root----------------------------#
 
-  #root :to => "cms_content#render_html"
-  # See how all your routes lay out with "rake routes"
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+
+
+
+
+
+#---------------------------------------
+#put "messages/:id" => "messages#show"
+
+# The priority is based upon order of creation:
+# first created -> highest priority.
+
+# Sample of regular route:
+# match 'products/:id' => 'catalog#view'
+# Keep in mind you can assign values other than :controller and :action
+
+# Sample of named route:
+# match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+# This route can be invoked with purchase_url(:id => product.id)
+
+# Sample resource route (maps HTTP verbs to controller actions automatically):
+# resources :products
+
+# Sample resource route with options:
+# resources :products do
+# member do
+# get 'short'
+# post 'toggle'
+# end
+#
+# collection do
+# get 'sold'
+# end
+# end
+
+# Sample resource route with sub-resources:
+# resources :products do
+# resources :comments, :sales
+# resource :seller
+# end
+
+# Sample resource route with more complex sub-resources
+# resources :products do
+# resources :comments
+# resources :sales do
+# get 'recent', :on => :collection
+# end
+# end
+
+# Sample resource route within a namespace:
+# namespace :admin do
+# # Directs /admin/products/* to Admin::ProductsController
+# # (app/controllers/admin/products_controller.rb)
+# resources :products
+# end
+
+# You can have the root of your site routed with "root"
+# just remember to delete public/index.html.
+
+
+#root :to => "cms_content#render_html"
+# See how all your routes lay out with "rake routes"
+
+# This is a legacy wild controller route that's not recommended for RESTful applications.
+# Note: This route will make all actions in every controller accessible via GET requests.
+# match ':controller(/:action(/:id))(.:format)'
 end
