@@ -1,11 +1,12 @@
 <%= content_for :page_title do %>
-    New Meeting
+    <span style="font-size: 0.8em;">New Meetings</span>
 <% end %>
 
 <%= content_for :head do %>
     <script type="text/javascript">
 
         $(function () {
+
             $('[type="submit"]').button('disable');
             $(function () {
                 $('[type="submit"]').button('disable');
@@ -29,7 +30,6 @@
             });
         });
 
-
     </script>
 <% end %>
 
@@ -40,6 +40,10 @@
         width: 20px;
         height: 20px;
     }
+
+    /*.ui-select   {*/
+        /*height: 1em;*/
+    /*}*/
 </style>
 
 
@@ -52,7 +56,7 @@
 <%= form_for :meeting, :html => {:id => "meeting_form"}, :url => {:action => :create} do |f| %>
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
-    <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+    <div data-role="controlgroup" data-type="horizontal" data-mini="true" style="font-size: 0.8em;">
       <%= f.time_select :start_time,
                         :combined => true,
                         #:default => Time.now.change(:hour => 11, :min => 30),
@@ -61,15 +65,15 @@
                         :start_hour => 00,
                         :end_hour => 23, :'data-mini' => true, :prompt => "Select Time" %>
     </div>
-
-    <div class="field">
-      <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true, :prompt => "Select Location" %>
+        <br>
+    <div data-role="controlgroup"  data-mini="true" style="font-size: 0.8em;">
+      <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }),:'data-mini'=> "true",:style => "font-size:0.8em;", :prompt => "Select Location" %>
     </div>
-
+     <br>
     <!--<div id="location_text" style="display:none"><textarea rows="4" cols="5"></textarea></div>-->
 
     <div class="field" style="font-size: 0.8em;">
-      <%= f.text_field :name, :placeholder => "Enter meeting agenda", :'data-mini' => true %>
+      <%= f.text_field :name, :placeholder => "Enter meeting agenda", :'data-mini' => true,:style => "font-size:0.8em;" %>
     </div>
 
     <%#= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false", :'data-mini' => true %>
@@ -91,7 +95,7 @@
         <% @a=1 %>
         <li id="<%= e.id %>" class="li_delegate">
           <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup">
+            <fieldset data-role="controlgroup" data-mini="true">
               <label id="delegates_name"><input type="checkbox" name="checkbox-0" class=" checking_checkbox"/><%= e.name %></label>
             </fieldset>
           </div>

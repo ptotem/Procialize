@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-    Meeting
+    <span style="font-size: 0.8em;">Meeting</span>
 <% end %>
 
 <%= content_for :page_menu do %>
@@ -12,7 +12,7 @@
       <td class="headtd">Requestor:</td>
       <td class="normtd"><%= @meeting.user.name.titlecase %></td>
     </tr>
-
+     <tr><td></td></tr>
     <%# if !@meeter.status.nil? %>
     <tr>
       <td class="headtd">Confirmed:</td>
@@ -20,7 +20,7 @@
       <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status }.map { |m| m.user.name })).join(", ") %></td>
     </tr>
     <%# end %>
-
+    <tr><td></td></tr>
     <%# if @meeter.status.nil? %>
     <tr>
       <td class="headtd">Tentative:</td>
@@ -28,11 +28,12 @@
       <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name })).join(", ") %></td>
     </tr>
       <%# end %>
-
+    <tr><td></td></tr>
     <tr>
       <td class="headtd">Scheduled:</td>
       <td class="normtd"> <%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
     </tr>
+    <tr><td></td></tr>
     <tr>
       <td class="headtd">Location:</td>
       <td class="normtd"><%= Location.find(@meeting.location).name %></td>

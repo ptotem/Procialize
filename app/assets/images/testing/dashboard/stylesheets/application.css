@@ -6885,7 +6885,7 @@ html {
 body {
   height: 100%;
   width: 100%;
-  background: url('../images/tcms_linen-lighter.png');
+  background: url('../images/linen-lighter.png');
   -webkit-font-smoothing: antialiased;
 
 }
@@ -7050,12 +7050,15 @@ section#main {
   overflow: auto;}
   /* line 34, mixin_helpers.css.scss */
   .black-box.tex {
-    background: url('../images/linen-light.png');padding:5px;max-width: 600px;max-height: 400px;overflow-x: hidden;overflow-y: auto;font-size: 1em;font-family: helveticaneue; }
+    background: url('../images/linen-light.png');padding:5px;max-width: 600px;max-height: 400px;overflow-x: hidden;overflow-y: auto;font-size: 1em;font-family: Arial; }
   /* line 41, mixin_helpers.css.scss */
   .black-box .separator a {
     color: gray;
     text-shadow: 0 1px rgba(0, 0, 0, 0.5);
-    font-weight: bold; }
+    font-weight: bold;
+    font-family: Arial;
+  }
+
     /* line 45, mixin_helpers.css.scss */
     .black-box .separator a:hover {
       color: black; }

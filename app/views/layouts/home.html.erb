@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Procialize Home</title>
+  <title>TATA Communication</title>
 <link rel="shortcut icon" type="image/x-icon" href="/assets/pro_browser_tile_blackbg.ico">
   <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
   <%= stylesheet_link_tag "application", :media => "all" %>
@@ -44,6 +44,11 @@
 
       .ui-content ui-body-a{
           border: none;
+      }
+
+
+      .ui-icon{
+          background: #333;
       }
   </style>
 
@@ -149,7 +154,7 @@
 <body id="home_body">
 
 <div data-role="page" id="home">
-  <div data-role="header" data-fullscreen="true">
+  <div data-role="header" data-fullscreen="true" >
 
 
     <a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a>
@@ -164,7 +169,7 @@
     <div data-role="navbar">
       <%= yield :page_menu %>
 
-      <ul>
+      <ul style="border:1px solid #717171;">
 
         <% @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting }  %>
         <% @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message } %>

@@ -56,7 +56,7 @@
       <div class="big-button-bar">
         <a class="button large eventer" href="/desktop_events">
           <i class=" icon-calendar "></i>
-          <span>Products</span>
+          <span>Solutions</span>
         </a>
 
 
@@ -90,7 +90,7 @@
 
   <div class="black-box tex">
     <div class="tab-header">
-      Event Details
+      Solutions details
     </div>
     <ul class="recent-comments">
       <li class="separator">
@@ -98,15 +98,16 @@
           <table cellpadding="7">
             <tr>
               <th rowspan="4" style="margin-left:10px;">
-                <% unless @track.track_img.blank? %><%= image_tag @track.track_img.url(:thumb) %>
+                <% unless @track.track_img.blank? %>
+                    <%= image_tag @track.track_img.url(:thumb) %>
                 <% end %></th>
-              <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
+              <td style="vertical-align: middle; font-size: 0.8em; font-weight: bold;">
                 <span style="margin-left: 50px;"><%= @track.name %></span>
               </td>
             </tr>
           </table>
           <hr>
-          <h3 style="font-size: 0.9em;line-height: 16px;text-shadow:none;font-family: helveticaneue;">
+          <h3 style="font-size: 0.9em;line-height: 16px;text-shadow:none;font-family: Arial;">
             <%= @track.description %>
           </h3>
           <hr>
@@ -123,7 +124,7 @@
         </script>
         <div style="float: left;">
           <% if @my_attendee.blank? %>
-              <%= link_to "I would like to Know more", desktop_accept_path(@track), :flash_notice => "Accepted", :class => "button gray", :id => "attend" %>
+              <%= link_to "I am interested", desktop_accept_path(@track), :flash_notice => "Accepted", :class => "button gray", :id => "attend" %>
           <% end %>
 
         </div>
@@ -134,7 +135,7 @@
         <%= form_for :questionable, :html => {:class => "fill-up"}, url: {action: :desktop_create_quest} do |f| %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
 
-            <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?" %>
+            <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?",:style => "font-size:1em;" %>
 
             <%= f.hidden_field :track_id, :value => @track.id %>
 
@@ -183,7 +184,7 @@
 
         <div>
           <h6>What would be your timeframe to procure this product ?</h6>
-          <select id="select_menu" data-mini="true" onchange="rate_me($(this).val());" style="float:left;">
+          <select id="select_menu" data-mini="true" onchange="rate_me($(this).val());" style="float:left;font-size: 1em;">
             <option value="1">0-3 months</option>
             <option value="2">3-6 months</option>
             <option value="3">6 months</option>
@@ -197,7 +198,7 @@
 
 
     <div id="accordion">
-      <h5>Attendees who showed interest</h5>
+      <h6 style="font-family: Arial;"> Attendees who showed interest</h6>
       <div>
         <% @attendees.each do |user| %>
             <% unless user.nil? %>
@@ -224,7 +225,7 @@
     <div class="span12">
       <div class="black-box tex" style="max-height: 150px;">
         <div class="tab-header">
-          What Others Say
+          Event Wall
         </div>
         <ul class="recent-comments" style="list-style: none;">
           <% @conference=Conference.last %>

@@ -20,7 +20,7 @@
           <div class="big-button-bar">
             <a class="button large eventer" href="/desktop_events">
               <i class=" icon-calendar "></i>
-              <span>Products</span>
+              <span>Solutions</span>
             </a>
 
 
@@ -77,18 +77,22 @@
                   <td class="headtd">Requestor:-</td>
                   <td class="normtd">&nbsp;&nbsp;<%= @meeting.user.name.titlecase %></td>
                 </tr>
+                <tr><td></td></tr>
                 <tr>
                   <td class="headtd">Confirmed:-</td>
                   <td class="normtd">&nbsp;&nbsp;<%= ((@meeting.meeters.select { |m| m.status }.map { |m| m.user.name })).join(", ") %></td>
                 </tr>
+                <tr><td></td></tr>
                 <tr>
                   <td class="headtd">Tentative:-</td>
                   <td class="normtd">&nbsp;&nbsp;<%= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name })).join(", ") %></td>
                 </tr>
+                <tr><td></td></tr>
                 <tr>
                   <td class="headtd">Scheduled:-</td>
                   <td class="normtd">&nbsp;&nbsp;at <%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
                 </tr>
+                <tr><td></td></tr>
                 <tr>
                   <td class="headtd">Location:-</td>
                   <td class="normtd">&nbsp;&nbsp;<%= Location.find(@meeting.location).name %></td>
@@ -127,7 +131,7 @@
         <div class="span12">
           <div class="black-box tex" style="max-height: 150px;">
             <div class="tab-header">
-              What Others Say
+              Event Wall
             </div>
             <ul class="recent-comments" style="list-style: none;">
               <% @conference=Conference.last %>

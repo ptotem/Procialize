@@ -15,7 +15,7 @@
             <div class="big-button-bar">
               <a class="button large eventer" href="/desktop_events">
                 <i class=" icon-calendar "></i>
-                <span>Products</span>
+                <span>Solutions</span>
               </a>
 
 
@@ -100,7 +100,7 @@
             <% end %>
 
 
-            <h4 style="margin-top: 0px;margin-left: 58px;"><% unless @name.nil?  %><%= @name.titlecase %>    <% end  %>
+            <h5 style="margin-top: 0px;margin-left: 58px;"><% unless @name.nil?  %><%= @name.titlecase %>    <% end  %>
               <% if @user.avatar.url!='/avatars/original/missing.png' %>
                   <a style="float:right;background: #ffffff;" href="<%= @user.avatar.url %>"><img src="/assets/procdownload.png"></a>
               <% end %>
@@ -137,10 +137,10 @@
                  <br>
               <div style="float: right;">
                 <% if @user==current_user %>
-                    <a class="button gray" href="<%= current_user.id %>/desktop_edit_profile" style="font-size: 0.6em;font-family: helveticaneue;">Edit your profile</a>
+                    <a class="button gray" href="<%= current_user.id %>/desktop_edit_profile" style="font-size: 0.6em;font-family: arial;">Edit your profile</a>
                 <% end %>
               </div>
-            </h4>
+            </h5>
             <br>
             <br>
             <br>
@@ -184,7 +184,7 @@
             </script>
 
             <div id="accordion">
-              <h5>Event Wall</h5>
+              <h5 style="font-family: arial;">Wall</h5>
               <div>
                 <% @graffiti.each do |post| %>
                         <p style="color: white;">

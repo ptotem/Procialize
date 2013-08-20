@@ -4,8 +4,8 @@ class Ability
   def initialize(user)
 
     user ||= User.new
-    case user.email
-      when "arunk75@gmail.com"
+    case user.role
+      when "admin"
         can :access, :rails_admin # grant access to rails_admin
         can :dashboard
         can :manage, :all

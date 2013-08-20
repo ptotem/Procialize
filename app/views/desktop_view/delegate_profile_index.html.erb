@@ -13,7 +13,7 @@
       <div class="big-button-bar">
         <a class="button large eventer" href="/desktop_events">
           <i class=" icon-calendar "></i>
-          <span>Products</span>
+          <span>Solutions</span>
         </a>
 
 
@@ -52,15 +52,11 @@
 
 <div class="black-box tex" id="delegate_profile_of_user">
   <div class="tab-header">
-    Delegate
+    Profile
   </div>
   <ul class="recent-comments">
 
     <li class="separator">
-
-
-
-
       <%# unless @photo.blank? %>
           <%#= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
       <%# end %>
@@ -74,7 +70,7 @@
       <% end %>
 
 
-      <h4 style="margin-top: 0px;"><%= @name.titlecase %>
+      <h5 style="margin-top: 0px;"><%= @name.titlecase %>
         <%if @user.avatar.url!='/avatars/original/missing.png'%>
             <a target="_blank" style="float:right;color: #f5f5f5;font-size: 1em;" href="<%=@user.avatar.url%>"><span style="font-size: 0.8em;">Profile</span><i class=" icon-download  "></i></a>
         <%end%>
@@ -139,7 +135,7 @@
         <% if @user==current_user %>
               <%= link_to "Edit own profile", edit_user_profile_path,:class => "button gray" %>
         <% end %>
-      </h4>
+      </h5>
       <br>
 
       <div id="status_here" class="status" style="font-style: italic;"><%= @post.name unless @post.blank? %></div>
@@ -167,7 +163,7 @@
                 <br>
 
             <div id="accordion">
-              <h5><%= @user.name %>'s Followers</h5>
+              <h5 style="font-family: arial;"><%= @user.name %>'s Followers</h5>
               <div>
                 <% @followers.each do |follower| %>
                         <p>
@@ -227,7 +223,7 @@
     <div class="span12">
       <div class="black-box tex" style="max-height: 150px;">
         <div class="tab-header">
-          Event Wall
+            Event wall
         </div>
         <ul class="recent-comments" style="list-style: none;">
           <% @conference=Conference.last %>

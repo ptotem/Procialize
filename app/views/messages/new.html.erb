@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-    New Message
+    <span style="font-size: 0.8em;">New Message</span>
 <% end %>
 
 <%= content_for :page_menu do %>
@@ -58,8 +58,8 @@
     <!--</div>-->
 
 
-    <div class="field">
-      <%= f.text_area :body, :rows => '5', :placeholder => "Type your message",:'data-mini' => true %>
+    <div data-role="controlgroup"  data-mini="true" style="font-size: 0.8em;">
+      <%= f.text_area :body, :rows => '5', :placeholder => "Type your message",:'data-mini' => true,:style => "font-size:0.8em;" %>
     </div>
 
 <% end %>
@@ -74,7 +74,7 @@
         <% @a=1 %>
         <li id="<%= e.id %>" class="li_delegate">
           <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup">
+            <fieldset data-role="controlgroup" data-mini="true">
               <label id="delegates_name"><input type="checkbox" name="checkbox-0" class=" checking_checkbox"/><%= e.name %></label>
             </fieldset>
           </div>

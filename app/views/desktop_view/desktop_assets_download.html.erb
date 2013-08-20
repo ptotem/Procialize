@@ -13,7 +13,7 @@
             <div class="big-button-bar">
               <a class="button large eventer" href="/desktop_events">
                 <i class=" icon-calendar "></i>
-                <span>Products</span>
+                <span>Solutions</span>
               </a>
 
 
@@ -53,7 +53,7 @@
 
       <div class="black-box tex" >
         <div class="tab-header">
-          Assets Download
+          Collateral
         </div>
         <ul class="recent-comments">
 
@@ -63,8 +63,8 @@
               <table class="table data-table" id="example">
                 <thead>
                 <tr>
-                  <th>Products</th>
-                  <th>Downloads</th>
+                  <th style="font-family: arial;">Solutions</th>
+                  <th style="font-family: arial;">Downloads</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -72,9 +72,9 @@
                     <%if e.downloadable.url!='/avatars/original/missing.png'%>
                         <% @event_id= e.track_id%>
                     <tr class="gradeA even"  id="<%= e %>">
-                      <td><%= @event_name=Track.find(@event_id).name %></td>
+                      <td style="font-family: arial;"><%= @event_name=Track.find(@event_id).name %></td>
                       <td style="border-left: 1px solid #DDDDDD">
-                        <a target="_blank" type="button"  href="<%=e.downloadable.url%>"><input type="button" class="button gray" value="Download Now"></a>&nbsp;&nbsp;<%= e.downloadable.original_filename.truncate(15) %>
+                        <a style="font-size: 1em;font-family: arial;" target="_blank" type="button"  href="<%=e.downloadable.url%>"><input type="button" class="button gray" value="Download Now"></a>&nbsp;&nbsp;<span style="font-family: arial;"><%= e.downloadable.original_filename.truncate(15) %></span>
                         <%# if e.downloadable.url!='/avatars/original/missing.png' %>
                             <!--<a target="_blank" style="background: none;" href="<%#= e.downloadable.url %>"><img src="/assets/procdownload.png">&nbsp;Click to download profile</a>-->
                         <%# else %>

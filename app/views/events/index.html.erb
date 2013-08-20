@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-    Products
+    <span style="font-size: 0.8em;">Solutions</span>
 <% end %>
 
 
@@ -7,12 +7,12 @@
 
 <% @events.each do |e| %>
     <div data-role="collapsible" data-collapsed="false" data-collapsed-icon="arrow-r"  data-expanded-icon="arrow-d">
-      <h6><%= e.name %></h6>
+      <h6 style="font-size: 0.8em;text-shadow: none;"><%= e.name %></h6>
       <ul data-role="listview">
         <% @tra= Track.find_all_by_event_id(e.id) %>
         <% @tra.each do |f| %>
             <li>
-              <a href="/events/<%= f.id %>">
+              <a style="font-size: 0.8em;" href="/events/<%= f.id %>" data-ajax=false>
                 <%= f.name %>
               </a>
             </li>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="shortcut icon" type="image/x-icon" href="/assets/pro_browser_tile_blackbg.ico">
-  <title>Procialize: <%= yield :page_title %></title>
+  <title>TATA Communication: <%= yield :page_title %></title>
   <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
   <%= stylesheet_link_tag "application", :media => "all" %>
   <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css"/>-->
@@ -30,6 +30,10 @@
           vertical-align:middle;
           padding: 2px;
 
+      }
+
+      .ui-icon{
+          background: #333;
       }
   </style>
 
@@ -125,11 +129,11 @@ var isMobile = {
     <div data-role="navbar">
       <%= yield :page_menu %>
 
-      <ul>
+      <ul style="border:1px solid #717171;">
         <% @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting }  %>
         <% @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message } %>
 
-        <li><a href="/events" data-icon="calendar" data-theme='a' data-ajax=false>Products</a></li>
+        <li><a href="/events" data-icon="calendar" data-theme='a' data-ajax=false>Solutions</a></li>
         <li>
           <a href="/meetings" data-icon="suitcase" data-theme='a' data-ajax=false>
             <% if @pending.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @pending.size %></span> <% end %>

@@ -1,11 +1,9 @@
 <%= content_for :page_title do %>
-    Edit Profile
+    <span style="font-size: 0.8em;">Edit Profile</span>
 <% end %>
 <div class="content_container">
 
   <%= form_for :user, :url => {:action => :update}, :method => :put do |f| %>
-
-  <h6>Update your profile manually</h6>
 
       <p>
         <%= f.label :name,:style => "font-size:0.8em;" %>

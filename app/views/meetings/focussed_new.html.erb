@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-    New Meetings
+    <span style="font-size: 0.8em;">New Meeting</span>
 <% end %>
 
 
@@ -55,26 +55,26 @@
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
 
-    <div class="field">
-      <%= f.text_field :name, :'data-mini' => true, :placeholder => "Enter meeting agenda" %>
+    <div data-role="controlgroup"  data-mini="true">
+      <%= f.text_field :name, :'data-mini' => true, :placeholder => "Enter meeting agenda",:style => "font-size:0.8em;" %>
     </div>
       <br>
     <div data-role="listview" data-mini="true"  data-placeholder="true"  data-split-icon='star' data-mini="true" data-filter="true">
       <%= select_tag 'meeter_use[]', options_for_select(@users.flatten.map {|u| [u.name, u.id]}, @meeter), :multiple => true,:include_blank =>"Select Delegates", :multiple => true,:'data-mini' => true,:prompt => "Select Delegates" %>
     </div>
      <br>
-    <div class="field">
+    <div data-role="controlgroup"  data-mini="true" style="font-size: 0.8em;">
       <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true,:prompt => "Select Location" %>
     </div>
     <br>
-    <div class="field">
+    <div data-role="controlgroup"  data-mini="true" style="font-size: 0.8em;">
       <%= f.time_select :start_time,
                         :combined => true,
                         #:default => Time.now.change(:hour => 11, :min => 30),
                         :minute_interval => 30,
                         :time_separator => "",
                         :start_hour => 00,
-                        :end_hour => 23,:prompt => "Select Time" %>
+                        :end_hour => 23,:prompt => "Select Time",:'data-mini' => true %>
     </div>
      <br>
 

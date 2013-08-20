@@ -168,7 +168,6 @@
     </li>
 
 
-
     <li class="">
       <a href="/contact_us_new" id="contacter" class="large">
         <i class="icon-phone "></i> Contact Us
@@ -199,20 +198,9 @@
       <div class="row-fluid search-button-bar-container">
         <div class="span12">
           <ul class="breadcrumb" style="margin-top: -22px;">
-           <% if current_user.role=="admin" or current_user.role=="proops" or current_user.role=="orgops"%>
-                <li><a href="#">Hi "<%= current_user.name %>",&nbsp;Welcome to "<%= @conference.name %>"</a></li>
-                <%= yield :breadcrumb %>
-                <div class="btn-group" style="float:right;">
-                  <a class="button gray" href="/trigger_recommend">Trigger Recommend</a>
-                  <a class="button gray" href="/user_imports/new">User Import</a>
-                </div>
-            <% else %>
-                <li><a href="#">Welcome to "<%= @conference.name %>"</a></li>
-                <%= yield :breadcrumb %>
-                <li class="" style="float: right;margin-right: 19px;">
-                  <a href="#">Hi "<%= current_user.name %>"</a>
-                </li>
-           <% end %>
+            <li><a href="#">Tata Communications</a></li>
+            <%= yield :breadcrumb %>
+            <li style="float: right;"><a href="#">Hi "<%= current_user.name %>"</a></li>
 
           </ul>
         </div>
@@ -227,11 +215,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-
 
 
   <div class="container-fluid">
@@ -328,7 +311,6 @@
     ga('send', 'pageview');
 
 </script>
-
 
 
 </body>

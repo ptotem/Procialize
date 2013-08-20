@@ -1,6 +1,6 @@
-/*
-* jQuery Mobile 1.3.1
-* Git HEAD hash: 74b4bec049fd93e4fe40205e6157de16eb64eb46 <> Date: Mon Apr 8 2013 19:41:28 UTC
+/*!
+* jQuery Mobile 1.3.2
+* Git HEAD hash: 528cf0e96940644ea644096bfeb913ed920ffaef <> Date: Fri Jul 19 2013 22:17:57 UTC
 * http://jquerymobile.com
 *
 * Copyright 2010, 2013 jQuery Foundation, Inc. and other contributors
@@ -9,29 +9,22 @@
 *
 */
 
-.ui-mobile, .ui-mobile body{
-    height:120%;
-
-}
-
-
-
 .ui-bar-a {
-    border: 1px solid #393939;
-    background: #393939;
-    color: #ffffff;
+    border: 1px solid #717171;
+    background: #fff;
+    color: #00aeef;
     font-weight: bold;
-    text-shadow: 0 1px 0 #444444;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#3e3e3e), to(#333333));
-    background-image: -webkit-linear-gradient(#3e3e3e, #333333);
-    background-image: -moz-linear-gradient(#3e3e3e, #333333);
-    background-image: -ms-linear-gradient(#3e3e3e, #333333);
-    background-image: -o-linear-gradient(#3e3e3e, #333333);
-    background-image: linear-gradient(#3e3e3e, #333333);
+    text-shadow: 0 0 0 #ffffff;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ff0fNaN), to(#ff0fNaN));
+    background-image: -webkit-linear-gradient(#ff0fNaN, #ff0fNaN);
+    background-image: -moz-linear-gradient(#ff0fNaN, #ff0fNaN);
+    background-image: -ms-linear-gradient(#ff0fNaN, #ff0fNaN);
+    background-image: -o-linear-gradient(#ff0fNaN, #ff0fNaN);
+    background-image: linear-gradient(#ff0fNaN, #ff0fNaN);
 }
 
 .ui-bar-a .ui-link-inherit {
-    color: #ffffff;
+    color: #00aeef;
 }
 
 .ui-bar-a a.ui-link {
@@ -52,20 +45,20 @@
 }
 
 .ui-bar-a, .ui-bar-a input, .ui-bar-a select, .ui-bar-a textarea, .ui-bar-a button {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Arial, sans serif;
 }
 
 .ui-body-a, .ui-overlay-a {
-    border: 1px solid #7d7d7d;
-    color: #ffffff;
-    text-shadow: 0 1px 0 #444444;
-    background: #5a5a5a;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#636363), to(#515151));
-    background-image: -webkit-linear-gradient(#636363, #515151);
-    background-image: -moz-linear-gradient(#636363, #515151);
-    background-image: -ms-linear-gradient(#636363, #515151);
-    background-image: -o-linear-gradient(#636363, #515151);
-    background-image: linear-gradient(#636363, #515151);
+    border: 1px solid #717171;
+    color: #000;
+    text-shadow: 0 0 0 #ffffff;
+    background: #fff;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ff0fNaN), to(#ff0fNaN));
+    background-image: -webkit-linear-gradient(#ff0fNaN, #ff0fNaN);
+    background-image: -moz-linear-gradient(#ff0fNaN, #ff0fNaN);
+    background-image: -ms-linear-gradient(#ff0fNaN, #ff0fNaN);
+    background-image: -o-linear-gradient(#ff0fNaN, #ff0fNaN);
+    background-image: linear-gradient(#ff0fNaN, #ff0fNaN);
 }
 
 .ui-overlay-a {
@@ -74,371 +67,86 @@
 }
 
 .ui-body-a, .ui-body-a input, .ui-body-a select, .ui-body-a textarea, .ui-body-a button {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Arial, sans serif;
 }
 
 .ui-body-a .ui-link-inherit {
-    color: #ffffff;
+    color: #000;
 }
 
 .ui-body-a .ui-link {
-    color: #e6e6e6;
+    color: #3d86c6;
     font-weight: bold;
 }
 
 .ui-body-a .ui-link:visited {
-    color: #959595;
+    color: #2489ce;
 }
 
 .ui-body-a .ui-link:hover {
-    color: #FFFFFF;
+    color: #2489ce;
 }
 
 .ui-body-a .ui-link:active {
-    color: #e6e6e6;
+    color: #2489ce;
 }
 
 .ui-btn-up-a {
-    border: 1px solid #f2f2f2;
-    background: #f2f2f2;
+    border: 1px solid #3d86c6;
+    background: #00aeef;
     font-weight: bold;
-    color: #000000;
-    text-shadow: 0 1px 0 #eeeeee;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#b7b7b7));
-    background-image: -webkit-linear-gradient(#FFFFFF, #b7b7b7);
-    background-image: -moz-linear-gradient(#FFFFFF, #b7b7b7);
-    background-image: -ms-linear-gradient(#FFFFFF, #b7b7b7);
-    background-image: -o-linear-gradient(#FFFFFF, #b7b7b7);
-    background-image: linear-gradient(#FFFFFF, #b7b7b7);
+    color: #fff;
+    text-shadow: 0 0 0 #ffffff;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#00aeef), to(#3d86c6));
+    background-image: -webkit-linear-gradient(#00aeef, #3d86c6);
+    background-image: -moz-linear-gradient(#00aeef, #3d86c6);
+    background-image: -ms-linear-gradient(#00aeef, #3d86c6);
+    background-image: -o-linear-gradient(#00aeef, #3d86c6);
+    background-image: linear-gradient(#00aeef, #3d86c6);
 }
 
 .ui-btn-up-a:visited, .ui-btn-up-a a.ui-link-inherit {
-    color: #000000;
+    color: #fff;
 }
 
 .ui-btn-hover-a {
-    border: 1px solid #FFFFFF;
-    background: #FFFFFF;
+    border: 1px solid #717171;
+    background: #717171;
     font-weight: bold;
-    color: #000000;
-    text-shadow: 0 1px 0 #eeeeee;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#e5e5e5));
-    background-image: -webkit-linear-gradient(#FFFFFF, #e5e5e5);
-    background-image: -moz-linear-gradient(#FFFFFF, #e5e5e5);
-    background-image: -ms-linear-gradient(#FFFFFF, #e5e5e5);
-    background-image: -o-linear-gradient(#FFFFFF, #e5e5e5);
-    background-image: linear-gradient(#FFFFFF, #e5e5e5);
+    color: #fff;
+    text-shadow: 0 0 0 #ffffff;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#717171), to(#717171));
+    background-image: -webkit-linear-gradient(#717171, #717171);
+    background-image: -moz-linear-gradient(#717171, #717171);
+    background-image: -ms-linear-gradient(#717171, #717171);
+    background-image: -o-linear-gradient(#717171, #717171);
+    background-image: linear-gradient(#717171, #717171);
 }
 
 .ui-btn-hover-a:visited, .ui-btn-hover-a:hover, .ui-btn-hover-a a.ui-link-inherit {
-    color: #000000;
+    color: #fff;
 }
 
 .ui-btn-down-a {
-    border: 1px solid #FFFFFF;
-    background: #FFFFFF;
+    border: 1px solid #717171;
+    background: #b0bc25;
     font-weight: bold;
-    color: #000000;
-    text-shadow: 0 1px 0 #eeeeee;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#e5e5e5), to(#FFFFFF));
-    background-image: -webkit-linear-gradient(#e5e5e5, #FFFFFF);
-    background-image: -moz-linear-gradient(#e5e5e5, #FFFFFF);
-    background-image: -ms-linear-gradient(#e5e5e5, #FFFFFF);
-    background-image: -o-linear-gradient(#e5e5e5, #FFFFFF);
-    background-image: linear-gradient(#e5e5e5, #FFFFFF);
+    color: #000;
+    text-shadow: 0 0 0 #ffffff;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#b0bc25), to(#b0bc25));
+    background-image: -webkit-linear-gradient(#b0bc25, #b0bc25);
+    background-image: -moz-linear-gradient(#b0bc25, #b0bc25);
+    background-image: -ms-linear-gradient(#b0bc25, #b0bc25);
+    background-image: -o-linear-gradient(#b0bc25, #b0bc25);
+    background-image: linear-gradient(#b0bc25, #b0bc25);
 }
 
 .ui-btn-down-a:visited, .ui-btn-down-a:hover, .ui-btn-down-a a.ui-link-inherit {
-    color: #000000;
+    color: #000;
 }
 
 .ui-btn-up-a, .ui-btn-hover-a, .ui-btn-down-a {
-    font-family: Helvetica, Arial, sans-serif;
-    text-decoration: none;
-}
-
-.ui-bar-b {
-    border: 1px solid #b3b3b3;
-    background: #eeeeee;
-    color: #3e3e3e;
-    font-weight: bold;
-    text-shadow: 0 1px 0 #ffffff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));
-    background-image: -webkit-linear-gradient(#f0f0f0, #dddddd);
-    background-image: -moz-linear-gradient(#f0f0f0, #dddddd);
-    background-image: -ms-linear-gradient(#f0f0f0, #dddddd);
-    background-image: -o-linear-gradient(#f0f0f0, #dddddd);
-    background-image: linear-gradient(#f0f0f0, #dddddd);
-}
-
-.ui-bar-b .ui-link-inherit {
-    color: #3e3e3e;
-}
-
-.ui-bar-b a.ui-link {
-    color: #7cc4e7;
-    font-weight: bold;
-}
-
-.ui-bar-b a.ui-link:visited {
-    color: #2489ce;
-}
-
-.ui-bar-b a.ui-link:hover {
-    color: #2489ce;
-}
-
-.ui-bar-b a.ui-link:active {
-    color: #2489ce;
-}
-
-.ui-bar-b, .ui-bar-b input, .ui-bar-b select, .ui-bar-b textarea, .ui-bar-b button {
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-.ui-body-b, .ui-overlay-b {
-    border: 1px solid #aaaaaa;
-    color: #333333;
-    text-shadow: 0 1px 0 #ffffff;
-    background: #f9f9f9;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#eeeeee));
-    background-image: -webkit-linear-gradient(#f9f9f9, #eeeeee);
-    background-image: -moz-linear-gradient(#f9f9f9, #eeeeee);
-    background-image: -ms-linear-gradient(#f9f9f9, #eeeeee);
-    background-image: -o-linear-gradient(#f9f9f9, #eeeeee);
-    background-image: linear-gradient(#f9f9f9, #eeeeee);
-}
-
-.ui-overlay-b {
-    background-image: none;
-    border-width: 0;
-}
-
-.ui-body-b, .ui-body-b input, .ui-body-b select, .ui-body-b textarea, .ui-body-b button {
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-.ui-body-b .ui-link-inherit {
-    color: #333333;
-}
-
-.ui-body-b .ui-link {
-    color: #2489ce;
-    font-weight: bold;
-}
-
-.ui-body-b .ui-link:visited {
-    color: #2489ce;
-}
-
-.ui-body-b .ui-link:hover {
-    color: #2489ce;
-}
-
-.ui-body-b .ui-link:active {
-    color: #2489ce;
-}
-
-.ui-btn-up-b {
-    border: 1px solid #cccccc;
-    background: #eeeeee;
-    font-weight: bold;
-    color: #2f3e46;
-    text-shadow: 0 1px 0 #ffffff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f1f1f1));
-    background-image: -webkit-linear-gradient(#ffffff, #f1f1f1);
-    background-image: -moz-linear-gradient(#ffffff, #f1f1f1);
-    background-image: -ms-linear-gradient(#ffffff, #f1f1f1);
-    background-image: -o-linear-gradient(#ffffff, #f1f1f1);
-    background-image: linear-gradient(#ffffff, #f1f1f1);
-}
-
-.ui-btn-up-b:visited, .ui-btn-up-b a.ui-link-inherit {
-    color: #2f3e46;
-}
-
-.ui-btn-hover-b {
-    border: 1px solid #bbbbbb;
-    background: #dfdfdf;
-    font-weight: bold;
-    color: #2f3e46;
-    text-shadow: 0 1px 0 #ffffff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#e0e0e0));
-    background-image: -webkit-linear-gradient(#f6f6f6, #e0e0e0);
-    background-image: -moz-linear-gradient(#f6f6f6, #e0e0e0);
-    background-image: -ms-linear-gradient(#f6f6f6, #e0e0e0);
-    background-image: -o-linear-gradient(#f6f6f6, #e0e0e0);
-    background-image: linear-gradient(#f6f6f6, #e0e0e0);
-}
-
-.ui-btn-hover-b:visited, .ui-btn-hover-b:hover, .ui-btn-hover-b a.ui-link-inherit {
-    color: #2f3e46;
-}
-
-.ui-btn-down-b {
-    border: 1px solid #bbbbbb;
-    background: #d6d6d6;
-    font-weight: bold;
-    color: #2f3e46;
-    text-shadow: 0 1px 0 #ffffff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#dfdfdf));
-    background-image: -webkit-linear-gradient(#d0d0d0, #dfdfdf);
-    background-image: -moz-linear-gradient(#d0d0d0, #dfdfdf);
-    background-image: -ms-linear-gradient(#d0d0d0, #dfdfdf);
-    background-image: -o-linear-gradient(#d0d0d0, #dfdfdf);
-    background-image: linear-gradient(#d0d0d0, #dfdfdf);
-}
-
-.ui-btn-down-b:visited, .ui-btn-down-b:hover, .ui-btn-down-b a.ui-link-inherit {
-    color: #2f3e46;
-}
-
-.ui-btn-up-b, .ui-btn-hover-b, .ui-btn-down-b {
-    font-family: Helvetica, Arial, sans-serif;
-    text-decoration: none;
-}
-
-.ui-bar-c {
-    border: 1px solid #b3b3b3;
-    background: #eeeeee;
-    color: #3e3e3e;
-    font-weight: bold;
-    text-shadow: 0 1px 0 #ffffff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));
-    background-image: -webkit-linear-gradient(#f0f0f0, #dddddd);
-    background-image: -moz-linear-gradient(#f0f0f0, #dddddd);
-    background-image: -ms-linear-gradient(#f0f0f0, #dddddd);
-    background-image: -o-linear-gradient(#f0f0f0, #dddddd);
-    background-image: linear-gradient(#f0f0f0, #dddddd);
-}
-
-.ui-bar-c .ui-link-inherit {
-    color: #3e3e3e;
-}
-
-.ui-bar-c a.ui-link {
-    color: #7cc4e7;
-    font-weight: bold;
-}
-
-.ui-bar-c a.ui-link:visited {
-    color: #2489ce;
-}
-
-.ui-bar-c a.ui-link:hover {
-    color: #2489ce;
-}
-
-.ui-bar-c a.ui-link:active {
-    color: #2489ce;
-}
-
-.ui-bar-c, .ui-bar-c input, .ui-bar-c select, .ui-bar-c textarea, .ui-bar-c button {
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-.ui-body-c, .ui-overlay-c {
-    border: 1px solid #aaaaaa;
-    color: #333333;
-    text-shadow: 0 1px 0 #ffffff;
-    background: url(procialize_backdrop.jpg);
-    background-repeat: repeat;
-    /*background: #f9f9f9;*/
-    /*background-image: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#eeeeee));*/
-    /*background-image: -webkit-linear-gradient(#f9f9f9, #eeeeee);*/
-    /*background-image: -moz-linear-gradient(#f9f9f9, #eeeeee);*/
-    /*background-image: -ms-linear-gradient(#f9f9f9, #eeeeee);*/
-    /*background-image: -o-linear-gradient(#f9f9f9, #eeeeee);*/
-    /*background-image: linear-gradient(#f9f9f9, #eeeeee);*/
-}
-
-.ui-overlay-c {
-    background: url(tcms_backdrop.png);
-    /*background-repeat: no-repeat;*/
-    border-width: 0;
-}
-
-.ui-body-c, .ui-body-c input, .ui-body-c select, .ui-body-c textarea, .ui-body-c button {
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-.ui-body-c .ui-link-inherit {
-    color: #333333;
-}
-
-.ui-body-c .ui-link {
-    color: #2489ce;
-    font-weight: bold;
-}
-
-.ui-body-c .ui-link:visited {
-    color: #2489ce;
-}
-
-.ui-body-c .ui-link:hover {
-    color: #2489ce;
-}
-
-.ui-body-c .ui-link:active {
-    color: #2489ce;
-}
-
-.ui-btn-up-c {
-    border: 1px solid #cccccc;
-    background: #eeeeee;
-    font-weight: bold;
-    color: #2f3e46;
-    text-shadow: 0 1px 0 #ffffff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f1f1f1));
-    background-image: -webkit-linear-gradient(#ffffff, #f1f1f1);
-    background-image: -moz-linear-gradient(#ffffff, #f1f1f1);
-    background-image: -ms-linear-gradient(#ffffff, #f1f1f1);
-    background-image: -o-linear-gradient(#ffffff, #f1f1f1);
-    background-image: linear-gradient(#ffffff, #f1f1f1);
-}
-
-.ui-btn-up-c:visited, .ui-btn-up-c a.ui-link-inherit {
-    color: #2f3e46;
-}
-
-.ui-btn-hover-c {
-    border: 1px solid #bbbbbb;
-    background: #dfdfdf;
-    font-weight: bold;
-    color: #2f3e46;
-    text-shadow: 0 1px 0 #ffffff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#e0e0e0));
-    background-image: -webkit-linear-gradient(#f6f6f6, #e0e0e0);
-    background-image: -moz-linear-gradient(#f6f6f6, #e0e0e0);
-    background-image: -ms-linear-gradient(#f6f6f6, #e0e0e0);
-    background-image: -o-linear-gradient(#f6f6f6, #e0e0e0);
-    background-image: linear-gradient(#f6f6f6, #e0e0e0);
-}
-
-.ui-btn-hover-c:visited, .ui-btn-hover-c:hover, .ui-btn-hover-c a.ui-link-inherit {
-    color: #2f3e46;
-}
-
-.ui-btn-down-c {
-    border: 1px solid #bbbbbb;
-    background: #d6d6d6;
-    font-weight: bold;
-    color: #2f3e46;
-    text-shadow: 0 1px 0 #ffffff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#dfdfdf));
-    background-image: -webkit-linear-gradient(#d0d0d0, #dfdfdf);
-    background-image: -moz-linear-gradient(#d0d0d0, #dfdfdf);
-    background-image: -ms-linear-gradient(#d0d0d0, #dfdfdf);
-    background-image: -o-linear-gradient(#d0d0d0, #dfdfdf);
-    background-image: linear-gradient(#d0d0d0, #dfdfdf);
-}
-
-.ui-btn-down-c:visited, .ui-btn-down-c:hover, .ui-btn-down-c a.ui-link-inherit {
-    color: #2f3e46;
-}
-
-.ui-btn-up-c, .ui-btn-hover-c, .ui-btn-down-c {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Arial, sans serif;
     text-decoration: none;
 }
 
@@ -447,24 +155,24 @@ a.ui-link-inherit {
 }
 
 .ui-btn-active {
-    border: 1px solid #736357;
-    background: #736357;
+    border: 1px solid #717171;
+    background: #b0bc25;
     font-weight: bold;
-    color: #ffffff;
+    color: #000;
     cursor: pointer;
-    text-shadow: 0 1px 0 #444444;
+    text-shadow: 0 0 0 #3373a5;
     text-decoration: none;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#7e6c5f), to(#67594e));
-    background-image: -webkit-linear-gradient(#7e6c5f, #67594e);
-    background-image: -moz-linear-gradient(#7e6c5f, #67594e);
-    background-image: -ms-linear-gradient(#7e6c5f, #67594e);
-    background-image: -o-linear-gradient(#7e6c5f, #67594e);
-    background-image: linear-gradient(#7e6c5f, #67594e);
-    font-family: Helvetica, Arial, sans-serif;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#b0bc25), to(#b0bc25));
+    background-image: -webkit-linear-gradient(#b0bc25, #b0bc25);
+    background-image: -moz-linear-gradient(#b0bc25, #b0bc25);
+    background-image: -ms-linear-gradient(#b0bc25, #b0bc25);
+    background-image: -o-linear-gradient(#b0bc25, #b0bc25);
+    background-image: linear-gradient(#b0bc25, #b0bc25);
+    font-family: Arial, sans serif;
 }
 
 .ui-btn-active:visited, .ui-btn-active:hover, .ui-btn-active a.ui-link-inherit {
-    color: #ffffff;
+    color: #000;
 }
 
 .ui-btn-inner {
@@ -495,9 +203,9 @@ a.ui-link-inherit {
 }
 
 .ui-icon, .ui-icon-searchfield:after {
-    background-color: #666666;
-    background-color: rgba(0, 0, 0, .4);
-    background-image: url(images/icons-18-white.png);
+    background: #fff;
+    background: transparent;
+    background-image: url(icons-18-black.png);
     background-repeat: no-repeat;
     -webkit-border-radius: 9px;
     border-radius: 9px;
@@ -506,7 +214,7 @@ a.ui-link-inherit {
 .ui-icon-alt .ui-icon, .ui-icon-alt .ui-icon-searchfield:after {
     background-color: #fff;
     background-color: rgba(255, 255, 255, .3);
-    background-image: url(images/icons-18-black.png);
+    background-image: url(icons-18-black.png);
     background-repeat: no-repeat;
 }
 
@@ -612,7 +320,7 @@ a.ui-link-inherit {
 
 @media only screen and (-webkit-min-device-pixel-ratio:1.3), only screen and (min--moz-device-pixel-ratio:1.3), only screen and (min-resolution:200 dpi) {
     .ui-icon-plus, .ui-icon-minus, .ui-icon-delete, .ui-icon-arrow-r, .ui-icon-arrow-l, .ui-icon-arrow-u, .ui-icon-arrow-d, .ui-icon-check, .ui-icon-gear, .ui-icon-refresh, .ui-icon-forward, .ui-icon-back, .ui-icon-grid, .ui-icon-star, .ui-icon-alert, .ui-icon-info, .ui-icon-home, .ui-icon-bars, .ui-icon-edit, .ui-icon-search, .ui-icon-searchfield:after, .ui-icon-checkbox-off, .ui-icon-checkbox-on, .ui-icon-radio-off, .ui-icon-radio-on {
-        background-image: url(images/icons-36-white.png);
+        background-image: url(icons-36-white.png);
         -moz-background-size: 864px 18px;
         -o-background-size: 864px 18px;
         -webkit-background-size: 864px 18px;
@@ -620,7 +328,7 @@ a.ui-link-inherit {
     }
 
     .ui-icon-alt .ui-icon {
-        background-image: url(images/icons-36-black.png);
+        background-image: url(icons-36-black.png);
     }
 
     .ui-icon-plus {
@@ -730,11 +438,11 @@ a.ui-link-inherit {
 }
 
 .ui-checkbox-on .ui-icon, .ui-radio-on .ui-icon {
-    background-color: #736357;
+    background-color: #b0bc25;
 }
 
 .ui-icon-loading {
-    background: url(images/ajax-loader.gif);
+    background: url(ajax-loader.gif);
     background-size: 46px 46px;
 }
 
@@ -764,9 +472,9 @@ a.ui-link-inherit {
 }
 
 .ui-shadow {
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .2)
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2)
 }
 
 .ui-bar-a .ui-shadow, .ui-bar-b .ui-shadow, .ui-bar-c .ui-shadow {
@@ -782,9 +490,9 @@ a.ui-link-inherit {
 }
 
 .ui-icon-shadow {
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .4);
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .4);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, .4);
+    -moz-box-shadow: 0 1px 0 transparent;
+    -webkit-box-shadow: 0 1px 0 transparent;
+    box-shadow: 0 1px 0 transparent;
 }
 
 .ui-btn:focus, .ui-link-inherit:focus {
@@ -796,15 +504,15 @@ a.ui-link-inherit {
 }
 
 .ui-focus, .ui-btn:focus {
-    -moz-box-shadow: inset 0 0 3px #736357, 0 0 9px #736357;
-    -webkit-box-shadow: inset 0 0 3px #736357, 0 0 9px #736357;
-    box-shadow: inset 0 0 3px #736357, 0 0 9px #736357;
+    -moz-box-shadow: inset 0 0 3px #b0bc25, 0 0 9px #b0bc25;
+    -webkit-box-shadow: inset 0 0 3px #b0bc25, 0 0 9px #b0bc25;
+    box-shadow: inset 0 0 3px #b0bc25, 0 0 9px #b0bc25;
 }
 
 .ui-input-text.ui-focus, .ui-input-search.ui-focus {
-    -moz-box-shadow: 0 0 12px #736357;
-    -webkit-box-shadow: 0 0 12px #736357;
-    box-shadow: 0 0 12px #736357;
+    -moz-box-shadow: 0 0 12px #b0bc25;
+    -webkit-box-shadow: 0 0 12px #b0bc25;
+    box-shadow: 0 0 12px #b0bc25;
 }
 
 .ui-mobile-nosupport-boxshadow * {

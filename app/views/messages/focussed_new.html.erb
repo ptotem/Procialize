@@ -1,13 +1,6 @@
 <%= content_for :page_title do %>
-    New Message
+    <span style="font-size: 0.8em;">New Message</span>
 <% end %>
-<%= content_for :page_menu do %>
-
-<% end %>
-
-
-
-
 
 
 
@@ -36,7 +29,7 @@
             <% @a=1 %>
             <li id="<%= e.id %>" class="li_delegate">
               <div data-role="fieldcontain">
-                <fieldset data-role="controlgroup">
+                <fieldset data-role="controlgroup" data-mini="true">
                   <label id="delegates_name"><input type="checkbox" name="checkbox-0" class=" checking_checkbox"/><%= e.name %></label>
                 </fieldset>
               </div>
@@ -103,10 +96,6 @@
         <%= f.submit  "Submit",:onclick => "appending_question();",:id=>"submit_form"%>
     <% end %>
 
-
-
-
-
 <% end %>
 
 
@@ -126,11 +115,11 @@
         <%= select_tag 'receipient_users[]', options_for_select(@user_list, @receipient), :multiple => true,:"data-mini" => "true" %>
     <% end %>
      <br>
-    <div class="field" style="font-size: 0.8em;">
+        <div data-role="controlgroup"  data-mini="true" style="font-size: 0.8em;">
       <%= f.text_area :body, :rows => '5', :placeholder => "Type in your message",:"data-mini" => "true",:style => "font-size:0.8em;" %>
     </div>
      <br>
-    <div data-role="controlgroup" data-type="horizontal" style="float: right;">
+      <div data-role="controlgroup"  data-mini="true" style="font-size: 0.8em;" data-type="horizontal">
       <a class="index_styling" href="#" data-ajax=false data-role="button" class="form_btn" id="form_btn_id" data-mini="true">Send</a>
       <%#= f.submit "Send", :'data-role' => "button",:"data-mini" => "true"%>
     </div>

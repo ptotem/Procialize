@@ -1,5 +1,6 @@
 <%= content_for :page_title do %>
-    Contact us
+    <span style="font-size: 0.8em;">Contact us</span>
+
 <% end %>
 
 
@@ -13,9 +14,9 @@
 
 
     <div class="field">
-      <%= f.text_area :body, :rows => '5',:style => "height:85px;",:placeholder => "'We hope and sincerely wish that this conference is being a value add to you. We further trust that you find Procialize an enjoyable experience. We would love to have your comments, thoughts, complaints or feedback. Please do let us know by typing your comments in this space and clicking on the send button. We will definitely get back to you in the shortest possible time.'" %>
+      <%= f.text_area :body, :rows => '5',:style => "height:85px;font-size:0.8em;",:placeholder => "'We hope and sincerely wish that this conference is being a value add to you. We further trust that you find Procialize an enjoyable experience. We would love to have your comments, thoughts, complaints or feedback. Please do let us know by typing your comments in this space and clicking on the send button. We will definitely get back to you in the shortest possible time.'" %>
     </div>
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
-      <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false" %>
+      <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false",'data-mini' => "true" %>
     </div>
 <% end %>

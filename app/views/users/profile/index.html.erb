@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-    Profile
+    <span style="font-size: 0.8em;">Profile</span>
 <% end %>
 <style type="text/css">
     a, a:visited {
@@ -68,23 +68,23 @@
 
     <tr>
       <td>
-        <% if !@industry.blank? %><small><strong style="color: #c0c0c0;">Background: </strong><%= @industry %> </small><% end %>
+        <% if !@industry.blank? %><small><strong style="color: #717171;">Background: </strong><%= @industry %> </small><% end %>
       </td>
     </tr>
 
     <tr>
       <td>
-        <% if !@location.blank? %><small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br><% end %>
+        <% if !@location.blank? %><small><strong style="color: #717171;">Location: </strong><%= @location %></small><br><% end %>
       </td>
     </tr>
     <tr>
       <td>
-        <% if !@skills.blank? %><small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br><% end %>
+        <% if !@skills.blank? %><small><strong style="color: #717171;">Skills: </strong><%= @skills %></small><br><% end %>
       </td>
     </tr>
     <tr>
       <td>
-        <% if !@interest.blank? %><small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br><% end %>
+        <% if !@interest.blank? %><small><strong style="color: #717171;">Interested in: </strong><%= @interest %></small><br><% end %>
       </td>
     </tr>
   </table>

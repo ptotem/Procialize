@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-    Message
+    <span style="font-size: 0.8em;">Message</span>
 <% end %>
 
 
@@ -9,10 +9,12 @@
       <td class="headtd">From:</td>
       <td class="normtd"><%= @message.user.name.titlecase %></td>
     </tr>
+    <tr><td></td></tr>
     <tr>
       <td class="headtd">To:</td>
       <td class="normtd"><%= @message.receipients.map { |r| r.user.name.titlecase }.join(", ") %></td>
     </tr>
+    <tr><td></td></tr>
     <tr>
       <td class="headtd">Sent at:</td>
       <td class="normtd"><%= @message.created_at %> hrs on <%= @message.created_at.strftime("%m/%d/%Y") %></td>

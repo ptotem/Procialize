@@ -1,9 +1,9 @@
 <%= content_for :page_title do %>
-    Questions
+    <span style="font-size: 0.8em;">Questions</span>
 <% end %>
 
 
-<%= collection_select(nil, :track_id, @tracks, :id, :name, {:prompt => "Select the Product"}, {:id => 'songs_select'}) %>
+<%= collection_select(nil, :track_id, @tracks, :id, :name, {:prompt => "Select the Product" }, {:id => 'songs_select',:'data-mini' => true}) %>
 
 
 
@@ -14,7 +14,7 @@
     </div>
 
     <div class="field index_styling">
-      <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?" %>
+      <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?",:style => "font-size:0.8em;" %>
     </div>
 
 
@@ -155,7 +155,7 @@
 
 
 <div data-role="content" id="categoriesContent">
-  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b" style="font-size: 0.8em;font-family: helveticaneue;">
+  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b" style="font-size: 0.8em;">
 
   </ul>
 </div>
