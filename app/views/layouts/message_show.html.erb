@@ -166,7 +166,7 @@ var isMobile = {
       <ul>
         <li>
           <a href=""  data-theme='a' data-ajax=false>
-            <marquee id="tweet" style="color: black;">
+            <marquee id="tweet">
               <% @newsfeed=NewsFeed.all %>
               <% @newsfeed.each do |n| %>
                   <%= n.feed_news %>
