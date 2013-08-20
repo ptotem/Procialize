@@ -81,6 +81,7 @@
       $(function(){
           if(!isMobile.any()) {
               window.location="/desktop_events?desk=1";
+
           }
       });
 
@@ -94,6 +95,7 @@
           },
           iOS: function() {
               return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+
           },
           Opera: function() {
               return navigator.userAgent.match(/Opera Mini/i);
