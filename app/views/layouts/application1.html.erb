@@ -197,10 +197,10 @@
     <div class="container-fluid">
       <div class="row-fluid search-button-bar-container">
         <div class="span12">
-          <ul class="breadcrumb" style="margin-top: -22px;">
-            <li><a href="#">Tata Communications</a></li>
+          <ul class="breadcrumb" style="margin-top: -28px;">
+            <li><%= image_tag "linkedin.png",:style => "max-width:150px;max-height:150px;" %></li>
             <%= yield :breadcrumb %>
-            <li style="float: right;"><a href="#">Hi "<%= current_user.name %>"</a></li>
+            <li style="float: right;margin: 5px;"><a href="#">Hi "<%= current_user.name %>"</a></li>
           </ul>
         </div>
       </div>

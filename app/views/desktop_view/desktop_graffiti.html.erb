@@ -307,19 +307,9 @@
             <ul class="recent-comments">
               <li class="separator" style="max-height: 300px;">
                 <ul class="rslides" id="slider1">
-                  <li>
-                    <%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %>
-                  </li>
-
-                  <li>
-                    <%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %>
-                  </li>
-
-                  <li>
-                    <%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %>
-                  </li>
-
-
+                  <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %></li>
+                  <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" %></li>
+                  <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" %></li>
 
                   <% @survey_q= SurveyQuestion.all %>
                   <% @survey_q.each do |s| %>
@@ -337,9 +327,9 @@
                                 <tr>
                                   <td><%= radio_button_tag "survey_options", "2", true%></td>
                                   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_b %></td>
-                                </tr>
                             <% end %>
 
+                            </tr>
                             <% if !s.option_c.blank? %>
                                 <tr>
                                   <td><%= radio_button_tag "survey_options", "3", true%></td>
