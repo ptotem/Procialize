@@ -203,7 +203,8 @@
               <%#= image_tag "linkedin.png",:style => "max-width:150px;max-height:150px;" %>
             </li>
             <%= yield :breadcrumb %>
-            <li style="float: right;margin: 5px;"><a href="#">Hi "<%= current_user.name %>"</a></li>
+            <!--<li style="float: right;margin: 5px;"><a href="#">Hi "<%#= current_user.name %>"</a></li>-->
+            <li style="float: right;"><a href="#">Hi "<%= current_user.name %>"</a></li>
           </ul>
         </div>
       </div>
