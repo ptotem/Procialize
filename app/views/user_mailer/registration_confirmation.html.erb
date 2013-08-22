@@ -7,9 +7,6 @@
 <!--<b>Subject: Your login/password to access Procialize</b><br><br>-->
 <span>Dear <%= @invitee.name %>,</span><br><br>
 
-<p>We welcome you to the annual "Sports and Games Association" Offsite. This conference promises
-  to be an immense value add, where we have chosen some crucial topics related to Games and Sports in everyday management, and have been
-  fortunate to have them delivered by highly coveted speakers. </p>
 
 <p>We want to ensure the Conference is the perfect channel for you to build your network. To do this conveniently, we
   have tied up with the Sports and Games Association to ensure you are able to </p>
@@ -47,7 +44,6 @@
      <% @user_new=Array.new %>
   <% if !@user.recommend.nil? %>
       <% @user.recommend.split(", ").each do |r| %>
-          <%#= @user_new<<User.find_by_name(r) %>
           <% @reco= User.find_by_name(r)%>
           <% @user_new << @reco %>
           <li>

@@ -169,10 +169,11 @@ class HomeController < ApplicationController
       if @user.interest != ""
         @user_in=User.find_all_by_industry(@user.interest).shuffle[0..2].map { |i| i.name }
         @user_in.delete(@user.name)
-          if @user_in.count<=1
-            @user_in_new=User.all.shuffle[0..2].map { |i| i.name }
-            @user_in=(@user_in+@user_in_new).flatten.uniq.delete(@user.name)
-          end
+        if @user_in.count<=1
+          @user_in<<User.all.shuffle[0..2].map { |i| i.name }
+          @user_in.uniq.delete(@user.name)
+          @user_in=@user_in.flatten
+        end
 
       elsif @user.interest="" and @user.industry != ""
         @user_in=User.find_all_by_industry(@user.industry).shuffle[0..2].map { |i| i.name }
@@ -186,12 +187,14 @@ class HomeController < ApplicationController
       elsif @user.interest="" and @user.industry="" and @user.location !=""
         @user_in=User.find_all_by_location(@user.location).shuffle[0..2].map { |i| i.name }
         @user_in.delete(@user.name)
-           if @user_in.count<=1
-            @user_in_new=User.all.shuffle[0..2].map { |i| i.name }
-            @user_in=(@user_in+@user_in_new).flatten
-           end
+        if @user_in.count<=1
+          @user_in<<User.all.shuffle[0..2].map { |i| i.name }
+          @user_in.uniq.delete(@user.name)
+          @user_in=@user_in.flatten
+        end
       else
         @user_in=User.all.shuffle[0..2].map { |i| i.name }
+        @user_in.uniq
       end
       @user.recommend=@user_in.to_s.gsub(/"/, "").gsub("[", "").gsub("]", "")
       @user_recommend<<@user
