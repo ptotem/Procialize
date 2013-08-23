@@ -5,15 +5,22 @@ class Ability
 
     user ||= User.new
     case user.email
-      when "arunk75@gmail.com"
+        when "arunk75@gmail.com"
         can :access, :rails_admin # grant access to rails_admin
         can :dashboard
         can :manage, :all
         can :import, :all
-      else
+        when "stafford_t@yahoo.com"
+        can :access, :rails_admin # grant access to rails_admin
+        can :dashboard
+        can :manage, [Conference,User,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo,Speaker]
+        can :import, [Conference,User,SurveyQuestion,SurveyAnswer,AssetsDownload,EventDay,Event,Track,HomePageLogo,Speaker]
+        else
         cannot :manage, :all
         cannot :access, :rails_admin # grant access to rails_admin
         cannot :dashboard
+
+
     end
 
 

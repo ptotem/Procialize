@@ -195,7 +195,12 @@ class HomeController < ApplicationController
       else
         @user_in=User.all.shuffle[0..2].map { |i| i.name }
         @user_in.uniq
+        @user_in.delete(@user.name)
+        @user_in=@user_in.flatten
       end
+      @user_in.uniq
+      @user_in.delete(@user.name)
+      @user_in=@user_in.flatten
       @user.recommend=@user_in.to_s.gsub(/"/, "").gsub("[", "").gsub("]", "")
       @user_recommend<<@user
       @user.recommend_select=true

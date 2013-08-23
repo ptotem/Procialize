@@ -117,6 +117,8 @@ class InviteesController < ApplicationController
         @rejected<<user.email
       end
     end
+    #render :text => @rejected.flatten
+    #return
     redirect_to trigger_recommend_path
   end
 
