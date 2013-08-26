@@ -48,7 +48,7 @@
           $("#slider1").responsiveSlides({
               auto:true, // Boolean: Animate automatically, true or false
               speed:2500, // Integer: Speed of the transition, in milliseconds
-              timeout:7000, // Integer: Time between slide transitions, in milliseconds
+              timeout:8000, // Integer: Time between slide transitions, in milliseconds
               random:true, // Boolean: Randomize the order of the slides, true or false
               pause:false, // Boolean: Pause on hover, true or false
               pauseControls:true, // Boolean: Pause when hovering controls, true or false
@@ -58,9 +58,6 @@
               namespace:"rslides" // String: Change the default namespace used
           });
 
-          setTimeout(function(){
-
-          },6000)
 
       });
   </script>
@@ -68,7 +65,7 @@
 <body>
 
 
-<div id="wrapper" style="height: 200px;">
+<div id="wrapper" style="height: 200px;padding: 5px;font-family: arial;">
   <ul class="rslides" id="slider1">
     <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %></li>
     <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" %></li>
