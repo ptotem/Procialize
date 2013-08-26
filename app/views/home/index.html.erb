@@ -70,9 +70,9 @@
 
 <div id="wrapper" style="height: 200px;">
   <ul class="rslides" id="slider1">
-    <!--<li><%#= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %></li>-->
-    <!--<li><%#= image_tag HomePageLogo.first.image_two.url, :class => "img_style" %></li>-->
-    <!--<li><%#= image_tag HomePageLogo.first.image_three.url, :class => "img_style" %></li>-->
+    <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" %></li>
 
     <% @survey_q= SurveyQuestion.all %>
     <% @survey_q.each do |s| %>
