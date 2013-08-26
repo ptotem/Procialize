@@ -212,7 +212,7 @@ class HomeController < ApplicationController
 
 
   def survey_storing
-    @survey_storing=SurveyAnswer.create(:user_id => params[:user_id][0], :survey_question_id => params[:survey_question_id][0], :ans => params[:ans][0])
+    @survey_storing=SurveyAnswer.create(:user_id => params[:user_id][0], :survey_question_id => params[:survey_question_id], :ans => params[:ans][0])
     render :text => @survey_storing.save
     return
   end
