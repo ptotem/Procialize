@@ -9,6 +9,7 @@ class Track < ActiveRecord::Base
   belongs_to :event
   belongs_to :event_day
 
-  has_many :speakers,:dependent => :destroy
+  has_many :track_speakers,:dependent => :destroy
+  has_many :speakers,:through => :track_speakers
   has_many :assets_downloads,:dependent => :destroy
 end

@@ -31,7 +31,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: proconf_development_db
+  database: proconf_apchi_development_db
   pool: 5
   username: root
 # **socket: /opt/local/var/run/mysql5/mysqld.sock**
@@ -40,7 +40,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: proconf_production_db
+  database: proconf_apchi_test_db
   pool: 5
   username: root
 #  socket: **/opt/local/var/run/mysql5/mysqld.sock**
@@ -49,7 +49,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: proconf_production_db
+  database: proconf_apchi_production_db
   pool: 5
   username: root
 
