@@ -211,18 +211,8 @@ ActiveRecord::Schema.define(:version => 20130731214434) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.boolean  "Question"
     t.boolean  "quest"
-    t.integer  "track_id"
     t.integer  "tracking_id"
-  end
-
-  create_table "feedbacks", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "conference_id"
-    t.integer  "rating"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
   end
 
   create_table "followers", :force => true do |t|
