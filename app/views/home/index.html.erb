@@ -84,8 +84,8 @@
     <li><%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" %></li>
     <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" %></li>
     <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" %></li>
-    <!--<li><%#= image_tag HomePageLogo.first.event_one_image.url, :class => "img_style" %></li>-->
-    <!--<li><%#= image_tag HomePageLogo.first.event_two_image.url, :class => "img_style" %></li>-->
+    <li><%= image_tag HomePageLogo.first.event_one_image.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.event_two_image.url, :class => "img_style" %></li>
 
     <% @survey_q= SurveyQuestion.all %>
     <% @survey_q.each do |s| %>
