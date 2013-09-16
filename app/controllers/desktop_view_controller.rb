@@ -784,4 +784,37 @@ class DesktopViewController < ApplicationController
   end
   #-------------End of Speakers-------------------#
 
+
+
+
+  #--------------Start of Exhibitor----------------#
+
+  def exhibitor_desk
+    @exhibitor=Exhibitor.all
+    render :layout => "application1"
+  end
+
+
+  def exhibitor_desk_show
+    @exhibitor=Exhibitor.find(params[:id])
+    @exhi_name=@exhibitor.name
+    @exhi_industry=@exhibitor.industry
+    @exhi_description=@exhibitor.description
+    @exhi_stall=@exhibitor.stall_no
+
+    @user_id=Array.new
+    @exhi_user=ExhibitorUser.find_all_by_exhibitor_id(@exhibitor.id)
+    @exhi_user.each do |u|
+      @user_id<<u.user_id
+    end
+
+    @user_name=User.find(@user_id)
+
+    render :layout => "application1"
+  end
+
+  #--------------End of Exhibitor----------------#
+
+
+
 end

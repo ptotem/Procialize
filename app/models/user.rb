@@ -40,6 +40,11 @@ class User < ActiveRecord::Base
   has_one  :rating,:dependent => :destroy
 
 
+ has_many :exhibitor_users,:dependent => :destroy
+ has_many :exhibitors,:through => :exhibitor_users
+
+
+
   #ROLES = %w[proops orgops admin]
 
 

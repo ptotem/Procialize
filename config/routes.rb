@@ -1,5 +1,7 @@
 ProcializeApp::Application.routes.draw do
 
+  get "exhibitor/index"
+
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
   match 'linkedin_desktop',:to => "desktop_view#linkedin_desktop" ,:as => "linkedin_desktop"
 
@@ -99,6 +101,7 @@ ProcializeApp::Application.routes.draw do
   match '/gettweets', :to => "home#gettweets"
   match '/settweetcounter/:count', :to => "home#settweetcounter"
   match '/assets_download', :to => "home#assets_download", :as => "assets_download"
+  match '/update_assets', :to => "home#update_assets", :as => "update_assets"
 
   match '/send_mail_to_recommended_users', :to => "home#send_mail_to_recommended_users", :as => "send_mail_to_recommended_users"
   match '/survey', :to => "home#survey"
@@ -116,9 +119,33 @@ ProcializeApp::Application.routes.draw do
 
   match '/rating_appending', :to => "ratings#rating_appending", :as => "rating_appending"
   match '/complete', :to => "meetings#complete", :as => "complete"
+  match '/complete', :to => "meetings#complete", :as => "complete"
 
 
-  #-------Desktop_view-----------#
+  match '/index', :to => "exhibitor#index", :as => "exhibitor"
+  match '/:id/exhibitor', :to => "exhibitor#show" ,:as => "exhibitor_profile"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  #-------------------------------------------Desktop_view----------------------------------------------------#
   resources :desktop_view
 
 
@@ -190,17 +217,24 @@ ProcializeApp::Application.routes.draw do
   #----------Concierge_service-------------#
 
 
-#----------Contact Us-------------#
+``#----------Contact Us-------------#
   match '/contact_us_new', :to => "desktop_view#contact_us_new", :as => "contact_us_new"
   match '/contact_us_create', :to => "desktop_view#contact_us_create", :as => "contact_us_create"
   #----------Contact Us-------------#
 
 
-#----------Questionables-------------#
+``#----------Questionables-------------#
   match '/desktop_ask_question', :to => "desktop_view#desktop_ask_question", :as => "desktop_ask_question"
   match '/desktop_questions_appending/:track_id', :to => "desktop_view#desktop_questions_appending", :as => "desktop_questions_appending"
   match '/desktop_create_question', :to => "desktop_view#desktop_create_question", :as => "desktop_create_question"
   #----------Questionables-------------#
+
+
+
+  #----------Exhibitor-------------#
+  match '/exhibitor_desk', :to => "desktop_view#exhibitor_desk", :as => "exhibitor_desk"
+  match '/:id/exhibitor_desk', :to => "desktop_view#exhibitor_desk_show" ,:as => "exhibitor_desk_profile"
+  #----------Exhibitor-------------#
 
 
   match '/trigger_recommend', :to => "home#trigger_recommend", :as => "trigger_recommend" #----------------for desktop------------------#

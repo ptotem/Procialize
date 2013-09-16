@@ -117,6 +117,11 @@
         <% end %>
 
 
+        <script type="text/javascript">
+            $(function(){
+                $(".industry").hide();
+            })
+        </script>
 
 
         <div class="box" style="position:relative;padding: 10px;color: black;" id="check_boxing">
@@ -124,7 +129,9 @@
             <thead>
             <tr class="gradeA odd">
               <th>Invitees</th>
-              <th>Select</th>
+              <th>Select</th>  <th class="industry">Industry</th>
+              <th class="industry">Interest</th>
+              <th class="industry">Skills</th>
             </tr>
             </thead>
             <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -134,6 +141,15 @@
                 <tr class="gradeA even" id="<%= e.id %>">
                   <td><%= e.name %></td>
                   <td><input type="checkbox" class="custom" name="test"/></td>
+                  <td class="industry">
+                    <%= e.industry %>
+                  </td>
+                  <td class="industry">
+                    <%= e.interest %>
+                  </td>
+                  <td class="industry">
+                    <%= e.skills %>
+                  </td>
                 </tr>
             <% end %>
             </tbody>
@@ -284,20 +300,19 @@
         <ul class="recent-comments">
           <li class="separator" style="max-height: 300px;">
             <ul class="rslides" id="slider1">
-              <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_four.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_five.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_six.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_seven.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_eight.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_nine.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.image_ten.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" %></li>
-              <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" %></li>
-
+              <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.image_four.url, :class => "img_style"  rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.image_five.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.image_six.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.image_seven.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.image_eight.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.image_nine.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.image_ten.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" rescue nil? %></li>
+              <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" rescue nil? %></li>
 
               <% @survey_q= SurveyQuestion.all %>
               <% @survey_q.each do |s| %>

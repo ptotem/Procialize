@@ -71,21 +71,19 @@
 
 <div id="wrapper" style="height: 200px;">
   <ul class="rslides" id="slider1">
-    <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.image_four.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.image_five.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.image_six.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.image_seven.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.image_eight.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.image_nine.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.image_ten.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.event_one_image.url, :class => "img_style" %></li>
-    <li><%= image_tag HomePageLogo.first.event_two_image.url, :class => "img_style" %></li>
+    <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.image_four.url, :class => "img_style"  rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.image_five.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.image_six.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.image_seven.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.image_eight.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.image_nine.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.image_ten.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" rescue nil? %></li>
+    <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" rescue nil? %></li>
 
     <% @survey_q= SurveyQuestion.all %>
     <% @survey_q.each do |s| %>
@@ -162,7 +160,8 @@
   <a class="index_styling" href="/graffiti" data-ajax=false data-role="button" data-icon="comment" data-mini="true">Updates</a>
   <a class="index_styling" href="/assets_download" data-ajax=false data-role="button" data-icon="download-alt" data-mini="true">Downloadables</a>
   <a class="index_styling" href="/ratings" data-ajax=false data-role="button" data-icon="exchange" data-mini="true">Feedback</a>
-  <a class="index_styling" href="/concierge_service" data-ajax=false data-role="button" data-icon="coffee" data-mini="true">Concierge</a>
+  <!--<a class="index_styling" href="/concierge_service" data-ajax=false data-role="button" data-icon="coffee" data-mini="true">Concierge</a>-->
+  <a class="index_styling" href="/index" data-ajax=false data-role="button" data-icon="coffee" data-mini="true">Exhibitor</a>
   <a class="index_styling" href="/contacts/new" data-ajax=false data-role="button" data-icon="phone" data-mini="true">Contact
     Us</a>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130731214434) do
+ActiveRecord::Schema.define(:version => 20130911095747) do
 
   create_table "assets_downloads", :force => true do |t|
     t.string   "downloadable_file_name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20130731214434) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "track_id"
+    t.text     "viewer"
   end
 
   create_table "attendees", :force => true do |t|
@@ -213,6 +214,30 @@ ActiveRecord::Schema.define(:version => 20130731214434) do
     t.datetime "avatar_updated_at"
     t.boolean  "quest"
     t.integer  "tracking_id"
+  end
+
+  create_table "exhibitor_users", :force => true do |t|
+    t.integer  "exhibitor_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "exhibitors", :force => true do |t|
+    t.string   "exhi_logo_file_name"
+    t.string   "exhi_logo_content_type"
+    t.integer  "exhi_logo_file_size"
+    t.datetime "exhi_logo_updated_at"
+    t.text     "stall_no"
+    t.text     "industry"
+    t.string   "brouchers_file_name"
+    t.string   "brouchers_content_type"
+    t.integer  "brouchers_file_size"
+    t.datetime "brouchers_updated_at"
+    t.text     "description"
+    t.string   "name"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   create_table "followers", :force => true do |t|

@@ -6,7 +6,7 @@
 
 
 <div data-role="collapsible-set">
-  <% @speak.each do |s| %>
+  <% @speak.sort_by(&:name).each do |s| %>
       <div data-role="collapsible" data-mini="true">
         <h6> <%= s.name %></h6>
         <div class="fbinfo">

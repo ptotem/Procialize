@@ -150,6 +150,12 @@ class HomeController < ApplicationController
     @assets_downloads=AssetsDownload.all
   end
 
+  def update_assets
+    @user=current_user
+    render :text => @user.id
+    return
+  end
+
 
   def trigger_recommend
     @users=User.all

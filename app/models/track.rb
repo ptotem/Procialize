@@ -1,5 +1,5 @@
 class Track < ActiveRecord::Base
-  attr_accessible :description, :end, :event_id, :name, :start, :track_img,:event_attributes,:questionables_attributes,:rating_attributes,:assets_downloads_attributes #,:speaker_id
+  attr_accessible :description, :end, :event_id, :name, :start, :track_img,:event_attributes,:questionables_attributes,:rating_attributes,:assets_downloads_attributes
 
   has_attached_file :track_img, :styles => {:medium => "300x300>", :thumb => "100x100>"}
 

@@ -10,11 +10,35 @@
       <%if e.downloadable.url!='/avatars/original/missing.png'%>
           <% @event_id= e.track_id%>
 
-          <li data-icon="file-text"><a target="_blank" class="index_styling" href="<%=e.downloadable.url%>" data-ajax=false>
-            <p><%= @event_name=Track.find(@event_id).name %></p>
-            <%= e.downloadable.original_filename %></a></li>
+          <li data-icon="file-text">
+                <a target="_blank" class="index_styling" href="<%=e.downloadable.url%>" data-ajax=false>
+                    <p><%= @event_name=Track.find(@event_id).name %></p>
+                    <%= e.downloadable.original_filename %>
+                    <%= hidden_field_tag e.id %>
+                 </a>
+          </li>
       <% end %>
   <% end %>
 </ul>
 
 
+<script type="text/javascript">
+  $(function(){
+    $('.index_styling').click(function(){
+        var data = {user_id:[],download:[]}
+
+        data["user_id"].push('<%= current_user.id %>');
+//        data["download"].push('');
+//        $.ajax({
+//            url:"<%#= update_assets_path %>",
+//            type:"post",
+//            data:JSON.stringify(data),
+//            contentType:"application/json",
+//            success:function (data) {
+//               alert(data)
+//
+//            }
+//         })
+    });
+  });
+</script>

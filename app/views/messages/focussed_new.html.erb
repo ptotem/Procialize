@@ -32,7 +32,7 @@
       <ul data-role="listview" data-theme="a" data-divider-theme="d"  data-split-icon='star' data-mini="true" data-filter="true">
         <% @users = User.all  %>
         <% @use = @users - [current_user]  %>
-        <% @use.each_with_index do |e,index| %>
+        <% @use.sort_by(&:name).each_with_index do |e,index| %>
             <% @a=1 %>
             <li id="<%= e.id %>" class="li_delegate">
               <div data-role="fieldcontain">

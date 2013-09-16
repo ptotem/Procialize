@@ -36,6 +36,8 @@ class Users::ProfileController < ApplicationController
       end
       @user.save
     end
+
+
     render :layout => "profile"
   end
 
