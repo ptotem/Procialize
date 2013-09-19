@@ -1,0 +1,40 @@
+<%= content_for :page_title do %>
+    Find Exhibitor
+<% end %>
+
+
+<script type="text/javascript">
+
+
+
+    function follow_search(id) {
+        $.ajax({
+            url:"/users/" + id + "/follow",
+            type:"post",
+            success:function (data) {
+                if (data == "Unfollow") {
+                    $('#user' + id).parent().attr('data-theme', 'b').removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
+                    $('#user' + id).prev().find('.ui-link-inherit').append('<span id="following' + id + '" class="highlighted" >Following</span>');
+                } else {
+                    $('#user' + id).parent().attr('data-theme', 'a').removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
+                    $("#following" + id).remove();
+                }
+            }
+        });
+    }
+
+</script>
+
+<ul data-role="listview" data-theme="a" data-divider-theme="d" data-split-icon='star' data-mini="true" data-filter="true">
+  <% @exhibitor.sort_by(&:name).each do |e| %>
+  <li data-theme='a' data-filtertext=" <%= e.name %> <%= e.industry %>">
+    <a style="font-size: 0.8em;" href="<%= exhibitor_profile_path(e.id) %>" data-ajax=false data-theme='a'>
+      <%= e.name %>
+    </a>
+  </li>
+  <% end %>
+</ul>
+
+
+
+

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  exhi_logo: 
+  stall_no: MyText
+  industry: MyText
+  brouchers: 
+  description: MyText
+  name: MyString
+
+two:
+  exhi_logo: 
+  stall_no: MyText
+  industry: MyText
+  brouchers: 
+  description: MyText
+  name: MyString
