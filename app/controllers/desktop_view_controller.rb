@@ -801,6 +801,7 @@ class DesktopViewController < ApplicationController
     @exhi_industry=@exhibitor.industry
     @exhi_description=@exhibitor.description
     @exhi_stall=@exhibitor.stall_no
+    @exhi_contact_no=@exhibitor.contact_no
 
     @user_id=Array.new
     @exhi_user=ExhibitorUser.find_all_by_exhibitor_id(@exhibitor.id)
