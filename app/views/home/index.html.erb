@@ -49,7 +49,7 @@
           $("#slider1").responsiveSlides({
               auto:true, // Boolean: Animate automatically, true or false
               speed:1500, // Integer: Speed of the transition, in milliseconds
-              timeout:4000, // Integer: Time between slide transitions, in milliseconds
+              timeout:7000, // Integer: Time between slide transitions, in milliseconds
               random:true, // Boolean: Randomize the order of the slides, true or false
               pause:false, // Boolean: Pause on hover, true or false
               pauseControls:true, // Boolean: Pause when hovering controls, true or false
@@ -59,9 +59,6 @@
               namespace:"rslides" // String: Change the default namespace used
           });
 
-          setTimeout(function(){
-
-          },6000)
 
       });
   </script>
@@ -94,17 +91,20 @@
               <tr>
                 <td style="vertical-align:top;"><%= s.option_a %></td>
                 <td></td>
+                <td></td>
                 <td  style="vertical-align:middle;width:2em"><%= radio_button_tag "survey_options", "1", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
               </tr>
               <br>
               <tr>
                 <td style="vertical-align:top;"><%= s.option_b %></td>
                 <td></td>
+                <td></td>
                 <td  style="vertical-align:middle;width:2em;"><%= radio_button_tag "survey_options", "2", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
               </tr>
               <% if !s.option_c.blank? %>
                   <tr>
                     <td style="vertical-align:top;"><%= s.option_c %></td>
+                    <td></td>
                     <td></td>
                     <td  style="vertical-align:middle;width:2em;"><%= radio_button_tag "survey_options", "3", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
                   </tr>
@@ -113,6 +113,7 @@
               <% if !s.option_d.blank? %>
                   <tr>
                     <td style="vertical-align:top;"><%= s.option_d %></td>
+                    <td></td>
                     <td></td>
                     <td  style="vertical-align:middle;width:2em;"><%= radio_button_tag "survey_options", "4", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
                   </tr>
