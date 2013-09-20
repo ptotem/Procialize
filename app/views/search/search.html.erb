@@ -36,8 +36,10 @@
                 <a  style="font-size: 0.8em;" href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a'>
                   <%= user.name.titlecase %>
 
-                  <% unless user.role=="proops" or user.role=="orgops" or user.role=="organizer" or user.role=="admin" %>
+                  <% unless user.role.nil? %>
+                    <% unless user.role=="proops" or user.role=="orgops" or user.role=="organizer" or user.role=="admin" %>
                       <p class="ui-li-aside"><%= user.role.titlecase %></p>
+                     <% end %>
                   <% end %>
                 </a>
                 <%= link_to "Follow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>

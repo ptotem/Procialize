@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130920091039) do
+ActiveRecord::Schema.define(:version => 20130920135528) do
 
   create_table "assets_downloads", :force => true do |t|
     t.string   "downloadable_file_name"
@@ -225,6 +225,15 @@ ActiveRecord::Schema.define(:version => 20130920091039) do
     t.datetime "updated_at",                     :null => false
   end
 
+  create_table "exhibitor_user_imports", :force => true do |t|
+    t.string   "exhibitor_user_details_file_name"
+    t.string   "exhibitor_user_details_content_type"
+    t.integer  "exhibitor_user_details_file_size"
+    t.datetime "exhibitor_user_details_updated_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
   create_table "exhibitor_users", :force => true do |t|
     t.integer  "exhibitor_id"
     t.integer  "user_id"
@@ -251,6 +260,7 @@ ActiveRecord::Schema.define(:version => 20130920091039) do
     t.string   "broucher2_content_type"
     t.integer  "broucher2_file_size"
     t.datetime "broucher2_updated_at"
+    t.text     "contact_no"
   end
 
   create_table "followers", :force => true do |t|

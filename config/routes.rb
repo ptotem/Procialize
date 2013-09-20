@@ -2,6 +2,8 @@ ProcializeApp::Application.routes.draw do
 
 
 
+
+
   get "exhibitor/index"
 
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
@@ -38,6 +40,9 @@ ProcializeApp::Application.routes.draw do
   resources :exhibitor_imports
   match '/exhibitor_excel_imp', :to => "exhibitor_imports#exhibitor_excel_imp" , :as => "exhibitor_excel_imp"
 
+
+  resources :exhibitor_user_imports
+  match '/exhibitor_user_excel_imp', :to => "exhibitor_user_imports#exhibitor_user_excel_imp" , :as => "exhibitor_user_excel_imp"
 
   mount RailsAdmin::Engine => '/organizer', :as => 'rails_admin'
   mount RailsAdminImport::Engine => '/rails_admin_import', :as => 'rails_admin_import'

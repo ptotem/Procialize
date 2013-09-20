@@ -52,13 +52,6 @@
           <% @user_new << @reco %>
           <li>
             <%= @reco.name.titlecase %>
-
-            <% if @reco.location!="" %>
-             who is in  <%= @reco.location %>
-            <% end %>
-            <% if @reco.industry!="" %>
-              in  <%= @reco.industry %> industry
-            <% end %>
           </li>
       <% end %>
   <% end %>
