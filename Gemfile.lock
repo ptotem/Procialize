@@ -205,7 +205,12 @@ GEM
       json (~> 1.4)
     ref (1.0.2)
     remotipart (1.0.5)
+    roo (1.11.2)
+      nokogiri
+      rubyzip
+      spreadsheet (> 0.6.4)
     ruby-ole (1.2.11.5)
+    rubyzip (0.9.9)
     safe_yaml (0.8.4)
     sass (3.2.6)
     sass-rails (3.2.6)
@@ -274,6 +279,7 @@ DEPENDENCIES
   rails_admin
   rails_admin_import!
   rails_admin_tag_list
+  roo
   sass-rails (~> 3.2.3)
   spreadsheet
   sqlite3

@@ -1,0 +1,112 @@
+<%= content_for :jj do %>
+    <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"></script>
+<% end %>
+
+
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="row-fluid">
+        <div class="span12">
+          <div style="margin-bottom: 20px;">
+            <div class="big-button-bar">
+              <a class="button large eventer" href="/desktop_events">
+                <i class=" icon-calendar "></i>
+                <span>Events</span>
+              </a>
+
+
+              <a class="button large delegater" href="/delegates_search">
+                <i class="icon-group"></i>
+                <span>Delegates</span>
+              </a>
+
+              <a class="button large speakinger" href="/desktop_speaker">
+                <i class="icon-user"></i>
+                <span>Speakers</span>
+              </a>
+
+              <a class="button large questioner" href="/desktop_ask_question">
+                <i class="icon-question-sign "></i>
+                <span>Questions</span>
+              </a>
+
+              <a class="button large feedbacker" href="/desktop_ratings">
+                <i class="icon-volume-up"></i>
+                <span>Feedback</span>
+              </a>
+
+              <a class="button large downloadables" href="/desktop_assets_download">
+                <i class=" icon-folder-open"></i>
+                <span>Download</span>
+              </a>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+          <!----------------------Start of send_recommendation_ontrigger------------------------------>
+
+          <div class="black-box tex" >
+            <div class="tab-header">
+              Exhibitor Import
+            </div>
+            <ul class="recent-comments">
+
+              <li class="separator">
+                <%= form_for @exhibitor_import, :html => { :multipart => true }, :url => { :action => "exhibitor_excel_imp" } do |f| %>
+                    <%#= text_field_tag :directory,"", placeholder: "Directory" %>
+                    <%= f.file_field :exhibitor_details %><br />
+                    <%#= f.text_field :directory,"", placeholder: "Directory" %>
+                    <%= f.submit "Import",:class => "button gray" %>
+                <% end %>
+
+                <%#= form_tag importing_stockpic_path, multipart: true do %>
+                    <%#= text_field_tag :directory,"", placeholder: "Directory" %>
+                    <%#= file_field_tag :file %>
+                    <%#= submit_tag "Import" %>
+                <%# end %>
+
+              </li>
+            </ul>
+          </div>
+
+          <!----------------------End of send_recommendation_ontrigger------------------------------>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+        });
+
+
+    </script>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<%#= render 'form' %>
+
+<%#= link_to 'Back', exhibitor_imports_path %>

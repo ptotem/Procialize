@@ -1,7 +1,8 @@
 class Exhibitor < ActiveRecord::Base
-  attr_accessible :brouchers, :description, :exhi_logo, :industry, :name, :stall_no
+  attr_accessible :brouchers, :description, :exhi_logo, :industry, :name, :stall_no,:broucher2
 
   has_attached_file :brouchers, :content_type => ["application/xls","application/xlsx","application/pdf","image/png","image/jpg"]
+  has_attached_file :broucher2, :content_type => ["application/xls","application/xlsx","application/pdf","image/png","image/jpg"]
   has_attached_file :exhi_logo
 
 

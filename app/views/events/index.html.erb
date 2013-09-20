@@ -42,7 +42,7 @@
                     $.each(data, function(key, val) {
                         val=val.split('|');
                             $('#categoriesContent').show();
-                        $('#categoriesContent ul').append('<li><a href="http://proconf.ptotemy.com/events/'+ val [0]+'" data-ajax=false><h3>'+ val[1] +'</h3><p class="ui-li-aside">'+ val[2] +'</p></a></li>');
+                        $('#categoriesContent ul').append('<li><a href="/events/'+ val [0]+'" data-ajax=false><h3>'+ val[1] +'</h3><p class="ui-li-aside">'+ val[2] +'</p></a></li>');
                         $('#categoriesContent ul').listview('refresh');
 
                     });
@@ -63,7 +63,7 @@
             $.each(data, function(key, val) {
                 val=val.split('|');
                 $('#categoriesContent').show();
-                $('#categoriesContent ul').append('<li><a href="http://proconf.ptotemy.com/events/'+ val [0]+'" data-ajax=false><h3>'+ val[1] +'</h3><p class="ui-li-aside">'+ val[2] +'</p></a></li>');
+                $('#categoriesContent ul').append('<li><a href="/events/'+ val [0]+'" data-ajax=false><h3>'+ val[1] +'</h3><p class="ui-li-aside">'+ val[2] +'</p></a></li>');
                 $('#categoriesContent ul').listview('refresh');
             });
 
