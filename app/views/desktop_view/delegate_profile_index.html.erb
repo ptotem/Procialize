@@ -83,7 +83,7 @@
             <a target="_blank" style="float:right;color: #f5f5f5;font-size: 1em;" href="<%=@user.avatar.url%>"><span style="font-size: 0.8em;">Profile</span><i class=" icon-download  "></i></a>
         <%end%>
 
-        <table>
+        <table style="width: 80%;">
 
           <% unless @headline.blank? %>
           <tr>
@@ -116,6 +116,14 @@
               <small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br>
             </td>
           </tr>
+          <% end %>
+
+          <% unless @company.blank? %>
+              <tr>
+                <td>
+                  <small><strong style="color: #c0c0c0;">Company: </strong><%= @company %></small><br>
+                </td>
+              </tr>
           <% end %>
 
 

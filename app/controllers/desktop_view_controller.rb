@@ -532,6 +532,7 @@ class DesktopViewController < ApplicationController
     @educations=@user.educations
     @location=@user.location
     @skills=@user.skills
+    @company=@user.company
     #@educations=[]
     #@positions=[]
 

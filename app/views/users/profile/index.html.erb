@@ -79,6 +79,11 @@
     </tr>
     <tr>
       <td>
+        <% if !@company.blank? %><small><strong style="color: #c0c0c0;">Company: </strong><%= @company %></small><br><% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <% if !@skills.blank? %><small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br><% end %>
       </td>
     </tr>

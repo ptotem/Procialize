@@ -12,6 +12,7 @@ class Users::ProfileController < ApplicationController
     @educations=@user.educations
     @location=@user.location
     @skills=@user.skills
+    @company=@user.company
     @positions=[]
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user }.map { |f| f.user }
     @posts=@user.posts.last(10).reverse
