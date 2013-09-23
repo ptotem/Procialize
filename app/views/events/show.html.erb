@@ -54,7 +54,11 @@
 
 <table cellpadding="7">
   <tr>
-    <th rowspan="4"><%= image_tag @track.track_img.url(:thumb) %></th>
+    <th rowspan="4">
+     <% if !@track.track_img.blank? %>
+      <%= image_tag @track.track_img.url(:thumb) %>
+     <% end %>
+    </th>
     <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;"><%= @track.name %>&nbsp;<span style="font-size: 0.8em;">from</span>&nbsp;&nbsp;<%= @track.start %>
       <span style="font-size: 0.8em;">to</span> <%= @track.end %> </td>
   </tr>
