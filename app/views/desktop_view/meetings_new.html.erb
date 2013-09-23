@@ -129,7 +129,7 @@
             <thead>
             <tr class="gradeA odd">
               <th>Invitees</th>
-              <th>Select</th>  <th class="industry">Industry</th>
+              <th>Select</th>
               <th class="industry">Industry</th>
               <th class="industry">Interest</th>
               <th class="industry">Skills</th>
@@ -144,9 +144,9 @@
             <% @users = User.all %>
             <% @use = @users - [current_user] %>
             <% @use.each do |e| %>
-                <tr class="gradeA even" id="<%= e.id %>">
+                <tr class="gradeX"  id="<%= e.id %>">
                   <td><%= e.name %></td>
-                  <td><input type="checkbox" class="custom" name="test"/></td>
+                  <td><input type="checkbox" class="custom"/></td>
                   <td class="industry">
                     <%= e.industry %>
                   </td>
