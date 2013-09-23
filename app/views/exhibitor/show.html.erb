@@ -16,7 +16,7 @@
 <h4 style="margin-top: 0px;"><%= @exhi_name.titlecase %>
 
 
-  <table style="max-width: 65%;" cellspacing="5">
+  <table style="max-width: 65%; white-space:pre-line;">
     <tr>
       <td>
         <% if !@exhibitor.industry.blank? %><small><strong style="color: #c0c0c0;">Industry: </strong><%= @exhibitor.industry %> </small><% end %>
@@ -28,7 +28,7 @@
       <td>
         <% if !@exhibitor.description.blank? %><small><strong style="color: #c0c0c0;">Details: </strong><%= raw @exhibitor.description %></small><br><% end %>
       </td>
-      <td style="width: 15%">
+      <td style="width: 25%">
 
       </td>
     </tr>
