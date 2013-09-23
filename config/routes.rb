@@ -20,8 +20,8 @@ ProcializeApp::Application.routes.draw do
   get "moderator_view/moderator"
 
 
-  match 'events/update_artists/:event_day_id', :to => "events#update_artists"#, :as => "update_artists"
-  match 'events/update_songs/:event_id', :to => "events#update_songs"#, :as => "update_songs"
+  match '/update_artists/:event_day_id', :to => "events#update_artists"#, :as => "update_artists"
+  match '/update_songs/:event_id', :to => "events#update_songs"#, :as => "update_songs"
   match 'desktop_view/update_track/:event_day_id', :to => "desktop_view#update_track"#, :as => "update_track"
   match 'desktop_view/update_event/:event_id', :to => "desktop_view#update_event" #, :as => "update_event"
 

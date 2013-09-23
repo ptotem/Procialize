@@ -6,8 +6,7 @@
 
 
     $(function () {
-        $('#categoriesContent ul').listview('refresh');
-        $("select#genres_select").prop('selectedIndex', 1);
+        $("select#genres_select").prop('selectedIndex', 0);
         $("select#artists_select").prop('selectedIndex', 1);
         event_default();
 
@@ -17,9 +16,10 @@
             $('#songs_select').prop("disabled", true);
                 $('#categoriesContent').hide();
             $('#genres_select').change(function () {
+                ($('#genres_select').val());
                 var data = {event_day_id:[]}
                 data["event_day_id"].push($('#genres_select').val());
-                $.getJSON("events/update_artists/"+ data["event_day_id"], function(data) {
+                $.getJSON("/update_artists/"+ data["event_day_id"], function(data) {
                     $('#artists_select').empty();
                     $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
                     $.each(data, function(key, val) {
@@ -38,7 +38,7 @@
             $('#artists_select').change(function () {
                 var data = {event_id:[]}
                 data["event_id"].push($('#artists_select').val());
-                $.getJSON("events/update_songs/"+ data["event_id"], function(data) {
+                $.getJSON("/update_songs/"+ data["event_id"], function(data) {
                     $('#categoriesContent ul').html("");
                     $.each(data, function(key, val) {
                         val=val.split('|');
@@ -59,7 +59,7 @@
     function event_default(){
         var data = {event_id:[]}
         data["event_id"].push($('#artists_select').val());
-        $.getJSON("events/update_songs/"+ data["event_id"], function(data) {
+        $.getJSON("/update_songs/"+ data["event_id"], function(data) {
             $('#categoriesContent ul').html("");
             $.each(data, function(key, val) {
                 val=val.split('|');
