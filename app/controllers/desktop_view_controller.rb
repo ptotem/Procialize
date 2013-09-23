@@ -666,7 +666,7 @@ class DesktopViewController < ApplicationController
     @users<<@followed
     @users<<(User.all - @followed)
     @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
-    @use=@users.flatten.select{|u| (u.email=="support@corcon.org")}.map{|u| u.email }
+    @use=@users.flatten.select{|u| (u.email=="support@corcon.org")}.map{|u| u.name }
 
     render :layout => "application1"
   end
