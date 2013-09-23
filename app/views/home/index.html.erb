@@ -84,7 +84,7 @@
 
     <% @survey_q= SurveyQuestion.all %>
     <% @survey_q.each do |s| %>
-        <div id="surveys"  style="font-size: 1em;padding: 7px;">
+        <div id="surveys"  style="font-size: 0.8em;padding: 5px;">
           <li class="img_style" id="<%= s.id %>"><%= s.quest %>
             <br>
             <table cellpadding="3">
@@ -162,7 +162,7 @@
   <a class="index_styling" href="/assets_download" data-ajax=false data-role="button" data-icon="download-alt" data-mini="true">Downloadables</a>
   <a class="index_styling" href="/ratings" data-ajax=false data-role="button" data-icon="exchange" data-mini="true">Feedback</a>
   <!--<a class="index_styling" href="/concierge_service" data-ajax=false data-role="button" data-icon="coffee" data-mini="true">Concierge</a>-->
-  <a class="index_styling" href="/index" data-ajax=false data-role="button" data-icon="coffee" data-mini="true">Exhibitor</a>
+  <a class="index_styling" href="/index" data-ajax=false data-role="button" data-icon="tags" data-mini="true">Exhibitor</a>
   <a class="index_styling" href="/contacts/new" data-ajax=false data-role="button" data-icon="phone" data-mini="true">Contact
     Us</a>
 

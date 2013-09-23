@@ -6,38 +6,60 @@
 
 
 <% if !@exhibitor.exhi_logo.blank? %>
-    <%= image_tag Exhibitor.first.exhi_logo.url, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+    <%= image_tag @exhibitor.exhi_logo.url, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
 <% end %>
 
 
 
 <h4 style="margin-top: 0px;"><%= @exhi_name.titlecase %>
+
+
   <table>
-
     <tr>
       <td>
-        <% if !@exhi_industry.blank? %><small><strong style="color: #c0c0c0;">Industry: </strong><%= @exhi_industry %> </small><% end %>
+        <% if !@exhibitor.industry.blank? %><small><strong style="color: #c0c0c0;">Industry: </strong><%= @exhibitor.industry %> </small><% end %>
       </td>
     </tr>
 
 
     <tr>
       <td>
-        <% if !@exhi_description.blank? %><small><strong style="color: #c0c0c0;">Details: </strong><%= @exhi_description %></small><br><% end %>
+        <% if !@exhibitor.description.blank? %><small><strong style="color: #c0c0c0;">Details: </strong><%= raw @exhibitor.description %></small><br><% end %>
       </td>
     </tr>
 
     <tr>
       <td>
-        <% if !@exhi_stall.blank? %><small><strong style="color: #c0c0c0;">Stall No: </strong><%= @exhi_stall %></small><br><% end %>
+        <% if !@exhibitor.stall_no.blank? %><small><strong style="color: #c0c0c0;">Stall No: </strong><%= @exhibitor.stall_no %></small><br><% end %>
       </td>
     </tr>
 
     <tr>
       <td>
-        <% if !@exhi_contact_no.blank? %><small><strong style="color: #c0c0c0;">Contact No: </strong><%= @exhi_contact_no %></small><br><% end %>
+        <% if !@exhibitor.contact_no.blank? %><small><strong style="color: #c0c0c0;">Contact No: </strong><%= @exhibitor.contact_no %></small><br><% end %>
       </td>
     </tr>
+
+    <tr>
+      <td>
+        <% if !@exhibitor.brouchers.blank? %>
+            <small>
+                <a target="_blank"  href="<%=@exhibitor.brouchers.url%>" data-ajax=false data-role=button data-mini=true>Company Brochure</a>
+             </small>
+        <% end %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <% if !@exhibitor.broucher2.blank? %>
+            <small>
+              <a target="_blank"  href="<%=@exhibitor.broucher2.url%>" data-ajax=false data-role=button data-mini=true>Product Brochure</a>
+            </small>
+        <% end %>
+      </td>
+    </tr>
+
 
     <tr>
         <td>

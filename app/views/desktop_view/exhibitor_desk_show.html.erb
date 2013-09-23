@@ -59,18 +59,10 @@
   <ul class="recent-comments">
     <li class="separator">
       <% if !@exhibitor.exhi_logo.blank? %>
-          <%= image_tag Exhibitor.first.exhi_logo.url, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+          <%= image_tag @exhibitor.exhi_logo.url, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
       <% end %>
 
       <h4 style="margin-top: 0px;"><%= @exhi_name.titlecase %>
-        <%if !@exhibitor.brouchers.blank?%>
-            <a target="_blank" style="float:right;color: #f5f5f5;font-size: 1em;" href="<%=@exhibitor.brouchers.url%>"><span style="font-size: 0.8em;">Brouchers</span><i class=" icon-download  "></i></a>
-        <%end%>
-
-        <%if !@exhibitor.broucher2.blank?%>
-            <a target="_blank" style="float:right;color: #f5f5f5;font-size: 1em;" href="<%=@exhibitor.broucher2.url%>"><span style="font-size: 0.8em;">Broucher 2</span><i class=" icon-download  "></i></a>
-        <% end %>
-
 
         <table>
 
@@ -97,6 +89,27 @@
           <tr>
             <td>
               <% if !@exhi_contact_no.blank? %><small><strong style="color: #c0c0c0;">Contact No: </strong><%= @exhi_contact_no %></small><br><% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <% if !@exhibitor.brouchers.blank? %>
+                  <small>
+                    <a target="_blank"  href="<%=@exhibitor.brouchers.url%>" data-ajax=false data-role=button data-mini=true>Company Brochure<i class=" icon-download  "></i></a>
+                  </small>
+              <% end %>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <% if !@exhibitor.broucher2.blank? %>
+                  <small>
+                    <a target="_blank"  href="<%=@exhibitor.broucher2.url%>" data-ajax=false data-role=button data-mini=true>Product Brochure<i class=" icon-download  "></i></a>
+                  </small>
+              <% end %>
             </td>
           </tr>
 

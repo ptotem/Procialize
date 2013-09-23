@@ -1,6 +1,8 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def linkedin
     if user_signed_in?
+      #render :json =>
+      #return
       @user = current_user
       @user.name = "#{request.env["omniauth.auth"]["extra"]["raw_info"]["firstName"]} #{request.env["omniauth.auth"]["extra"]["raw_info"]["lastName"]}"
       @user.industry = request.env["omniauth.auth"]["extra"]["raw_info"]["industry"]
@@ -9,8 +11,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.location = request.env["omniauth.auth"]["extra"]["raw_info"]["location"]["name"]
       @user.skills = request.env["omniauth.auth"]["extra"]["raw_info"]["skills"]["values"].map{|i| i["skill"]["name"]}.to_s.gsub(/"/,'').gsub("[",'').gsub("]",'') rescue ''
       @user.interest = request.env["omniauth.auth"]["extra"]["raw_info"]["interests"]
-      #render :json => request.env["omniauth.auth"]["extra"]
-      #return
+      @user.picture = "#{request.env["omniauth.auth"]["extra"]["raw_info"]["pictureUrl"].to_s}"
+
       @user.save!
       if params[:desktop]
        redirect_to delegate_profile_index_path(@user) and return

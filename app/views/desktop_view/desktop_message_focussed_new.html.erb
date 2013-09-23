@@ -87,6 +87,11 @@
                 <th class="industry">Industry</th>
                 <th class="industry">Interest</th>
                 <th class="industry">Skills</th>
+                <th class="industry">Location</th>
+                <th class="industry">Email</th>
+                <th class="industry">Headline</th>
+                <th class="industry">Company</th>
+                <th class="industry">Role</th>
               </tr>
               </thead>
               <tbody>
@@ -105,6 +110,21 @@
                     </td>
                     <td class="industry">
                       <%= e.skills %>
+                    </td>
+                    <td class="industry">
+                      <%= e.location %>
+                    </td>
+                    <td class="industry">
+                      <%= e.email %>
+                    </td>
+                    <td class="industry">
+                      <%= e.headline %>
+                    </td>
+                    <td class="industry">
+                      <%= e.company %>
+                    </td>
+                    <td class="industry">
+                      <%= e.role %>
                     </td>
                   </tr>
               <% end %>

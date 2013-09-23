@@ -72,7 +72,7 @@
     <% @use = @users - [current_user]  %>
     <% @use.sort_by(&:name).each_with_index do |e,index| %>
         <% @a=1 %>
-        <li id="<%= e.id %>" class="li_delegate">
+        <li id="<%= e.id %>" class="li_delegate" data-filtertext=" <%= e.name %> <%= e.role %> <%= e.headline %> <%= e.industry %> <%= e.company %> <%= e.location %> <%= e.email %> <%= e.skills %> <%= e.interest %>"  >
           <div data-role="fieldcontain">
             <fieldset data-role="controlgroup">
               <label id="delegates_name"><input type="checkbox" name="checkbox-0" class=" checking_checkbox"/><%= e.name %></label>
