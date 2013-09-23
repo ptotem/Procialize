@@ -83,7 +83,7 @@
 
           <tr>
             <td>
-              <% if !@exhi_description.blank? %><small><strong style="color: #c0c0c0;">Description: </strong><%= @exhi_description %></small><br><% end %>
+              <% if !@exhi_description.blank? %><small><strong style="color: #c0c0c0;">Description: </strong><%= raw @exhi_description %></small><br><% end %>
             </td>
           </tr>
 
