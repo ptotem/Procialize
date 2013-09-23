@@ -7,7 +7,7 @@
 
     $(function () {
         $("select#genres_select").prop('selectedIndex', 0);
-        $("select#artists_select").prop('selectedIndex', 1);
+        $("select#artists_select").prop('selectedIndex', 0);
         event_default();
 
 
@@ -16,7 +16,6 @@
             $('#songs_select').prop("disabled", true);
                 $('#categoriesContent').hide();
             $('#genres_select').change(function () {
-                ($('#genres_select').val());
                 var data = {event_day_id:[]}
                 data["event_day_id"].push($('#genres_select').val());
                 $.getJSON("/update_artists/"+ data["event_day_id"], function(data) {
