@@ -64,13 +64,13 @@
         <td style="background: none;color: white;box-shadow:none;word-wrap: break-word;">
           <small>
             <% @user_name.each do |u|  %>
-                <table cellpadding="8"cellspacing="8">
+                <table style="table-layout: fixed;width:100%;">
                   <% if !u.name.nil? %>
                   <tr>
                     <strong style="color: #c0c0c0;">Person: </strong>
-                    <td align="position"valign="position"><%= u.name %></td>
-                    <td align="position"valign="position"><%= link_to "Request Meeting", focussed_meeting_path(u), :'data-role' => "button", :'data-theme' => "a",:'data-ajax' => false, :'data-mini' => true %></td>
-                    <td align="position"valign="position"><%= link_to "Send Message", focussed_message_path(u)+'/?reply=true', :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false, :'data-mini' => true %></td>
+                    <td align="position"valign="position" style="background: none;color: white;box-shadow:none;word-wrap: break-word;"><%= u.name %></td>
+                    <td align="position"valign="position" style="background: none;color: white;box-shadow:none;word-wrap: break-word;"><%= link_to "Request Meeting", focussed_meeting_path(u), :'data-role' => "button", :'data-theme' => "a",:'data-ajax' => false, :'data-mini' => true %></td>
+                    <td align="position"valign="position" style="background: none;color: white;box-shadow:none;word-wrap: break-word;"><%= link_to "Send Message", focussed_message_path(u)+'/?reply=true', :'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false, :'data-mini' => true %></td>
                   </tr>
                    <% end %>
                 </table>
