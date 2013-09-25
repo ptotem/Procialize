@@ -32,6 +32,9 @@
           <% @user_new << @reco %>
           <li>
             <%= @reco.name.titlecase %>
+            <% if !@reco.company.blank? %>
+                from <%= @reco.company %>
+            <% end %>
           </li>
       <% end %>
   <% end %>

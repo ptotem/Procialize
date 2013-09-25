@@ -32,7 +32,7 @@
       <% @a=1 %>
       <% unless (!user.organizer.blank? or user.name=="Administrator") %>
           <% if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>
-              <li  data-theme='a' data-filtertext=" <%= user.name %> <%= user.role %> <%= user.headline %> <%= user.industry %>">
+              <li data-theme='a' data-filtertext=" <%= user.name %> <%= user.role %> <%= user.headline %> <%= user.industry %> <%= user.company %> <%= user.location %>">
                 <a  style="font-size: 0.8em;" href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a'>
                   <%= user.name.titlecase %>
 
@@ -45,7 +45,7 @@
                 <%= link_to "Follow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
               </li>
           <% else %>
-              <li data-theme='b' data-filtertext="<%= user.name %> <%= user.role %> <%= user.headline %> <%= user.industry %>">
+              <li data-theme='b' data-filtertext="<%= user.name %> <%= user.role %> <%= user.headline %> <%= user.industry %>  <%= user.company %> <%= user.location %>">
                 <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='b'>
                   <%= user.name.titlecase %>
                   <span id="following<%= user.id %>" class="highlighted">Following</span>
