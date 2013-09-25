@@ -95,8 +95,9 @@
             <thead>
             <tr class="gradeA odd">
               <th>Delegate</th>
+              <th>Company</th>
               <th>Download Profile</th>
-              <th class="industry">Role</th>
+              <th>Role</th>
               <th class="industry">Industry</th>
               <th class="industry">Interest</th>
               <th class="industry">Skills</th>
@@ -115,6 +116,9 @@
                     </a>
                   </td>
 
+                  <td>
+                    <%= user.company %>
+                  </td>
 
                   <td style="border-left: 1px solid #DDDDDD">
                     <% if user.avatar.url!='/avatars/original/missing.png' %>
