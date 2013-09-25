@@ -34,11 +34,11 @@
           <% if Follower.find_by_user_id_and_follower_id(current_user.id, user.id).blank? %>
               <li data-theme='a' data-filtertext=" <%= user.name %> <%= user.role %> <%= user.headline %> <%= user.industry %> <%= user.company %> <%= user.location %>">
                 <a  style="font-size: 0.8em;" href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a'>
-                  <%= user.name.titlecase %>&nbsp;-&nbsp;<% if !user.company.nil? %>(<%= user.company.truncate(12) %>)<% end %>
+                  <%= user.name.titlecase %>
 
                   <% unless user.role.nil? %>
                     <% unless user.role=="proops" or user.role=="orgops" or user.role=="organizer" or user.role=="admin" %>
-                      <p class="ui-li-aside"><%= user.role.titlecase.truncate(4) %></p>
+                      <p class="ui-li-aside"><%= user.role.titlecase %></p>
                      <% end %>
                   <% end %>
                 </a>
@@ -47,7 +47,7 @@
           <% else %>
               <li data-theme='b' data-filtertext="<%= user.name %> <%= user.role %> <%= user.headline %> <%= user.industry %>  <%= user.company %> <%= user.location %>">
                 <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='b'>
-                  <%= user.name.titlecase %>&nbsp;-&nbsp;<% if !user.company.nil? %>(<%= user.company.truncate(12) %>)<% end %>
+                  <%= user.name.titlecase %>
                   <span id="following<%= user.id %>" class="highlighted">Following</span>
                 </a>
                 <%= link_to "Unfollow #{user.name.titlecase}", "#", :onclick => "follow_search(#{user.id})", :class => "search_follow", :id => "user#{user.id}" %>
