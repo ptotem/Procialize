@@ -2,7 +2,11 @@
     Profile
 <% end %>
 
-
+<style type="text/css">
+  small{
+      font-size: 100%;
+  }
+</style>
 
 
 <div style="background: none;"  class="fbinfobox">
@@ -13,7 +17,8 @@
 
 
 
-<h4 style="margin-top: 0px;"><%= @exhi_name.titlecase %>
+<h4 style="margin-top: 0px;color: #ffffff;font-size: 1.1em;">
+  <span style="font-weight: bold;font-size: 1.1em;"><%= @exhi_name.titlecase %></span>
   <table style="table-layout: fixed;width:100%;">
     <tr>
       <td  style="background: none;color: #ffffff;box-shadow:none;word-wrap: break-word;">
