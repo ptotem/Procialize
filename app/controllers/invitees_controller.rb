@@ -117,6 +117,11 @@ class InviteesController < ApplicationController
         @rejected<<user.email
       end
     end
+    @usrs = User.all
+    @usrs.each do |usr|
+      usr.recommend_select=false
+      usr.save
+    end
     redirect_to trigger_recommend_path
   end
 

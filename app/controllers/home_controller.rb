@@ -192,15 +192,17 @@ class HomeController < ApplicationController
       #elsif @user.interest="" and @user.industry="" and @user.location !=""
       #if @user.interest="" and @user.industry="" and @user.location !=""
       if @user.location !=""
-        @user_in=User.find_all_by_location(@user.location).shuffle[0..2].map { |i| i.name }
+        @user_in=User.find_all_by_location(@user.location).shuffle[0..3].map { |i| i.name }
         @user_in.delete(@user.name)
            if @user_in.count<=1
-             @user_in<<User.all.shuffle[0..2].map { |i| i.name }
+             @user_in<<User.all.shuffle[0..3].map { |i| i.name }
              @user_in.delete(@user.name)
              @user_in=@user_in.flatten.uniq
            end
       else
-        @user_in=User.all.shuffle[0..2].map { |i| i.name }.uniq
+        @user_in=User.all.shuffle[0..3].map { |i| i.name }.uniq
+        @user_in.delete(@user.name)
+        @user_in=@user_in.flatten.uniq
       end
       @user.recommend=@user_in.to_s.gsub(/"/, "").gsub("[", "").gsub("]", "")
       @user_recommend<<@user

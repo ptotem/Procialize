@@ -34,6 +34,7 @@
           <li class="industry">Power Generation</li>
           <li class="industry">Defence</li>
           <li class="industry">Biomedical & Electronic components</li>
+          <li class="industry">Instrumentation</li>
         </ul>
       </div>
       </p>
@@ -41,47 +42,50 @@
 
       <p>
         <%= f.label :location,:style => "font-size:0.8em;" %>
-      <div id="location" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
-        <h3 style="font-size: 0.8em;"><%= @user.location %></h3>
-        <ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">
-          <li class="location"> Mumbai</li>
-          <li class="location"> Chennai</li>
-          <li class="location"> Hyderabad</li>
-          <li class="location"> Delhi</li>
-          <li class="location"> Kolkata</li>
-        </ul>
-      </div>
+        <%= f.text_area :location,:style => "font-size:0.8em;" %>
+      <!--<div id="location" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">-->
+        <!--<h3 style="font-size: 0.8em;"><%#= @user.location %></h3>-->
+        <!--<ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">-->
+          <!--<li class="location"> Mumbai</li>-->
+          <!--<li class="location"> Chennai</li>-->
+          <!--<li class="location"> Hyderabad</li>-->
+          <!--<li class="location"> Delhi</li>-->
+          <!--<li class="location"> Kolkata</li>-->
+        <!--</ul>-->
+      <!--</div>-->
       </p>
 
 
 
       <p>
         <%= f.label :skills,:style => "font-size:0.8em;" %>
-      <div id="skills" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
-        <h3 style="font-size: 0.8em;"><%= @user.skills %></h3>
-        <ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">
-          <li class="skills"> Finance</li>
-          <li class="skills"> Programming</li>
-          <li class="skills"> Design</li>
-          <li class="skills"> Negotiation</li>
-          <li class="skills"> Management</li>
-        </ul>
-      </div>
+        <%= f.text_area :skills,:style => "font-size:0.8em;" %>
+      <!--<div id="skills" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">-->
+        <!--<h3 style="font-size: 0.8em;"><%#= @user.skills %></h3>-->
+        <!--<ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">-->
+          <!--<li class="skills"> Finance</li>-->
+          <!--<li class="skills"> Programming</li>-->
+          <!--<li class="skills"> Design</li>-->
+          <!--<li class="skills"> Negotiation</li>-->
+          <!--<li class="skills"> Management</li>-->
+        <!--</ul>-->
+      <!--</div>-->
       </p>
 
 
       <p>
         <%= f.label :interest,:style => "font-size:0.8em;" %>
-      <div id="interest" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
-        <h3 style="font-size: 0.8em;"><%= @user.interest %></h3>
-        <ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">
-          <li class="interest"> Banking</li>
-          <li class="interest"> Telecom</li>
-          <li class="interest"> Insurance</li>
-          <li class="interest"> Garments</li>
-          <li class="interest"> Real Estate</li>
-        </ul>
-      </div>
+        <%= f.text_area :interest,:style => "font-size:0.8em;" %>
+        <!--<div id="interest" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">-->
+        <!--<h3 style="font-size: 0.8em;"><%#= @user.interest %></h3>-->
+        <!--<ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">-->
+          <!--<li class="interest"> Banking</li>-->
+          <!--<li class="interest"> Telecom</li>-->
+          <!--<li class="interest"> Insurance</li>-->
+          <!--<li class="interest"> Garments</li>-->
+          <!--<li class="interest"> Real Estate</li>-->
+        <!--</ul>-->
+      <!--</div>-->
       </p>
 
       <br>

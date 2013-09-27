@@ -65,27 +65,28 @@
 
                     <p>
                       <%= f.label :headline %>
-                      <%= f.text_area :headline,:rows=> "5" %>
+                      <%= f.text_field :headline,:rows=> "5" %>
                     </p>
 
                     <p>
                       <%= f.label :industry %>
-                      <%= f.select :industry, options_for_select([ "Oil & Gas", "Chemical, Fertilizer & Petrochemical", "RCC & Infrastructure", "Marine","Transport & Automobiles","Power Generation","Defence","Biomedical & Electronic components"],:prompt=>"Select Industry") %>
+                      <%= f.select :industry, options_for_select([ "Oil & Gas", "Chemical, Fertilizer & Petrochemical", "RCC & Infrastructure", "Marine","Transport & Automobiles","Power Generation","Defence","Biomedical & Electronic components","Instrumentation"],:prompt=>"Select Industry") %>
                     </p>
 
                     <p>
                       <%= f.label :location %>
-                      <%= f.select :location, options_for_select([ "Mumbai", "Chennai", "Hyderabad", "Delhi","Kolkata"],:prompt=>"Select Location") %>
+                      <%#= f.select :location, options_for_select([ "Mumbai", "Chennai", "Hyderabad", "Delhi","Kolkata"],:prompt=>"Select Location") %>
+                      <%= f.text_field :location %>
                     </p>
 
                     <p>
                       <%= f.label :skills %>
-                      <%= f.select :skills, options_for_select([ "Finance", "Programming", "Design", "Negotiation","Management"],:prompt=>"Select Skills") %>
+                      <%= f.text_field :skills %>
                     </p>
 
                     <p>
                       <%= f.label :interest %>
-                      <%= f.select :interest, options_for_select([ "Banking", "Telecom", "Insurance", "Garments","Real Estate"],:prompt=>"Select Interest") %>
+                      <%= f.text_field :interest %>
                     </p>
 
 
