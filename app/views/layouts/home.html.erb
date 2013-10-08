@@ -166,12 +166,12 @@
         <% @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message } %>
 
         <li><a href="/events" data-icon="calendar" data-theme='a' data-ajax=false>Events</a></li>
-        <li>
-          <a href="/meetings" data-icon="suitcase" data-theme='a' data-ajax=false>
-            <% if @pending.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @pending.size %></span> <% end %>
-            Meetings
-          </a>
-        </li>
+        <!--<li>-->
+          <!--<a href="/meetings" data-icon="suitcase" data-theme='a' data-ajax=false>-->
+            <!--<%# if @pending.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%#= @pending.size %></span> <%# end %>-->
+            <!--Meetings-->
+          <!--</a>-->
+        <!--</li>-->
         <li>
           <a href="/messages" data-icon="envelope" data-theme='a' data-ajax=false>
             <% if @unread.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @unread.size %></span> <% end %>

@@ -32,10 +32,10 @@
           <span>Questions</span>
         </a>
 
-        <a class="button large feedbacker" href="/desktop_ratings">
-          <i class="icon-volume-up"></i>
-          <span>Feedback</span>
-        </a>
+        <!--<a class="button large feedbacker" href="/desktop_ratings">-->
+          <!--<i class="icon-volume-up"></i>-->
+          <!--<span>Feedback</span>-->
+        <!--</a>-->
 
         <a class="button large downloadables" href="/desktop_assets_download">
           <i class=" icon-folder-open"></i>
@@ -239,39 +239,6 @@
               <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" rescue "" %></li>
               <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" rescue "" %></li>
 
-
-              <% @survey_q= SurveyQuestion.all %>
-              <% @survey_q.each do |s| %>
-                  <div id="surveys">
-                    <li class="img_style" id="<%= s.id %>"><%= s.quest %>
-                      <table>
-                        <tr>
-                          <td><%= radio_button_tag "survey_options", "1", true%></td>
-                          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_a %></td>
-
-                        </tr>
-                        <tr>
-                          <td><%= radio_button_tag "survey_options", "2", true%></td>
-                          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_b %></td>
-
-                        </tr>
-                        <% if !s.option_c.blank? %>
-                            <tr>
-                              <td><%= radio_button_tag "survey_options", "3", true%></td>
-                              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_c %></td>
-                            </tr>
-                        <% end %>
-
-                        <% if !s.option_d.blank? %>
-                            <tr>
-                              <td><%= radio_button_tag "survey_options", "4", true%></td>
-                              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_d %></td>
-                            </tr>
-                        <% end %>
-                      </table>
-                    </li>
-                  </div>
-              <% end %>
             </ul>
           </li>
           <li class="separator">
