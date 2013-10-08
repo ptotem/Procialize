@@ -17,3 +17,6 @@ rerun.txt
 pickle-email-*.html
 .idea/*
 /public
+.config.database.yml.sqlite3
+/config/database.yml
+/db/data.yml
