@@ -128,34 +128,7 @@
     <div class="span5">
       <div class="row-fluid">
         <div class="span12">
-          <div class="black-box tex" style="max-height: 150px;">
-            <div class="tab-header">
-              Event Wall
-            </div>
-            <ul class="recent-comments" style="list-style: none;">
-              <% @conference=Conference.last %>
-              <% @user=current_user %>
-              <% @graffiti=(User.all-(Follower.find_all_by_user_id_and_conference_id(@user.id, @conference.id).map { |f| User.find(f.follower_id) })-[current_user]-Organizer.all.map { |o| o.user }).map { |u| u.posts }.flatten.last(30).sort_by(&:created_at).reverse %>
-              <% @graffiti.each do |post| %>
-
-                  <li class="separator">
-                    <div class="avatar pull-left">
-                      <% if post.user.picture.blank? %>
-                          <%= image_tag "avatar.png" %>
-                      <% else %>
-                          <%= image_tag(post.user.picture) %>
-                      <% end %>
-                    </div>
-                    <div class="article-post">
-                      <div class="user-info"> Posted
-                        by <%= link_to post.user.name.titlecase, delegate_profile_index_path(post.user) %>
-                        at <%= post.created_at %> </div>
-                      <div class="user-content">"<%= post.name.truncate(10) %>"</div>
-                    </div>
-                  </li>
-              <% end %>
-            </ul>
-          </div>
+          <%= render :partial => "event_wall" %>
         </div>
       </div>
     </div>
@@ -166,64 +139,7 @@
     <div class="span5">
       <div class="row-fluid">
         <div class="span12">
-          <div class="black-box tex" style="max-height: 350px;">
-            <div class="tab-header">
-              Splash Zone
-            </div>
-            <script>
-                $(document).ready(function() {
-                    $("#slider1").responsiveSlides({
-                        auto:true, // Boolean: Animate automatically, true or false
-                        speed:1500, // Integer: Speed of the transition, in milliseconds
-                        timeout:7000, // Integer: Time between slide transitions, in milliseconds
-                        random:true, // Boolean: Randomize the order of the slides, true or false
-                        pause:false, // Boolean: Pause on hover, true or false
-                        pauseControls:true, // Boolean: Pause when hovering controls, true or false
-                        maxwidth:"", // Integer: Max-width of the slideshow, in pixels
-                        navContainer:"", // Selector: Where controls should be appended to, default is after the 'ul'
-                        manualControls:"", // Selector: Declare custom pager navigation
-                        namespace:"rslides" // String: Change the default namespace used
-                    });
-                });
-            </script>
-
-            <style type="text/css">
-                .img_style {
-                    max-height: 200px;
-                }
-            </style>
-
-            <ul class="recent-comments">
-              <li class="separator" style="max-height: 300px;">
-                <ul class="rslides" id="slider1">
-                  <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.image_four.url, :class => "img_style"  rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.image_five.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.image_six.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.image_seven.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.image_eight.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.image_nine.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.image_ten.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" rescue "" %></li>
-                  <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" rescue "" %></li>
-
-                </ul>
-              </li>
-              <li class="separator">
-
-                <marquee id="tweet" style="color: white;">
-                  <% @newsfeed=NewsFeed.all %>
-                  <% @newsfeed.each do |n| %>
-                      <%= n.feed_news %>
-                  <% end %>
-                </marquee>
-
-              </li>
-            </ul>
-          </div>
+          <%= render :partial => "splash_zone" %>
         </div>
       </div>
     </div>
@@ -231,45 +147,7 @@
 
 
 
-    <script type="text/javascript">
 
-        $(function () {
-            $("input[name=survey_options]").click(function () {
-                var a = $(this).parent().parent().parent().parent().parent().parent().attr('id');
-                var value = $(this).val();
-                var data = { user_id:[], survey_question_id:[], ans:[]}
-                data["user_id"].push('<%= current_user.id%>');
-                data["survey_question_id"].push(a);
-                data["ans"].push(value);
-                $.ajax({
-                    url:"<%= survey_storing_path %>",
-                    type:"post",
-                    data:JSON.stringify(data),
-                    contentType:"application/json",
-                    success:function (data) {
-                        <%= add_gritter("Thank You", :title => "Success",:image => :success,:time => 1000) %>
-                    }
-                });
-
-            });
-
-
-        });
-
-
-        $(function () {
-            $.get('/gettweets', function (data) {
-
-                data = data.split('", "')
-                $.each(data, function (index, val) {
-                    val = val.toString().replace(/"/, '').replace('[', '').replace(']', '');
-                    $('#tweet').append(val + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
-                });
-            });
-
-        });
-
-    </script>
 
 
 
