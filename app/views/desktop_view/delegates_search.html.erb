@@ -214,6 +214,14 @@
         </div>
         <script>
             $(document).ready(function () {
+
+                setInterval(function(){
+                    $('#example_first').css("color","black");
+                    $('#example_previous').css("color","black");
+                    $('#example_next').css("color","black");
+                    $('#example_last').css("color","black");
+                });
+
                 $("#slider1").responsiveSlides({
                     auto:true, // Boolean: Animate automatically, true or false
                     speed:1500, // Integer: Speed of the transition, in milliseconds
