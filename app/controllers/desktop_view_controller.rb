@@ -160,7 +160,7 @@ class DesktopViewController < ApplicationController
     @track_speaker.each do |t|
       @speaking<<t.speaker_id
     end
-    @speaker_name=Speaker.find(@speaking)
+    @speaker_name=Speaker.find(@speaking) rescue ""
     render :layout => 'application1'
   end
 

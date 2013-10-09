@@ -113,6 +113,7 @@
               <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
                 <%@count = @speaker_name.count %>
                 <% @countless=@count-1 %>
+                <% unless @speaker_name.blank? %>
                 <% @speaker_name.each_with_index do |s, index| %>
                     <% unless s.name.blank? %>
                         <% if index==0 %>
@@ -120,6 +121,7 @@
                         <% end %>
                         <%= s.name %><% if index !=@countless %>,<% end %>
                     <% end %>
+                <% end %>
                 <% end %>
               </td>
             </tr>
