@@ -779,7 +779,7 @@ class DesktopViewController < ApplicationController
       @tracker<<s.track_id
     end
 
-    @track_name=Track.find(@tracker)
+    @track_name=Track.find_all_by_id(@tracker)
 
     render :layout => "application1"
   end
