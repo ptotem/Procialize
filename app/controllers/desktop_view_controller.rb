@@ -176,7 +176,7 @@ class DesktopViewController < ApplicationController
 
   def update_event
     @eve = Event.find(params[:event_id])
-    @tra = Track.order(:start).find_all_by_event_id(@eve.id)
+    @tra = Track.sort_by(:start).find_all_by_event_id(@eve.id)
     @return_data =Array.new
     @tra.each do |i|
       @return_data<<"#{i.id}|#{i.name}|#{i.start}"
