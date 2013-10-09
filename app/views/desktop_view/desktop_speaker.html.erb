@@ -73,7 +73,9 @@
                 <p style="color: white;">
                 <table>
                   <tr>
+                    <% if !image_tag s.avatar.blank? %>
                     <td style="vertical-align: top;"><%= image_tag s.avatar.url, :style => 'max-height:100px;max-width:100px;margin:10px;' %></td>
+                   <% end %>
                   </tr>
 
                   <tr>
