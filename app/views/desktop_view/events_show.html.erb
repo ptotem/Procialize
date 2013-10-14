@@ -142,7 +142,7 @@
         </script>
         <div style="float: left;">
           <% if @my_attendee.blank? %>
-              <%= link_to "Accept", desktop_accept_path(@track), :flash_notice => "Accepted", :class => "button gray", :id => "attend" %>
+              <%= link_to "Join this Event", desktop_accept_path(@track), :flash_notice => "Accepted", :class => "button gray", :id => "attend" %>
           <% end %>
 
         </div>
