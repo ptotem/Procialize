@@ -132,7 +132,7 @@ var isMobile = {
         <li><a href="/events" data-icon="calendar" data-theme='a' data-ajax=false>Events</a></li>
         <li>
           <a href="/meetings" data-icon="suitcase" data-theme='a' data-ajax=false>
-            <% if @pending.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @pending.size %></span> <% end %>
+            <% if @pending.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%#= @pending.size %></span> <% end %>
             Meetings
           </a>
         </li>

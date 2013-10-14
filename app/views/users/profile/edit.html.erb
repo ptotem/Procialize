@@ -18,7 +18,22 @@
 
       <p>
         <%= f.label :headline,:style => "font-size:0.8em;" %>
-        <%= f.text_area :headline,:style => "font-size:0.8em;" %>
+        <%#= f.text_area :headline,:style => "font-size:0.8em;" %>
+      <div id="headline" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
+        <h3  style="font-size: 0.8em;"><%= @user.headline %></h3>
+        <ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">
+          <li class="headline">Chairman & Managing Director</li>
+          <li class="headline">Executive Director/CEO</li>
+          <li class="headline">President/VP–Marketing/International/Business Development</li>
+          <li class="headline">Head-Drug Research/Development/Production</li>
+          <li class="headline">Director for Patent/Regulators</li>
+          <li class="headline">Research Analyst / Investment </li>
+          <li class="headline">Research Analyst / Investment Research Analyst / Investment ent / Vice President-Finance</li>
+          <li class="headline">President / Vice President / API’s</li>
+          <li class="headline">Head – Human Resources / Corporate Communications</li>
+          <li class="headline">Other</li>
+        </ul>
+      </div>
       </p>
 
       <p>
@@ -26,15 +41,15 @@
       <div id="industry" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
         <h3  style="font-size: 0.8em;"><%= @user.industry %></h3>
         <ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">
-          <li class="industry">Oil & Gas</li>
-          <li class="industry">Chemical, Fertilizer & Petrochemical</li>
-          <li class="industry">RCC & Infrastructure</li>
-          <li class="industry">Marine</li>
-          <li class="industry">Transport & Automobiles</li>
-          <li class="industry">Power Generation</li>
-          <li class="industry">Defence</li>
-          <li class="industry">Biomedical & Electronic components</li>
-          <li class="industry">Instrumentation</li>
+          <li class="industry">Pharmaceutical</li>
+          <li class="industry">APIs</li>
+          <li class="industry">Bulk Drugs</li>
+          <li class="industry">Healthcare</li>
+          <li class="industry">Life Sciences</li>
+          <li class="industry">Chemicals & Fertilizers</li>
+          <li class="industry">IT Software</li>
+          <li class="industry">Financial Institutions</li>
+          <li class="industry">Other</li>
         </ul>
       </div>
       </p>
@@ -42,17 +57,21 @@
 
       <p>
         <%= f.label :location,:style => "font-size:0.8em;" %>
-        <%= f.text_area :location,:style => "font-size:0.8em;" %>
-      <!--<div id="location" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">-->
-        <!--<h3 style="font-size: 0.8em;"><%#= @user.location %></h3>-->
-        <!--<ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">-->
-          <!--<li class="location"> Mumbai</li>-->
-          <!--<li class="location"> Chennai</li>-->
-          <!--<li class="location"> Hyderabad</li>-->
-          <!--<li class="location"> Delhi</li>-->
-          <!--<li class="location"> Kolkata</li>-->
-        <!--</ul>-->
-      <!--</div>-->
+      <div id="location" data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" style="margin-left:1%;width: 98%;">
+        <h3 style="font-size: 0.8em;"><%#= @user.location %></h3>
+        <ul data-role="listview" data-theme="a" data-filter-placeholder="Search by industry" data-split-icon='star' data-mini="true" data-filter="true">
+          <li class="location"> Mumbai</li>
+          <li class="location"> Chennai</li>
+          <li class="location"> Hyderabad</li>
+          <li class="location"> Delhi</li>
+          <li class="location"> Pune</li>
+          <li class="location"> Kolkata</li>
+          <li class="location"> Ahemadabad</li>
+          <li class="location"> Chandigarh</li>
+          <li class="location"> Bangalore</li>
+          <li class="location"> Other</li>
+        </ul>
+      </div>
       </p>
 
 
@@ -113,6 +132,10 @@
             $('#interest .ui-btn-text').text("Interest");
         }
 
+        if ($('#headline .ui-btn-text').text()==" click to expand contentsclear text") {
+            $('#headline .ui-btn-text').text("Headline");
+        }
+
         $('.industry').click(function () {
             var adding=$(this).text();
             $('#industry .ui-btn-text').text(adding);
@@ -129,6 +152,25 @@
                 }
             });
         });
+
+        $('.headline').click(function () {
+            var adding=$(this).text();
+            $('#headline .ui-btn-text').text(adding);
+            var headline = $(this).text();
+            var data = {headline:[], user_id:[]}
+            data["headline"].push(headline);
+            data["user_id"].push('<%=current_user.id %>');
+            $.ajax({
+                url:"<%= editing_profile_headline_path %>",
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function (data) {
+                }
+            });
+        });
+
+
 
         $('.location').click(function () {
             var adding=$(this).text();
@@ -194,3 +236,15 @@
       font-size: 0.8em;
   }
 </style>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41279198-1', '127.0.0.1:3000');
+    ga('send', 'pageview');
+
+</script>

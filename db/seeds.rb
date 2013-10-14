@@ -10,4 +10,4 @@
 #
 #
 #
-User.create!(email: 'amol@ptotem.com', name: 'Amol', password: 'procialize', password_confirmation: 'procialize',:role => 'admin')
+User.create!(email: 'arun@ptotem.com', name: 'Arun', password: 'procialize', password_confirmation: 'procialize',:role => 'admin')

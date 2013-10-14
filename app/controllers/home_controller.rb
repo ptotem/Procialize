@@ -253,6 +253,15 @@ class HomeController < ApplicationController
     return
   end
 
+  def editing_profile_headline
+    @headline_edit=User.find(params[:user_id][0])
+    @headline_edit.headline= params[:headline][0]
+    @headline_edit.save
+    render :text => @headline_edit.save
+    return
+  end
+
+
 
   def wait
     render :layout => "search_delegates"

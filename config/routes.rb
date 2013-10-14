@@ -122,6 +122,7 @@ ProcializeApp::Application.routes.draw do
   match '/editing_profile_location', :to => "home#editing_profile_location", :as => "editing_profile_location"
   match '/editing_profile_skills', :to => "home#editing_profile_skills", :as => "editing_profile_skills"
   match '/editing_profile_interest', :to => "home#editing_profile_interest", :as => "editing_profile_interest"
+  match '/editing_profile_headline', :to => "home#editing_profile_headline", :as => "editing_profile_headline"
 
 
   match '/questions_appending/:track_id', :to => "questionables#questions_appending", :as => "questions_appending"

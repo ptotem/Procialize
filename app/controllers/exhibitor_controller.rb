@@ -20,5 +20,18 @@ class ExhibitorController < ApplicationController
     @user_name=User.find(@user_id)
 
 
+    if @exhibitor!=current_user
+      if !@exhibitor.viewers_name.blank?
+        @viewers_name=@exhibitor.viewers_name
+        @person_name=@viewers_name.split('|').last
+        @person=@person_name.split(':').first.to_i + 1
+        @viewing=@person.to_s+':'+current_user.name
+        @exhibitor.viewers_name=@viewers_name +'|'+@viewing
+      else
+        @exhibitor.viewers_name="1:#{current_user.name}"
+      end
+      @exhibitor.save
+    end
+
   end
 end
