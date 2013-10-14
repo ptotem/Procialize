@@ -15,6 +15,20 @@ class EventsController < ApplicationController
        @speaking<<t.speaker_id
     end
     @speaker_name=Speaker.find(@speaking)
+
+
+    if @track!=current_user
+      if !@track.viewers_name.blank?
+        @viewers_name=@track.viewers_name
+        @person_name=@viewers_name.split('|').last
+        @person=@person_name.split(':').first.to_i + 1
+        @viewing=@person.to_s+':'+current_user.name
+        @track.viewers_name=@viewers_name +'|'+@viewing
+      else
+        @track.viewers_name="1:#{current_user.name}"
+      end
+      @track.save
+    end
   end
 
   def show_page
