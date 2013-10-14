@@ -145,20 +145,22 @@
         </div>
         <ul class="recent-comments">
           <li class="separator">
+            <br>
             <ul>
-              <%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %>
-              <br/>
-              <%= collection_select(nil, :event_id, @events, :id, :name, {:prompt => "Select the Track Day"}, {:id => 'artists_select'}) %>
-              <br/>
-
-              <div class="nav-menu box" id="categoriesContent">
-                <ul class="nav nav-list">
-
-                </ul>
-              </div>
+              <% Track.all.each do |e| %>
+                  <div class="nav-menu box" id="categoriesContent">
+                    <ul class="nav nav-list">
+                      <li>
+                            <a href="/events_show/<%= e.id %>">
+                              <h6><%= e.name %></h6>
+                            </a>
+                      </li>
+                    </ul>
+                  </div>
+              <% end %>
             </ul>
           </li>
-        </ul>
+         </ul>
       </div>
     </div>
     <!----------------------End of events------------------------------>
