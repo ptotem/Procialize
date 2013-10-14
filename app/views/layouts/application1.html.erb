@@ -139,16 +139,16 @@
     <% @pending = Meeter.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.meeting } %>
     <% @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message } %>
 
-    <!--<li class="">-->
-      <!--<a href="/meetings_index" id="meeters" class="large">-->
-        <!--<i class="icon-briefcase"></i> Meetings-->
-        <%# if @pending.size>0 %>
-    <!--<span class="circle">-->
-        <%#= @pending.size %>
-  <!--</span>-->
-        <!--<%# end %>-->
-      <!--</a>-->
-    <!--</li>-->
+    <li class="">
+      <a href="/meetings_index" id="meeters" class="large">
+        <i class="icon-briefcase"></i> Meetings
+        <% if @pending.size>0 %>
+    <span class="circle">
+        <%= @pending.size %>
+  </span>
+        <% end %>
+      </a>
+    </li>
 
     <li class="">
       <a href="/messages_index" id="messager" class="large">
@@ -158,11 +158,11 @@
       </a>
     </li>
 
-    <!--<li class="">-->
-    <!--<a href="/desktop_assets_download" id="downloader" class="large">-->
-    <!--<i class="icon-inbox"></i> Downloadables-->
-    <!--</a>-->
-    <!--</li>-->
+    <li class="">
+    <a href="/desktop_assets_download" id="downloader" class="large">
+    <i class="icon-inbox"></i> Downloadables
+    </a>
+    </li>
 
     <li class="">
       <a href="/desktop_graffiti" id="graffiter" class="large">
