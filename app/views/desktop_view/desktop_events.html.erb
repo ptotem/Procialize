@@ -152,7 +152,10 @@
                     <ul class="nav nav-list">
                       <li>
                             <a href="/events_show/<%= e.id %>">
-                              <h6><%= e.name %></h6>
+                              <h6>
+                                <%= e.name %>
+                                <span class="pull-right badge black"><%= e.start %></span>
+                              </h6>
                             </a>
                       </li>
                     </ul>
