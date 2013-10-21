@@ -5,7 +5,7 @@ class Ability
 
     user ||= User.new
     case user.email
-      when "arunk75@gmail.com" || "ketakikadekar@gmail.com"
+      when ("arunk75@gmail.com" || "ketakikadekar@gmail.com")
         can :access, :rails_admin # grant access to rails_admin
         can :dashboard
         can :manage, :all
