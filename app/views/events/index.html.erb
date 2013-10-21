@@ -11,7 +11,7 @@
     <% Track.all.each do |e| %>
      <li>
        <a href="/events/<%= e.id %>" data-ajax=false>
-         <p><%= e.name %></p>
+         <p style="font-size: 0.8em;float: left;"><%= e.name %></p>
          <p class="ui-li-aside"><%= e.start %></p>
        </a>
      </li>
