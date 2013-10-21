@@ -127,21 +127,21 @@ class HomeController < ApplicationController
   end
 
 
-  def gettweets
-    @tweets=Twitter.search("#FICCI", :lang => "en", :count => 15, :result_type => "recent").results.map do |status|
-      "#{status.from_user}: #{status.text}"
-    end
-    render :text => @tweets
-    return
-  end
+  #def gettweets
+    #@tweets=Twitter.search("#FICCI", :lang => "en", :count => 15, :result_type => "recent").results.map do |status|
+      #"#{status.from_user}: #{status.text}"
+    #end
+    #render :text => @tweets
+    #return
+  #end
 
 
-  def settweetcounter
-    @logo=Logos.first
-    @logo.tweet_count=params[:count].to_i
-    @logo.save
-    render :text => @logo.tweet_count
-  end
+  #def settweetcounter
+    #@logo=Logos.first
+    #@logo.tweet_count=params[:count].to_i
+    #@logo.save
+    #render :text => @logo.tweet_count
+  #end
 
 
   def assets_download
