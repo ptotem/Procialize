@@ -25,6 +25,22 @@ class Users::ProfileController < ApplicationController
     @post=Post.find_all_by_user_id(@user.id).last
 
 
+    if current_user
+      @curr_user=current_user
+      if !@curr_user.person_view.blank?
+        @viewers_name=@curr_user.person_view
+        @person_name=@viewers_name.split('|').last
+        @person=@person_name.split(':').first.to_i + 1
+        @viewing=@person.to_s+':'+@user.name
+        current_user.person_view=@viewers_name +'|'+@viewing
+      else
+        @curr_user.person_view="1:#{User.find(params[:id]).name}"
+      end
+      @curr_user.save
+    end
+
+
+
     if @user!=current_user
       if !@user.viewers_name.blank?
         @viewers_name=@user.viewers_name
