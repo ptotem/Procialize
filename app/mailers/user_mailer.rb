@@ -2,7 +2,7 @@ class UserMailer < ActionMailer::Base
   default :from => "arijit@ptemplar.com"
   def registration_confirmation(user)
     @invitee=user
-    mail(:to => user.email, :subject => "Start interacting with exhibitors, delegates and speakers of CORCON 2013 Now!")
+    mail(:to => user.email, :subject => "Start interacting with delegates and speakers of CII’s PHARMA SUMMIT 2013 Now!!")
   end
 
   #def unapproval_notice(user)
