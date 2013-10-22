@@ -588,6 +588,22 @@ class DesktopViewController < ApplicationController
     end
 
   end
+
+
+
+  def profile_download
+      #@curr_user=current_user
+      #if !@curr_user.person_view.blank?
+      #  @viewers_name=@curr_user.profile_dwnld
+      #  @person_name=@viewers_name.split('|').last
+      #  @person=@person_name.split(':').first.to_i + 1
+      #  @viewing=@person.to_s+':'+@user.name
+      #  current_user.person_view=@viewers_name +'|'+@viewing
+      #else
+      #  @curr_user.person_view="1:#{User.find(params[:id]).name}"
+      #end
+      #@curr_user.save
+  end
   #-------------end of delegates-------------------#
 
 

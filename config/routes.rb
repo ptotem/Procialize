@@ -209,6 +209,7 @@ ProcializeApp::Application.routes.draw do
 
   #----------Graffiti-------------#
   match '/desktop_graffiti', :to => "desktop_view#desktop_graffiti", :as => "desktop_graffiti"
+  match '/profile_download', :to => "desktop_view#profile_download", :as => "profile_download"
   #----------Graffiti-------------#
 
 
