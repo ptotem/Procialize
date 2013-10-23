@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "arijit@ptemplar.com"
+  default :from => '"CII - Team Procialize" <arijit@ptemplar.com>'
   def registration_confirmation(user)
     @invitee=user
     mail(:to => user.email, :subject => "Start interacting with delegates and speakers of CII PHARMA SUMMIT Now!")
