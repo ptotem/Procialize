@@ -44,7 +44,7 @@
       <%= link_to image_tag("linkedin.png", :style => "width:100%;"), user_omniauth_authorize_path(:linkedin), :'data-ajax' => false %>
       <%#= link_to image_tag("facebook_logo.png", :style => "width:100%;"), '/users/auth/facebook', :'data-ajax'=>false %>
       <p style="color: #f5f5f5;">Powered by:</p>
-      <%= image_tag Logos.first.oragnizer_pic.url,:style => "max-width:250px;"  rescue "" %>
+      <%= image_tag Logos.first.oragnizer_pic.url,:style => "max-width:100%;"  rescue "" %>
   <% end %>
 </div>
 
