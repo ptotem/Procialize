@@ -2,35 +2,96 @@
     Events
 <% end %>
 
+<script type="text/javascript">
+
+
+    $(function () {
+        $("select#genres_select").prop('selectedIndex', 0);
+        $("select#artists_select").prop('selectedIndex', 0);
+        event_default();
+
+
+        $(document).ready(function () {
+            $('#artists_select').prop("disabled", true);
+            $('#songs_select').prop("disabled", true);
+            $('#categoriesContent').hide();
+            $('#genres_select').change(function () {
+                var data = {event_day_id:[]}
+                data["event_day_id"].push($('#genres_select').val());
+                $.getJSON("/update_artists/"+ data["event_day_id"], function(data) {
+                    $('#artists_select').empty();
+                    $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
+                    $.each(data, function(key, val) {
+                        val=val.split('|');
+                        $('#artists_select').append($('<option>', {
+                            value:val[0],
+                            text:val[1]
+                        }));
+
+                    });
+                    $('#artists_select').prop("disabled", false);
+                    $('#songs_select').prop("disabled", true);
+                    $('#categoriesContent').hide();
+                });
+            });
+            $('#artists_select').change(function () {
+                var data = {event_id:[]}
+                data["event_id"].push($('#artists_select').val());
+                $.getJSON("/update_songs/"+ data["event_id"], function(data) {
+                    $('#categoriesContent ul').html("");
+                    $.each(data, function(key, val) {
+                        val=val.split('|');
+                        $('#categoriesContent').show();
+                        $('#categoriesContent ul').append('<li><a href="/events/'+ val [0]+'" data-ajax=false><h3>'+ val[1] +'</h3><p class="ui-li-aside">'+ val[2] +'</p></a></li>');
+                        $('#categoriesContent ul').listview('refresh');
+
+                    });
+
+                });
+
+            });
+
+        });
+    });
+
+
+    function event_default(){
+        var data = {event_id:[]}
+        data["event_id"].push($('#artists_select').val());
+        $.getJSON("/update_songs/"+ data["event_id"], function(data) {
+            $('#categoriesContent ul').html("");
+            $.each(data, function(key, val) {
+                val=val.split('|');
+                $('#categoriesContent').show();
+                $('#categoriesContent ul').append('<li><a href="/events/'+ val [0]+'" data-ajax=false><h3>'+ val[1] +'</h3><p class="ui-li-aside">'+ val[2] +'</p></a></li>');
+                $('#categoriesContent ul').listview('refresh');
+            });
+
+        });
+    }
+
+
+
+
+
+
+
+
+
+</script>
+
+<%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:id => 'Select Event Day'}, {:id => 'genres_select'}) %>
+<br/>
+<%= collection_select(nil, :event_id, @events, :id, :name, {:id => 'Select Track Day'}, {:id => 'artists_select'}) %>
+<br>
 
 
 
 <div data-role="content" id="categoriesContent">
   <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b">
     <h4>Event List</h4>
-    <% Track.all.each do |e| %>
-     <li>
-       <a href="/events/<%= e.id %>" data-ajax=false>
-         <p><%= e.name.truncate(40) %></p>
-         <p class="ui-li-aside"><%= e.start %></p>
-       </a>
-     </li>
-    <% end %>
   </ul>
 </div>
-
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-41279198-1', '127.0.0.1:3000');
-    ga('send', 'pageview');
-
-</script>
-
 
 
 

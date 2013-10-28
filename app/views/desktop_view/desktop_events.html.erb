@@ -1,6 +1,77 @@
 <%= content_for :jj do %>
     <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"
             xmlns="http://www.w3.org/1999/html"></script>
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            $("select#genres_select").prop('selectedIndex', 1);
+            $("select#artists_select").prop('selectedIndex', 1);
+            event_default();
+
+
+            $(document).ready(function () {
+                $('#artists_select').prop("disabled", true);
+                $('#songs_select').prop("disabled", true);
+                $('#categoriesContent').hide();
+                $('#genres_select').change(function () {
+                    var data = {event_day_id:[]}
+                    data["event_day_id"].push($('#genres_select').val());
+                    $.getJSON("desktop_view/update_track/"+ data["event_day_id"], function(data) {
+                        $('#artists_select').empty();
+                        $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
+                        $.each(data, function(key, val) {
+                            val=val.split('|');
+                            $('#artists_select').append($('<option>', {
+                                value:val[0],
+                                text:val[1]
+                            }));
+
+
+                        });
+                        $('#artists_select').prop("disabled", false);
+                        $('#songs_select').prop("disabled", true);
+                        $('#categoriesContent').hide();
+                    });
+                });
+                $('#artists_select').change(function () {
+                    var data = {event_id:[]}
+                    data["event_id"].push($('#artists_select').val());
+                    $.getJSON("desktop_view/update_event/"+ data["event_id"], function(data) {
+                        $('#categoriesContent ul').html("");
+                        $.each(data, function(key, val) {
+                            val=val.split('|');
+                            $('#categoriesContent').show();
+                            $('#categoriesContent ul').append('<li><a href="/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
+//                            $('#categoriesContent ul').append('<li><a href="http://localhost:3000/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
+
+                        });
+
+                    });
+
+                });
+
+            });
+        });
+        function event_default(){
+            var data = {event_id:[]}
+            data["event_id"].push($('#artists_select').val());
+            $.getJSON("desktop_view/update_event/"+ data["event_id"], function(data) {
+                $('#categoriesContent ul').html("");
+                $.each(data, function(key, val) {
+                    val=val.split('|');
+                    $('#categoriesContent').show();
+                    $('#categoriesContent ul').append('<li><a href="/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
+//                $('#categoriesContent ul').append('<li><a href="http://localhost:3000/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
+
+                });
+
+            });
+        }
+    </script>
+
 <% end %>
 
 
@@ -10,40 +81,7 @@
     <div class="span7">
       <div class="row-fluid">
         <div class="span12">
-          <div style="margin-bottom: 20px;">
-            <div class="big-button-bar">
-              <a class="button large eventer" href="/desktop_events">
-                <i class=" icon-calendar "></i>
-                <span>Events</span>
-              </a>
-
-
-              <a class="button large delegater" href="/delegates_search">
-                <i class="icon-group"></i>
-                <span>Delegates</span>
-              </a>
-
-              <a class="button large speakinger" href="/desktop_speaker">
-                <i class="icon-user"></i>
-                <span>Speakers</span>
-              </a>
-
-              <a class="button large questioner" href="/desktop_ask_question">
-                <i class="icon-question-sign "></i>
-                <span>Questions</span>
-              </a>
-
-              <!--<a class="button large feedbacker" href="/desktop_ratings">-->
-                <!--<i class="icon-volume-up"></i>-->
-                <!--<span>Feedback</span>-->
-              <!--</a>-->
-
-              <a class="button large downloadables" href="/desktop_assets_download">
-                <i class=" icon-folder-open"></i>
-                <span>Download</span>
-              </a>
-            </div>
-          </div>
+          <%= render :partial => "list" %>
         </div>
       </div>
 
@@ -54,45 +92,40 @@
           Events
           <% if params[:desk]  %>
               <script type="text/javascript">
-                 $(function(){
-                     $.gritter.add({
-                         title: 'Hi <% unless current_user.name.nil? %>  <%= current_user.name.titlecase %> <% end %>',
-                         text: 'you have  signed in successfully',
-                         image: '/assets/testing/dashboard/stylesheets/success.png',
+                  $(function(){
+                      $.gritter.add({
+                          title: 'Hi <% unless current_user.name.nil? %>  <%= current_user.name.titlecase %> <% end %>',
+                          text: 'you have  signed in successfully',
+                          image: '/assets/testing/dashboard/stylesheets/success.png',
 //                         image: 'http://localhost:3000/assets/testing/dashboard/stylesheets/success.png',
-                         sticky: false,
-                         before_open: function(){
-                             if($('.gritter-item-wrapper').length == 3)
-                             {
-                                 return false;
-                             }
-                         }
-                     });
-                 });
+                          sticky: false,
+                          before_open: function(){
+                              if($('.gritter-item-wrapper').length == 3)
+                              {
+                                  return false;
+                              }
+                          }
+                      });
+                  });
               </script>
           <% end %>
         </div>
         <ul class="recent-comments">
           <li class="separator">
-            <br>
             <ul>
-              <% Track.all.each do |e| %>
-                  <div class="nav-menu box" id="categoriesContent">
-                    <ul class="nav nav-list">
-                      <li>
-                            <a href="/events_show/<%= e.id %>">
-                              <h6>
-                                <%= e.name %>
-                                <span class="pull-right badge black"><%= e.start %></span>
-                              </h6>
-                            </a>
-                      </li>
-                    </ul>
-                  </div>
-              <% end %>
+              <%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %>
+              <br/>
+              <%= collection_select(nil, :event_id, @events, :id, :name, {:prompt => "Select the Track Day"}, {:id => 'artists_select'}) %>
+              <br/>
+
+              <div class="nav-menu box" id="categoriesContent">
+                <ul class="nav nav-list">
+
+                </ul>
+              </div>
             </ul>
           </li>
-         </ul>
+        </ul>
       </div>
     </div>
     <!----------------------End of events------------------------------>
@@ -112,7 +145,7 @@
     <div class="span5">
       <div class="row-fluid">
         <div class="span12">
-           <%= render :partial => "splash_zone" %>
+          <%= render :partial => "splash_zone" %>
         </div>
       </div>
     </div>
@@ -127,18 +160,6 @@
 
 
   </div>
-
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-41279198-1', '127.0.0.1:3000');
-      ga('send', 'pageview');
-
-  </script>
-
 </div>
 
 
