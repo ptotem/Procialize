@@ -20,7 +20,7 @@
             <div class="user-info"> Posted
               by <%= link_to post.user.name.titlecase, delegate_profile_index_path(post.user) %>
               at <%= post.created_at %> </div>
-            <div class="user-content">"<%= post.name.truncate(10) %>"</div>
+            <div class="user-content">"<%= post.name.truncate(40) %>"</div>
           </div>
         </li>
     <% end %>
