@@ -30,9 +30,9 @@
       <% @user.recommend.split(", ").each do |r| %>
           <%#= @user_new<<User.find_by_name(r) %>
           <% @reco= User.find_by_name(r)%>
-          <% @user_new << @reco %>
+          <%# @user_new << @reco %>
           <li>
-            <%= @reco.name.titlecase %>
+            <%= @reco.name.titlecase rescue nil? %>
             <% if !@reco.company.blank? %>
                 from <%= @reco.company %>
             <% end %>
