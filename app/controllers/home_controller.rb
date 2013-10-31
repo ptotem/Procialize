@@ -166,9 +166,6 @@ class HomeController < ApplicationController
 
 
 
-
-
-
   def send_mail_to_recommended_users
     @users = params[:user_id]
     @user=Array.new
@@ -176,32 +173,34 @@ class HomeController < ApplicationController
     @user_recommend=Array.new
     @users.each do |i|
       @user=User.find(i)
-      if @user.interest != ""
-        @user_in=User.find_all_by_industry(@user.interest).shuffle[0..3].map { |i| i.name }
-        @user_in.delete(@user.name)
-          if @user_in.count<=1
-            @user_in<<User.all.shuffle[0..3].map { |i| i.name }
-            @user_in.uniq.delete(@user.name)
-            @user_in=@user_in.flatten
-          end
-
-      elsif @user.interest="" and @user.industry != ""
-        @user_in=User.find_all_by_industry(@user.industry).shuffle[0..3].map { |i| i.name }
-        @user_in.delete(@user.name)
-          if @user_in.count<=1
-            @user_in<<User.all.shuffle[0..3].map { |i| i.name }
-            @user_in.uniq.delete(@user.name)
-            @user_in=@user_in.flatten
-          end
+      #if @user.interest != ""
+      # @user_in=User.find_all_by_industry(@user.interest).shuffle[0..3].map { |i| i.name }
+      # @user_in.delete(@user.name)
+      # if @user_in.count<=1
+      # @user_in<<User.all.shuffle[0..3].map { |i| i.name }
+      # @user_in.uniq.delete(@user.name)
+      # @user_in=@user_in.flatten
+      # end
       #
-      elsif @user.interest="" and @user.industry="" and @user.location !=""
+      #elsif @user.interest="" and @user.industry != ""
+      # @user_in=User.find_all_by_industry(@user.industry).shuffle[0..3].map { |i| i.name }
+      # @user_in.delete(@user.name)
+      # if @user_in.count<=1
+      # @user_in<<User.all.shuffle[0..3].map { |i| i.name }
+      # @user_in.uniq.delete(@user.name)
+      # @user_in=@user_in.flatten
+      # end
+
+      #elsif @user.interest="" and @user.industry="" and @user.location !=""
+      #if @user.interest="" and @user.industry="" and @user.location !=""
+      if @user.location !=""
         @user_in=User.find_all_by_location(@user.location).shuffle[0..3].map { |i| i.name }
         @user_in.delete(@user.name)
-           if @user_in.count<=1
-             @user_in<<User.all.shuffle[0..3].map { |i| i.name }
-             @user_in.delete(@user.name)
-             @user_in=@user_in.flatten.uniq
-           end
+        if @user_in.count<=1
+          @user_in<<User.all.shuffle[0..3].map { |i| i.name }
+          @user_in.delete(@user.name)
+          @user_in=@user_in.flatten.uniq
+        end
       else
         @user_in=User.all.shuffle[0..3].map { |i| i.name }.uniq
         @user_in.delete(@user.name)
@@ -215,6 +214,56 @@ class HomeController < ApplicationController
     render :text => @user_recommend.map {|i| "#{i.name}=>#{i.recommend}"}
     return
   end
+
+
+
+
+
+  #def send_mail_to_recommended_users
+  #  @users = params[:user_id]
+  #  @user=Array.new
+  #  @user_in_new=Array.new
+  #  @user_recommend=Array.new
+  #  @users.each do |i|
+  #    @user=User.find(i)
+  #    if @user.interest != ""
+  #      @user_in=User.find_all_by_industry(@user.interest).shuffle[0..3].map { |i| i.name }
+  #      @user_in.delete(@user.name)
+  #        if @user_in.count<=1
+  #          @user_in<<User.all.shuffle[0..3].map { |i| i.name }
+  #          @user_in.uniq.delete(@user.name)
+  #          @user_in=@user_in.flatten
+  #        end
+  #
+  #    elsif @user.interest="" and @user.industry != ""
+  #      @user_in=User.find_all_by_industry(@user.industry).shuffle[0..3].map { |i| i.name }
+  #      @user_in.delete(@user.name)
+  #        if @user_in.count<=1
+  #          @user_in<<User.all.shuffle[0..3].map { |i| i.name }
+  #          @user_in.uniq.delete(@user.name)
+  #          @user_in=@user_in.flatten
+  #        end
+  #    elsif @user.interest="" and @user.industry="" and @user.location !=""
+  #      @user_in=User.find_all_by_location(@user.location).shuffle[0..3].map { |i| i.name }
+  #      @user_in.delete(@user.name)
+  #         if @user_in.count<=1
+  #           @user_in<<User.all.shuffle[0..3].map { |i| i.name }
+  #           @user_in.delete(@user.name)
+  #           @user_in=@user_in.flatten.uniq
+  #         end
+  #    else
+  #      @user_in=User.all.shuffle[0..3].map { |i| i.name }.uniq
+  #      @user_in.delete(@user.name)
+  #      @user_in=@user_in.flatten.uniq
+  #    end
+  #    @user.recommend=@user_in.to_s.gsub(/"/, "").gsub("[", "").gsub("]", "")
+  #    @user_recommend<<@user
+  #    @user.recommend_select=true
+  #    @user.save
+  #  end
+  #  render :text => @user_recommend.map {|i| "#{i.name}=>#{i.recommend}"}
+  #  return
+  #end
 
 
   def survey_storing
