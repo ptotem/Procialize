@@ -2,12 +2,12 @@
   <div class="tab-header">
     Event Wall
   </div>
+
   <ul class="recent-comments" style="list-style: none;">
     <% @conference=Conference.last %>
     <% @user=current_user %>
     <% @graffiti=(User.all-(Follower.find_all_by_user_id_and_conference_id(@user.id, @conference.id).map { |f| User.find(f.follower_id) })-[current_user]-Organizer.all.map { |o| o.user }).map { |u| u.posts }.flatten.last(30).sort_by(&:created_at).reverse %>
     <% @graffiti.each do |post| %>
-
         <li class="separator">
           <div class="avatar pull-left">
             <% if post.user.picture.blank? %>
@@ -20,7 +20,7 @@
             <div class="user-info"> Posted
               by <%= link_to post.user.name.titlecase, delegate_profile_index_path(post.user) %>
               at <%= post.created_at %> </div>
-            <div class="user-content">"<%= post.name.truncate(10) %>"</div>
+            <div class="user-content">"<%= post.name.truncate(60) %>"</div>
           </div>
         </li>
     <% end %>

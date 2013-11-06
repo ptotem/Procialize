@@ -2,9 +2,6 @@
     Meeting
 <% end %>
 
-<%= content_for :page_menu do %>
-
-<% end %>
 
 <h3>
   <table class="index_styling">
@@ -13,21 +10,15 @@
       <td class="normtd"><%= @meeting.user.name.titlecase %></td>
     </tr>
 
-    <%# if !@meeter.status.nil? %>
     <tr>
       <td class="headtd">Confirmed:</td>
-      <!--<td class="normtd"><%#= ((@meeting.meeters.select { |m| m.status }.map { |m| m.user.name }).delete_if { |n| n==current_user.name }).join(", ") %></td>-->
       <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status }.map { |m| m.user.name })).join(", ") %></td>
     </tr>
-    <%# end %>
 
-    <%# if @meeter.status.nil? %>
     <tr>
       <td class="headtd">Tentative:</td>
-      <!--<td class="normtd"><%#= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name }).delete_if { |n| n==current_user.name }).join(", ") %></td>-->
       <td class="normtd"><%= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name })).join(", ") %></td>
     </tr>
-      <%# end %>
 
     <tr>
       <td class="headtd">Scheduled:</td>
@@ -53,25 +44,10 @@
 <% else %>
     <% if @meeter.status.nil? %>
         <%= link_to "Accept", accept_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false,:'data-mini' => true %>
-        <%#= link_to "Decline", decline_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
-        <%# elsif @meeter.status %>
-        <%#= link_to "Decline", decline_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
-        <!--<h1>Accepted</h1>-->
-        <%# else %>
-        <%#= link_to "Accept", decline_meeting_path(@meeting), :'data-role' => "button", :'data-ajax' => false %>
-        <!--<h1>Declined</h1>-->
     <% end %>
 <% end %>
 
 
-<!--<div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true">-->
-<!--<div data-role="navbar" data-theme='a'>-->
-<!--<ul>-->
-<!--<li><a href="/meetings/new" data-ajax='false'>New</a></li>-->
-<!--<li><a href="/meetings" data-ajax='false'>Meetings</a></li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--</div>-->
 
 
 <script>

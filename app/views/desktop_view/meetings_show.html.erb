@@ -1,122 +1,82 @@
-
-
-
 <%= content_for :jj do %>
     <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"></script>
-
     <%= javascript_include_tag "jquery.dataTables.min" %>
-
-
 <% end %>
 
 
 
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span7">
-      <div class="row-fluid">
+        <div class="span7">
+          <div class="row-fluid">
+            <%= render :partial => "list" %>
+          </div>
 
-        <%= render :partial => "list" %>
-        </div>
+          <!----------------------Start of meetings_show------------------------------>
 
+          <div class="black-box tex" >
+            <div class="tab-header">
+              <% if params[:open] %>Meetings Requested<% end %>
+              <% if params[:pending] %>Meetings Pending for Acceptance<% end %>
+              <% if params[:scheduled] %>Scheduled Meetings<% end %>
+            </div>
+            <ul class="recent-comments">
+              <li class="separator">
+                <h5>
+                  <table>
+                    <tr>
+                      <td class="headtd">Requestor:-</td>
+                      <td class="normtd">&nbsp;&nbsp;<%= @meeting.user.name.titlecase %></td>
+                    </tr>
+                    <tr>
+                      <td class="headtd">Confirmed:-</td>
+                      <td class="normtd">&nbsp;&nbsp;<%= ((@meeting.meeters.select { |m| m.status }.map { |m| m.user.name })).join(", ") %></td>
+                    </tr>
+                    <tr>
+                      <td class="headtd">Tentative:-</td>
+                      <td class="normtd">&nbsp;&nbsp;<%= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name })).join(", ") %></td>
+                    </tr>
+                    <tr>
+                      <td class="headtd">Scheduled:-</td>
+                      <td class="normtd">&nbsp;&nbsp;at <%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
+                    </tr>
+                    <tr>
+                      <td class="headtd">Location:-</td>
+                      <td class="normtd">&nbsp;&nbsp;<%= Location.find(@meeting.location).name %></td>
+                    </tr>
+                  </table>
+                </h5>
 
-
-
-
-
-
-
-      <!----------------------Start of meetings_show------------------------------>
-
-      <div class="black-box tex" >
-        <div class="tab-header">
-          <% if params[:open] %>
-              Meetings Requested
-          <% end %>
-          <% if params[:pending] %>
-              Meetings Pending for Acceptance
-          <% end %>
-          <% if params[:scheduled] %>
-              Scheduled Meetings
-          <% end %>
-        </div>
-        <ul class="recent-comments">
-          <li class="separator">
-            <h5>
-              <table>
-                <tr>
-                  <td class="headtd">Requestor:-</td>
-                  <td class="normtd">&nbsp;&nbsp;<%= @meeting.user.name.titlecase %></td>
-                </tr>
-                <tr>
-                  <td class="headtd">Confirmed:-</td>
-                  <td class="normtd">&nbsp;&nbsp;<%= ((@meeting.meeters.select { |m| m.status }.map { |m| m.user.name })).join(", ") %></td>
-                </tr>
-                <tr>
-                  <td class="headtd">Tentative:-</td>
-                  <td class="normtd">&nbsp;&nbsp;<%= ((@meeting.meeters.select { |m| m.status.nil? }.map { |m| m.user.name })).join(", ") %></td>
-                </tr>
-                <tr>
-                  <td class="headtd">Scheduled:-</td>
-                  <td class="normtd">&nbsp;&nbsp;at <%= @meeting.start_time %> hrs on <%= @meeting.start_time.strftime("%m/%d/%Y") %></td>
-                </tr>
-                <tr>
-                  <td class="headtd">Location:-</td>
-                  <td class="normtd">&nbsp;&nbsp;<%= Location.find(@meeting.location).name %></td>
-                </tr>
-
-
-              </table>
-            </h5>
-
-            <% unless @meeting.name.blank? %>
-                <div class="padded" style="min-height: 5em; border:solid 1px black; border-radius: 5px;background: white;color:black;">
-                  <%= @meeting.name %>
-                </div>
-            <% end %>
-            <% if @meeting.user==current_user %>
-                <%#= link_to "Cancel",@meeting, :method => :delete, :'data-role' => "button" %>
-            <% else %>
-                <br>
-                <% if @meeter.status.nil? %>
-                    <%= link_to "Accept", meetings_accept_path(@meeting),:class=>"button gray",:style=>"width:15%;" %>
+                <% unless @meeting.name.blank? %>
+                    <div class="padded" style="min-height: 5em; border:solid 1px black; border-radius: 5px;background: white;color:black;"><%= @meeting.name %></div>
                 <% end %>
-            <% end %>
-          </li>
-        </ul>
 
-      </div>
-      <!----------------------End of meetings_show------------------------------>
-
-
-
-
-    </div>
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "event_wall" %>
+                <% if @meeting.user==current_user %>
+                    <%#= link_to "Cancel",@meeting, :method => :delete, :'data-role' => "button" %>
+                <% else %><br>
+                    <% if @meeter.status.nil? %><%= link_to "Accept", meetings_accept_path(@meeting),:class=>"button gray",:style=>"width:15%;" %><% end %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+          <!----------------------End of meetings_show------------------------------>
         </div>
-      </div>
-    </div>
 
-
-    <!-------------------------->
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "splash_zone" %>
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "event_wall" %>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-
-
-
-
-
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "splash_zone" %>
+            </div>
+          </div>
+        </div>
   </div>
 
   <script>

@@ -1,107 +1,80 @@
 <%= content_for :jj do %>
-    <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"
-            xmlns="http://www.w3.org/1999/html"></script>
-    <%#= javascript_include_tag "jquery.collapse" %>
+    <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript" xmlns="http://www.w3.org/1999/html"></script>
     <%= stylesheet_link_tag "jquery-ui-1.10.3.custom.min" %>
-    <script type="text/javascript">
-
-    </script>
-
-
-
 <% end %>
 
 
 
 <div class="container-fluid">
-<div class="row-fluid">
-<div class="span7">
-  <%= render :partial => "list" %>
+    <div class="row-fluid">
+        <div class="span7">
+          <%= render :partial => "list" %>
 
-
-  <div class="black-box tex" id="events">
-    <div class="tab-header">
-      Speakers
-    </div>
-    <ul class="recent-comments">
-      <li class="separator">
-
-        <script>
-            $(function () {
-                $("#accordion").accordion({
-                    active:true,
-                    collapsible:true
-                });
-            });
-        </script>
-
-        <div id="accordion">
-          <% @speak.sort_by(&:name).each do |s| %>
-              <h5> <%= s.name %></h5>
-              <div>
-                <p style="color: white;">
-                <table>
-                  <tr>
-                    <% if !image_tag s.avatar.blank? %>
-                    <td style="vertical-align: top;"><%= image_tag s.avatar.url, :style => 'max-height:100px;max-width:100px;margin:10px;' %></td>
-                   <% end %>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <div style="color: #ffffff;">
-                        <% TrackSpeaker.find_all_by_speaker_id(s.id).each_with_index do |s, index| %>
-                            <% unless Track.find(s.track_id).nil? %>
-                                <% if index==0 %>
-                                    Speaking at:-
-                                <% end %>
-                                <% if index != 0 %>
-                                    ,
-                                <% end %>
-                                <%= Track.find(s.track_id).name %>
-                            <% end %>
-                        <% end %>
-                        <hr>
-                 <span style="text-shadow: none;font-size: 1em;color: #ffffff;">
-                   <%= raw s.speaker_details %>
-                 </span>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-                </p>
-
-              </div>
-          <% end %>
+          <div class="black-box tex" id="events">
+            <div class="tab-header">Speakers</div>
+            <ul class="recent-comments">
+                <li class="separator">
+                    <div id="accordion">
+                      <% @speak.sort_by(&:name).each do |s| %>
+                          <h5> <%= s.name %></h5>
+                          <div>
+                            <p style="color: white;">
+                            <table>
+                              <tr><% if !image_tag s.avatar.blank? %><td style="vertical-align: top;"><%= image_tag s.avatar.url, :style => 'max-height:100px;max-width:100px;margin:10px;' %></td><% end %></tr>
+                              <tr>
+                                <td>
+                                  <div style="color: #ffffff;">
+                                    <% TrackSpeaker.find_all_by_speaker_id(s.id).each_with_index do |s, index| %>
+                                        <% unless Track.find(s.track_id).nil? %>
+                                            <% if index==0 %>Speaking at:-<% end %>
+                                            <% if index != 0 %>,<% end %>
+                                            <%= Track.find(s.track_id).name %>
+                                        <% end %>
+                                    <% end %>
+                                    <hr>
+                                     <span style="text-shadow: none;font-size: 1em;color: #ffffff;">
+                                       <%= raw s.speaker_details %>
+                                     </span>
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                            </p>
+                          </div>
+                      <% end %>
+                    </div>
+                </li>
+            </ul>
+          </div>
         </div>
 
 
-      </li>
-    </ul>
-  </div>
-</div>
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "event_wall" %>
+            </div>
+          </div>
+        </div>
 
-
-<div class="span5">
-  <div class="row-fluid">
-    <div class="span12">
-      <%= render :partial => "event_wall" %>
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "splash_zone" %>
+            </div>
+          </div>
+        </div>
     </div>
-  </div>
-</div>
-
-<div class="span5">
-  <div class="row-fluid">
-    <div class="span12">
-      <%= render :partial => "splash_zone" %>
-    </div>
-  </div>
-</div>
 
 
-
-
-</div>
+  <script type="text/javascript">
+      $(function () {
+          $("#accordion").accordion({
+              active:true,
+              collapsible:true
+          });
+      });
+  </script>
 
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

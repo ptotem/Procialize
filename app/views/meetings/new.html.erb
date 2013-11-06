@@ -43,12 +43,6 @@
 </style>
 
 
-
-
-
-
-
-
 <%= form_for :meeting, :html => {:id => "meeting_form"}, :url => {:action => :create} do |f| %>
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -66,15 +60,10 @@
       <%= f.select :location, options_for_select(@conference.locations.map { |l| [l.name, l.id] }), :'data-mini' => true, :prompt => "Select Location" %>
     </div>
 
-    <!--<div id="location_text" style="display:none"><textarea rows="4" cols="5"></textarea></div>-->
 
     <div class="field" style="font-size: 0.8em;">
       <%= f.text_field :name, :placeholder => "Enter meeting agenda", :'data-mini' => true %>
     </div>
-
-    <%#= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false", :'data-mini' => true %>
-
-
 
 <% end %>
 

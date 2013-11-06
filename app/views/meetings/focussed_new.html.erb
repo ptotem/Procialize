@@ -35,19 +35,7 @@
 
         }) ;
 
-
-
-
-
     </script>
-<% end %>
-
-
-
-
-
-<%= content_for :page_menu do %>
-
 <% end %>
 
 
@@ -70,11 +58,10 @@
     <div class="field">
       <%= f.time_select :start_time,
                         :combined => true,
-                        #:default => Time.now.change(:hour => 11, :min => 30),
                         :minute_interval => 30,
                         :time_separator => "",
-                        :start_hour => 00,
-                        :end_hour => 23,:prompt => "Select Time" %>
+                        :start_hour => 10,
+                        :end_hour => 17,:prompt => "Select Time" %>
     </div>
      <br>
 
@@ -85,7 +72,6 @@
 
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
       <a class="index_styling" href="#" data-ajax=false data-role="button" class="form_btn" id="form_btn_id" data-mini="true">Send</a>
-      <%#= f.submit "Send", :'data-role' => "button"%>
     </div>
 
 <% end %>

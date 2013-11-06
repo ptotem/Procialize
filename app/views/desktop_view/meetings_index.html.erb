@@ -1,183 +1,106 @@
 <%= content_for :jj do %>
-    <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"
-            xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"></script>
-    <%#= javascript_include_tag "jquery.collapse" %>
+    <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"></script>
     <%= stylesheet_link_tag "jquery-ui-1.10.3.custom.min" %>
-    <script type="text/javascript">
-
-
-        $(function () {
-            $(document).ready(function () {
-                $('#artists_select').hide();
-                $('#songs_select').hide();
-                $('#categoriesContent').hide();
-                $('#genres_select').change(function () {
-                    var data = {event_day_id:[]}
-                    data["event_day_id"].push($('#genres_select').val());
-                    $.getJSON("desktop_view/update_track/"+ data["event_day_id"], function(data) {
-                        $('#artists_select').empty();
-                        $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
-                        $.each(data, function(key, val) {
-                            val=val.split('|');
-                            $('#artists_select').append($('<option>', {
-                                value:val[0],
-                                text:val[1]
-                            }));
-
-
-                        });
-                        $('#artists_select').show();
-                        $('#songs_select').hide();
-                        $('#categoriesContent').hide();
-                    });
-                });
-                $('#artists_select').change(function () {
-                    var data = {event_id:[]}
-                    data["event_id"].push($('#artists_select').val());
-                    $.getJSON("desktop_view/update_event/"+ data["event_id"], function(data) {
-                        $('#categoriesContent ul').html("");
-                        $.each(data, function(key, val) {
-                            val=val.split('|');
-                            $('#categoriesContent').show();
-                            $('#categoriesContent ul').append('<li><a href="http://proconf.ptotemy.com/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
-//                            $('#categoriesContent ul').append('<li><a href="http://localhost:3000/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
-
-                        });
-
-                    });
-
-                });
-
-            });
-        });
-
-    </script>
-
-
-
 <% end %>
 
 
 
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span7">
       <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "list" %>
-        </div>
-      </div>
-
-
-
-
-
-
-
-
-
-
-      <!----------------------Start of Meetings------------------------------>
-      <div class="black-box tex" id="events">
-        <div class="tab-header">
-          Meetings
-        </div>
-        <ul class="recent-comments">
-          <li class="separator">
-            <%= link_to "Create New","/meetings_new", :class => "button gray",:style=>"float:right;width:15%;" %>
-            <br>
-            <br>
-
-            <script>
-                $(function() {
-                    $( "#accordion" ).accordion({
-                        active: false,
-                        collapsible: true
-                    });
-                });
-            </script>
-
-            <div id="accordion">
-              <h5 style="font-size: 1em;">Scheduled Meetings <span class="pull-right badge black"><%= @scheduled.size %></span></h5>
-
-              <div>
-                <% @scheduled.each do |meeting| %>
-                    <p>
-                      <a href="<%= meetings_show_path(meeting) %>?scheduled=true">
-                        <%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %> , invited by
-                        <%= ((meeting.meeters.select{|m| m.status}.map{|m| m.user.name} << meeting.user.name).delete_if{|n| n==current_user.name}).join(", ") %>
-                        regarding "<%= meeting.name.truncate(20) %>"
-                      </a>
-                    </p>
-                    <hr>
-                <% end %>
+            <div class="span7">
+              <div class="row-fluid">
+                <div class="span12">
+                  <%= render :partial => "list" %>
+                </div>
               </div>
 
-              <h5 style="font-size: 1em;">Pending Invitations <span class="pull-right badge black"><%= @pending.size %></span></h5>
-              <div>
-                <% @pending.each do |meeting| %>
-                    <p>
-                      <a href="<%= meetings_show_path(meeting) %>?pending=true">
-                        <%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %> , invited by
-                        <%= ((meeting.meeters.select{|m| m.status}.map{|m| m.user.name} << meeting.user.name).delete_if{|n| n==current_user.name}).join(", ") %>
-                        regarding "<%= meeting.name.truncate(20) %>"
-                      </a>
-                    </p>
-                    <hr>
-                <% end %>
+              <!----------------------Start of Meetings------------------------------>
+              <div class="black-box tex" id="events">
+                <div class="tab-header">Meetings</div>
+                <ul class="recent-comments">
+                  <li class="separator">
+                    <%= link_to "Create New","/meetings_new", :class => "button gray",:style=>"float:right;width:15%;" %><br><br>
+                    <div id="accordion">
+                      <h5 style="font-size: 1em;">Scheduled Meetings <span class="pull-right badge black"><%= @scheduled.size %></span></h5>
+                      <div>
+                        <% @scheduled.each do |meeting| %>
+                            <p>
+                              <a href="<%= meetings_show_path(meeting) %>?scheduled=true">
+                                <%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %> , invited by
+                                <%= ((meeting.meeters.select{|m| m.status}.map{|m| m.user.name} << meeting.user.name).delete_if{|n| n==current_user.name}).join(", ") %>
+                                regarding "<%= meeting.name.truncate(20) %>"
+                              </a>
+                            </p>
+                            <hr>
+                        <% end %>
+                      </div>
 
+                      <h5 style="font-size: 1em;">Pending Invitations <span class="pull-right badge black"><%= @pending.size %></span></h5>
+                      <div>
+                        <% @pending.each do |meeting| %>
+                            <p>
+                              <a href="<%= meetings_show_path(meeting) %>?pending=true">
+                                <%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %> , invited by
+                                <%= ((meeting.meeters.select{|m| m.status}.map{|m| m.user.name} << meeting.user.name).delete_if{|n| n==current_user.name}).join(", ") %>
+                                regarding "<%= meeting.name.truncate(20) %>"
+                              </a>
+                            </p>
+                            <hr>
+                        <% end %>
+
+                      </div>
+
+                      <h5 style="font-size: 1em;">Sent Request<span class="pull-right badge black"><%= @open.size %></span></h5>
+                      <div>
+                        <% @open.each do |meeting| %>
+                            <p style="color: white;">
+                              <a href="<%= meetings_show_path(meeting) %>?open=true">
+                                <%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %>
+                                , you invited - <%= meeting.meeters.map{|m| m.user.name}.join(", ") %>
+                                regarding "<%= meeting.name.truncate(20) %>"
+                              </a>
+                            </p>
+                            <hr>
+                        <% end %>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <h5 style="font-size: 1em;">Sent Request<span class="pull-right badge black"><%= @open.size %></span></h5>
+              <!----------------------End of Meetings------------------------------>
+            </div>
 
-              <div>
-                <% @open.each do |meeting| %>
-                    <p style="color: white;">
-                      <a href="<%= meetings_show_path(meeting) %>?open=true">
-                        <%= meeting.start_time %> hrs on <%= meeting.start_time.strftime("%d %b") %>
-                        , you invited - <%= meeting.meeters.map{|m| m.user.name}.join(", ") %>
-                        regarding "<%= meeting.name.truncate(20) %>"
-                      </a>
-                    </p>
-                    <hr>
-                <% end %>
-
+            <div class="span5">
+              <div class="row-fluid">
+                <div class="span12">
+                  <%= render :partial => "event_wall" %>
+                </div>
               </div>
             </div>
-            </li>
-        </ul>
+
+            <div class="span5">
+              <div class="row-fluid">
+                <div class="span12">
+                  <%= render :partial => "splash_zone" %>
+                </div>
+              </div>
+            </div>
       </div>
-      <!----------------------End of Meetings------------------------------>
-
-
-
-    </div>
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "event_wall" %>
-        </div>
-      </div>
-    </div>
-
-
-    <!-------------------------->
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "splash_zone" %>
-        </div>
-      </div>
-    </div>
 
 
 
 
+  <script type="text/javascript">
 
+      $(function () {
+          $( "#accordion" ).accordion({
+              active: false,
+              collapsible: true
+          });
 
+      });
 
-  </div>
+  </script>
 
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

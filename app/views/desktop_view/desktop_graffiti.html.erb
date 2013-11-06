@@ -7,233 +7,166 @@
 
 
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span7">
       <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "list" %>
-        </div>
-      </div>
+        <div class="span7">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "list" %>
+            </div>
+          </div>
 
+          <!----------------------Start of graffiti------------------------------>
 
-      <!----------------------Start of delegates------------------------------>
+          <div class="black-box tex" id="delegate_profile_of_user">
+            <ul class="recent-comments">
+              <li class="separator">
 
-      <div class="black-box tex" id="delegate_profile_of_user">
-        <ul class="recent-comments">
-
-          <li class="separator">
-
-            <style type="text/css">
-                a, a:visited {
-                    color: black;
-                    text-decoration: none;
-                }
-            </style>
-
-            <script type="text/javascript">
-
-                function create_post() {
-
-                    var prev_status = $('#status_here').html();
-                    var create_at = "<%= @post.created_at unless @post.blank? %>";
-                    var data = {user_id:[], comment:[]}
-                    data["user_id"].push('<%= @user.id %>');
-                    data["comment"].push($('#comment').val());
-                    $.ajax({
-                        url:"<%= update_status_path %>",
-                        type:"post",
-                        data:JSON.stringify(data),
-                        contentType:"application/json",
-                        success:function (data) {
-
-                            $('#status_here').html(data);
-                            $('#comment').val("")
-
-//                            if (prev_status != "") {
-//                                $('.odd').prepend('<div style="background: rgba(178,204,255,0.93); width:auto;padding-left:5px;padding-top:4px;padding-bottom:4px;border-radius:5px;font-weight: bold;color:#333333;font-size: 0.8em;border-radius: 5px 5px 0px 0px; "><%= current_user.name %> <span style="float:right;margin-right: 5px;font-size: 0.8em;font-weight: normal;color:#333333">' + create_at + '</span></div><table style="background: #e2eefa;width:100%;border-radius: 0px 0px 5px 5px; "><tr><td><% unless current_user.picture.blank? %><%= image_tag(current_user.picture) %><% end %></td><td><p style="margin-left: 5px;margin-bottom: 5px;margin-top: 5px;font-size: 0.8em;color:#333333">' + prev_status + '</p></td></tr></table></div><br>');
-//                            }
-                            $('[type="submit"]').hide();
-                        }
-                    });
-                }
-
-
-            </script>
-
-
-
-            <% if !@photo.blank? %>
-                <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:100px" %>
-            <% elsif @user.user_photo.blank? %>
-                <%= image_tag "avatar.png", :style => "float:left; border-radius:5px;margin-right:10px;max-width:100px" %>
-            <% else %>
-                <%= image_tag @user.user_photo,:style => "float:left; border-radius:5px;margin-right:10px;max-width:100px" %>
-            <% end %>
-
-
-            <h4 style="margin-top: 0px;margin-left: 58px;"><% unless @name.nil?  %><%= @name.titlecase %>    <% end  %>
-              <% if @user.avatar.url!='/avatars/original/missing.png' %>
-                  <a style="float:right;background: #ffffff;" href="<%= @user.avatar.url %>"><img src="/assets/procdownload.png"></a>
-              <% end %>
-              <br>
-
-              <table>
-                <tr>
-                  <td>
-                    <% if !@headline.blank? %><small><%= @headline  %></small><% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <% if !@industry.blank? %><small><strong style="color: #c0c0c0;">Background: </strong><%= @industry %> </small><% end %>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <% if !@location.blank? %><small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br><% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <% if !@skills.blank? %><small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br><% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <% if !@interest.blank? %><small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br><% end %>
-                  </td>
-                </tr>
-              </table>
-                 <br>
-              <div style="float: right;">
-                <% if @user==current_user %>
-                    <a class="button gray" href="<%= current_user.id %>/desktop_edit_profile" style="font-size: 0.6em;">Edit your profile</a>
+                <% if !@photo.blank? %>
+                    <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:100px" %>
+                <% elsif @user.user_photo.blank? %>
+                    <%= image_tag "avatar.png", :style => "float:left; border-radius:5px;margin-right:10px;max-width:100px" %>
+                <% else %>
+                    <%= image_tag @user.user_photo,:style => "float:left; border-radius:5px;margin-right:10px;max-width:100px" %>
                 <% end %>
-              </div>
-            </h4>
-            <br>
-            <br>
-            <br>
 
-            <div id="status_here" class="status"><%= @post.name unless @post.blank? %></div>
+                <h4 style="margin-top: 0px;margin-left: 58px;"><% unless @name.nil?  %><%= @name.titlecase %><% end  %>
 
+                  <% if @user.avatar.url!='/avatars/original/missing.png' %><a style="float:right;background: #ffffff;" href="<%= @user.avatar.url %>"><img src="/assets/procdownload.png"></a><% end %>
+                  <br>
+                  <table>
+                    <tr><td><% if !@headline.blank? %><small><%= @headline  %></small><% end %></td></tr>
 
-            <form class="fill-up">
-              <div id="text">
-                <%= text_area_tag :comment, "", :placeholder => "Pen down your thoughts" %>
-              </div>
-              <div id="stat_button">
+                    <tr><td><% if !@industry.blank? %><small><strong style="color: #c0c0c0;">Background: </strong><%= @industry %> </small><% end %></td></tr>
 
+                    <tr><td><% if !@location.blank? %><small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br><% end %></td></tr>
 
-                <a class="button gray" href="#" class="form_btn" id="form_btn_id">Post it now!</a>
-                <%#= submit_tag "Post it now!", :onclick => "create_post();", :class => "button gray", :style => "width:15%;" %>
-              </div>
-            </form>
-            <br>
-            <hr>
+                    <tr><td><% if !@skills.blank? %><small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br><% end %></td></tr>
 
-            <script>
+                    <tr><td><% if !@interest.blank? %><small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br><% end %></td></tr>
+                  </table>
+                  <br>
 
-                $('#form_btn_id').click(function(){
-                    if ($("#comment").val()==""){
-                    <%= add_gritter("Please Pen Down your Thoughts", :title => "Error!",:image => :warning,:time => 2000  ) %>
-                    }
-                    else{
-                        $('#err_msg').text("");
-                        create_post();
-                    }
-                });
+                  <div style="float: right;">
+                    <% if @user==current_user %><a class="button gray" href="<%= current_user.id %>/desktop_edit_profile" style="font-size: 0.6em;">Edit your profile</a><% end %>
+                  </div>
+                </h4>
+                <br><br><br>
 
+                <div id="status_here" class="status"><%= @post.name unless @post.blank? %></div>
 
-                $(function() {
-                    $( "#accordion" ).accordion({
-                        active: false,
-                        collapsible: true
-                    });
-                });
-            </script>
+                <form class="fill-up">
+                  <div id="text"><%= text_area_tag :comment, "", :placeholder => "Pen down your thoughts" %></div>
+                  <div id="stat_button"><a class="button gray" href="#" class="form_btn" id="form_btn_id">Post it now!</a></div>
+                </form><br>
+                <hr>
 
-            <div id="accordion">
-              <h5>Event Wall</h5>
-              <div>
-                <% @graffiti.each do |post| %>
-                        <p style="color: white;">
-                          <% unless post.user.picture.blank? %>
-                            <p style="width:32px;max-width:32px;"><%= image_tag(post.user.picture) %></p>
-                          <% end %>
-
-                        <%= link_to post.user.name.titlecase, delegate_profile_index_path(post.user)%>
-                          <%= post.created_at %>
-                         <%= post.name.truncate(15) %>
-
-                        </p>
-                        <hr>
+                <div id="accordion">
+                  <h5>Event Wall</h5>
+                  <div>
+                    <% @graffiti.each do |post| %>
+                            <p style="color: white;">
+                              <% unless post.user.picture.blank? %><p style="width:32px;max-width:32px;"><%= image_tag(post.user.picture) %></p><% end %>
+                              <%= link_to post.user.name.titlecase, delegate_profile_index_path(post.user)%><%= post.created_at %><%= post.name.truncate(50) %>
+                            </p>
+                            <hr>
                     <% end %>
-              </div>
-            </div>
+                  </div>
+                </div>
+                <br>
 
-
-            <br>
-
-            <div id="posting" class="fbinfobox1" style="display: none;">
-              <% if @post %>
-                  <% if @post.user!=current_user %>
-                      <div style="background: rgba(178,204,255,0.93); width:100%;padding-left:5px;padding-top:4px;padding-bottom:4px;border-radius:5px;font-weight: normal;">
-                        <span style="color:#333333;font-size:0.8em;font-weight:normal;"><%= @post.user.name.titlecase %></span>
-                        <span style="float:right;margin-right: 5px;font-size: 0.7em;font-weight: normal;margin-top: 4px;"><%= @post.created_at %></span>
-                      </div>
-                      <table>
-                        <tr>
-                          <% unless @post.user.picture.blank? %>
-                              <td style="width:32px;max-width:32px;"><%= image_tag(@post.user.picture) %></td>
-                          <% end %>
-                          <td>
-                            <p style="margin-left: 5px;margin-bottom: 5px;margin-top: 5px;font-size: 0.8em;"><%= post.name %></p>
-                          </td>
-                        </tr>
-                      </table>
+                <div id="posting" class="fbinfobox1" style="display: none;">
+                  <% if @post %>
+                      <% if @post.user!=current_user %>
+                          <div style="background: rgba(178,204,255,0.93); width:100%;padding-left:5px;padding-top:4px;padding-bottom:4px;border-radius:5px;font-weight: normal;">
+                            <span style="color:#333333;font-size:0.8em;font-weight:normal;"><%= @post.user.name.titlecase %></span>
+                            <span style="float:right;margin-right: 5px;font-size: 0.7em;font-weight: normal;margin-top: 4px;"><%= @post.created_at %></span>
+                          </div>
+                          <table>
+                            <tr>
+                              <% unless @post.user.picture.blank? %><td style="width:32px;max-width:32px;"><%= image_tag(@post.user.picture) %></td><% end %>
+                              <td><p style="margin-left: 5px;margin-bottom: 5px;margin-top: 5px;font-size: 0.8em;"><%= post.name %></p></td>
+                            </tr>
+                          </table>
+                      <% end %>
                   <% end %>
-              <% end %>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!----------------------End of graffiti------------------------------>
+        </div>
+
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "event_wall" %>
             </div>
+          </div>
+        </div>
 
-
-          </li>
-        </ul>
-      </div>
-
-      <!----------------------End of delegates------------------------------>
-
-
-    </div>
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "event_wall" %>
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "splash_zone" %>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-
-
-    <!-------------------------->
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "splash_zone" %>
-        </div>
-      </div>
-    </div>
 
 
 
+      <style type="text/css">
+          a, a:visited {
+              color: black;
+              text-decoration: none;
+          }
+      </style>
+
+      <script type="text/javascript">
+
+          $(function() {
+              $( "#accordion" ).accordion({
+                  active: false,
+                  collapsible: true
+              });
+          });
+
+          function create_post() {
+
+              var prev_status = $('#status_here').html();
+              var create_at = "<%= @post.created_at unless @post.blank? %>";
+              var data = {user_id:[], comment:[]}
+              data["user_id"].push('<%= @user.id %>');
+              data["comment"].push($('#comment').val());
+              $.ajax({
+                  url:"<%= update_status_path %>",
+                  type:"post",
+                  data:JSON.stringify(data),
+                  contentType:"application/json",
+                  success:function (data) {
+
+                      $('#status_here').html(data);
+                      $('#comment').val("");
+                      $('[type="submit"]').hide();
+                  }
+              });
+          }
+
+          $('#form_btn_id').click(function(){
+              if ($("#comment").val()==""){
+                <%= add_gritter("Please Pen Down your Thoughts", :title => "Error!",:image => :warning,:time => 2000  ) %>
+              }
+              else{
+                  $('#err_msg').text("");
+                  create_post();
+              }
+          });
+      </script>
 
 
 
-  </div>
-
-  <script>
+      <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -242,7 +175,7 @@
       ga('create', 'UA-41279198-1', '127.0.0.1:3000');
       ga('send', 'pageview');
 
-  </script>
+    </script>
 
 </div>
 

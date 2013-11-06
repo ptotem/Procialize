@@ -2,7 +2,78 @@
     Event Details
 <% end %>
 
+<table cellpadding="7">
+  <tr>
+    <th rowspan="4"><% if !@track.track_img.blank? %><%= image_tag @track.track_img.url(:thumb) %><% end %></th>
+    <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;"><%= @track.name %>&nbsp;<span style="font-size: 0.8em;">from</span>&nbsp;&nbsp;<%= @track.start %><span style="font-size: 0.8em;">to</span> <%= @track.end %> </td>
+  </tr>
 
+  <tr>
+    <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
+      <%@count = @speaker_name.count %>
+      <% @countless=@count-1 %>
+
+      <% @speaker_name.each_with_index do |s, index| %>
+          <% unless s.name.blank? %>
+              <% if index==0 %>
+                  <span style="color: #c0c0c0;">Speakers:</span>
+              <% end %>
+              <%= s.name %><% if index !=@countless %>,<% end %>
+          <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table><hr>
+
+<h3 style="font-size: 14px;"><%= raw(@track.description) %></h3><hr>
+
+<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" data-filter="true">
+  <h4>Friends who are attending</h4>
+  <ul data-role="listview" data-theme='a' data-filter-placeholder="Search by name" data-split-icon='star' data-filter="true" data-divider-theme="d" data-role="list-divider" data-split-theme="c">
+    <% @attendees.each do |user| %>
+        <% unless user.nil? %>
+            <li data-mini="true" data-theme='a' data-filtertext=" <%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %> <%= user.interest %>">
+              <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a' data-mini="true"><%= user.name.titlecase %></a>
+            </li>
+        <% end %>
+    <% end %>
+  </ul>
+</div><br><br>
+
+<ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
+  <% if @my_attendee.blank? %><%= link_to "Join this event", attend_event_path(@track), :'data-role' => "button", :'data-mini' => "true", :'data-ajax' => false, :flash_notice => "Accepted" %><% end %>
+</ul>
+<br><br><hr><br>
+
+
+<ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
+  <h6 style="font-size: 0.8em;">Would you like to pose a question on the event?</h6>
+  <%= form_for :questionable, url: {action: :create_quest} do |f| %>
+
+      <div class="field"><%= f.hidden_field :user_id, :value => current_user.id %></div>
+
+      <div class="field index_styling"><%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Pose your question here", :style => "font-size:0.8em;" %></div>
+
+      <div data-role="controlgroup" data-mini="true" data-placeholder="true"><%= f.hidden_field :track_id, :value => @track.id %></div><br>
+
+      <div data-role="controlgroup" data-type="horizontal" data-mini="true" style="text-align: center;font-size: 0.8em;float: left;"><%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false", :onclick => "create_question();", :'data-mini' => "true" %></div>
+
+  <% end %>
+</ul>
+<br><br><br><br><br><br><hr><br>
+
+
+<ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
+  <h6 style="font-size: 0.8em;">Would you like to rate this event?</h6>
+  <select id="select_menu" data-mini="true" onchange="rate_it($(this).val());">
+    <option value="" data-placeholder="true">Click here choose your rating</option>
+    <option value="1">Great value instead</option>
+    <option value="2">Good topic and session</option>
+    <option value="3">Interesting talks</option>
+    <option value="4">Satisfactory</option>
+    <option value="5">Didn’t match expectations</option>
+  </select>
+</ul><br>
 
 
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
@@ -23,13 +94,6 @@
 
     }
 
-</script>
-
-
-
-
-
-<script type="text/javascript">
     function create_question() {
 
         $("#questionable_track_id").change(function () {
@@ -48,118 +112,8 @@
 
         });
     }
+
 </script>
-
-
-
-<table cellpadding="7">
-  <tr>
-    <th rowspan="4">
-     <% if !@track.track_img.blank? %>
-      <%= image_tag @track.track_img.url(:thumb) %>
-     <% end %>
-    </th>
-    <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;"><%= @track.name %>&nbsp;<span style="font-size: 0.8em;">from</span>&nbsp;&nbsp;<%= @track.start %>
-      <span style="font-size: 0.8em;">to</span> <%= @track.end %> </td>
-  </tr>
-  <tr>
-    <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
-      <%@count = @speaker_name.count %>
-      <% @countless=@count-1 %>
-      <% @speaker_name.each_with_index do |s, index| %>
-          <% unless s.name.blank? %>
-              <% if index==0 %>
-                  <span style="color: #c0c0c0;">Speakers:</span>
-              <% end %>
-              <%= s.name %><% if index !=@countless %>,<% end %>
-          <% end %>
-      <% end %>
-    </td>
-  </tr>
-</table>
-
-<hr>
-
-<h3 style="font-size: 14px;"><%= raw(@track.description) %></h3>
-
-<hr>
-
-<br>
-
-<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" data-filter="true">
-  <h4>Friends who are attending</h4>
-  <ul data-role="listview" data-theme='a' data-filter-placeholder="Search by name" data-split-icon='star' data-filter="true" data-divider-theme="d" data-role="list-divider" data-split-theme="c">
-    <% @attendees.each do |user| %>
-        <% unless user.nil? %>
-            <li data-mini="true" data-theme='a' data-filtertext=" <%= user.name %> <%= user.batchie %> <%= user.headline %> <%= user.industry %> <%= user.interest %>">
-
-              <a href="<%= user_profile_path(user) %>" data-ajax=false data-theme='a' data-mini="true">
-                <%= user.name.titlecase %>
-              </a>
-
-            </li>
-        <% end %>
-    <% end %>
-  </ul>
-</div>
-
-<br><br>
-
-<ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
-  <% if @my_attendee.blank? %>
-      <%= link_to "Join this event", attend_event_path(@track), :'data-role' => "button", :'data-mini' => "true", :'data-ajax' => false, :flash_notice => "Accepted" %>
-  <% end %>
-</ul>
-<br>
-<br>
-<hr>
-<br>
-
-
-<ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
-  <h6 style="font-size: 0.8em;">Would you like to pose a question on the event?</h6>
-  <%= form_for :questionable, url: {action: :create_quest} do |f| %>
-
-      <div class="field">
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-      </div>
-
-      <div class="field index_styling">
-        <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Pose your question here", :style => "font-size:0.8em;" %>
-      </div>
-
-
-      <div data-role="controlgroup" data-mini="true" data-placeholder="true">
-        <%= f.hidden_field :track_id, :value => @track.id %>
-      </div>
-
-      <br>
-
-      <div data-role="controlgroup" data-type="horizontal" data-mini="true" style="text-align: center;font-size: 0.8em;float: left;">
-        <%= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false", :onclick => "create_question();", :'data-mini' => "true" %>
-      </div>
-
-  <% end %>
-
-</ul>
-
-<br><br><br><br><br><br>
-<hr>
-<br>
-<ul data-role="listview" data-theme="a" data-divider-theme="d" style="float: left;">
-  <h6 style="font-size: 0.8em;">Would you like to rate this event?</h6>
-  <select id="select_menu" data-mini="true" onchange="rate_it($(this).val());">
-    <option value="" data-placeholder="true">Click here choose your rating</option>
-    <option value="1">Great Value add</option>
-    <option value="2">Good topic and session</option>
-    <option value="3">Interesting talks</option>
-    <option value="4">Satisfactory</option>
-    <option value="5">Didn’t match expectations</option>
-  </select>
-
-</ul>
-
-<br>
 
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

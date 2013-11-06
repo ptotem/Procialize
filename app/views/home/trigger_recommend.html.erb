@@ -5,122 +5,146 @@
 
 
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span12">
       <div class="row-fluid">
-        <div class="span12">
-          <div style="margin-bottom: 20px;">
-            <div class="big-button-bar">
-              <a class="button large eventer" href="/desktop_events">
-                <i class=" icon-calendar "></i>
-                <span>Events</span>
-              </a>
+            <div class="span12">
+              <div class="row-fluid">
+                <div class="span12">
+                  <div style="margin-bottom: 20px;">
+                    <div class="big-button-bar">
+                      <a class="button large eventer" href="/desktop_events">
+                        <i class=" icon-calendar "></i><span>Events</span>
+                      </a>
 
-              <a class="button large delegater" href="/delegates_search">
-                <i class="icon-group"></i>
-                <span>Delegates</span>
-              </a>
+                      <a class="button large delegater" href="/delegates_search">
+                        <i class="icon-group"></i><span>Delegates</span>
+                      </a>
 
-              <a class="button large speakinger" href="/desktop_speaker">
-                <i class="icon-user"></i>
-                <span>Speakers</span>
-              </a>
+                      <a class="button large speakinger" href="/desktop_speaker">
+                        <i class="icon-user"></i><span>Speakers</span>
+                      </a>
 
-              <a class="button large questioner" href="/desktop_ask_question">
-                <i class="icon-question-sign "></i>
-                <span>Questions</span>
-              </a>
+                      <a class="button large questioner" href="/desktop_ask_question">
+                        <i class="icon-question-sign "></i><span>Questions</span>
+                      </a>
 
-              <a class="button large feedbacker" href="/desktop_ratings">
-                <i class="icon-volume-up"></i>
-                <span>Feedback</span>
-              </a>
+                      <a class="button large feedbacker" href="/desktop_ratings">
+                        <i class="icon-volume-up"></i><span>Feedback</span>
+                      </a>
 
-              <a class="button large downloadables" href="/desktop_assets_download">
-                <i class=" icon-folder-open"></i>
-                <span>Download</span>
-              </a>
+                      <a class="button large downloadables" href="/desktop_assets_download">
+                        <i class=" icon-folder-open"></i><span>Download</span>
+                      </a>
+                    </div>
+                  </div>
+
+
+              <!----------------------Start of send_recommendation_ontrigger------------------------------>
+
+              <div class="black-box tex" >
+                <div class="tab-header">Trigger Recommend</div>
+                <ul class="recent-comments">
+                  <li class="separator">
+                     <span><%= button_tag "Send",:class => "button gray",:id=>"trigger" %></span>
+                     <span style="margin-left: 180px;">Select all <input type="checkbox" id="selectall"></span>
+                     <span style="float: right;"><button type="button" class="button gray" id="select_only">Select new</button></span>
+
+
+                    <br>
+                    <br>
+
+                    <div class="box" style="position:relative;padding: 10px;color: black;" id="check_boxing">
+                      <table class="table  data-table dataTable">
+                        <thead>
+                        <tr class="gradeA odd">
+                          <th>Invitees</th>
+                          <th>Created at</th>
+                          <th>Select</th>
+                        </tr>
+                        </thead>
+                        <tbody role="alert" aria-live="polite" aria-relevant="all">
+                        <% @users = User.all %>
+                        <% @use = @users - [current_user] %>
+                        <% @use.each do |e| %>
+                            <tr class="gradeA even" id="<%= e.id %>">
+                              <td><%= e.name %></td>
+                              <td><%= e.created_at.strftime('%d.%m.%Y') %></td>
+                              <td><%= check_box_tag :recommend_select,e.id %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </li>
+                </ul>
+              </div>
+
+              <!----------------------End of send_recommendation_ontrigger------------------------------>
             </div>
           </div>
-
-
-
-
-
-
-
-
-      <!----------------------Start of send_recommendation_ontrigger------------------------------>
-
-      <div class="black-box tex" >
-        <div class="tab-header">
-          Trigger Recommend
         </div>
-        <ul class="recent-comments">
-
-          <li class="separator">
-
-            <%= button_tag "Send",:class => "button gray",:id=>"trigger" %>
-            <br>
-            <br>
-            <div class="box" style="position:relative;padding: 10px;color: black;" id="check_boxing">
-              <table class="table  data-table dataTable">
-                <thead>
-                <tr class="gradeA odd">
-                  <th>Invitees</th>
-                  <th>Created at</th>
-                  <th>Select</th>
-                </tr>
-                </thead>
-                <tbody role="alert" aria-live="polite" aria-relevant="all">
-                <% @users = User.all %>
-                <% @use = @users - [current_user] %>
-                <% @use.each do |e| %>
-                    <tr class="gradeA even" id="<%= e.id %>">
-                      <td><%= e.name %></td>
-                      <td><%= e.created_at.strftime('%d.%m.%Y') %></td>
-                      <td><%= check_box_tag :recommend_select,e.id %></td>
-                    </tr>
-                <% end %>
-                </tbody>
-              </table>
-            </div>
-
-          </li>
-        </ul>
-      </div>
-
-      <!----------------------End of send_recommendation_ontrigger------------------------------>
-    </div>
-  </div>
-</div>
 
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    $(document).ready(function() {
-        $('#trigger').click(function() {
-            var data = {user_id:[]}
-            $('#check_boxing input:checked').each(function() {
-                data["user_id"].push($(this).parent().parent().attr('id'))
+        $(document).ready(function() {
+            $.fn.dataTableExt.sErrMode = 'throw';
+
+            $('#trigger').click(function() {
+                var data = {user_id:[]}
+                $('#check_boxing input:checked').each(function() {
+                    data["user_id"].push($(this).parent().parent().attr('id'))
+                });
+                $.ajax({
+                    url:"<%= send_mail_to_recommended_users_path %>",
+                    type:"post",
+                    data:JSON.stringify(data),
+                    contentType:"application/json",
+                    success:function (data) {
+                        window.location="/send_mailers_recommend"
+                     }
+
+                });
             });
-            $.ajax({
-                url:"<%= send_mail_to_recommended_users_path %>",
-                type:"post",
-                data:JSON.stringify(data),
-                contentType:"application/json",
-                success:function (data) {
-//                    alert(data);
-                    window.location="/send_mailers_recommend"
-                 }
 
+
+            $('#select_only').click(function(){
+                var data = {user_id:[]}
+                $("#check_boxing input[name='recommend_select']").each(function() {
+                    data["user_id"].push($(this).parent().parent().attr('id'))
+                });
+                $.ajax({
+                    url:"<%= sent_trigger_recommend_to_new_path %>",
+                    type:"post",
+                    data:JSON.stringify(data),
+                    contentType:"application/json",
+                    success:function (data) {
+                        $.each(data, function(key, val) {
+                            $(".gradeA").find('input[value='+val+']').attr("checked",true);
+                        });
+                    }
+                });
             });
+
+
+
+
+
+            $('#selectall').on('click', function() {
+                $('#check_boxing input').attr('checked', $(this).is(":checked"));
+            });
+
+
+
+            $('.data-table').dataTable({
+                'iDisplayLength': 1000
+            });
+
         });
-    });
-</script>
+    </script>
 
-  </div>
+      </div>
 </div>
 
 

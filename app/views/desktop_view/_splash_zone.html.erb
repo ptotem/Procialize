@@ -2,6 +2,7 @@
   <div class="tab-header">
     Splash Zone
   </div>
+
   <script>
       $(document).ready(function() {
           $("#slider1").responsiveSlides({
@@ -71,15 +72,15 @@
         <% end %>
       </ul>
     </li>
-    <li class="separator">
 
+
+    <li class="separator">
       <marquee id="tweet" style="color: white;">
         <% @newsfeed=NewsFeed.all %>
         <% @newsfeed.each do |n| %>
             <%= n.feed_news %>
         <% end %>
       </marquee>
-
     </li>
   </ul>
 </div>

@@ -250,6 +250,8 @@ ProcializeApp::Application.routes.draw do
 
 
   match '/trigger_recommend', :to => "home#trigger_recommend", :as => "trigger_recommend" #----------------for desktop------------------#
+  match '/sent_trigger_recommend', :to => "home#sent_trigger_recommend", :as => "sent_trigger_recommend" #----------------for desktop------------------#
+  match '/sent_trigger_recommend_to_new', :to => "home#sent_trigger_recommend_to_new", :as => "sent_trigger_recommend_to_new" #----------------for desktop------------------#
   match '/wait', :to => "home#wait", :as => "waiting_to_load" #----------------for desktop------------------#
 
 

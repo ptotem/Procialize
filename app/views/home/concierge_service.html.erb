@@ -1,21 +1,26 @@
+<%= content_for :page_title do %>
+   Concierge Services
+<% end %>
+
+    <p>
+        <div class="index_styling">Choose Service</div>
+        <%= select_tag 'service', options_for_select(@concierge_services_name),:"data-mini" => "true" %>
+    </p>
+
+    <p>
+    <div class="index_styling" id="hide_manual">Create manual request</div><%= text_area_tag 'comment' %>
+    </p>
+
+    <p><%= button_tag 'Send',:id=>"request",:"data-mini" => "true" %></p>
+
+
+
 <style type="text/css">
     #comment{
         font-size: 0.8em;
     }
 </style>
-<%= content_for :page_title do %>
-   Concierge Services
-<% end %>
 
-<p>
-<div class="index_styling">Choose Service</div>
-<%= select_tag 'service', options_for_select(@concierge_services_name),:"data-mini" => "true" %>
-</p>
-<p>
-<div class="index_styling" id="hide_manual">Create manual request</div>
-<%= text_area_tag 'comment' %>
-</p>
-<p><%= button_tag 'Send',:id=>"request",:"data-mini" => "true" %></p>
 <script type="text/javascript">
     $(function(){
         $('#hide_manual').hide();

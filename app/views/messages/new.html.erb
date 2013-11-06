@@ -2,9 +2,6 @@
     New Message
 <% end %>
 
-<%= content_for :page_menu do %>
-
-<% end %>
 
 <%= content_for :head do %>
     <script type="text/javascript">
@@ -53,10 +50,6 @@
     <%= f.hidden_field :conference_id, :value => Conference.last.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
 
-    <!--<div data-role="controlgroup" data-mini="true"  data-placeholder="true">-->
-      <!--<%#= select_tag 'receipient_users[]', options_for_select(@user_list),:prompt =>"Select Delegates", :multiple => true,:'data-mini' => true %>-->
-    <!--</div>-->
-
 
     <div class="field">
       <%= f.text_area :body, :rows => '5', :placeholder => "Type your message",:'data-mini' => true %>
@@ -85,7 +78,6 @@
 <br>
 <br>
 <div data-role="controlgroup" data-type="horizontal" style="float: right;">
-  <%#= f.submit "Send", :'data-role' => "button", :'data-ajax' => "false",:'data-mini' => true %>
   <a class="index_styling" href="#" data-ajax=false data-role="button" class="form_btn" id="form_btn_id" data-mini="true">Send</a>
 </div>
 

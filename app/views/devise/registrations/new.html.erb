@@ -1,27 +1,29 @@
-<h2>Sign up</h2>
+<div class="container sponsors">
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form-signin", :'data-ajax' => "false"}) do |f| %>
 
-    <div><%= f.label :name %>
-      <%= f.text_field :name %></div>
+      <h2 class="form-signin-heading">Sign Up</h2>
+      <%= devise_error_messages! %>
 
-    <div><%= f.label :email %>
-      <%= f.email_field :email %></div>
+      <div><%= f.text_field :name, :placeholder => "Enter name" %></div>
 
-    <div><%= f.label :password %>
-      <%= f.password_field :password %></div>
+      <div><%= f.email_field :email, :placeholder => "Enter email address" %></div>
 
-    <div><%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %></div>
-    <br>
-    <br>
-    <div><%= f.submit "Sign up", :'data-role' => "button", :'data-theme' => "a",:'data-ajax' => "false"  %></div>
-    <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-        <%= link_to "Forgot your password?", new_password_path(resource_name), :'data-role' => "button", :'data-theme' => "a" %><br />
-    <% end -%>
-    <div><%= link_to "Cancel", new_user_session_path, :'data-role' => "button", :'data-theme' => "a" %></div>
+      <div><%= f.password_field :password, :placeholder => "Enter password" %></div>
 
-<% end %>
+      <div><%= f.password_field :password_confirmation, :placeholder => "Enter password confirmation" %> </div>
+      <br>
+      <br>
+      <div><%= f.submit "Sign up", :'data-role' => "button", :'data-theme' => "a",:'data-ajax' => "false"  %></div>
+      <div><%= link_to "Cancel", new_user_session_path, :'data-role' => "button", :'data-theme' => "a" %></div>
+
+  <% end %>
+
+</div>
+
+
+
+
+
 
 

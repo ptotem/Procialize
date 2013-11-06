@@ -1,186 +1,98 @@
 <%= content_for :jj do %>
-    <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"
-            xmlns="http://www.w3.org/1999/html"></script>
-    <%#= javascript_include_tag "jquery.collapse" %>
-
+    <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"xmlns="http://www.w3.org/1999/html"></script>
     <%= stylesheet_link_tag "jquery-ui-1.10.3.custom.min" %>
-    <script type="text/javascript">
-
-
-
-
-            $(function () {
-                $(document).ready(function () {
-                    $('#artists_select').hide();
-                    $('#songs_select').hide();
-                    $('#categoriesContent').hide();
-                    $('#genres_select').change(function () {
-                        var data = {event_day_id:[]}
-                        data["event_day_id"].push($('#genres_select').val());
-                        $.getJSON("desktop_view/update_track/"+ data["event_day_id"], function(data) {
-                            $('#artists_select').empty();
-                            $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
-                            $.each(data, function(key, val) {
-                                val=val.split('|');
-                                $('#artists_select').append($('<option>', {
-                                    value:val[0],
-                                    text:val[1]
-                                }));
-
-
-                            });
-                            $('#artists_select').show();
-                            $('#songs_select').hide();
-                            $('#categoriesContent').hide();
-                        });
-                    });
-                    $('#artists_select').change(function () {
-                        var data = {event_id:[]}
-                        data["event_id"].push($('#artists_select').val());
-                        $.getJSON("desktop_view/update_event/"+ data["event_id"], function(data) {
-                            $('#categoriesContent ul').html("");
-                            $.each(data, function(key, val) {
-                                val=val.split('|');
-                                $('#categoriesContent').show();
-//                                $('#categoriesContent ul').append('<li><a href="http://localhost:3000/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
-                                $('#categoriesContent ul').append('<li><a href="/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
-                            });
-
-                        });
-
-                    });
-
-                });
-            });
-
-    </script>
-
-
-
 <% end %>
 
 
 
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span7">
       <div class="row-fluid">
-
-        <%= render :partial => "list" %>
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-      <!----------------------Start of Messages------------------------------>
-      <div class="black-box tex" id="events">
-        <div class="tab-header">
-          Messages
-        </div>
-        <ul class="recent-comments">
-          <li class="separator">
-            <%= link_to "Create New","/messages_new", :class => "button gray",:style=>"float:right;width:15%;" %>
-            <br>
-            <br>
-
-            <script>
-                $(function() {
-                    $( "#accordion" ).accordion({
-                        active: false,
-                        collapsible: true
-                    });
-                });
-            </script>
-
-            <div id="accordion">
-              <h5>Unread Messages <span class="pull-right badge black"><%= @unread.size %></span></h5>
-              <div>
-                <% @unread.each do |message| %>
-                <p>
-                  <a href="<%= messages_show_path(message) %>?unread=true">
-                  Rec'd at <%= message.created_at %> hrs on <%= message.created_at.strftime("%d %b") %>
-                  from <%= message.user.name %>
-                  regarding "<%= message.body.truncate(20) %>"
-                </a>
-                </p>
-                    <hr>
-                <% end %>
-
+            <div class="span7">
+              <div class="row-fluid">
+                <%= render :partial => "list" %>
               </div>
-              <h5>Read Messages <span class="pull-right badge black"><%= @read.size %></span></h5>
-              <div>
-                <% @read.each do |message| %>
-                <p>
-                  <a href="<%= messages_show_path(message) %>?read=true">
-                  Rec'd at <%= message.created_at %> hrs on <%= message.created_at.strftime("%d %b") %>
-                  from <%= message.user.name %>
-                  regarding "<%= message.body.truncate(20) %>"
-                </a>
-                </p>
-                    <hr>
-                <% end %>
 
+              <!----------------------Start of Messages------------------------------>
+
+              <div class="black-box tex" id="events">
+                <div class="tab-header">Messages</div>
+                <ul class="recent-comments">
+                  <li class="separator">
+                    <%= link_to "Create New","/messages_new", :class => "button gray",:style=>"float:right;width:15%;" %><br><br>
+
+                    <div id="accordion">
+                      <h5>Unread Messages <span class="pull-right badge black"><%= @unread.size %></span></h5>
+                      <div>
+                        <% @unread.each do |message| %>
+                            <p>
+                              <a href="<%= messages_show_path(message) %>?unread=true">
+                                  Rec'd at <%= message.created_at %> hrs on <%= message.created_at.strftime("%d %b") %>
+                                  from <%= message.user.name %>
+                                  regarding "<%= message.body.truncate(20) %>"
+                              </a>
+                            </p><hr>
+                        <% end %>
+                      </div>
+
+                      <h5>Read Messages <span class="pull-right badge black"><%= @read.size %></span></h5>
+                      <div>
+                        <% @read.each do |message| %>
+                            <p>
+                              <a href="<%= messages_show_path(message) %>?read=true">
+                                  Rec'd at <%= message.created_at %> hrs on <%= message.created_at.strftime("%d %b") %>
+                                  from <%= message.user.name %>
+                                  regarding "<%= message.body.truncate(20) %>"
+                              </a>
+                            </p><hr>
+                        <% end %>
+                      </div>
+
+                      <h5>Sent Messages <span class="pull-right badge black"><%= @sent.size %></span></h5>
+                      <div>
+                        <% @sent.each do |message| %>
+                            <p>
+                              <a href="<%= messages_show_path(message) %>/?sent=true">
+                                  Sent at <%= message.created_at %> hrs on <%= message.created_at.strftime("%d %b") %>
+                                  to <%= message.receipients.map{|r| r.user.name}.join(", ") %>
+                                  regarding "<%= message.body.truncate(20) %>"
+                              </a>
+                            </p><hr>
+                        <% end %>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <h5>Sent Messages <span class="pull-right badge black"><%= @sent.size %></span></h5>
-              <div>
-                <% @sent.each do |message| %>
-                <p>
-                  <a href="<%= messages_show_path(message) %>/?sent=true">
-                    Sent at <%= message.created_at %> hrs on <%= message.created_at.strftime("%d %b") %>
-                  to <%= message.receipients.map{|r| r.user.name}.join(", ") %>
-                  regarding "<%= message.body.truncate(20) %>"
-                    </a>
-                </p>
-                   <hr>
-                  <% end %>
 
+              <!----------------------End of Messages------------------------------>
+            </div>
+
+            <div class="span5">
+              <div class="row-fluid">
+                <div class="span12">
+                  <%= render :partial => "event_wall" %>
+                </div>
               </div>
             </div>
 
-
-
-          </li>
-        </ul>
+            <div class="span5">
+              <div class="row-fluid">
+                <div class="span12">
+                  <%= render :partial => "splash_zone" %>
+                </div>
+              </div>
+            </div>
       </div>
-      <!----------------------End of Messages------------------------------>
 
 
-
-    </div>
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "event_wall" %>
-        </div>
-      </div>
-    </div>
-
-
-    <!-------------------------->
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "splash_zone" %>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-
-
-  </div>
+  <script type="text/javascript">
+      $(function() {
+          $( "#accordion" ).accordion({
+              active: false,
+              collapsible: true
+          });
+      });
+  </script>
 
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -2,10 +2,6 @@
     Meetings
 <% end %>
 
-<%= content_for :page_menu do %>
-
-<% end %>
-
 <%= link_to "Create New",new_meeting_path,:'data-role' => "button", :'data-theme' => "a", :'data-ajax' => false, :'data-inline' => true, :class => "anchor_link",:'data-mini' => "true",:style=>"float:right;" %>
 <br>
 <br>
@@ -25,6 +21,7 @@
     <% end %>
   </ul>
 </div>
+
 <div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
   <h3 style="font-size: 0.8em;">Pending Invitations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @pending.size %></h3>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">
@@ -40,6 +37,7 @@
     <% end %>
   </ul>
 </div>
+
 <div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
   <h3 style="font-size: 0.8em;">Pending Requests&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @open.size %></h3>
   <ul data-role="listview" data-theme="a" data-divider-theme="d">

@@ -196,7 +196,7 @@ class HomeController < ApplicationController
       #
       elsif @user.interest="" and @user.industry="" and @user.location !=""
       #if @user.interest="" and @user.industry="" and @user.location !=""
-      if @user.location !=""
+      #if @user.location !=""
         @user_in=User.find_all_by_location(@user.location).shuffle[0..3].map { |i| i.name }
         @user_in.delete(@user.name)
            if @user_in.count<=1
@@ -209,7 +209,7 @@ class HomeController < ApplicationController
         @user_in.delete(@user.name)
         @user_in=@user_in.flatten.uniq
       end
-      end
+      #end
       @user.recommend=@user_in.to_s.gsub(/"/, "").gsub("[", "").gsub("]", "")
       @user_recommend<<@user
       @user.recommend_select=true
@@ -218,6 +218,21 @@ class HomeController < ApplicationController
     render :text => @user_recommend.map {|i| "#{i.name}=>#{i.recommend}"}
     return
   end
+
+  def sent_trigger_recommend_to_new
+    @new_users= params[:user_id]
+    @new_usr=Array.new
+    @return_data=Array.new
+    @new_users.each do |i|
+      @new_usr=User.find(i)
+      if @new_usr.recommend.blank?
+         @return_data<<i
+      end
+    end
+     render :json => @return_data
+     return
+  end
+
 
 
   def survey_storing

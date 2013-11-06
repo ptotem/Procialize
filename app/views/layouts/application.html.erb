@@ -133,16 +133,16 @@ var isMobile = {
         <% @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message } %>
 
         <li><a href="/events" data-icon="calendar" data-theme='a' data-ajax=false>Events</a></li>
+
         <li>
           <a href="/meetings" data-icon="suitcase" data-theme='a' data-ajax=false>
-            <% if @pending.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @pending.size %></span> <% end %>
-            Meetings
+            <% if @pending.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @pending.size %></span> <% end %>Meetings
           </a>
         </li>
+
         <li>
           <a href="/messages" data-icon="envelope" data-theme='a' data-ajax=false>
-            <% if @unread.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @unread.size %></span> <% end %>
-            Messages
+            <% if @unread.size>0 %> <span class="circle" style="right: 0;margin-top:-29px;float:right;"><%= @unread.size %></span> <% end %>Messages
           </a>
         </li>
         <li><a href="/users/<%= current_user.id %>/profile" data-icon="user" data-theme='a' data-ajax=false  data-role="button">Profile</a></li>
@@ -162,6 +162,7 @@ var isMobile = {
       <br/>
     </div>
   </div>
+
   <div data-role="footer" data-position="fixed" data-theme='a' data-fullscreen="true" class="big">
     <div data-role="navbar" data-theme='b'>
       <ul>
@@ -183,11 +184,7 @@ var isMobile = {
 
 
 <div id="search_menu" data-role="page">
-  <div data-role="header" data-fullscreen="true">
-    <a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a>
-
-  </div>
-
+  <div data-role="header" data-fullscreen="true"><a href="#" data-rel="back" data-icon="arrow-l" data-prefetch>Back</a></div>
 </div>
 
 <script type="text/javascript">

@@ -7,95 +7,65 @@
 
 
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span7">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "list" %>
+    <div class="row-fluid">
+        <div class="span7">
+              <div class="row-fluid">
+                <div class="span12">
+                  <%= render :partial => "list" %>
+                </div>
+              </div>
+
+      <!----------------------Start of Assets Download------------------------------>
+
+              <div class="black-box tex" >
+                <div class="tab-header">Assets Download</div>
+                    <ul class="recent-comments">
+                        <li class="separator">
+                            <div>
+                                 <div class="box" style="position:relative;padding: 10px;color: black;">
+                                    <table class="table data-table" id="example">
+                                        <thead>
+                                            <tr>
+                                             <th>Event Name</th>
+                                             <th>Downloads</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% @assets_downloads.each do |e| %>
+                                                <%if e.downloadable.url!='/avatars/original/missing.png'%>
+                                                    <% @event_id= e.track_id%>
+                                                <tr class="gradeA even"  id="<%= e %>">
+                                                  <td><%= @event_name=Track.find(@event_id).name %></td>
+                                                  <td style="border-left: 1px solid #DDDDDD"><a target="_blank" href="<%=e.downloadable.url%>"><img src="/assets/procdownload.png"></a>&nbsp;&nbsp;<%= e.downloadable.original_filename %></td>
+                                                </tr>
+                                            <% end %>
+                                            <% end %>
+                                        </tbody>
+                                    </table>
+                                 </div>
+                            </div>
+                        </li>
+                    </ul>
+              </div>
+
+      <!----------------------End of Assets Download------------------------------>
         </div>
-      </div>
 
-
-
-
-
-
-
-      <!----------------------Start of events------------------------------>
-
-
-      <div class="black-box tex" >
-        <div class="tab-header">
-          Assets Download
-        </div>
-        <ul class="recent-comments">
-
-          <li class="separator">
-            <div>
-              <div class="box" style="position:relative;padding: 10px;color: black;">
-              <table class="table data-table" id="example">
-                <thead>
-                <tr>
-                  <th>Event Name</th>
-                  <th>Downloads</th>
-                </tr>
-                </thead>
-                <tbody>
-                <% @assets_downloads.each do |e| %>
-                    <%if e.downloadable.url!='/avatars/original/missing.png'%>
-                        <% @event_id= e.track_id%>
-                    <tr class="gradeA even"  id="<%= e %>">
-                      <td><%= @event_name=Track.find(@event_id).name %></td>
-                      <td style="border-left: 1px solid #DDDDDD">
-                        <a target="_blank" href="<%=e.downloadable.url%>"><img src="/assets/procdownload.png"></a>&nbsp;&nbsp;<%= e.downloadable.original_filename %>
-                        <%# if e.downloadable.url!='/avatars/original/missing.png' %>
-                            <!--<a target="_blank" style="background: none;" href="<%#= e.downloadable.url %>"><img src="/assets/procdownload.png">&nbsp;Click to download profile</a>-->
-                        <%# else %>
-                            <!--<h6 style="font-weight: normal;"></h6>-->
-                        <%# end %>
-                      </td>
-
-
-                      <!--<td></td>-->
-                    </tr>
-                <% end %>
-                <% end %>
-                </tbody>
-              </table>
-             </div>
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "event_wall" %>
             </div>
-          </li>
-        </ul>
-      </div>
-      <!----------------------End of events------------------------------>
-    </div>
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "event_wall" %>
+          </div>
         </div>
-      </div>
-    </div>
 
-
-    <!-------------------------->
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "splash_zone" %>
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "splash_zone" %>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-
-
-
-
-
-
-
-
   </div>
 
   <script>

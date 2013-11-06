@@ -3,15 +3,10 @@
 <% end %>
 
 
-
 <%= form_for :message, :url => {:action => :create} do |f| %>
-
     <%= f.hidden_field :conference_id, :value => Conference.last.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
-
     <%= select_tag 'receipient_users[]', options_for_select(@use) %>
-
-
     <div class="field">
       <%= f.text_area :body, :rows => '5',:style => "height:85px;",:placeholder => "'We hope and sincerely wish that this conference is being a value add to you. We further trust that you find Procialize an enjoyable experience. We would love to have your comments, thoughts, complaints or feedback. Please do let us know by typing your comments in this space and clicking on the send button. We will definitely get back to you in the shortest possible time.'" %>
     </div>
@@ -21,20 +16,12 @@
 <% end %>
 
 
-
-
-
-
 <div style=" margin-top: 20%;padding: 5px;">
-<h3>Contact Us</h3>
-
-
-
-<div>
-  <ul>Maah-Afreen</ul>
-  <ul>maahafreen.a@cii.in </ul>
-</div>
-<br>
+    <h3>Contact Us</h3>
+    <div>
+        <ul></ul>
+        <ul></ul>
+    </div>
 </div>
 
 

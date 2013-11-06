@@ -80,14 +80,18 @@
 
 
 <div id="status_here" class="status" style="font-size: 0.8em;"><%= @post.name unless @post.blank? %></div>
+
 <div id="text">
   <%= text_area_tag :comment, "", :placeholder => "Pen down your thoughts",:style =>"font-size: 0.8em;"  %>
 </div>
+
 <div id="stat_button">
   <%= submit_tag "Post it now!", :'data-role' => "button", :'data-theme' => "a", :onclick => "create_post();",:'data-mini' => "true" %>
 </div>
+
 <br>
 <hr>
+
 <% if !@upcoming_meetings.blank? %>
     <% @upcoming_meetings.each do |meeting| %>
         <div class="fbinfobox1">
@@ -116,7 +120,9 @@
 
     <% end %>
 <% end %>
+
 <br>
+
 <% if !@notice_board.blank? %>
     <% @notice_board.each do |post| %>
         <div class="fbinfobox1">
@@ -136,7 +142,9 @@
         </div>
     <% end %>
 <% end %>
+
 <br>
+
 <% if !@followed.blank? %>
     <% @followed.each do |post| %>
         <% if !(post.user==current_user and post == @post) %>
@@ -227,30 +235,7 @@
     ga('send', 'pageview');
 
 </script>
-<!--<div data-role="collapsible" data-theme="a" data-collapsed="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">-->
-  <!--<h3 style="font-size: 0.8em;">Post</h3>-->
-  <!--<ul data-role="listview" data-theme="a" data-divider-theme="d">-->
-    <%# @my_posts.each do |post| %>
-        <!--<%# if !(post.user==current_user and post == @post) %>-->
-            <!--<div class="fbinfobox1">-->
-              <!--<div style="background: rgba(178,204,255,0.93); width:100%;padding-left:5px;padding-top:4px;padding-bottom:4px;border-radius:5px;font-weight: normal;">-->
-                <!--<span style="color:#333333;font-size:0.8em;font-weight:normal;"><%#= @post.user.name.titlecase %></span>-->
-                <!--<span style="float:right;margin-right: 5px;font-size: 0.8em;font-weight: normal;"><%#= @post.created_at %></span>-->
-              <!--</div>-->
-              <!--<table>-->
-                <!--<tr>-->
-                  <!--<%# unless post.user.picture.blank? %>-->
-                      <!--<td style="width:32px;max-width:32px;"><%#= image_tag(post.user.picture) %></td>-->
-                  <!--<%# end %>-->
-                  <!--<td><p style="margin-left: 5px;margin-bottom: 5px;margin-top: 5px;font-size: 0.8em;"><%#= post.name %></p>-->
-                  <!--</td>-->
-                <!--</tr>-->
-              <!--</table>-->
-            <!--</div>-->
-        <!--<%# end %>-->
-    <!--<%# end %>-->
-  <!--</ul>-->
-<!--</div>-->
+
 
 
 

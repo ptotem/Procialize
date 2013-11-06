@@ -8,218 +8,182 @@
 
 
 <div class="container-fluid">
-<div class="row-fluid">
-<div class="span7">
-  <%= render :partial => "list" %>
+    <div class="row-fluid">
+        <div class="span7">
+          <%= render :partial => "list" %>
 
-  <div class="black-box tex" >
-    <div class="tab-header">
-      Give your Feedback
+          <div class="black-box tex" >
+            <div class="tab-header">Give your Feedback</div>
+            <ul class="recent-comments">
+              <li class="separator">
+                <%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %><br/>
+                <%= collection_select(nil, :event_id, @events, :id, :name, {:prompt => "Select the Track Day"}, {:id => 'artists_select'}) %><br>
+                <%= collection_select(nil, :track_id, @tracks, :id, :name, {:prompt => "Select the Event"}, {:id => 'songs_select'}) %>
+                <%= include_gon %>
+
+                <div data-role="content" id="categoriesContent">
+                  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b">
+                    <h4>Rate the Event</h4>
+                    <select id="select_menu" data-mini="true">
+                      <option value="1">Great value instead</option>
+                      <option value="2">Great topic and session</option>
+                      <option value="3">Interesting talks</option>
+                      <option value="4">Satisfactory</option>
+                      <option value="5">Didn't match expectations</option>
+                    </select>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "event_wall" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "splash_zone" %>
+            </div>
+          </div>
+        </div>
     </div>
-    <ul class="recent-comments">
-
-      <li class="separator">
-        <script type="text/javascript">
-
-        </script>
-
-        <%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %>
-        <br/>
-        <%= collection_select(nil, :event_id, @events, :id, :name, {:prompt => "Select the Track Day"}, {:id => 'artists_select'}) %>
-        <br>
-        <%= collection_select(nil, :track_id, @tracks, :id, :name, {:prompt => "Select the Event"}, {:id => 'songs_select'}) %>
-
-        <%= include_gon %>
-
-        <script type="text/javascript">
-
-            $(function () {
-                $("select#genres_select").prop('selectedIndex', 1);
-                $("select#artists_select").prop('selectedIndex', 1);
-                $("select#songs_select").prop('selectedIndex', 1);
-                feedback_default();
 
 
-                $(document).ready(function () {
-                    $('#artists_select').prop("disabled", true);
-                    $('#songs_select').prop("disabled", true);
-                    $('#categoriesContent').prop("disabled", true);
-                    $('#genres_select').change(function () {
-                        var data = {event_day_id:[]}
-                        data["event_day_id"].push($('#genres_select').val());
-                        $.getJSON("desktop_view/update_track/"+ data["event_day_id"], function(data) {
-                            $('#artists_select').empty();
-                            $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
-                            $.each(data, function(key, val) {
-                                val=val.split('|');
-                                $('#artists_select').append($('<option>', {
-                                    value:val[0],
-                                    text:val[1]
-                                }));
+    <script type="text/javascript">
+
+        $(function () {
+            $("select#genres_select").prop('selectedIndex', 1);
+            $("select#artists_select").prop('selectedIndex', 1);
+            $("select#songs_select").prop('selectedIndex', 1);
+            feedback_default();
 
 
-                            });
-                            $('#artists_select').prop("disabled", false);
-                            $('#songs_select').prop("disabled", true);
-                            $('#categoriesContent').prop("disabled", true);
+            $(document).ready(function () {
+                $('#artists_select').prop("disabled", true);
+                $('#songs_select').prop("disabled", true);
+                $('#categoriesContent').prop("disabled", true);
+                $('#genres_select').change(function () {
+                    var data = {event_day_id:[]}
+                    data["event_day_id"].push($('#genres_select').val());
+                    $.getJSON("desktop_view/update_track/"+ data["event_day_id"], function(data) {
+                        $('#artists_select').empty();
+                        $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
+                        $.each(data, function(key, val) {
+                            val=val.split('|');
+                            $('#artists_select').append($('<option>', {
+                                value:val[0],
+                                text:val[1]
+                            }));
+
                         });
+                        $('#artists_select').prop("disabled", false);
+                        $('#songs_select').prop("disabled", true);
+                        $('#categoriesContent').prop("disabled", true);
                     });
-                    $('#artists_select').change(function () {
-                        var data = {event_id:[]}
-                        data["event_id"].push($('#artists_select').val());
-                        $.getJSON("desktop_view/update_event/"+ data["event_id"], function(data) {
-                            $('#songs_select').empty();
-                            $("#songs_select").prepend("<option value='' selected='selected'>Select Event</option>");
-                            $.each(data, function(key, val) {
-                                val=val.split('|');
-                                $('#songs_select').append($('<option>', {
-                                    value:val[0],
-                                    text:val[1]
-                                }));
+                });
+
+                $('#artists_select').change(function () {
+                    var data = {event_id:[]}
+                    data["event_id"].push($('#artists_select').val());
+                    $.getJSON("desktop_view/update_event/"+ data["event_id"], function(data) {
+                        $('#songs_select').empty();
+                        $("#songs_select").prepend("<option value='' selected='selected'>Select Event</option>");
+                        $.each(data, function(key, val) {
+                            val=val.split('|');
+                            $('#songs_select').append($('<option>', {
+                                value:val[0],
+                                text:val[1]
+                            }));
 
 
-                            });
-                            $('#songs_select').prop("disabled", false);
                         });
-
+                        $('#songs_select').prop("disabled", false);
                     });
+                });
 
-                    $('#songs_select').change(function () {
-                        var a = $('#songs_select').val();
-                        var data = {track_id:[]}
-                        data["track_id"].push($('#songs_select').val());
-                        $.ajax({
-                            url:"<%= desktop_rating_appending_path %>",
-                            type:"post",
-                            data:JSON.stringify(data),
-                            contentType:"application/json",
-                            success:function (data) {
-                                $('#categoriesContent').show();
-                                $.each(data.split('"'), function (d, ele) {
-                                    ele = ele.toString().replace('[', '').replace(']', '').replace(/,/g, '').replace(/ /g, '');
-                                    if (ele != '') {
-                                        ele = ele.split('|');
-                                        $('#categoriesContent').prop("disabled", false);;
+                $('#songs_select').change(function () {
+                    var a = $('#songs_select').val();
+                    var data = {track_id:[]}
+                    data["track_id"].push($('#songs_select').val());
+                    $.ajax({
+                        url:"<%= desktop_rating_appending_path %>",
+                        type:"post",
+                        data:JSON.stringify(data),
+                        contentType:"application/json",
+                        success:function (data) {
+                            $('#categoriesContent').show();
+                            $.each(data.split('"'), function (d, ele) {
+                                ele = ele.toString().replace('[', '').replace(']', '').replace(/,/g, '').replace(/ /g, '');
+                                if (ele != '') {
+                                    ele = ele.split('|');
+                                    $('#categoriesContent').prop("disabled", false);;
+                                }
+                            });
+
+
+                            $('#select_menu').change(function(){
+                                var data = {user_id:[], track_id:[], rate:[]}
+                                data["user_id"].push('<%= @user.id %>');
+                                data["track_id"].push(a);
+                                data["rate"].push($(this).val());
+
+                                $.ajax({
+                                    url:"<%= feed_me_path %>",
+                                    type:"post",
+                                    data:JSON.stringify(data),
+                                    contentType:"application/json",
+                                    success:function (data) {
+                                        <%= add_gritter("Thank You for Valuable Feedback", :title => "Success",:image => :success,:time => 1000) %>
+                                        setTimeout(function(){
+                                            location.reload();
+                                            $("select").val("0");
+                                        },1500)
                                     }
                                 });
 
-
-                                $('#select_menu').change(function(){
-                                    var data = {user_id:[], track_id:[], rate:[]}
-                                    data["user_id"].push('<%= @user.id %>');
-                                    data["track_id"].push(a);
-                                    data["rate"].push($(this).val());
-
-                                    $.ajax({
-                                        url:"<%= feed_me_path %>",
-                                        type:"post",
-                                        data:JSON.stringify(data),
-                                        contentType:"application/json",
-                                        success:function (data) {
-                                            <%= add_gritter("Thank You for Valuable Feedback", :title => "Success",:image => :success,:time => 1000) %>
-                                            setTimeout(function(){
-                                                location.reload();
-                                                $("select").val("0");
-                                            },1500)
-
-                                        }
-                                    });
-
-
-                                });
-
-                            }
-                        });
-
+                            });
+                        }
                     });
-
                 });
             });
+        });
 
 
-           function feedback_default(){
+        function feedback_default(){
 
-               $('#select_menu').change(function(){
-                   var data = {user_id:[], track_id:[], rate:[]}
-                   data["user_id"].push('<%= @user.id %>');
-                   data["track_id"].push($('#songs_select').val());
-                   data["rate"].push($(this).val());
+            $('#select_menu').change(function(){
+                var data = {user_id:[], track_id:[], rate:[]}
+                data["user_id"].push('<%= @user.id %>');
+                data["track_id"].push($('#songs_select').val());
+                data["rate"].push($(this).val());
 
-                   $.ajax({
-                       url:"<%= feed_me_path %>",
-                       type:"post",
-                       data:JSON.stringify(data),
-                       contentType:"application/json",
-                       success:function (data) {
-                           <%= add_gritter("Thank You for Valuable Feedback", :title => "Success",:image => :success,:time => 2000) %>
-                           setTimeout(function(){
-                               location.reload();
-                               $("select").val("0");
-                           },1500)
+                $.ajax({
+                    url:"<%= feed_me_path %>",
+                    type:"post",
+                    data:JSON.stringify(data),
+                    contentType:"application/json",
+                    success:function (data) {
+                        <%= add_gritter("Thank You for Valuable Feedback", :title => "Success",:image => :success,:time => 2000) %>
+                        setTimeout(function(){
+                            location.reload();
+                            $("select").val("0");
+                        },1500)
+                    }
+                });
 
-                       }
-                   });
+            });
+        }
 
+    </script>
 
-               });
-
-           }
-
-
-
-        </script>
-
-
-
-        <div data-role="content" id="categoriesContent">
-          <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b">
-            <h4>Rate the Event</h4>
-            <select id="select_menu" data-mini="true">
-              <option value="1">Immense Value Add</option>
-              <option value="2">Great session and topic</option>
-              <option value="3">A good talk and topic</option>
-              <option value="4">Satisfactory</option>
-              <option value="5">Could have matched expectations</option>
-            </select>
-          </ul>
-        </div>
-
-      </li>
-    </ul>
-    <div id="notying"></div>
-  </div>
-
-</div>
-
-
-
-
-<div class="span5">
-  <div class="row-fluid">
-    <div class="span12">
-      <%= render :partial => "event_wall" %>
-    </div>
-  </div>
-</div>
-
-
-<!-------------------------->
-
-<div class="span5">
-  <div class="row-fluid">
-    <div class="span12">
-      <%= render :partial => "splash_zone" %>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-</div>
 
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

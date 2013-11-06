@@ -5,253 +5,165 @@
 
 
 <div class="container-fluid">
-<div class="row-fluid">
-<div class="span7">
-<div class="row-fluid">
-  <div class="span12">
-    <%= render :partial => "list" %>
-  </div>
-</div>
-
-
-
-
-
-
+    <div class="row-fluid">
+        <div class="span7">
+            <div class="row-fluid">
+                <div class="span12">
+                    <%= render :partial => "list" %>
+                </div>
+            </div>
 
 <!----------------------Start of delegates------------------------------>
 
-<div class="black-box tex" id="delegate_profile_of_user">
-  <div class="tab-header">
-    Delegate
-  </div>
-  <ul class="recent-comments">
+            <div class="black-box tex" id="delegate_profile_of_user">
+                <div class="tab-header">Delegate</div>
+                    <ul class="recent-comments">
+                        <li class="separator">
 
-    <li class="separator">
-
-
-
-
-      <%# unless @photo.blank? %>
-          <%#= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
-      <%# end %>
-
-      <% if !@photo.blank? %>
-          <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
-       <% elsif @user.user_photo.blank? %>
-          <%= image_tag "avatar.png", :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
-       <% else %>
-          <%= image_tag @user.user_photo,:style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
-      <% end %>
+                          <% if !@photo.blank? %>
+                              <%= image_tag @photo, :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+                          <% elsif @user.user_photo.blank? %>
+                              <%= image_tag "avatar.png", :style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+                          <% else %>
+                              <%= image_tag @user.user_photo,:style => "float:left; border-radius:5px;margin-right:10px;max-width:80px" %>
+                          <% end %>
 
 
-      <h4 style="margin-top: 0px;"><%= @name.titlecase %>
-        <%if @user.avatar.url!='/avatars/original/missing.png'%>
-            <div class="pro_dwd">
-              <a  target="_blank" style="float:right;color: #f5f5f5;font-size: 1em;" href="<%=@user.avatar.url%>"><span style="font-size: 0.8em;">Profile</span><i class=" icon-download  "></i></a>
+                          <h4 style="margin-top: 0px;"><%= @name.titlecase %>
+                            <%if @user.avatar.url!='/avatars/original/missing.png'%>
+                                <div class="pro_dwd">
+                                  <a  target="_blank" style="float:right;color: #f5f5f5;font-size: 1em;" href="<%=@user.avatar.url%>"><span style="font-size: 0.8em;">Profile</span><i class=" icon-download  "></i></a>
+                                </div>
+                            <%end%>
+
+                            <table style="width: 80%;">
+                              <% unless @headline.blank? %><tr><td><small><%= @headline %></small></td></tr><% end %>
+
+                              <% unless @industry.blank? %><tr><td><small><strong style="color: #c0c0c0;">Background: </strong><%= @industry  %> </small></td></tr><% end %>
+
+                              <% unless @location.blank? %><tr><td><small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br></td></tr><% end %>
+
+                              <% unless @company.blank? %><tr><td><small><strong style="color: #c0c0c0;">Company: </strong><%= @company %></small><br></td></tr><% end %>
+
+                              <% unless @skills.blank? %><tr><td><small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br></td></tr><% end %>
+
+                              <% unless @interest.blank? %><tr><td><small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br></td></tr><% end %>
+                            </table>
+                            <br>
+
+                            <% if @user==current_user %>
+                                <%= link_to "Edit own profile", edit_user_profile_path,:class => "button gray" %>
+                            <% end %>
+                          </h4>
+
+                          <br>
+
+                          <div id="status_here" class="status" style="font-style: italic;"><%= @post.name unless @post.blank? %></div>
+
+                          <hr>
+
+
+                          <% unless @user==current_user %>
+                              <span  id="follow_notice" style="text-align: center;"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not followed yet, to follow click on" :"Following" %></span>
+                          <% end %> &nbsp;&nbsp;
+
+                          <% unless @user==current_user %>
+                              <%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :onclick => "following()", :id => "follow_button" ,:class => "button gray" %>
+                          <% end %>
+
+                          <br>
+                          <br>
+
+                          <div id="accordion">
+                            <h5><%= @user.name %>'s Followers</h5>
+                            <div>
+                              <% @followers.each do |follower| %>
+                                  <p>
+                                    <%= link_to follower.name.titlecase, delegate_profile_index_path(follower)%>
+                                    <% unless follower.picture.blank? %>
+                                        <%= image_tag follower.picture, :style => "float:left; border-radius:5px;margin-right:10px;max-width:40px" %>
+                                    <% end %>
+                                  </p>
+                                  <hr>
+                              <% end %>
+                            </div>
+                          </div>
+
+                          <br>
+
+                          <a class="button gray" href="<%= desktop_focussed_meeting_path(@user) %>">Request Meeting</a>
+                          <a style="float: right;" class="button gray" href="<%= desktop_focussed_message_path(@user) %>/?reply=true">Send Message</a>
+
+                        </li>
+                    </ul>
             </div>
 
-        <%end%>
+        <script type="text/javascript">
+            function following() {
+                $.ajax({
+                    url:"<%= desktop_following_path(@user.id) %>",
+                    type:"post",
+                    success:function (data) {
+                        $("#follow_button .ui-btn-text").html(data);
+                        if (data == "Follow") {
+                            $('#follow_notice').html("Not Followed yet, to follow click on");
+                        } else {
+                            $('#follow_notice').html("Following");
+                        }
 
-        <table style="width: 80%;">
-
-          <% unless @headline.blank? %>
-          <tr>
-            <td>
-              <small><%= @headline %></small>
-            </td>
-          </tr>
-           <% end %>
-
-          <% unless @industry.blank? %>
-          <tr>
-            <td>
-              <small><strong style="color: #c0c0c0;">Background: </strong><%= @industry  %> </small>
-            </td>
-          </tr>
-           <% end %>
-
-
-          <%# unless @educations.blank? %>
-          <!--<tr>-->
-            <!--<td>-->
-              <!--<small><strong style="color: #c0c0c0;">Education: </strong><%#= @educations %></small><br>-->
-            <!--</td>-->
-          <!--</tr>-->
-          <%# end %>
-
-          <% unless @location.blank? %>
-          <tr>
-            <td>
-              <small><strong style="color: #c0c0c0;">Location: </strong><%= @location %></small><br>
-            </td>
-          </tr>
-          <% end %>
-
-          <% unless @company.blank? %>
-              <tr>
-                <td>
-                  <small><strong style="color: #c0c0c0;">Company: </strong><%= @company %></small><br>
-                </td>
-              </tr>
-          <% end %>
-
-
-          <% unless @skills.blank? %>
-          <tr>
-            <td>
-              <small><strong style="color: #c0c0c0;">Skills: </strong><%= @skills %></small><br>
-            </td>
-          </tr>
-           <% end %>
-
-          <% unless @interest.blank? %>
-          <tr>
-            <td>
-              <small><strong style="color: #c0c0c0;">Interested in: </strong><%= @interest %></small><br>
-            </td>
-          </tr>
-          <% end %>
-
-        </table>
-
-        <br>
-
-
-        <% if @user==current_user %>
-              <%= link_to "Edit own profile", edit_user_profile_path,:class => "button gray" %>
-        <% end %>
-      </h4>
-      <br>
-
-      <div id="status_here" class="status" style="font-style: italic;"><%= @post.name unless @post.blank? %></div>
-
-      <hr>
-
-
-
-   <script type="text/javascript">
-        $(function() {
-                    $( "#accordion" ).accordion({
-                        collapsible: true
-                    });
-
-
-
-          });
-
-
-
-        $(".separator .pro_dwd a").click(function(e) {
-            var data = { user_id:[]}
-            data["user_id"].push('<%= current_user.id%>');
-            $.ajax({
-                url:"<%= profile_download_path %>",
-                type:"post",
-                data:JSON.stringify(data),
-                contentType:"application/json",
-                success:function (data) {
-
-                }
-            });
-        });
-
+                        location.reload();
+                    }
+                });
+            }
         </script>
-
-
-      <% unless @user==current_user %>
-          <span  id="follow_notice" style="text-align: center;"><%= Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? "Not followed yet, to follow click on" :"Following" %></span>
-      <% end %> &nbsp;&nbsp;
-      <% unless @user==current_user %>
-          <%= link_to "#{Follower.find_by_user_id_and_follower_id(current_user.id, @user.id).blank? ? 'Follow' :'Unfollow'}", "#", :onclick => "following()", :id => "follow_button" ,:class => "button gray" %>
-      <% end %>
-                <br>
-                <br>
-
-            <div id="accordion">
-              <h5><%= @user.name %>'s Followers</h5>
-              <div>
-                <% @followers.each do |follower| %>
-                        <p>
-                        <%= link_to follower.name.titlecase, delegate_profile_index_path(follower)%>
-                          <% unless follower.picture.blank? %>
-                       <%= image_tag follower.picture, :style => "float:left; border-radius:5px;margin-right:10px;max-width:40px" %>
-                    <% end %>
-                    </p>
-                        <hr>
-                    <% end %>
-              </div>
-            </div>
-
-         <br>
-
-
-      <a class="button gray" href="<%= desktop_focussed_meeting_path(@user) %>">Request
-          Meeting
-      </a>
-
-        <a style="float: right;" class="button gray" href="<%= desktop_focussed_message_path(@user) %>/?reply=true">Send
-          Message
-        </a>
-
-    </li>
-  </ul>
-</div>
-
-  <script type="text/javascript">
-      function following() {
-          $.ajax({
-              url:"<%= desktop_following_path(@user.id) %>",
-              type:"post",
-              success:function (data) {
-                  $("#follow_button .ui-btn-text").html(data);
-                  if (data == "Follow") {
-                      $('#follow_notice').html("Not Followed yet, to follow click on");
-                  } else {
-                      $('#follow_notice').html("Following");
-                  }
-
-                  location.reload();
-              }
-          });
-      }
-  </script>
 <!----------------------End of delegates------------------------------>
 
-
-
-
-</div>
-
-
-<div class="span5">
-  <div class="row-fluid">
-    <div class="span12">
-      <%= render :partial => "event_wall" %>
     </div>
-  </div>
-</div>
 
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "event_wall" %>
+            </div>
+          </div>
+        </div>
 
-<!-------------------------->
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "splash_zone" %>
+            </div>
+          </div>
+        </div>
 
-<div class="span5">
-  <div class="row-fluid">
-    <div class="span12">
-      <%= render :partial => "splash_zone" %>
     </div>
-  </div>
-</div>
 
 
+  <script type="text/javascript">
+      $(function() {
+          $( "#accordion" ).accordion({
+              collapsible: true
+          });
+      });
 
 
+      $(".separator .pro_dwd a").click(function(e) {
+          var data = { user_id:[]}
+          data["user_id"].push('<%= current_user.id%>');
+          $.ajax({
+              url:"<%= profile_download_path %>",
+              type:"post",
+              data:JSON.stringify(data),
+              contentType:"application/json",
+              success:function (data) {
+
+              }
+          });
+      });
+
+  </script>
 
 
-
-
-
-</div>
 
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -263,7 +175,6 @@
     ga('send', 'pageview');
 
 </script>
-
 
 </div>
 

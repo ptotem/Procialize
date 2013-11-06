@@ -1,16 +1,6 @@
 <%= content_for :page_title do %>
     New Message
 <% end %>
-<%= content_for :page_menu do %>
-
-<% end %>
-
-
-
-
-
-
-
 
 
 <% if !params[:reply]  %>
@@ -20,6 +10,7 @@
         </div>
     <% end %>
     <br>
+
     <style type="text/css">
         .black-box .separator a{
             color:black;
@@ -45,7 +36,6 @@
       </ul>
     </div>
     <br>
-    <!--<a class="button gray" href="#" class="form_btn" id="submit_form">Send</a>-->
 
     <script type="text/javascript">
         $(document).on("pageinit", function(){
@@ -103,10 +93,6 @@
         <%= f.submit  "Submit",:onclick => "appending_question();",:id=>"submit_form"%>
     <% end %>
 
-
-
-
-
 <% end %>
 
 
@@ -132,7 +118,6 @@
      <br>
     <div data-role="controlgroup" data-type="horizontal" style="float: right;">
       <a class="index_styling" href="#" data-ajax=false data-role="button" class="form_btn" id="form_btn_id" data-mini="true">Send</a>
-      <%#= f.submit "Send", :'data-role' => "button",:"data-mini" => "true"%>
     </div>
 <% end %>
 

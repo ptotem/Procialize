@@ -3,9 +3,9 @@
 <% end %>
 
 
-
 <div class="container-fluid">
   <div class="row-fluid">
+
     <div class="span7">
       <div class="row-fluid">
         <div class="span12">
@@ -13,23 +13,14 @@
         </div>
       </div>
 
-
-
-
-
-
-
-      <!----------------------Start of events------------------------------>
-
+      <!----------------------Start of Contact Us------------------------------>
 
       <div class="black-box tex" >
         <div class="tab-header">
           Contact Us
         </div>
         <ul class="recent-comments">
-
           <li class="separator">
-            <%#= form_for :message, :url => {:action => :contact_us_create},:html => {:class => " fill-up" } do |f| %>
             <%= form_for :message, :html => {:id => "message_form", :class => "fill-up cmxform"} do |f| %>
                 <%= f.hidden_field :conference_id, :value => Conference.last.id %>
                 <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -37,64 +28,14 @@
                 <br>
                   <%= f.text_area :body, :rows => '5', :style => "height:85px;", :placeholder => "'We hope and sincerely wish that this conference is a value add to you. We further trust that you would have found Procialize an enjoyable experience. We would love to have your comments, thoughts, complaints or feedback. Please do let us know by typing your comments in this space and clicking on the send button. We will definitely get back to you in the shortest possible time.'" %>
                 <br>
-                  <%#= f.submit "Send",:class=>"button gray",:style=>"width:15%;",:id => "add_max" %>
             <% end %>
             <a class="button gray" href="#" class="form_btn" id="form_btn_id">Send</a>
-            <script type="text/javascript">
-                $(function(){
-
-                    $('#form_btn_id').click(function(){
-                        $('#message_form').attr({
-                            action:'contact_us_create',
-                            method:'post'
-                        });
-                        <%= add_gritter("Request send to Admin", :title => "Success",:image => :success,:time => 1000) %>
-                        setTimeout(function(){
-                            $('#message_form').submit();
-                        },1500);
-                })
-                });
-
-            </script>
-
-
-
-
-            <script type="text/javascript">
-                $(function () {
-                    $('#form_btn_id').hide();
-                    $(function () {
-                        $('#form_btn_id').hide();
-                        $('#message_body').focus(function () {
-                            $('#form_btn_id').show();
-                            if (( $('#message_body')).length > 0) {
-
-                            } else {
-                                $('#form_btn_id').hide();
-
-                            }
-                        });
-
-                    });
-
-                    $('#message_body').blur(function () {
-                        if ($(this).val().length <= 0) {
-                            $('#form_btn_id').hide();
-                        }
-                        else {
-                            $('#form_btn_id').show();
-                        }
-                    });
-
-                });
-
-            </script>
 
           </li>
         </ul>
-        <div id="notying"></div>
       </div>
-      <!----------------------End of events------------------------------>
+
+      <!----------------------End of Contact Us------------------------------>
     </div>
 
 
@@ -106,9 +47,6 @@
       </div>
     </div>
 
-
-    <!-------------------------->
-
     <div class="span5">
       <div class="row-fluid">
         <div class="span12">
@@ -116,15 +54,50 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
   </div>
+
+  <script type="text/javascript">
+      $(function () {
+          $('#form_btn_id').hide();
+          $(function () {
+              $('#form_btn_id').hide();
+              $('#message_body').focus(function () {
+                  $('#form_btn_id').show();
+                  if (( $('#message_body')).length > 0) {
+
+                  } else {
+                      $('#form_btn_id').hide();
+
+                  }
+              });
+
+          });
+
+          $('#message_body').blur(function () {
+              if ($(this).val().length <= 0) {
+                  $('#form_btn_id').hide();
+              }
+              else {
+                  $('#form_btn_id').show();
+              }
+          });
+
+
+          $('#form_btn_id').click(function(){
+              $('#message_form').attr({
+                  action:'contact_us_create',
+                  method:'post'
+              });
+              <%= add_gritter("Request send to Admin", :title => "Success",:image => :success,:time => 1000) %>
+              setTimeout(function(){
+                  $('#message_form').submit();
+              },1500);
+          })
+
+
+      });
+
+  </script>
 
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

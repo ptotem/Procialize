@@ -9,17 +9,12 @@
   <%= stylesheet_link_tag "responsiveslides" %>
   <%= javascript_include_tag "responsiveslides.min" %>
 
-
-
   <style type="text/css">
       .img_style {
           max-height: 200px;
 
       }
 
-  </style>
-
-  <style type="text/css">
       body {
           background-size: 100% 100%;
       }
@@ -31,12 +26,6 @@
       .ui-content {
           background: transparent;
       }
-
-      /*table, td, th*/
-
-        /*td {*/
-          /*text-align: left;*/
-      /*}*/
 
   </style>
 
@@ -81,23 +70,17 @@
             <br>
             <table cellpadding="3">
               <tr>
-                <td style="vertical-align:top;"><%= s.option_a %></td>
-                <td></td>
-                <td></td>
+                <td style="vertical-align:top;"><%= s.option_a %></td><td></td><td></td>
                 <td  style="vertical-align:middle;width:2em"><%= radio_button_tag "survey_options", "1", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
               </tr>
               <br>
               <tr>
-                <td style="vertical-align:top;"><%= s.option_b %></td>
-                <td></td>
-                <td></td>
+                <td style="vertical-align:top;"><%= s.option_b %></td><td></td><td></td>
                 <td  style="vertical-align:middle;width:2em;"><%= radio_button_tag "survey_options", "2", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
               </tr>
               <% if !s.option_c.blank? %>
                   <tr>
-                    <td style="vertical-align:top;"><%= s.option_c %></td>
-                    <td></td>
-                    <td></td>
+                    <td style="vertical-align:top;"><%= s.option_c %></td><td></td><td></td>
                     <td  style="vertical-align:middle;width:2em;"><%= radio_button_tag "survey_options", "3", true, :class => "color_input", :style => "height:1em;width:1.5em;" %></td>
                   </tr>
               <% end %>
@@ -116,33 +99,6 @@
     <% end %>
   </ul>
 
-
-
-  <script type="text/javascript">
-      $(function () {
-
-          $("input[name=survey_options]").click(function () {
-              var a = $(this).parent().parent().parent().parent().parent().parent().attr('id');
-              var value = $(this).val();
-              var data = { user_id:[], survey_question_id:[], ans:[]}
-              data["user_id"].push('<%= current_user.id%>');
-              data["survey_question_id"].push(a);
-              data["ans"].push(value);
-              $.ajax({
-                  url:"<%= survey_storing_path %>",
-                  type:"post",
-                  data:JSON.stringify(data),
-                  contentType:"application/json",
-                  success:function (data) {
-                      <%= add_gritter("Thank you for your response", :title => "Success",:image => :success,:time => 1000  ) %>
-                  }
-              });
-
-          });
-
-      });
-
-  </script>
 </div>
 
 <div>
@@ -161,7 +117,31 @@
 
 
 </div>
+<script type="text/javascript">
+    $(function () {
 
+        $("input[name=survey_options]").click(function () {
+            var a = $(this).parent().parent().parent().parent().parent().parent().attr('id');
+            var value = $(this).val();
+            var data = { user_id:[], survey_question_id:[], ans:[]}
+            data["user_id"].push('<%= current_user.id%>');
+            data["survey_question_id"].push(a);
+            data["ans"].push(value);
+            $.ajax({
+                url:"<%= survey_storing_path %>",
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function (data) {
+                    <%= add_gritter("Thank you for your response", :title => "Success",:image => :success,:time => 1000  ) %>
+                }
+            });
+
+        });
+
+    });
+
+</script>
 
 </body>
 </html>

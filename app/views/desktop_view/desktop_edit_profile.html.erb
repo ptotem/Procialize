@@ -6,130 +6,80 @@
 
 
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span7">
-      <div class="row-fluid">
-
-        <%= render :partial => "list" %>
-
-
+    <div class="row-fluid">
+        <div class="span7">
+            <div class="row-fluid">
+                <%= render :partial => "list" %>
 
           <!----------------------Start of edit profile------------------------------>
 
-          <div class="black-box tex" >
-            <div class="tab-header">
-              Edit profile
-            </div>
-            <ul class="recent-comments">
-              <li class="separator">
-                <h5>Edit profile</h5>
+                 <div class="black-box tex" >
+                    <div class="tab-header">Edit profile</div>
+                        <ul class="recent-comments">
+                            <li class="separator">
+                                <h5>Edit profile</h5>
 
-                <a href="/users/auth/linkedin?desktop=true"><%= image_tag("log-in-linkedin-large.png", :style => "width:20%;") %></a>
-                
-                <%#= form_for :user, :url => {:action => :desktop_update_profile},:html => {:class => "fill-up"}, :method => :put do |f| %>
-                <%= form_for :user, :html => {:id => "user_form", :class => "fill-up cmxform"} do |f| %>
-                    <p>
-                      <%= f.label :name %>
-                      <%= f.text_field :name %>
-                    </p>
+                                <a href="/users/auth/linkedin?desktop=true"><%= image_tag("log-in-linkedin-large.png", :style => "width:20%;") %></a>
 
-                    <p>
-                      <%= f.label :headline %>
-                      <%= f.select :headline, options_for_select([ "Chairman & Managing Director","Executive Director/CEO","President/VP–Marketing/International/Business Development","Head-Drug Research/Development/Production","Director for Patent/Regulators","Research Analyst / Investment ","Research Analyst / Investment Research Analyst / Investment ent / Vice President-Finance","President / Vice President / API’s","Head – Human Resources / Corporate Communications","Other"],:prompt=>"Select Headline")  %>
-                    </p>
+                                <%= form_for :user, :html => {:id => "user_form", :class => "fill-up cmxform"} do |f| %>
 
-                    <p>
-                      <%= f.label :industry %>
-                      <%= f.select :industry, options_for_select([ "Pharmaceutical","APIs","Bulk Drugs","Healthcare","Life Sciences","Chemicals & Fertilizers","IT Software","Financial Institutions","Other"],:prompt=>"Select Industry") %>
-                    </p>
+                                    <p><%= f.label :name %><%= f.text_field :name %></p>
 
+                                    <p><%= f.label :headline %><%= f.select :headline, options_for_select([ "Chairman & Managing Director","Executive Director/CEO","President/VP–Marketing/International/Business Development","Head-Drug Research/Development/Production","Director for Patent/Regulators","Research Analyst / Investment ","Research Analyst / Investment Research Analyst / Investment ent / Vice President-Finance","President / Vice President / API’s","Head – Human Resources / Corporate Communications","Other"],:prompt=>"Select Headline")  %></p>
 
+                                    <p><%= f.label :industry %><%= f.select :industry, options_for_select([ "Pharmaceutical","APIs","Bulk Drugs","Healthcare","Life Sciences","Chemicals & Fertilizers","IT Software","Financial Institutions","Other"],:prompt=>"Select Industry") %></p>
 
-                    <p>
-                      <%= f.label :location %>
-                      <%= f.select :location, options_for_select([ "Mumbai", "Chennai", "Hyderabad", "Delhi","Kolkata","Pune","Bangalore", "Ahmedabad","Chandigarh","Other"],:prompt=>"Select Location") %>
+                                    <p><%= f.label :location %><%= f.select :location, options_for_select([ "Mumbai", "Chennai", "Hyderabad", "Delhi","Kolkata","Pune","Bangalore", "Ahmedabad","Chandigarh","Other"],:prompt=>"Select Location") %></p>
 
-                    </p>
+                                    <p><%= f.label :skills %><%= f.text_field :skills %></p>
 
-                    <p>
-                      <%= f.label :skills %>
-                      <%= f.text_field :skills %>
-                    </p>
+                                    <p><%= f.label :interest %><%= f.text_field :interest %></p>
+                                <% end %>
 
-                    <p>
-                      <%= f.label :interest %>
-                      <%= f.text_field :interest %>
-                    </p>
-
-
-                    <!--<p>-->
-                      <%#= f.submit "Save",:class => "button gray",:style => "width:15%;",:id=>"add_max" %>
-                    <!--</p>-->
-
-                <% end %>
-                <a class="button gray" href="#" class="form_btn" id="form_btn_id">Save</a>
-
-                <script type="text/javascript">
-
-                      $(function(){
-
-                          $('#form_btn_id').click(function(){
-                              $('#user_form').attr({
-                                  action:'desktop_update_profile',
-                                  method:'post'
-                              });
-                              <%= add_gritter("Successfully Updated", :title => "Success",:image => :success,:time => 1000) %>
-                              setTimeout(function(){
-                                  $('#user_form').submit();
-                              },1500);
-                          })
-                      });
-
-
-
-                </script>
-
-              </li>
-            </ul>
-          </div>
+                                <a class="button gray" href="#" class="form_btn" id="form_btn_id">Save</a>
+                            </li>
+                        </ul>
+                 </div>
           <!----------------------End of edit_profile------------------------------>
+            </div>
         </div>
-      </div>
 
 
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "event_wall" %>
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "event_wall" %>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "splash_zone" %>
+            </div>
+          </div>
+        </div>
+
     </div>
 
 
-    <!-------------------------->
+  <script type="text/javascript">
+      $(function(){
 
-    <div class="span5">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= render :partial => "splash_zone" %>
-        </div>
-      </div>
-    </div>
+          $('#form_btn_id').click(function(){
+              $('#user_form').attr({
+                  action:'desktop_update_profile',
+                  method:'post'
+              });
+              <%= add_gritter("Successfully Updated", :title => "Success",:image => :success,:time => 1000) %>
+              setTimeout(function(){
+                  $('#user_form').submit();
+              },1500);
+          })
+      });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
+  </script>
 
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

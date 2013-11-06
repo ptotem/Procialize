@@ -2,9 +2,19 @@
     Events
 <% end %>
 
+<%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:id => 'Select Event Day'}, {:id => 'genres_select'}) %><br/>
+<%= collection_select(nil, :event_id, @events, :id, :name, {:id => 'Select Track Day'}, {:id => 'artists_select'}) %><br>
+
+
+
+<div data-role="content" id="categoriesContent">
+  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b">
+    <h4>Event List</h4>
+  </ul>
+</div>
+
+
 <script type="text/javascript">
-
-
     $(function () {
         $("select#genres_select").prop('selectedIndex', 0);
         $("select#artists_select").prop('selectedIndex', 0);
@@ -34,6 +44,7 @@
                     $('#categoriesContent').hide();
                 });
             });
+
             $('#artists_select').change(function () {
                 var data = {event_id:[]}
                 data["event_id"].push($('#artists_select').val());
@@ -70,28 +81,7 @@
         });
     }
 
-
-
-
-
-
-
-
-
 </script>
-
-<%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:id => 'Select Event Day'}, {:id => 'genres_select'}) %>
-<br/>
-<%= collection_select(nil, :event_id, @events, :id, :name, {:id => 'Select Track Day'}, {:id => 'artists_select'}) %>
-<br>
-
-
-
-<div data-role="content" id="categoriesContent">
-  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b">
-    <h4>Event List</h4>
-  </ul>
-</div>
 
 
 

@@ -5,11 +5,9 @@
   <title>Procialize: <%= yield :page_title %></title>
   <meta name="viewport" content=" width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css"/>-->
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
   <%= stylesheet_link_tag "new_procialize_k.min" %>
   <%= javascript_include_tag "application" %>
-  <!--<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>-->
   <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "jqm-icon-pack-2.0-original" %>
@@ -111,10 +109,8 @@ var isMobile = {
 <div data-role="page" id="home">
   <div data-role="header" data-fullscreen="true">
 
-    <!--<a href="/meetings"  data-icon="arrow-l" data-ajax="false">Back</a>-->
     <a href="/" data-icon="home" data-theme='a' data-ajax=false>Home</a>
     <h1><%= yield :page_title %></h1>
-    <!--<a href="#search_menu" id="main_menu" data-icon="search" data-prefetch>I am at </a>-->
 
     <%= link_to "Logout", destroy_user_session_path, :method => :delete, :'data-ajax' => false, :"data-icon"=>"signout", :'data-role' => "button" %>
 

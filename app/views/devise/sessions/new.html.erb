@@ -50,6 +50,7 @@
       <hr>
       <p style="color: #f5f5f5;">Powered by:</p>
       <%= image_tag Logos.first.oragnizer_pic.url,:style => "max-width:100%;"  rescue "" %>
+      <%= link_to "Sign Up", new_user_registration_path, :'data-role'=>"button", :'data-theme'=>"a" %>
   <% end %>
 </div>
 
