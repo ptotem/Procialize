@@ -23,11 +23,6 @@ class MeetingsController < ApplicationController
     @scheduled.flatten
     @open.flatten
 
-
-    #respond_to do |format|
-    #  format.html # index.html.erb
-    #  format.json { render json: @meetings }
-    #end
   end
 
   # GET /meetings/1
@@ -75,11 +70,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
   end
 
-  # POST /meetings
-  # POST /meetings.json
-  #def meeting_new_user
-  #  @me=Mezeter.create!(:user_id => params[:meeter_users][0])
-  #end
+
 
 
 
@@ -122,10 +113,6 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
     @meeting.destroy
     redirect_to meetings_path
-    #respond_to do |format|
-    #  format.html { redirect_to meetings_url }
-    #  format.json { head :no_content }
-    #end
   end
 
   def accept
@@ -152,8 +139,6 @@ class MeetingsController < ApplicationController
     @users<<@followed
     @users<<(User.all - @followed)
     @user_list=@users.flatten.map {|u| [u.name, u.id]}
-    #@user_list.search params[:teacher][:search_by],params[:teacher][:search]
-
   end
 
 

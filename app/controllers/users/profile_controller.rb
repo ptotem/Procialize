@@ -58,6 +58,7 @@ class Users::ProfileController < ApplicationController
     render :layout => "profile"
   end
 
+  # User followers
   def following
     if Follower.find_by_user_id_and_follower_id(current_user.id, params[:id]).blank?
       Follower.create!(:user_id => current_user.id, :conference_id => Conference.last.id, :follower_id => params[:id])
@@ -82,6 +83,7 @@ class Users::ProfileController < ApplicationController
   end
 
 
+ # Profile Update or Edit
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
@@ -92,63 +94,6 @@ class Users::ProfileController < ApplicationController
       render 'edit'
     end
   end
-
-
-  #def callback
-  #  client = LinkedIn::Client.new("ljzad7w5p948", "sUZB5WRK34cmt0FN")
-  #  if session[:atoken].nil?
-  #    pin = params[:oauth_verifier]
-  #    atoken, asecret = client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
-  #    session[:atoken] = atoken
-  #    session[:asecret] = asecret
-  #  else
-  #    client.authorize_from_access(session[:atoken], session[:asecret])
-  #  end
-  #  @profile = client.profile
-  #  @connections = client.connections
-  #end
-  #
-  #
-  #def  index_for_linkedin
-  #  client = LinkedIn::Client.new("ljzad7w5p948", "sUZB5WRK34cmt0FN")
-  #  request_token = client.request_token(:oauth_callback =>
-  #                                           "http://localhost:3000/auth/callback")
-  #                                           #"http://#{request.host_with_port}/auth/callback")
-  #  session[:rtoken] = request_token.token
-  #  session[:rsecret] = request_token.secret
-  #  redirect_to client.request_token.authorize_url
-  #
-  #end
-
-
-
-
-
-  #require 'spreadsheet'
-
-  #def excel_imp
-  #  #To open excel and importing it into database
-  #
-  #  #Userimp=UserImp.create(:file=>params[:file]])) userimp.file.url
-  #
-  #
-  #
-  #  @users=Array.new
-  #  Spreadsheet.client_encoding = 'UTF-8'
-  #  book = Spreadsheet.open '/home/neel/Downloads/user_new.xls'
-  #  sheet1 = book.worksheet 0
-  #
-  #
-  #  sheet1.each_with_index do |row, index|
-  #    if index>0
-  #      @users<<User.create!(:email=> row[0], :password => row[1], :password_confirmation => row[2], :name => row[3])
-  #    end
-  #  end
-  # render :text => "completed" ,:layout => "application1"
-  # return
-  #
-  #end
-
 
 
 end

@@ -23,11 +23,9 @@ class DesktopViewController < ApplicationController
     @event_day_name=EventDay.find_by_event_date(Time.now)
     #-------------end of graffiti and user name-------------------#
 
-
     @concierge_services_name= ConciergeService.all.map { |i| i.name }
     @concierge_services_comments= ConciergeService.all.map { |i| i.comment }
     gon.services_comment=@concierge_services_comments
-
 
     #-------------start of speakers-------------------#
     @event_days = @conference.event_days
@@ -45,16 +43,6 @@ class DesktopViewController < ApplicationController
   end
 
   #-------------end of speakers-------------------------#
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -86,39 +74,9 @@ class DesktopViewController < ApplicationController
     @questionable.save
     render :text => @questionable.like
   end
-
-  #
-  #def desktop_question_view
-  #  @user=current_user
-  #  @name=@user.name
-  #  @photo=@user.picture
-  #  @headline=@user.headline
-  #  @batch=@user.batchie
-  #  #@event=Questionable.create(:event_id => params[:questionable][:event_id], :quest_name => params[:questionable][:quest_name], :user_id => @user.id, :approved => false)
-  #  redirect_to :action => "ask_question"
-  #end
-  #
-  #
-  #def desktop_hide_quest
-  #  @questionable=Questionable.find(params[:question_id][0])
-  #  @questionable.hide=true
-  #  @questionable.save
-  #  render :text => @questionable.id
-  #  return
-  #end
-  #
-  #
-  #def desktop_approve_quest
-  #  @questionable=Questionable.find(params[:question_id][0])
-  #  @questionable.approved=true
-  #  @questionable.hide=nil
-  #  @questionable.save
-  #  render :text => @questionable.id
-  #  return
-  #end
-
-
   #------------End of questionables-------------------#
+
+
 
 
   #------------Start of start of assets_downloads-------------------#
@@ -132,11 +90,10 @@ class DesktopViewController < ApplicationController
     @assets_downloads=AssetsDownload.all
     render :layout => "application1"
   end
-
   #------------End of start of assets_downloads-------------------#
 
 
-  #-----------------------------------------New_desktop_view-----------------------------------------------#
+
 
 
   #------------Start of Events-------------------#
@@ -327,6 +284,8 @@ class DesktopViewController < ApplicationController
   #------------End of Meetings-------------------#
 
 
+
+
   #------------Start of Messages----------------#
   def messages_index
     @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message }
@@ -464,6 +423,8 @@ class DesktopViewController < ApplicationController
   #------------End of messages-------------------#
 
 
+
+
   #-------------start of delegates-------------------#
   def delegates_search
     #@user=User.find(params[:id])
@@ -523,8 +484,6 @@ class DesktopViewController < ApplicationController
     @headline=@user.headline
     @batch=@user.batchie
     @industry=@user.industry
-    #@educations=[]
-    #@positions=[]
 
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
     @posts=@user.posts
@@ -548,8 +507,6 @@ class DesktopViewController < ApplicationController
     @location=@user.location
     @skills=@user.skills
     @company=@user.company
-    #@educations=[]
-    #@positions=[]
 
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user }.map { |f| f.user }
     @posts=@user.posts.last(10).reverse
@@ -607,17 +564,7 @@ class DesktopViewController < ApplicationController
 
 
   def profile_download
-      #@curr_user=current_user
-      #if !@curr_user.person_view.blank?
-      #  @viewers_name=@curr_user.profile_dwnld
-      #  @person_name=@viewers_name.split('|').last
-      #  @person=@person_name.split(':').first.to_i + 1
-      #  @viewing=@person.to_s+':'+@user.name
-      #  current_user.person_view=@viewers_name +'|'+@viewing
-      #else
-      #  @curr_user.person_view="1:#{User.find(params[:id]).name}"
-      #end
-      #@curr_user.save
+
   end
   #-------------end of delegates-------------------#
 
@@ -626,7 +573,6 @@ class DesktopViewController < ApplicationController
 
   #-------------Start of Graffiti-------------------#
   def desktop_graffiti
-    #@now=Time.at(Time.now.hour * 60 * 60 + Time.now.min * 60 + Time.now.sec)
     Time.zone = "New Delhi"
     @now=Time.at(Time.now.hour * 60 * 60 + Time.now.min * 60 + Time.now.sec).in_time_zone
 
@@ -712,7 +658,7 @@ class DesktopViewController < ApplicationController
     @users<<@followed
     @users<<(User.all - @followed)
     @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
-    @use=@users.flatten.select{|u| (u.email=="maahafreen.a@cii.in")}.map{|u| u.name }
+    @use=@users.flatten.select{|u| (u.email=="vineet.dagar@i2ieventsgroup.com")}.map{|u| u.name }
 
     render :layout => "application1"
   end
@@ -721,7 +667,7 @@ class DesktopViewController < ApplicationController
   def contact_us_create
     @message = Message.new(params[:message])
     @message.save
-    @receipient=Receipient.create!(:user_id => 3, :message_id => @message.id)
+    @receipient=Receipient.create!(:user_id => 2, :message_id => @message.id)
     @receipient.status=nil
     @receipient.save
 
@@ -767,15 +713,16 @@ class DesktopViewController < ApplicationController
   #-------------end of ratings-------------------------#
 
 
+
+
+
   #-------------start of questionable-------------------#
   def desktop_ask_question
     @user=current_user
-    #gon.current_user_id=@user.id
     @event_days=@conference.event_days
     @event_days = EventDay.all
     @events = Event.all
     @tracks = Track.all
-    #redirect_to event_path(@event)
     if (!@track.nil?)
       @track = Track.find(params[:track_id])
     end
@@ -811,21 +758,11 @@ class DesktopViewController < ApplicationController
   #-------------end of questionable-------------------#
 
 
+
+
   #-------------Start of Speakers-------------------#
   def desktop_speaker
     @speak=Speaker.all
-    #@speak_id=Array.new
-    #@tracker=Array.new
-    #@speak.each do |s|
-    #  @speak_id<<s.id
-    #end
-    #@speaker_track=TrackSpeaker.find_all_by_speaker_id(@speak_id)
-    #@speaker_track.each do |s|
-    #  @tracker<<s.track_id
-    #end
-    #
-    #@track_name=Track.find_all_by_id(@tracker)
-
     render :layout => "application1"
   end
   #-------------End of Speakers-------------------#
@@ -834,7 +771,6 @@ class DesktopViewController < ApplicationController
 
 
   #--------------Start of Exhibitor----------------#
-
   def exhibitor_desk
     @exhibitor=Exhibitor.all
     render :layout => "application1"
@@ -872,7 +808,6 @@ class DesktopViewController < ApplicationController
     end
     render :layout => "application1"
   end
-
   #--------------End of Exhibitor----------------#
 
 

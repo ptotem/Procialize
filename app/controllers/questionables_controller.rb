@@ -1,23 +1,18 @@
 class QuestionablesController < ApplicationController
+
+
   # GET /questionables
   # GET /questionables.json
   #load_and_authorize_resource
-
-
   def index
     @user=current_user
     if params[:id].blank?
-      #@events=Questionable.all.map { |i| i.event_id }.uniq
       @tracks=Questionable.all.map { |i| i.track_id }.uniq
     else
-      #@event=Event.find(params[:id]).id
-      #@events=Array.new
-      #@events<<@event
       @track=Track.find(params[:id]).id
       @tracks=Array.new
       @tracks<<@track
     end
-    #@questionables = Questionable.where(:approved => true).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,8 +49,6 @@ class QuestionablesController < ApplicationController
   # POST /questionables
   # POST /questionables.json
   def create
-    #@questionable = Questionable.new(params[:questionable])
-
     @user=current_user
     @event = Event.find(params[:event_id])
     @questionable = @event.questionables.create(params[:questionable])
@@ -106,18 +99,11 @@ class QuestionablesController < ApplicationController
   # DELETE /questionables/1
   # DELETE /questionables/1.json
   def destroy
-    #@questionable = Questionable.find(params[:id])
-    #@questionable.destroy
     @event = Event.find(params[:event_id])
     @questionable = @event.questionables.find(params[:id])
     @questionable.destroy
     redirect_to event_path(@event)
   end
-
-  #def question_view
-  #  #@event=Event.find(44)
-  #  @tracks=Questionable.all.map { |i| i.track_id }.uniq
-  #end
 
 
   def hide_quest

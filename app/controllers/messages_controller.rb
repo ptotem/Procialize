@@ -24,8 +24,6 @@ class MessagesController < ApplicationController
     @followed=Follower.find_all_by_user_id(current_user.id).map { |f| User.find(f.follower_id) }
     @users<<@followed
     @users<<(User.all - @followed)
-    #@user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
-
     @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id]-[current_user.name ,current_user.id] }
 
   end
@@ -46,7 +44,6 @@ class MessagesController < ApplicationController
     @followed=Follower.find_all_by_user_id(current_user.id).map { |f| User.find(f.follower_id) }
     @users<<@followed
     @users<<(User.all - @followed)
-    #@user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
     @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id]-[current_user.name ,current_user.id] }
   end
 
@@ -63,7 +60,6 @@ class MessagesController < ApplicationController
           Receipient.create!(:message_id => @message.id, :user_id => uid)
         end
         format.html { redirect_to messages_path , :notice=> 'Message was successfully sent.' }
-        #format.json { render json: @message, status: :created, location: @message }
       else
         format.html { render :action=> "new" }
         format.json { render :json=> @message.errors, :status=> :unprocessable_entity }

@@ -7,7 +7,6 @@ class SearchController < ApplicationController
 
 
   def search
-    #@user=User.find(params[:id])
     @user=current_user
     @name=@user.name
     @photo=@user.picture
@@ -16,14 +15,17 @@ class SearchController < ApplicationController
     @educations=[]
     @positions=[]
 
-    #unless @user.educations.blank?
-    #  @educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "" :"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
-    #end
-    #unless @user.positions.blank?
-    #  unless @user.positions.values[1].blank?
-    #    @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name}" }.uniq
-    #  end
-    #end
+    #----Start For linkedin user educations and positions-----#
+      #unless @user.educations.blank?
+      #  @educations=@user.educations.values[1].map { |t| t.endDate.blank? ? "" :"Class of #{t.endDate.year}, #{t.schoolName}" }.uniq
+      #end
+      #unless @user.positions.blank?
+      #  unless @user.positions.values[1].blank?
+      #    @positions=@user.positions.values[1].map { |p| "#{p.title}, #{p.company.name}" }.uniq
+      #  end
+      #end
+    #----End For linkedin user educations and positions-----#
+
     @followers=Follower.find_all_by_follower_id(@user.id).select { |f| f.user unless f.user==current_user }.map { |f| f.user }
     @posts=@user.posts
     if !UserLocation.find_all_by_user_id(@user.id).last.blank?

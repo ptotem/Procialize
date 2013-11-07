@@ -3,7 +3,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    #@event = Event.find(params[:id])
     @track = Track.find(params[:id])
     @attendees=Attendee.find_all_by_track_id(@track).map { |a| a.user }
     @my_attendee=Attendee.find_by_track_id_and_user_id(@track, current_user)
@@ -45,8 +44,6 @@ class EventsController < ApplicationController
 
 
   def update_artists
-    #@event_day = EventDay.find(params[:event_day][:event_day_id]).reject(&:blank?) unless params[:event_day].nil?
-    #@ev = Event.find_all_by_event_day_id(@event_day).map{|a| [a.name, a.id]}
     @event_day = EventDay.find(params[:event_day_id])
     @ev = Event.find_all_by_event_day_id(@event_day)
     @returning_data =Array.new
@@ -54,12 +51,6 @@ class EventsController < ApplicationController
       @returning_data<<"#{i.id}|#{i.name}"
     end
      render :json => @returning_data
-    #return
-    #
-    #@tr= Track.find_all_by_event_id(@ev).map{|s| [s.name, s.id]}
-    #render :text => @ev
-    #return
-
   end
 
   def update_songs

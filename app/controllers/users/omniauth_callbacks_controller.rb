@@ -1,8 +1,9 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
+# Linkedin omniauth login
+
   def linkedin
     if user_signed_in?
-      #render :json =>
-      #return
       @user = current_user
       @user.name = "#{request.env["omniauth.auth"]["extra"]["raw_info"]["firstName"]} #{request.env["omniauth.auth"]["extra"]["raw_info"]["lastName"]}"
       @user.industry = request.env["omniauth.auth"]["extra"]["raw_info"]["industry"]
@@ -32,6 +33,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+
+  # Facebook omniauth login
 
   def facebook
     # You need to implement the method below in your model (e.g. app/models/user.rb)

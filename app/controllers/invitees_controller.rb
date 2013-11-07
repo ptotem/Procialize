@@ -90,7 +90,7 @@ class InviteesController < ApplicationController
     end
 
 
-    #----------For testing---------------#
+    #----------Start of testing---------------#
    # User.all.each do |user|#
 
     #user=User.find(447)
@@ -102,6 +102,7 @@ class InviteesController < ApplicationController
     #    @rejected<<user.email
     #  end
     #end
+    #---------End of Testing-------------#
   end
 
 
