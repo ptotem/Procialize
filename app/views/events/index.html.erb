@@ -2,23 +2,19 @@
     Events
 <% end %>
 
-<% @events.each do |e| %>
-    <div data-role="collapsible" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
-      <h6 style="font-size: 0.8em;text-shadow: none;"><%= e.name %></h6>
-      <ul data-role="listview">
-        <% @tra= Track.find_all_by_event_id(e.id) %>
-        <% @tra.each do |f| %>
-            <li>
-              <a style="font-size: 0.8em;" href="/events/<%= f.id %>" data-ajax=false>
-                <%= f.name %>
-              </a>
-            </li>
-        <% end %>
-      </ul>
-    </div>
-    <br>
-    <br>
-<% end %>
+<div data-role="content" id="categoriesContent">
+  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b">
+    <h4>Event List</h4>
+    <% Track.all.each do |e| %>
+        <li>
+          <a href="/events/<%= e.id %>" data-ajax=false>
+            <p><%= e.name.truncate(40) %></p>
+            <p class="ui-li-aside"><%= e.start %></p>
+          </a>
+        </li>
+    <% end %>
+  </ul>
+</div>
 
 
 <script type="text/javascript">

@@ -42,21 +42,16 @@
                   <li class="separator">
                     <br>
                     <ul>
-                      <% @eventss.each do |e| %>
-                          <div class="tab-header" style="font-size: 0.9em;font-family:Arial;">
-                            <%= e.name %>
-                          </div>
-                          <% @tra= Track.find_all_by_event_id(e.id) %>
+                      <% Track.all.each do |e| %>
                           <div class="nav-menu box" id="categoriesContent">
                             <ul class="nav nav-list">
                               <li>
-                                <% @tra.each do |f| %>
-                                    <a href="/events_show/<%= f.id %>">
-                                      <h6>
-                                        <%= f.name %>
-                                      </h6>
-                                    </a>
-                                <% end %>
+                                <a href="/events_show/<%= e.id %>">
+                                  <h6>
+                                    <%= e.name %>
+                                    <span class="pull-right badge black"><%= e.start %></span>
+                                  </h6>
+                                </a>
                               </li>
                             </ul>
                           </div>
