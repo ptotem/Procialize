@@ -42,7 +42,7 @@ class MeetingsController < ApplicationController
     @followed=Follower.find_all_by_user_id(current_user.id).map { |f| User.find(f.follower_id) }
     @users<<@followed
     @users<<(User.all - @followed)
-    @user_list=@users.flatten.map {|u| [u.name, u.id]}
+    @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id]-[current_user.name, current_user.id] }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -58,7 +58,7 @@ class MeetingsController < ApplicationController
     @followed=Follower.find_all_by_user_id(current_user.id).map { |f| User.find(f.follower_id) }
     @users<<@followed
     @users<<(User.all - @followed)
-    @user_list=@users.flatten.map {|u| [u.name, u.id]}
+    @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id]-[current_user.name, current_user.id] }
     respond_to do |format|
       format.html # focussed_new.html.erb
       format.json { render :json => @meeting }
