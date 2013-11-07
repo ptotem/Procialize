@@ -48,7 +48,7 @@
     </div>
       <br>
     <div data-role="listview" data-mini="true"  data-placeholder="true"  data-split-icon='star' data-mini="true" data-filter="true">
-      <%= select_tag 'meeter_use[]', options_for_select(@users.flatten.map {|u| [u.name, u.id]}, @meeter), :multiple => true,:include_blank =>"Select Delegates", :multiple => true,:'data-mini' => true,:prompt => "Select Delegates" %>
+      <%= select_tag 'meeter_use[]', options_for_select(@user_list, @meeter), :multiple => true,:include_blank =>"Select Delegates", :multiple => true,:'data-mini' => true,:prompt => "Select Delegates" %>
     </div>
      <br>
     <div class="field">
