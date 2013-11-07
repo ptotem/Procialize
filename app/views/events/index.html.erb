@@ -8,7 +8,7 @@
     <% Track.all.each do |e| %>
         <li>
           <a href="/events/<%= e.id %>" data-ajax=false>
-            <p><%= e.name.truncate(35) %></p>
+            <p><%= e.name.truncate(30) %></p>
             <p class="ui-li-aside"><%= e.start %></p>
           </a>
         </li>
