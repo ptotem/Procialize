@@ -2,16 +2,23 @@
     Events
 <% end %>
 
-<%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:id => 'Select Event Day'}, {:id => 'genres_select'}) %><br/>
-<%= collection_select(nil, :event_id, @events, :id, :name, {:id => 'Select Track Day'}, {:id => 'artists_select'}) %><br>
-
-
-
-<div data-role="content" id="categoriesContent">
-  <ul data-role="listview" data-theme="d" data-dividertheme="c" data-counttheme="b">
-    <h4>Event List</h4>
-  </ul>
-</div>
+<% @events.each do |e| %>
+    <div data-role="collapsible" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+      <h6 style="font-size: 0.8em;text-shadow: none;"><%= e.name %></h6>
+      <ul data-role="listview">
+        <% @tra= Track.find_all_by_event_id(e.id) %>
+        <% @tra.each do |f| %>
+            <li>
+              <a style="font-size: 0.8em;" href="/events/<%= f.id %>" data-ajax=false>
+                <%= f.name %>
+              </a>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+    <br>
+    <br>
+<% end %>
 
 
 <script type="text/javascript">

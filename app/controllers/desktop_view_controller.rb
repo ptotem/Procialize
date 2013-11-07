@@ -143,7 +143,7 @@ class DesktopViewController < ApplicationController
   def desktop_events
     @event_days=@conference.event_days
     @event_days = EventDay.all
-    @events = Event.all
+    @eventss = Event.all
     @tracks = Track.all
     render :layout => "application1"
   end
