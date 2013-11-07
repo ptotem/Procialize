@@ -39,7 +39,7 @@
   <%= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-signin", :'data-ajax' => "false"} do |f| %>
       <%= devise_error_messages! %>
       <br>
-      <%#= link_to image_tag("linkedin.png", :style => "width:100%;"), user_omniauth_authorize_path(:linkedin), :'data-ajax' => false %>
+      <%= link_to image_tag("linkedin.png", :style => "width:100%;"), user_omniauth_authorize_path(:linkedin), :'data-ajax' => false %>
       <%#= link_to image_tag("facebook_logo.png", :style => "width:100%;"), '/users/auth/facebook', :'data-ajax'=>false %>
       <hr>
       <h2 class="form-signin-heading">Sign in</h2>
