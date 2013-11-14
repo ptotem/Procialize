@@ -118,6 +118,8 @@ class InviteesController < ApplicationController
         user.save
       else
         @rejected<<user.email
+        user.recommend_select=false
+        user.save
       end
     end
     redirect_to trigger_recommend_path
