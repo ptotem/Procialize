@@ -114,14 +114,11 @@ class InviteesController < ApplicationController
       if @invitee.save
         UserMailer.registration_confirmation(@invitee).deliver
         @rejected<<"Ok"
+        user.recommend_select=false
+        user.save
       else
         @rejected<<user.email
       end
-    end
-    @usrs = User.all
-    @usrs.each do |usr|
-      usr.recommend_select=false
-      usr.save
     end
     redirect_to trigger_recommend_path
   end

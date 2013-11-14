@@ -29,7 +29,7 @@
   <% if !@user.recommend.nil? %>
       <% @user.recommend.split(", ").each do |r| %>
           <%#= @user_new<<User.find_by_name(r) %>
-          <% @reco= User.find_by_name(r)%>
+          <% @reco= User.find_by_name(r.strip)%>
           <% @user_new << @reco %>
           <li>
             <%= @reco.name.titlecase %>

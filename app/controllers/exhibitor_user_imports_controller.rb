@@ -17,7 +17,7 @@ class ExhibitorUserImportsController < ApplicationController
 
     sheet1.each_with_index do |row, index|
       if index>0
-        @exhibitor_users<<ExhibitorUser.create!(:user_id=> row[0], :exhibitor_id => row[1])
+        @exhibitor_users<<ExhibitorUser.create!(:user_id=> User.find_by_name(row[0].id), :exhibitor_id => Exhibitor.find_by_name(row[1].id))
       end
     end
     redirect_to "/organizer/exhibitor_user_import"
