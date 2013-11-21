@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   def set_current_conference
     User.current = current_user
+
     @conference=Conference.last
   end
 
