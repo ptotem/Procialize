@@ -80,69 +80,7 @@
         </div>
     </div>
 
-  <script type="text/javascript">
-
-      $(function () {
-          $("select#genres_select").prop('selectedIndex', 1);
-          $("select#artists_select").prop('selectedIndex', 1);
-          event_default();
-
-              $('#artists_select').prop("disabled", true);
-              $('#songs_select').prop("disabled", true);
-              $('#categoriesContent').hide();
-
-              $('#genres_select').change(function () {
-                  var data = {event_day_id:[]}
-                  data["event_day_id"].push($('#genres_select').val());
-                  $.getJSON("desktop_view/update_track/"+ data["event_day_id"], function(data) {
-                      $('#artists_select').empty();
-                      $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
-                      $.each(data, function(key, val) {
-                          val=val.split('|');
-                          $('#artists_select').append($('<option>', {
-                              value:val[0],
-                              text:val[1]
-                          }));
-                      });
-                      $('#artists_select').prop("disabled", false);
-                      $('#songs_select').prop("disabled", true);
-                      $('#categoriesContent').hide();
-                  });
-              });
-
-              $('#artists_select').change(function () {
-                  var data = {event_id:[]}
-                  data["event_id"].push($('#artists_select').val());
-                  $.getJSON("desktop_view/update_event/"+ data["event_id"], function(data) {
-                      $('#categoriesContent ul').html("");
-                      $.each(data, function(key, val) {
-                          val=val.split('|');
-                          $('#categoriesContent').show();
-                          $('#categoriesContent ul').append('<li><a href="/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
-
-                      });
-
-                  });
-
-              });
-
-      });
-
-      function event_default(){
-          var data = {event_id:[]}
-          data["event_id"].push($('#artists_select').val());
-          $.getJSON("desktop_view/update_event/"+ data["event_id"], function(data) {
-              $('#categoriesContent ul').html("");
-              $.each(data, function(key, val) {
-                  val=val.split('|');
-                  $('#categoriesContent').show();
-                  $('#categoriesContent ul').append('<li><a href="/events_show/' + val [0] + '"><h6>' + val[1] + '<span class="pull-right badge black">' + val[2] + '</span></h6></a></li>');
-
-              });
-
-          });
-      }
-  </script>
+  
 
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
