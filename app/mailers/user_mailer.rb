@@ -3,6 +3,14 @@ class UserMailer < ActionMailer::Base
   def registration_confirmation(user)
     @invitee=user
     mail(:to => user.email, :subject => "Start interacting with delegates and speakers of CII PHARMA SUMMIT Now!")
+    end
+  def msg_confirmation(user)
+    @invitee=user
+    mail(:to => user.email, :subject => "Message Received")
+    end
+  def meeting_confirmation(user)
+    @invitee=user
+    mail(:to => user.email, :subject => "Meeting Invitation Received")
   end
 
   #def unapproval_notice(user)
