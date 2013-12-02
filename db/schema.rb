@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014083548) do
+ActiveRecord::Schema.define(:version => 20131022114751) do
 
   create_table "assets_downloads", :force => true do |t|
     t.string   "downloadable_file_name"
@@ -550,6 +550,7 @@ ActiveRecord::Schema.define(:version => 20131014083548) do
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
     t.integer  "speaker_id"
+    t.text     "viewers_name"
   end
 
   create_table "user_imports", :force => true do |t|
@@ -614,6 +615,8 @@ ActiveRecord::Schema.define(:version => 20131014083548) do
     t.integer  "user_photo_file_size"
     t.datetime "user_photo_updated_at"
     t.text     "skills"
+    t.text     "person_view"
+    t.text     "profile_dwnld"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

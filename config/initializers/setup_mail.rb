@@ -12,11 +12,12 @@ ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
     :port => 587,
     :domain => "railscasts.com",
-    :user_name => "procialize@gmail.com",
-    :password => "ptotem123",
+    :user_name => "promotions@cii.in",
+    :password => "Welcome@21",
     :authentication => "plain",
     #:user_name => "railscasts",
     #:password => "secret",
     :enable_starttls_auto => true
 }
 #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
+

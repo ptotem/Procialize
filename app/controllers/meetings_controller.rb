@@ -81,6 +81,8 @@ class MeetingsController < ApplicationController
       if @meeting.save
         params[:meeter_use].each do |uid|
          Meeter.create!(:meeting_id => @meeting.id, :user_id =>uid )
+	 @invitee=Invitee.create!(:name=>User.find(uid).name, :email=>User.find(uid).email)
+         UserMailer.meeting_confirmation(@invitee).deliver
        end
         format.html { redirect_to meetings_path, :notice => 'Meeting was successfully created.' }
         format.json { head :no_content }

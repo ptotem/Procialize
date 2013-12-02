@@ -6,22 +6,25 @@
 
 <span>Dear <%= @invitee.name %>,</span><br><br>
 
-<p>On behalf of CII, we welcome you to the 11th PHARMA SUMMIT 2013 - the conference on 'India Pharma Inc.: Changing Landscape of Indian Pharma Industry'. This Summit promises to be an immense value addition, where we have chosen some important topics wherein highly coveted speakers will share their perspective and thoughts to the stakeholders</p>
-
-<p>To access CII’s PHARMA SUMMIT 2013 Mobile Website, follow these 5 easy steps:</p>
-
+<p>We are pleased to announce the launch of the Official Mobile Website for CII's Health and Hospital Tech 2013. As a visitor based on serious networking, you now have a chance of setting up your meetings before you even arrive at the event.</p>
 
 <p>
 <ol>
-  <li>From your smartphone, tablet, laptop, PC or any device, type http://ciipharmasummit.procialize.net (This is a mobile website, you will not need to download any app!)</li>
+  <li>From your smartphone, tablet, laptop, PC or any device, <a href="http://ciihnh.procialize.net/?utm_source=temailrecommendations&utm_medium=email&utm_content=text&utm_campaign=procialize_events">Click Here to Login</a> (This is a mobile website, you will not need to download any app!)</li>
   <li><b>Enter your email as: <%= @invitee.email %></b></li>
   <li><b>Enter your password as: procialize </b></li>
-  <li>You will be live on the PHARMA SUMMIT Mobile Website!</li>
-  <li>REGISTER for the Pharma Summit 2013 and based on our SmartRecommender system we feel you might be interested in interacting with:</li>
+  <li>You will be live on the CII's Health and Hospital Tech Mobile Website!</li>
 </ol>
 
 
+<p>You can access this website from any device with internet. Using this website you can</p>
+<ol>
+  <li>View event schedule, speaker details and RSVP for events.</li>
+  <li> Search for delegates based on name, company, industry, functionality and location. You can then send messages, and set up meetings.</li>
+  <li>You can also view exhibitor lists and download their profiles.</li>  
+</ol>
 
+<p>Based on our recommendation mechanism, we feel you should start networking immediately with the following people</p>
 
 <ol>
   <% @user=User.find_by_email(@invitee.email) %>
@@ -41,20 +44,11 @@
   <% end %>
 </ol>
 
-<p>Click on Delegates on the home screen to send instant messages or set up meetings to the users listed above. You can also send a message or set up a meeting with any other user attending the Summit.</p>
-<ol>
-  <li>View the entire event schedule on your phone: Use Procialize to see which event is lined up next. On the home screen, click on Events.</li>
-  <li>Posting Questions: Have a question / observation you want to share with any particular speaker or topic?</li>
-  <li>Click on questions on the home screen, type your question/comment and select the speaker/session for whom this question is directed towards.</li>
-  <li>Your feedback is important! Rate Sessions:- After each session, you can now rate how useful or important did you find the session. Click on Feedback on the Home Screen.</li>
-  <li>Any queries/ troubleshooting: - For any problems, you can click on Contact Admin on the Home Screen.</li>
-</ol>
 
-
-
-<p>So go ahead, make the most of this Summit, and start expanding your professional network now! For any doubts, queries or concerns, you can email us at procialize@gmail.com, or write back to Ketaki Kadekar at ketaki@procialize.net or call on +919930809523.</p>
+<h3>You can also log in using your LinkedIN Profile</h3>
+<p>So go ahead, <a href="http://ciihnh.procialize.net/?utm_source=temailrecommendations&utm_medium=email&utm_content=text&utm_campaign=procialize_events">LOGIN NOW BY CLICKING HERE</a>, to begin contacting your network worthy contacts.</p>
 <p>Warm Regards,</p>
-<p>CII - Team Procialize</p>
+<p>CII - Western Region</p>
 
 </body>
 
