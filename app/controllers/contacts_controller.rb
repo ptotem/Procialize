@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     @users<<@followed
     @users<<(User.all - @followed)
     @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
-    @use=@users.flatten.select { |u| (u.email=="vineet.dagar@i2ieventsgroup.com") }.map { |u| u.name }
+    @use=@users.flatten.select { |u| (u.email=="sonia.parbatani@gmail.com") }.map { |u| u.name }
   end
 
 
