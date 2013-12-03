@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
   def create
     @message = Message.new(params[:message])
     @message.save
-    @receipient=Receipient.create!(:user_id => 2, :message_id => @message.id)
+    @receipient=Receipient.create!(:user_id => 14, :message_id => @message.id)
     @receipient.status=nil
     @receipient.save
 
