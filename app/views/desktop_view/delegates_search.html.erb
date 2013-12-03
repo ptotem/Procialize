@@ -52,12 +52,12 @@
                   <li class="separator">
 
                     <div class="box" style="position:relative;padding: 10px;color: black;">
-                      <table class="table  data-table dataTable">
+                      <table class="table data-table dataTable">
                         <thead>
                         <tr class="gradeA odd">
                           <th>Delegate</th>
                           <th>Company</th>
-                          <th>Download Profile</th>
+                          <!--<th>Download Profile</th>-->
                           <th>Role</th>
                           <th class="industry">Industry</th>
                           <th class="industry">Interest</th>
@@ -75,13 +75,13 @@
 
                               <td><%= user.company %></td>
 
-                              <td style="border-left: 1px solid #DDDDDD">
-                                <% if user.avatar.url!='/avatars/original/missing.png' %>
-                                    <a target="_blank" style="background: none;" href="<%= user.avatar.url %>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png">&nbsp;Click to download profile</a>
-                                <% else %>
-                                    <h6 style="font-weight: normal;">Profile Not Available</h6>
-                                <% end %>
-                              </td>
+                              <!--<td style="border-left: 1px solid #DDDDDD">-->
+                                <!--<%# if user.avatar.url!='/avatars/original/missing.png' %>-->
+                                    <!--<a target="_blank" style="background: none;" href="<%= user.avatar.url %>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png">&nbsp;Click to download profile</a>-->
+                                <!--<%# else %>-->
+                                    <!--<h6 style="font-weight: normal;">Profile Not Available</h6>-->
+                                <!--<%# end %>-->
+                              <!--</td>-->
 
                               <td>
                                 <% unless user.role.nil? %>
@@ -124,18 +124,6 @@
           </div>
         </div>
     </div>
-
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-41279198-1', '127.0.0.1:3000');
-      ga('send', 'pageview');
-
-  </script>
-
 
 </div>
 
