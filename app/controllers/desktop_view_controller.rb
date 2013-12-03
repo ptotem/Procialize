@@ -663,7 +663,8 @@ class DesktopViewController < ApplicationController
     @users<<(User.all - @followed)
     @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
     @use=@users.flatten.select { |u| (u.email=="miera.p@gmail.com") }.map { |u| u.name }
-    
+    render text: @use
+    return
     render :layout => "application1"
   end
 
