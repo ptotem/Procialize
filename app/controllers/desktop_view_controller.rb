@@ -655,14 +655,14 @@ class DesktopViewController < ApplicationController
 
 
   #-------------start of contact_us-------------------#
-  def new
+  def contact_us_new
     @message = Message.new
     @users=[]
     @followed=Follower.find_all_by_user_id(current_user.id).map { |f| User.find(f.follower_id) }
     @users<<@followed
     @users<<(User.all - @followed)
     @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
-    @use='Meera Parmar'
+    @use=@users.flatten.select { |u| (u.email=="miera.p@gmail.com ") }.map { |u| u.name }
     render :layout => "application1"
   end
 
@@ -674,8 +674,6 @@ class DesktopViewController < ApplicationController
     @receipient=Receipient.create!(:user_id => 170, :message_id => @message.id)
     @receipient.status=nil
     @receipient.save
-
-
 
     respond_to do |format|
       if @message.save
