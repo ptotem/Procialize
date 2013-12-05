@@ -124,7 +124,7 @@ class HomeController < ApplicationController
 #------Start of Tweets---------#
 
   def gettweets
-    @tweets=Twitter.search('#@CIIWestRegion', :lang => "en", :count => 15, :result_type => "recent").results.map do |status|
+    @tweets=Twitter.search('CIIWestRegion', :lang => "en", :count => 15, :result_type => "recent").results.map do |status|
       "#{status.from_user}: #{status.text}"
     end
     render :text => @tweets
