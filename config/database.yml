@@ -34,7 +34,8 @@ development:
   database: health_exhi_procon_development_db
   pool: 5
   username: root
-  
+
+
 
 
 
@@ -48,7 +49,8 @@ test:
   database: health_exhi_procon_test_db
   pool: 5
   username: root
-  
+
+
 
 
 #  socket: **/opt/local/var/run/mysql5/mysqld.sock**
@@ -60,7 +62,8 @@ production:
   database: health_exhi_procon_production_db
   pool: 5
   username: root
-  
+
+
 
 
 
