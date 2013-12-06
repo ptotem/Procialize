@@ -70,7 +70,7 @@ class EventsController < ApplicationController
   def create_quest
     @user=current_user
     unless params[:questionable].blank?
-      @track=Questionable.create(:track_id => params[:questionable][:track_id], :quest_name => params[:questionable][:quest_name], :user_id => @user.id, :approved => false)
+      @track=Questionable.create(:track_id => params[:questionable][:track_id], :quest_name => params[:questionable][:quest_name], :user_id => @user.id, :approved => true)
     end
     redirect_to events_path
     flash[:notice]="Your Question has been sent for the moderator's approval"
