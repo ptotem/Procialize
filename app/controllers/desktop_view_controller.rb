@@ -169,7 +169,7 @@ class DesktopViewController < ApplicationController
   def desktop_create_quest
     @user=current_user
     unless params[:questionable].blank?
-      @track=Questionable.create(:track_id => params[:questionable][:track_id], :quest_name => params[:questionable][:quest_name], :user_id => @user.id, :approved => false)
+      @track=Questionable.create(:track_id => params[:questionable][:track_id], :quest_name => params[:questionable][:quest_name], :user_id => @user.id, :approved => true)
     end
     redirect_to desktop_events_path
 
@@ -750,7 +750,7 @@ class DesktopViewController < ApplicationController
   def desktop_create_question
     @user=current_user
     unless params[:questionable].blank?
-      @track=Questionable.create(:track_id => params[:question_appending], :quest_name => params[:questionable][:quest_name], :user_id => @user.id, :approved => false)
+      @track=Questionable.create(:track_id => params[:question_appending], :quest_name => params[:questionable][:quest_name], :user_id => @user.id, :approved => true)
     end
     redirect_to desktop_ask_question_path
   end

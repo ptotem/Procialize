@@ -17,29 +17,36 @@
 
       <div class="black-box tex" >
         <div class="tab-header">Ask Questions</div>
-            <ul class="recent-comments">
-                <li class="separator">
+        <ul class="recent-comments">
+          <li class="separator">
 
-                  <%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %><br/>
-                  <%= collection_select(nil, :event_id, @events, :id, :name, {:prompt => "Select the Track Day"}, {:id => 'artists_select'}) %><br>
-                  <%= collection_select(nil, :track_id, @tracks, :id, :name, {:prompt => "Select the Event"}, {:id => 'songs_select'}) %>
-                  <%= include_gon %>
+            <%#= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %>
+            <!--<br/>-->
+            <%#= collection_select(nil, :event_id, @events, :id, :name, {:prompt => "Select the Track Day"}, {:id => 'artists_select'}) %>
+            <!--<br>-->
+            <%#= collection_select(nil, :track_id, @tracks, :id, :name, {:prompt => "Select the Event"}, {:id => 'songs_select'}) %>
+            <%#= include_gon %>
 
-                  <%= form_for :questionable, :html => {:id => "question_form",:class => "fill-up"}, url: {action: :desktop_create_question} do |f| %>
-                        <%= f.hidden_field :user_id, :value => current_user.id %>
-                        <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?" %>
-                        <br>
-                        <div id="err_msg"></div>
-                        <a class="button gray" href="#" data-ajax=false data-role="button" class="form_btn" id="form_btn_id" data-mini="true">Send</a>
-                  <% end %>
-                  <br>
-                  <hr>
-
-                  <div class="nav-menu box" id="categoriesContent" style="display: none;">
-                    <ul class="nav nav-list"><br></ul>
-                  </div>
-                </li>
-            </ul>
+            <%#= form_for :questionable, :html => {:id => "question_form",:class => "fill-up"}, url: {action: :desktop_create_question} do |f| %>
+            <%#= f.hidden_field :user_id, :value => current_user.id %>
+            <%#= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?" %>
+            <!--<br>-->
+            <!--<div id="err_msg"></div>-->
+            <!--<a class="button gray" href="#" data-ajax=false data-role="button" class="form_btn" id="form_btn_id" data-mini="true">Send</a>-->
+            <%# end %>
+            <!--<br>-->
+            <% Questionable.where(:approved => true).reverse.each do |e| %>
+                <div class="nav-menu box" id="categoriesContent">
+                  <ul class="nav nav-list">
+                    <% if !e.quest_name.nil?   %>
+                        <li style="color: #000000;padding-top: 20px;"><%= e.quest_name %>  asked by <%= User.find(e.user_id).name %> at <%= Track.find(e.track_id).name %></li>
+                    <% end %>
+                    <br>
+                  </ul>
+                </div>
+            <% end %>
+          </li>
+        </ul>
       </div>
       <!----------------------End of events------------------------------>
     </div>
@@ -66,175 +73,27 @@
   <script type="text/javascript">
 
 
-          $(function () {
-              $('.likes').live("click", function (e) {
-                  var a = $(this).parent().parent().parent().parent().parent().parent().attr('id');
-                  $(this).unbind('click').live('click', function () {
-                      return false;
-                  });
-                  var data = {question_id:[]}
-                  data["question_id"].push(a);
-                  $.ajax({
-                      url:"<%= voting_path %>",
-                      type:"post",
-                      data:JSON.stringify(data),
-                      contentType:"application/json",
-                      success:function (data) {
-                          $('#like_' + a).html(data+" likes")
-
-                      }
-                  });
-
+      $(function () {
+          $('.likes').live("click", function (e) {
+              var a = $(this).parent().parent().parent().parent().parent().parent().attr('id');
+              $(this).unbind('click').live('click', function () {
+                  return false;
               });
-
-
-              $("select#genres_select").prop('selectedIndex', 1);
-              $("select#artists_select").prop('selectedIndex', 1);
-              $("select#songs_select").prop('selectedIndex', 1);
-              setTimeout(function(){
-                  $('#categoriesContent').show();
-                  question_default();
-              },2000);
-
-
-              $('#artists_select').prop("disabled", true);
-              $('#songs_select').prop("disabled", true);
-              $('#categoriesContent').prop("disabled", true);
-              $('#genres_select').change(function () {
-                  var data = {event_day_id:[]}
-                  data["event_day_id"].push($('#genres_select').val());
-                  $.getJSON("desktop_view/update_track/"+ data["event_day_id"], function(data) {
-                      $('#artists_select').empty();
-                      $("#artists_select").prepend("<option value='' selected='selected'>Select Track Day</option>");
-                      $.each(data, function(key, val) {
-                          val=val.split('|');
-                          $('#artists_select').append($('<option>', {
-                              value:val[0],
-                              text:val[1]
-                          }));
-
-
-                      });
-                      $('#artists_select').prop("disabled", false);
-                      $('#songs_select').prop("disabled", true);
-                      $('#categoriesContent').prop("disabled", true);
-                  });
-              });
-
-              $('#artists_select').change(function () {
-                  var data = {event_id:[]}
-                  data["event_id"].push($('#artists_select').val());
-                  $.getJSON("desktop_view/update_event/"+ data["event_id"], function(data) {
-                      $('#songs_select').empty();
-                      $('#songs_select').prepend("<option value='' selected='selected'>Select Event</option>");
-                      $.each(data, function(key, val) {
-                          val=val.split('|');
-                          $('#songs_select').append($('<option>', {
-                              value:val[0],
-                              text:val[1]
-                          }));
-                      });
-                      $('#songs_select').prop("disabled", false);
-                  });
-
-              });
-
-              $('#songs_select').change(function () {
-                  var a = $('#songs_select').val();
-                  var data = {track_id:[]}
-                  data["track_id"].push($('#songs_select').val());
-                  $.getJSON("/desktop_questions_appending/" + data["track_id"], function (data) {
-                      $('#categoriesContent ul').html("");
-                      $('#question_form').append('<input type="hidden"  name="question_appending" value=' + a + '>');
-                      $.each(data, function (key, val) {
-                          val=val.split('|');
-                          if (val[6] == 1) {
-                              $('#categoriesContent ul').append('<li  id=' + val[0] + '>' + '<a href="#"><h6>' + val[1] + ' asked ' + val[3] + '</h6>' + '<table>' + '<tr>' + '<td  id="like_table">' + ' <h5 style="margin-left: 5px;"  id="like_' + val[0] + '">' +  val[4]  + ' Likes</h5>' + '</td>' + '</tr>' + '</table>' + '</a>' + '</li>');
-                          }
-                          else {
-                              $('#categoriesContent ul').append('<li  id=' + val[0] + '>' + '<a href="#"><h6>' + val[1] + ' asked ' + val[3] + '</h6>' + '<table>' + '<tr>' + '<td id="like_table">  ' + '<input type="image" value="Likes" class="likes button grey" id="liking"  src="/assets/thumbs_up.png" style="max-height: 32px; ">' +  ' </td> ' + ' <td>' + '  <h5 style="margin-left: 5px;" id="like_' +  val[0] + '" >' +  val[4] + ' Likes </h5>' + '</td>' + '</tr>' + '</table>' + '</a>' + '</li>');
-                          }
-                      });
-
-
-                      function create_quest() {
-                          var data = {question_appending:[], quest_name:[]}
-                          data["question_appending"].push(a);
-                          data["quest_name"].push($('#questionable_quest_name').val());
-                          $.ajax({
-                              url:"<%= desktop_create_question_path %>",
-                              type:"post",
-                              data:JSON.stringify(data),
-                              contentType:"application/json",
-                              success:function (data) {
-
-                              }
-                          });
-                      }
-                  });
-
-              });
-
-          });
-
-
-
-          function question_default(){
-              var a = $('#songs_select').val();
-              var data = {track_id:[]}
-              data["track_id"].push($('#songs_select').val());
-              $.getJSON("/desktop_questions_appending/" + data["track_id"], function (data) {
-                  $('#categoriesContent ul').html("");
-                  $('#question_form').append('<input type="hidden"  name="question_appending" value=' + a + '>');
-                  $.each(data, function (key, val) {
-                      val=val.split('|');
-                      if (val[6] == 1) {
-                          $('#categoriesContent ul').append('<li  id=' + val[0] + '>' + '<a href="#"><h6>' + val[1] + ' asked ' + val[3] + '</h6>' + '<table>' + '<tr>' + ' <td  id="like_table">' + ' <h5 style="margin-left: 5px;"  id="like_' +  val[0] + '">' +  val[4] + ' Likes</h5>' + '</td>' + '</tr>' + '</table>' + '</a>' + '</li>');
-                      }
-                      else {
-                          $('#categoriesContent ul').append('<li  id=' + val[0] + '>' + '<a href="#"><h6>' + val[1] + ' asked ' + val[3] + '</h6>' + '<table>' + '<tr>' + ' <td id="like_table">  ' + ' <input type="image" value="Likes" class="likes button grey" id="liking"  src="/assets/thumbs_up.png" style="max-height: 32px; ">' + '  </td> ' + ' <td>' + ' <h5 style="margin-left: 5px;"  id="like_' +  val[0] + '">' +  val[4] + ' Likes</h5>' + '</td>' + '</tr>' + '</table>' + '</a>' + '</li>');
-                      }
-                  });
-
-                  function create_quest() {
-                      var data = {question_appending:[], quest_name:[]}
-                      data["question_appending"].push(a);
-                      data["quest_name"].push($('#questionable_quest_name').val());
-                      $.ajax({
-                          url:"<%= desktop_create_question_path %>",
-                          type:"post",
-                          data:JSON.stringify(data),
-                          contentType:"application/json",
-                          success:function (data) {
-
-                          }
-                      });
+              var data = {question_id:[]}
+              data["question_id"].push(a);
+              $.ajax({
+                  url:"<%= voting_path %>",
+                  type:"post",
+                  data:JSON.stringify(data),
+                  contentType:"application/json",
+                  success:function (data) {
+                      $('#like_' + a).html(data+" likes")
 
                   }
               });
-          }
 
-
-          $('#form_btn_id').click(function(){
-              if ($("#genres_select").val()==""){
-              <%= add_gritter("Please Select Event Day", :title => "Error!",:image => :warning,:time => 2000  ) %>
-              }
-              else if ($("#artists_select").val()==""){
-              <%= add_gritter("Please Select Track Day", :title => "Error!",:image => :warning,:time => 2000  ) %>
-              }
-              else if ($('#songs_select').val()==""){
-              <%= add_gritter("Please Eevnt", :title => "Error!",:image => :warning,:time => 2000  ) %>
-              }
-              else if ($('#questionable_quest_name').val()==""){
-              <%= add_gritter("Please Ask A Question", :title => "Error!",:image => :warning,:time => 2000  ) %>
-              }
-              else
-              {
-              <%= add_gritter("Your Question to the moderator for approval", :title => "Success",:image => :success,:time => 1000) %>
-                  setTimeout(function(){$('#question_form').submit();},2000);
-              }
           });
-
+      });
   </script>
 
   <script>
