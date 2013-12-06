@@ -74,7 +74,7 @@ class QuestionablesController < ApplicationController
   def create_question
     @user=current_user
     unless params[:questionable].blank?
-      @track=Questionable.create(:track_id => params[:question_appending][0], :quest_name => params[:questionable][:quest_name], :user_id => @user.id, :approved => false)
+      @track=Questionable.create(:track_id => params[:question_appending][0], :quest_name => params[:questionable][:quest_name], :user_id => @user.id, :approved => true)
     end
     render :text => @track.save
     return
