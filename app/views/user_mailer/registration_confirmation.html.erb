@@ -6,26 +6,29 @@
 
 <span>Dear <%= @invitee.name %>,</span><br><br>
 
-<p>On behalf of i2i Events Group, we welcome you to the CWIEME, 2013 - The World's largest International Coil Winding, Insulations & Electrical Manufacturing Exhibition. </p>
-
-<p>To access CWIEME 2013 Mobile Website, follow these 5 easy steps:</p>
-
+<p>We are pleased to announce the launch of the Official Mobile Website for CII's Financial Distribution Summit 2013.</p>
 
 <p>
 <ol>
-  <li>From your smartphone, tablet, laptop, PC or any device, type http://cwieme2013.procialize.net (This is a mobile website, you will not need to download any app!)</li>
+  <li>From your smartphone, tablet, laptop, PC or any device, <a href="http://ciifds.procialize.net/?utm_source=temailrecommendations&utm_medium=email&utm_content=text&utm_campaign=procialize_events">Click Here to Login</a> (This is a mobile website, you will not need to download any app!)</li>
   <li><b>Enter your email as: <%= @invitee.email %></b></li>
   <li><b>Enter your password as: procialize </b></li>
-  <li>You will be live on the CWIEME Mobile Website! </li>
-  <li> REGISTER for the CWIEME 2013 and based on our SmartRecommender system we feel you might be interested in interacting with:</li>
+  <li>You will be live on the Energy Expo Mobile Website!</li>
 </ol>
 
 
+<p>You can access this website from any device with internet. Using this website you can</p>
+<ol>
+  <li>View event schedule, speaker details and RSVP for events.</li>
+  <li> Search for delegates based on name, company, industry, functionality and location. You can then send messages, and set up meetings.</li>
+  <li>You can also view exhibitor lists and download their profiles.</li>
+</ol>
 
+<p>Based on our recommendation mechanism, we feel you should start networking immediately with the following people</p>
 
 <ol>
   <% @user=User.find_by_email(@invitee.email) %>
-  <% @user_new=Array.new %>
+     <% @user_new=Array.new %>
   <% if !@user.recommend.nil? %>
       <% @user.recommend.split(", ").each do |r| %>
           <%#= @user_new<<User.find_by_name(r) %>
@@ -41,23 +44,12 @@
   <% end %>
 </ol>
 
-<p>We want to assure you that CWIEME 2013 is the perfect channel for you to build your network. To do this conveniently, we have tied up with i2i Events Group to ensure you are able to.</p>
-<ol>
-  <li>Search, find, message and set up meetings with other delegates </li>
-  <li>Quickly connect with others based on industry/designation/company/location </li>
-  <li>View other delegate's profiles, in order to form promising partnerships </li>
-  <li>Communicate with others before, during and after events</li>
-  <li>View event schedule, speaker profiles and rate sessions</li>
-  <li>Interact with speakers by posting questions, viewing profiles, and giving feedback</li>
-</ol>
 
-
-
-<p>So go ahead, make the most of this Summit, and start expanding your professional network now! For any doubts, queries or concerns contact Ketaki Kadekar at ketaki@procialize.net or call on +919930809523.</p>
+<h1>You can also log in using your LinkedIN Profile</h1>
+<p>So go ahead, <a href="http://ciifds.procialize.net/?utm_source=temailrecommendations&utm_medium=email&utm_content=text&utm_campaign=procialize_events">LOGIN NOW BY CLICKING HERE</a>, to begin contacting your network worthy contacts.</p>
 <p>Warm Regards,</p>
-<p>i2i Events Group - Team Procialize</p>
+<p>CII - Western Region</p>
 
 </body>
 
 </html>
-
