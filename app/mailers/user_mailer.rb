@@ -1,8 +1,16 @@
 class UserMailer < ActionMailer::Base
-  default :from => '"CWIEME - Team Procialize" <arijit@ptemplar.com>'
+  default :from => '"CII - Western Region" <arijit@ptemplar.com>'
   def registration_confirmation(user)
     @invitee=user
-    mail(:to => user.email, :subject => "Start interacting with delegates and exhibitors at CWIEME 2013 now!!")
+    mail(:to => user.email, :subject => "Start interacting with delegates and speakers of CII Financial Distribution Summit 2013 Now!")
+    end
+  def msg_confirmation(user)
+    @invitee=user
+    mail(:to => user.email, :subject => "CII Alerts: Activity on your account")
+    end
+  def meeting_confirmation(user)
+    @invitee=user
+    mail(:to => user.email, :subject => "CII Alerts: Activity on your account")
   end
 
   #def unapproval_notice(user)
