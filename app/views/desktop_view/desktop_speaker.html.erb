@@ -31,15 +31,14 @@
                                             <% if index != 0 %>,<% end %>
                                             <%= Track.find(s.track_id).name %>
                                         <% end %>
-                                    <%# end %>
-                                    <% if index != 0 %>,
                                     <% end %>
+                                    <%# if index != 0 %>,
+                                    <%# end %>
                                     <%#= Track.find(s.track_id).name %>
                             <hr>
                                      <span style="text-shadow: none;font-size: 1em;color: #ffffff;">
                                        <%= raw s.speaker_details %>
                                      </span>
-                                     <% end %>
                           </div>
                         </td>
                       </tr>
