@@ -272,6 +272,8 @@ class DesktopViewController < ApplicationController
       if @meeting.save
         params[:meeter_users].each do |uid|
           Meeter.create!(:meeting_id => @meeting.id, :user_id => uid)
+          @invitee=Invitee.create!(:name=>User.find(uid).name, :email=>User.find(uid).email)
+          UserMailer.meeting_confirmation(@invitee).deliver
         end
         format.html { redirect_to meetings_index_path, :notice => 'Meeting was successfully created.' }
         format.json { head :no_content }
@@ -343,6 +345,8 @@ class DesktopViewController < ApplicationController
       if @message.save
         params[:receipient_users].each do |uid|
           Receipient.create!(:message_id => @message.id, :user_id => uid)
+          @invitee=Invitee.create!(:name=>User.find(uid).name, :email=>User.find(uid).email)
+          UserMailer.msg_confirmation(@invitee).deliver
         end
         format.html { redirect_to messages_index_path, :notice => 'Message was successfully created.' }
       else
