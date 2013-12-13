@@ -31,9 +31,10 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: proconf_corcon_development_db
+  database: isb_conf_development_db
   pool: 5
   username: root
+  password: 'p20o20e13'
 
 
 # **socket: /opt/local/var/run/mysql5/mysqld.sock**
@@ -42,9 +43,10 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: proconf_corcon_test_db
+  database: isb_conf_test_db
   pool: 5
   username: root
+  password: 'p20o20e13'
 
 #  socket: **/opt/local/var/run/mysql5/mysqld.sock**
 
@@ -52,9 +54,10 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: proconf_corcon_production_db
+  database: isb_conf_production_db
   pool: 5
   username: root
+  password: 'p20o20e13'
 
 
 #  socket: **/opt/local/var/run/mysql5/mysqld.sock**
