@@ -1,15 +1,15 @@
 class UserMailer < ActionMailer::Base
-  default :from => '"CII - Team Procialize" <arijit@ptemplar.com>'
+  default :from => 'procialize@gmail.com'
   def registration_confirmation(user)
     @invitee=user
-    mail(:to => user.email, :subject => "Start networking at CII's Health and Hospital Tech 2013 Now!")
+    mail(:to => user.email, :subject => " Solstice 2013. Connect with 500+ alumni now!")
   end
   def msg_confirmation(user)
     @invitee=user
-    mail(:to => user.email, :subject => "CII Alerts: Activity on your account")
+    mail(:to => user.email, :subject => "ISB Alerts: An alumni wants to get in touch with you")
     end
   def meeting_confirmation(user)
     @invitee=user
-    mail(:to => user.email, :subject => "CII Alerts: Activity on your account")
+    mail(:to => user.email, :subject => "ISB Alerts: An alumni wants to meet you")
   end
 end
