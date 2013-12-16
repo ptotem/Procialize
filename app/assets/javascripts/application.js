@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require Datatables/jquery_datable
+//= require jquery
 //= require jquery_ujs
 //= require_tree .
 //= require gritter
