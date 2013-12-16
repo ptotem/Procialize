@@ -255,7 +255,7 @@ class HomeController < ApplicationController
 
 
   def wait
-    render :layout => "/"
+    render :layout => "search_delegates"
   end
 
 end
