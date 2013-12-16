@@ -9,8 +9,8 @@
 
 
 ActionMailer::Base.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => 587,
+    :address => "mail.procialize.net",
+    :port => 25,
     :domain => "railscasts.com",
     :user_name => "promotions@procialize.net",
     :password => "procialize123",
