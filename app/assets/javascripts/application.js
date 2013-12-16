@@ -10,10 +10,7 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-<<<<<<< HEAD
 //= require Datatables/jquery_datable
-=======
->>>>>>> b4d0bec66abe78e9ae9197b379179f47de71a898
 //= require jquery_ujs
 //= require_tree .
 //= require gritter
