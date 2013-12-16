@@ -15,7 +15,7 @@ ActionMailer::Base.smtp_settings = {
     :user_name => "promotions@procialize.net",
     :password => "procialize123",
     :authentication => "plain",
-    :enable_starttls_auto => true,
+    :enable_starttls_auto => false,
     :openssl_verify_mode  => 'none'
 }
 #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
