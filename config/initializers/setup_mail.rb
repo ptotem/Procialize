@@ -9,7 +9,7 @@
 
 
 ActionMailer::Base.smtp_settings = {
-    :address => "webmail.procialize.net",
+    :address => "smtp.gmail.com",
     :port => 587,
     :domain => "railscasts.com",
     :user_name => "promotions@procialize.net",
