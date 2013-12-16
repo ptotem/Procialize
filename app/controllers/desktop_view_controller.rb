@@ -182,7 +182,7 @@ class DesktopViewController < ApplicationController
       @return_data<<"#{i.id}|#{i.name}|#{i.start}"
     end
     render :json => @return_data
-    return
+    # return
   end
 
   def desktop_accept
