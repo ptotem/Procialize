@@ -16,6 +16,8 @@ ActionMailer::Base.smtp_settings = {
     :user_name => "procialize@gmail.com",
     :password => "ptotem123",
     :authentication => "plain",
+    #:user_name => "railscasts",
+    #:password => "secret",
     :enable_starttls_auto => true
 }
 #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
