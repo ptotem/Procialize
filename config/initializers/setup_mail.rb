@@ -9,13 +9,13 @@
 
 
 ActionMailer::Base.smtp_settings = {
-    :address => "mail.procialize.net",
-    :port => 25,
+    :address => "smtp.gmail.com",
+    :port => 587,
     :domain => "procialize.net",
-    :user_name => "promotions@procialize.net",
-    :password => "procialize123",
+    :user_name => "procialize@gmail.com",
+    :password => "ptotem123",
     :authentication => "plain",
-    :enable_starttls_auto => false,
+    :enable_starttls_auto => true,
     :openssl_verify_mode  => 'none'
 }
 #Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
