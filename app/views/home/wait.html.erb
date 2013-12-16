@@ -2,18 +2,6 @@
     $(function(){
         $('.sponsors').hide();
 
-
-        $.blockUI({
-            message:null,
-            css: {
-                backgroundColor: 'black'
-            }
-        });
-        setTimeout($.unblockUI, 3000);
-
-
-
-
         if(!isMobile.any()) {
             window.location="/desktop_events?desk=1";
         }
