@@ -37,7 +37,7 @@ gem 'mysql2'
 #gem 'activerecord-mysql-adapter'
 gem 'awesome_nested_fields'
 gem "combined_time_select"
-gem 'comfortable_mexican_sofa' #, :path => '/home/neel/Downloads/comfortable-mexican-sofa-1.7'
+#gem 'comfortable_mexican_sofa' #, :path => '/home/neel/Downloads/comfortable-mexican-sofa-1.7'
 gem 'spreadsheet'
 gem 'roo'
 
