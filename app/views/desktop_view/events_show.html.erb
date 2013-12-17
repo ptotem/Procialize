@@ -2,422 +2,209 @@
     <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"></script>
     <%= javascript_include_tag "jquery.collapse" %>
     <%= stylesheet_link_tag "jquery-ui-1.10.3.custom.min" %>
-
-    <script type="text/javascript">
-
-        function create_que() {
-
-            $("#questionable_track_id").change(function () {
-                var data = {track_id:[], quest_name:[]}
-                data["track_id"].push('<%= @track.id %>');
-                data["quest_name"].push($('#questionable_quest_name').val());
-                $.ajax({
-                    url:"<%= desktop_create_quest_path %>",
-                    type:"post",
-                    data:JSON.stringify(data),
-                    contentType:"application/json",
-                    success:function (data) {
-                        <%= add_gritter("Your Question has been sent for the moderator's approval", :title => "Success",:image => :success,:time => 1000  ) %>
-                    }
-                });
-
-            });
-        }
-
-        function rate_me(drop_down) {
-            var data = {user_id:[], track_id:[], rate:[]}
-            data["user_id"].push('<%= current_user.id %>');
-            data["track_id"].push('<%= @track.id %>');
-            data["rate"].push(drop_down);
-            $.ajax({
-                url:"<%= feed_me_path %>",
-                type:"post",
-                data:JSON.stringify(data),
-                contentType:"application/json",
-                success:function (data) {
-                    <%= add_gritter("Thank You for your valuable feedback", :title => "Success",:image => :success,:time => 1000  ) %>
-                }
-            });
-
-        }
-
-    </script>
-
 <% end %>
 
 
 
 <div class="container-fluid">
-<div class="row-fluid">
-<div class="span7">
-  <div class="row-fluid">
+    <div class="row-fluid">
+        <div class="span7">
+          <div class="row-fluid">
+            <%= render :partial => "list" %>
+          </div>
 
-    <div style="margin-bottom: 20px;">
-      <div class="big-button-bar">
-        <a class="button large eventer" href="/desktop_events">
-          <i class=" icon-calendar "></i>
-          <span>Events</span>
-        </a>
+          <!----------------------Start of events_show------------------------------>
 
-
-        <a class="button large delegater" href="/delegates_search">
-          <i class="icon-group"></i>
-          <span>Delegates</span>
-        </a>
-
-        <a class="button large speakinger" href="/desktop_speaker">
-          <i class="icon-user"></i>
-          <span>Speakers</span>
-        </a>
-
-        <a class="button large questioner" href="/desktop_ask_question">
-          <i class="icon-question-sign "></i>
-          <span>Questions</span>
-        </a>
-
-        <a class="button large feedbacker" href="/desktop_ratings">
-          <i class="icon-volume-up"></i>
-          <span>Feedback</span>
-        </a>
-
-        <a class="button large downloadables" href="/desktop_assets_download">
-          <i class=" icon-folder-open"></i>
-          <span>Download</span>
-        </a>
-      </div>
-    </div>
-
-  </div>
-
-
-  <!----------------------Start of events------------------------------>
-
-  <div class="black-box tex">
-    <div class="tab-header">
-      Event Details
-    </div>
-    <ul class="recent-comments">
-      <li class="separator">
-        <div>
-          <table cellpadding="7">
-            <tr>
-              <th rowspan="4" style="margin-left:10px;">
-                <% unless @track.track_img.blank? %><%= image_tag @track.track_img.url(:thumb) %>
-                <% end %></th>
-              <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
-                <span style="margin-left: 50px;"><%= @track.name %></span>&nbsp;&nbsp;<span style="font-size: 0.8em;">from</span>&nbsp;&nbsp;<%= @track.start %>
-                <span style="font-size: 0.8em;">to</span> <%= @track.end %>
-              </td>
-            </tr>
-            <tr>
-              <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
-                <%@count = @speaker_name.count %>
-                <% @countless=@count-1 %>
-                <% @speaker_name.each_with_index do |s, index| %>
-                    <% unless s.name.blank? %>
-                        <% if index==0 %>
-                            <span style="color: #c0c0c0;margin-left: 50px;">Speakers:</span>
-                        <% end %>
-                        <%= s.name %><% if index !=@countless %>,<% end %>
-                    <% end %>
-                <% end %>
-              </td>
-            </tr>
-          </table>
-          <hr>
-          <h3 style="font-size: 14px;">
-            <%= raw @track.description %>
-          </h3>
-          <hr>
-        </div>
-
-
-        <script>
-            $(function () {
-                $("#accordion").accordion({
-//                        active: false,
-                    collapsible:true
-                });
-            });
-        </script>
-        <div style="float: left;">
-          <% if @my_attendee.blank? %>
-              <%= link_to "Accept", desktop_accept_path(@track), :flash_notice => "Accepted", :class => "button gray", :id => "attend" %>
-          <% end %>
-
-        </div>
-        <br>
-        <hr>
-        <h6>Would you like to pose a question regarding the event?</h6>
-
-        <%= form_for :questionable, :html => {:class => "fill-up"}, url: {action: :desktop_create_quest} do |f| %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-
-            <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?" %>
-
-            <%= f.hidden_field :track_id, :value => @track.id %>
-
-            <br>
-            <%= f.submit "Send", :onclick => "create_que();", :class => "button gray", :style => "width:15%;", :id => "add_max" %>
-        <% end %>
-        <hr>
-        <script type="text/javascript">
-            $(function () {
-
-                $('#add_max').click(function () {
-                    <%= add_gritter("You question is send to the moderators approval", :title => "Success",:time => 3000) %>
-                });
-
-                $('#attend').click(function () {
-                    <%= add_gritter("Your request accepted", :title => "Success",:image => :success,:time => 1000) %>
-                });
-
-                $('[type="submit"]').hide();
-                $(function () {
-                    $('[type="submit"]').hide();
-                    $('#questionable_quest_name').focus(function () {
-                        $('[type="submit"]').show();
-                        if (( $('#questionable_quest_name')).length > 0) {
-
-                        } else {
-                            $('[type="submit"]').hide();
-
-                        }
-                    });
-
-                });
-
-                $('#questionable_quest_name').blur(function () {
-                    if ($(this).val().length <= 0) {
-                        $('[type="submit"]').hide();
-                    }
-                    else {
-                        $('[type="submit"]').show();
-                    }
-                });
-
-            });
-
-        </script>
-
-        <div>
-          <h6>Would you like to give your feedback on the event?</h6>
-          <select id="select_menu" data-mini="true" onchange="rate_me($(this).val());" style="float:left;">
-            <option value="1">Great Value add</option>
-            <option value="2">Good topic and session</option>
-            <option value="3">Interesting talks</option>
-            <option value="4">Satisfactory</option>
-            <option value="5">Didn’t match expectations</option>
-          </select>
-        </div>
-        <br><br><br>
-        <hr>
-      </li>
-    </ul>
-
-
-    <div id="accordion">
-      <h5>Friends who are attending</h5>
-      <div>
-        <% @attendees.each do |user| %>
-            <% unless user.nil? %>
-                <p>
-                  <a href="<%= delegate_profile_index_path(user) %>">
-                    <%= user.name.titlecase %>
-                  </a>
-                </p>
-                <hr>
-            <% end %>
-        <% end %>
-      </div>
-    </div>
-      <br>
-
-  </div>
-  <!----------------------End of events------------------------------>
-
-
-</div>
-
-<div class="span5">
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="black-box tex" style="max-height: 150px;">
-        <div class="tab-header">
-          What Others Say
-        </div>
-        <ul class="recent-comments" style="list-style: none;">
-          <% @conference=Conference.last %>
-          <% @user=current_user %>
-          <% @graffiti=(User.all-(Follower.find_all_by_user_id_and_conference_id(@user.id, @conference.id).map { |f| User.find(f.follower_id) })-[current_user]-Organizer.all.map { |o| o.user }).map { |u| u.posts }.flatten.last(30).sort_by(&:created_at).reverse %>
-          <% @graffiti.each do |post| %>
-
-              <li class="separator">
-                <div class="avatar pull-left">
-                  <% if post.user.picture.blank? %>
-                      <%= image_tag "avatar.png" %>
-                  <% else %>
-                      <%= image_tag(post.user.picture) %>
-                  <% end %>
-                </div>
-                <div class="article-post">
-                  <div class="user-info"> Posted
-                    by <%= link_to post.user.name.titlecase, delegate_profile_index_path(post.user) %>
-                    at <%= post.created_at %> </div>
-                  <div class="user-content">"<%= post.name.truncate(10) %>"</div>
-                </div>
-              </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-------------------------->
-
-<div class="span5">
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="black-box tex" style="max-height: 350px;overflow: hidden;">
-        <div class="tab-header">
-          Splash Zone
-        </div>
-        <script>
-            $(document).ready(function () {
-                $("#slider1").responsiveSlides({
-                    auto:true, // Boolean: Animate automatically, true or false
-                    speed:1500, // Integer: Speed of the transition, in milliseconds
-                    timeout:7000, // Integer: Time between slide transitions, in milliseconds
-                    random:true, // Boolean: Randomize the order of the slides, true or false
-                    pause:false, // Boolean: Pause on hover, true or false
-                    pauseControls:true, // Boolean: Pause when hovering controls, true or false
-                    maxwidth:"", // Integer: Max-width of the slideshow, in pixels
-                    navContainer:"", // Selector: Where controls should be appended to, default is after the 'ul'
-                    manualControls:"", // Selector: Declare custom pager navigation
-                    namespace:"rslides" // String: Change the default namespace used
-                });
-            });
-        </script>
-
-        <style type="text/css">
-            .img_style {
-                max-height: 200px;
-            }
-        </style>
-
-        <ul class="recent-comments">
-          <li class="separator" style="max-height: 300px;">
-            <ul class="rslides" id="slider1">
-              <li><%= image_tag HomePageLogo.first.image_one.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.image_two.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.image_three.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.image_four.url, :class => "img_style"  rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.image_five.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.image_six.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.image_seven.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.image_eight.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.image_nine.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.image_ten.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.event_image.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.conference_image.url, :class => "img_style" rescue "" %></li>
-              <li><%= image_tag HomePageLogo.first.sponsor_image.url, :class => "img_style" rescue "" %></li>
-
-
-              <% @survey_q= SurveyQuestion.all %>
-              <% @survey_q.each do |s| %>
-                  <div id="surveys">
-                    <li class="img_style" id="<%= s.id %>"><%= s.quest %>
-                      <table>
+          <div class="black-box tex">
+            <div class="tab-header">Event Details</div>
+                <ul class="recent-comments">
+                  <li class="separator">
+                    <div>
+                      <table cellpadding="7">
                         <tr>
-                          <td><%= radio_button_tag "survey_options", "1", true %></td>
-                          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_a %></td>
-
+                          <th rowspan="4" style="margin-left:10px;">
+                            <% unless @track.track_img.blank? %><%= image_tag @track.track_img.url(:thumb) %><% end %></th>
+                          <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
+                            <span style="margin-left: 50px;"><%= @track.name %></span>&nbsp;&nbsp;<span style="font-size: 0.8em;">from</span>&nbsp;&nbsp;<%= @track.start %>
+                            <span style="font-size: 0.8em;">to</span> <%= @track.end %>
+                          </td>
                         </tr>
+
                         <tr>
-                          <td><%= radio_button_tag "survey_options", "2", true %></td>
-                          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_b %></td>
-
+                          <td style="vertical-align: middle; font-size: 0.9em; font-weight: bold;">
+                            <%@count = @speaker_name.count %>
+                            <% @countless=@count-1 %>
+                            <% @speaker_name.each_with_index do |s, index| %>
+                                <% unless s.name.blank? %>
+                                    <% if index==0 %><span style="color: #c0c0c0;margin-left: 50px;">Speakers:</span><% end %>
+                                    <%= s.name %>
+                                    <% if index !=@countless %>,<% end %>
+                                <% end %>
+                            <% end %>
+                          </td>
                         </tr>
-                        <% if !s.option_c.blank? %>
-                            <tr>
-                              <td><%= radio_button_tag "survey_options", "3", true %></td>
-                              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_c %></td>
-                            </tr>
-                        <% end %>
 
-                        <% if !s.option_d.blank? %>
-                            <tr>
-                              <td><%= radio_button_tag "survey_options", "4", true %></td>
-                              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= s.option_d %></td>
-                            </tr>
-                        <% end %>
                       </table>
-                    </li>
-                  </div>
-              <% end %>
-            </ul>
-          </li>
-          <li class="separator">
+                      <hr><h3 style="font-size: 1em;line-height: 21px;font-weight: normal;"><%= raw @track.description %></h3><hr>
+                    </div>
 
-            <marquee id="tweet" style="color: white;">
-              <% @newsfeed=NewsFeed.all %>
-              <% @newsfeed.each do |n| %>
-                  <%= n.feed_news %>
-              <% end %>
-            </marquee>
+                    <div style="float: left;">
+                      <% if @my_attendee.blank? %><%= link_to "Join this Event", desktop_accept_path(@track), :flash_notice => "Accepted", :class => "button gray", :id => "attend" %><% end %>
+                    </div><br><hr>
 
-          </li>
-        </ul>
-      </div>
+
+                    <h6>Would you like to pose a question regarding the event?</h6>
+                    <%= form_for :questionable, :html => {:class => "fill-up"}, url: {action: :desktop_create_quest} do |f| %>
+                        <%= f.hidden_field :user_id, :value => current_user.id %>
+                        <%= f.text_field :quest_name, :'data-mini' => true, :placeholder => "Ask question ?" %>
+                        <%= f.hidden_field :track_id, :value => @track.id %><br>
+                        <%= f.submit "Send", :onclick => "create_que();", :class => "button gray", :style => "width:15%;", :id => "add_max" %>
+                    <% end %><hr>
+
+                    <div>
+                      <h6>Would you like to give your feedback on the event?</h6>
+                      <select id="select_menu" data-mini="true" onchange="rate_me($(this).val());" style="float:left;">
+                        <option value="1">Great value instead</option>
+                        <option value="2">Good topic and session</option>
+                        <option value="3">Interesting talks</option>
+                        <option value="4">Satisfactory</option>
+                        <option value="5">Didn’t match expectations</option>
+                      </select>
+                    </div>
+                    <br><br><br>
+                    <hr>
+                  </li>
+                </ul>
+
+
+                    <div id="accordion">
+                      <h5>Friends who are attending</h5>
+                      <div>
+                        <% @attendees.each do |user| %>
+                            <% unless user.nil? %>
+                                <p><a href="<%= delegate_profile_index_path(user) %>"><%= user.name.titlecase %></a></p>
+                            <% end %>
+                        <% end %>
+                      </div>
+                    </div><br>
+
+          </div>
+          <!----------------------End of events------------------------------>
+
+
+        </div>
+
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "event_wall" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="span5">
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "splash_zone" %>
+            </div>
+          </div>
+        </div>
     </div>
-  </div>
-</div>
+
 
 
 <script type="text/javascript">
 
     $(function () {
-        $("input[name=survey_options]").click(function () {
-            var a = $(this).parent().parent().parent().parent().parent().parent().attr('id');
-            var value = $(this).val();
-            var data = { user_id:[], survey_question_id:[], ans:[]}
-            data["user_id"].push('<%= current_user.id%>');
-            data["survey_question_id"].push(a);
-            data["ans"].push(value);
-            $.ajax({
-                url:"<%= survey_storing_path %>",
-                type:"post",
-                data:JSON.stringify(data),
-                contentType:"application/json",
-                success:function (data) {
-                    <%= add_gritter("Thank You", :title => "Success",:image => :success,:time => 1000) %>
+        $("#accordion").accordion({
+            collapsible:true
+        });
+
+        $('#add_max').click(function () {
+            <%= add_gritter("You question is send to the moderators approval", :title => "Success",:time => 3000) %>
+        });
+
+        $('#attend').click(function () {
+            <%= add_gritter("Your request accepted", :title => "Success",:image => :success,:time => 1000) %>
+        });
+
+        $('[type="submit"]').hide();
+        $(function () {
+            $('[type="submit"]').hide();
+            $('#questionable_quest_name').focus(function () {
+                $('[type="submit"]').show();
+                if (( $('#questionable_quest_name')).length > 0) {
+
+                } else {
+                    $('[type="submit"]').hide();
+
                 }
             });
 
         });
 
-
-    });
-
-
-    $(function () {
-        $.get('/gettweets', function (data) {
-
-            data = data.split('", "')
-            $.each(data, function (index, val) {
-                val = val.toString().replace(/"/, '').replace('[', '').replace(']', '');
-                $('#tweet').append(val + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
-            });
+        $('#questionable_quest_name').blur(function () {
+            if ($(this).val().length <= 0) {
+                $('[type="submit"]').hide();
+            }
+            else {
+                $('[type="submit"]').show();
+            }
         });
 
+
     });
+
+
+    function create_que() {
+
+        $("#questionable_track_id").change(function () {
+            var data = {track_id:[], quest_name:[]}
+            data["track_id"].push('<%= @track.id %>');
+            data["quest_name"].push($('#questionable_quest_name').val());
+            $.ajax({
+                url:"<%= desktop_create_quest_path %>",
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function (data) {
+                    <%= add_gritter("Your Question has been sent for the moderator's approval", :title => "Success",:image => :success,:time => 1000  ) %>
+                }
+            });
+
+        });
+    }
+
+    function rate_me(drop_down) {
+        var data = {user_id:[], track_id:[], rate:[]}
+        data["user_id"].push('<%= current_user.id %>');
+        data["track_id"].push('<%= @track.id %>');
+        data["rate"].push(drop_down);
+        $.ajax({
+            url:"<%= feed_me_path %>",
+            type:"post",
+            data:JSON.stringify(data),
+            contentType:"application/json",
+            success:function (data) {
+                <%= add_gritter("Thank You for your valuable feedback", :title => "Success",:image => :success,:time => 1000  ) %>
+            }
+        });
+
+    }
 
 </script>
 
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-</div>
+    ga('create', 'UA-41279198-1', '127.0.0.1:3000');
+    ga('send', 'pageview');
+
+</script>
+
 </div>
 
 
