@@ -12,7 +12,7 @@
 ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
     :port => 587,
-    :domain => "railscasts.com",
+    :domain => "gmail.com",
     :user_name => "procialize@gmail.com",
     :password => "ptotem123",
     :authentication => "plain",
