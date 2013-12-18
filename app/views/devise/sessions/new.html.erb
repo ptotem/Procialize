@@ -39,7 +39,7 @@
   <%= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-signin", :'data-ajax' => "false"} do |f| %>
       <%= devise_error_messages! %>
       <br>
-      <%= link_to image_tag("linkedin.png", :style => "width:100%;"), user_omniauth_authorize_path(:linkedin), :'data-ajax' => false %>
+      <%#= link_to image_tag("linkedin.png", :style => "width:100%;"), user_omniauth_authorize_path(:linkedin), :'data-ajax' => false %>
       <hr>
       <h2 class="form-signin-heading">Sign in</h2>
       <%= f.email_field :email, :placeholder => "Enter email address",:style => "font-size: 16px;height: auto;margin-bottom: 15px;padding: 7px 9px;background:white;-moz-box-sizing: border-box;width:100%;border-radius: 0.6em 0.6em 0.6em 0.6em;box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) inset;" %>
