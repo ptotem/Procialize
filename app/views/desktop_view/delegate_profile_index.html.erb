@@ -147,19 +147,19 @@
       });
 
 
-      $(".separator .pro_dwd a").click(function(e) {
-          var data = { user_id:[]}
-          data["user_id"].push('<%= current_user.id%>');
-          $.ajax({
-              url:"<%= profile_download_path %>",
-              type:"post",
-              data:JSON.stringify(data),
-              contentType:"application/json",
-              success:function (data) {
+    //   $(".separator .pro_dwd a").click(function(e) {
+    //       var data = { user_id:[]}
+    //       data["user_id"].push('<%#= current_user.id%>');
+    //       $.ajax({
+    //           url:"<%#= profile_download_path %>",
+    //           type:"post",
+    //           data:JSON.stringify(data),
+    //           contentType:"application/json",
+    //           success:function (data) {
 
-              }
-          });
-      });
+    //           }
+    //       });
+    //   });
 
   </script>
 
