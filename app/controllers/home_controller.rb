@@ -134,8 +134,8 @@ class HomeController < ApplicationController
   config.access_token = "163893865-ONQsIvGHLQlpAOQRIYzFy4Lnix5oY3NZwGEso5Xw"
   config.access_token_secret = "tXZwUmcysNh19KwqkdgSZ9WojtzNEUoDZzadq2YCPH4"
 end
-    @tweets = client.search("#@LifeAtISB", :lang => "en", :count => 15, :result_type => "recent").results.map do |status|
-      "#{status.from_user}: #{status.text}"
+    @tweets = client.search("from:LifeAtISB", :lang => "en", :count => 15, :result_type => "recent").collect do |status|
+      "#{status.user.screen_name}: #{status.text}"
     end
     
     # @tweets = Twitter.search("from:@LifeAtISB")
