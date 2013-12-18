@@ -1,15 +1,6 @@
 <%= content_for :page_title do %>
     New Message
 <% end %>
-<%= content_for :page_menu do %>
-
-<% end %>
-
-
-
-
-
-
 
 
 
@@ -104,7 +95,7 @@
     <% end %>
 
 
-
+                                              x
 
 
 <% end %>
@@ -139,9 +130,9 @@
 <script type="text/javascript">
 
     $(function () {
-        $('.checking_checkbox').live('click', function () {
+        $('.checking_checkbox').on('click', function () {
             if ($(this).attr("data-icon")=="checkbox-off") {
-                var adding = ($(this).parent().parent().parent().parent().attr('id'));
+                var adding = $( this ).parents( "li").attr("id");
                 var b = ($(this).parent().parent().find('#delegates_name').text());
                 $('#search_delegates').text().replace(/Select Invitees/, "");
                 $('#search_delegates').html($('#search_delegates').text().replace(/Select Recepients/, "") + b + ", ");
@@ -149,7 +140,7 @@
             }
 
             else {
-                var deleting = ($(this).parent().parent().parent().parent().attr('id'));
+                var deleting = $( this ).parents( "li").attr("id");
                 var string = $(this).parent().parent().find('#delegates_name').text();
                 var new_string = $('#search_delegates').text().replace(string + ",", '');
                 $('#search_delegates').text(new_string);
@@ -163,7 +154,8 @@
 
 
 
-        $('#form_btn_id').click(function(){
+        $('#form_btn_id').on('click',function(){
+
              if ($('#message_body').val()==""){
             <%= add_gritter("Please fill Message", :title => "Error!",:image => :warning,:time => 2000  ) %>
             }
