@@ -63,10 +63,10 @@
             $("select#genres_select").prop('selectedIndex', 1);
             $("select#artists_select").prop('selectedIndex', 1);
             $("select#songs_select").prop('selectedIndex', 1);
-            feedback_default();
+//            feedback_default();
 
 
-            $(document).ready(function () {
+//            $(document).ready(function () {
                 $('#artists_select').prop("disabled", true);
                 $('#songs_select').prop("disabled", true);
                 $('#categoriesContent').prop("disabled", true);
@@ -91,6 +91,7 @@
                 });
 
                 $('#artists_select').change(function () {
+                    console.log($('#artists_select').val());
                     var data = {event_id:[]}
                     data["event_id"].push($('#artists_select').val());
                     $.getJSON("desktop_view/update_event/"+ data["event_id"], function(data) {
@@ -129,36 +130,32 @@
                             });
 
 
-                            $('#select_menu').change(function(){
-                                var data = {user_id:[], track_id:[], rate:[]}
-                                data["user_id"].push('<%= @user.id %>');
-                                data["track_id"].push(a);
-                                data["rate"].push($(this).val());
 
-                                $.ajax({
-                                    url:"<%= feed_me_path %>",
-                                    type:"post",
-                                    data:JSON.stringify(data),
-                                    contentType:"application/json",
-                                    success:function (data) {
-                                        <%= add_gritter("Thank You for Valuable Feedback", :title => "Success",:image => :success,:time => 1000) %>
-                                        setTimeout(function(){
-                                            location.reload();
-                                            $("select").val("0");
-                                        },1500)
-                                    }
-                                });
-
-                            });
                         }
                     });
+//                    $('#select_menu').change(function(){
+//                        var data = {user_id:[], track_id:[], rate:[]}
+//                        data["user_id"].push('<%= @user.id %>');
+//                        data["track_id"].push(a);
+//                        data["rate"].push($(this).val());
+//
+//                        $.ajax({
+//                            url:"<%= feed_me_path %>",
+//                            type:"post",
+//                            data:JSON.stringify(data),
+//                            contentType:"application/json",
+//                            success:function (data) {
+                                <!--<%= add_gritter("Thank You for Valuable Feedback", :title => "Success",:image => :success,:time => 1000) %>-->
+//                                setTimeout(function(){
+//                                    location.reload();
+//                                    $("select").val("0");
+//                                },1500)
+//                            }
+//                        });
+//
+//                    });
                 });
-            });
-        });
-
-
-        function feedback_default(){
-
+//            });   \
             $('#select_menu').change(function(){
                 var data = {user_id:[], track_id:[], rate:[]}
                 data["user_id"].push('<%= @user.id %>');
@@ -180,7 +177,13 @@
                 });
 
             });
-        }
+        });
+
+
+//        function feedback_default(){
+
+
+//        }
 
     </script>
 
