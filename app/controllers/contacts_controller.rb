@@ -14,7 +14,7 @@ def new
   @users<<@followed
   @users<<(User.all - @followed)
   @user_list=@users.flatten.map { |u| [u.name.titlecase, u.id] }
-  @use=@users.flatten.select{|u| (u.email=="support@corcon.org")}.map{|u| u.name }
+  @use=@users.flatten.select{|u| (u.email=="bhatia.abhay@gmail.com")}.map{|u| u.name }
 
 end
 
@@ -24,7 +24,7 @@ end
   def create
     @message = Message.new(params[:message])
     @message.save
-    @receipient=Receipient.create!(:user_id => 995, :message_id => @message.id)
+    @receipient=Receipient.create!(:user_id => 3, :message_id => @message.id)
       @receipient.status=nil
       @receipient.save
 
