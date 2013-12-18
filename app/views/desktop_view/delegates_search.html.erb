@@ -57,7 +57,6 @@
                         <tr class="gradeA odd">
                           <th>Delegate</th>
                           <th>Company</th>
-                          <th>Download Profile</th>
                           <th>Role</th>
                           <th class="industry">Industry</th>
                           <th class="industry">Interest</th>
@@ -74,14 +73,6 @@
                               <td><a class="delegates_profile" href="<%= delegate_profile_index_path(user) %>" data-ajax=false data-theme='a'><%= user.name.titlecase %></a></td>
 
                               <td><%= user.company %></td>
-
-                              <td style="border-left: 1px solid #DDDDDD">
-                                <% if user.avatar.url!='/avatars/original/missing.png' %>
-                                    <a target="_blank" style="background: none;" href="<%= user.avatar.url %>" data-prefetch data-theme='b' data-iconpos="notext" data-ajax=false><img src="/assets/procdownload.png">&nbsp;Click to download profile</a>
-                                <% else %>
-                                    <h6 style="font-weight: normal;">Profile Not Available</h6>
-                                <% end %>
-                              </td>
 
                               <td>
                                 <% unless user.role.nil? %>
