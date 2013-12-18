@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
   def index
 
-    @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message }
-    @read = Receipient.find_all_by_user_id_and_status(current_user.id, true).map { |r| r.message }
+    @unread = Receipient.find_all_by_user_id_and_status(current_user.id, nil).map { |r| r.message }.reverse
+    @read = Receipient.find_all_by_user_id_and_status(current_user.id, true).map { |r| r.message }.reverse
     @sent = Message.find_all_by_user_id(current_user.id).last(10).reverse
 
   end
