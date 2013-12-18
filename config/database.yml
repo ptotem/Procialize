@@ -57,7 +57,7 @@ production:
   database: isb_conf_production_db
   pool: 5
   username: root
- password: 'p20o20e13'
+  password: 'p20o20e13'
 
 
 #  socket: **/opt/local/var/run/mysql5/mysqld.sock**

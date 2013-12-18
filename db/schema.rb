@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130920135528) do
+ActiveRecord::Schema.define(:version => 20131218102417) do
 
   create_table "assets_downloads", :force => true do |t|
     t.string   "downloadable_file_name"
@@ -399,6 +399,22 @@ ActiveRecord::Schema.define(:version => 20130920135528) do
 
   create_table "news_feeds", :force => true do |t|
     t.text     "feed_news"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "noir_quizzes", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "noir_answer"
+    t.string   "noir_question"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "noirs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "noir_que"
+    t.string   "noir_ans"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

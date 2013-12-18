@@ -4,6 +4,8 @@ ProcializeApp::Application.routes.draw do
 
 
 
+  resources :noir_quizzes
+
   get "exhibitor/index"
 
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}

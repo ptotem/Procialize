@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @noir_quiz.user_id %>
+</p>
+
+<p>
+  <b>Noir answer:</b>
+  <%= @noir_quiz.noir_answer %>
+</p>
+
+<p>
+  <b>Noir question:</b>
+  <%= @noir_quiz.noir_question %>
+</p>
+
+
+<%= link_to 'Edit', edit_noir_quiz_path(@noir_quiz) %> |
+<%= link_to 'Back', noir_quizzes_path %>

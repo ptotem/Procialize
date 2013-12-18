@@ -1,0 +1,27 @@
+<h1>Listing noir_quizzes</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Noir answer</th>
+    <th>Noir question</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @noir_quizzes.each do |noir_quiz| %>
+  <tr>
+    <td><%= noir_quiz.user_id %></td>
+    <td><%= noir_quiz.noir_answer %></td>
+    <td><%= noir_quiz.noir_question %></td>
+    <td><%= link_to 'Show', noir_quiz %></td>
+    <td><%= link_to 'Edit', edit_noir_quiz_path(noir_quiz) %></td>
+    <td><%= link_to 'Destroy', noir_quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Noir quiz', new_noir_quiz_path %>
