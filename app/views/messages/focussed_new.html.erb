@@ -50,9 +50,9 @@
     <script type="text/javascript">
         $(document).on("pageinit", function(){
             $( ".checking_checkbox" ).on( "change", function() {
-                if ( $( this ).attr( "checked" ) === "checked" ) {
+                if ( $(this).is(":checked")) {
 
-                    var adding = ($(this).parent().parent().parent().parent().parent().attr('id'));
+                    var adding = $( this ).parents( "li").attr("id");
                     var b = ($(this).parent().parent().find('#delegates_name').text());
                     $('#search_delegates').text().replace(/Select Recepients/, "");
                     $('#search_delegates').html($('#search_delegates').text().replace(/Select Recepients/, "") + b + ", ");
@@ -60,7 +60,7 @@
                 }
                 else {
 
-                    var deleting = ($(this).parent().parent().parent().parent().parent().attr('id'))
+                    var deleting = $( this ).parents( "li").attr("id");
                     var string = $(this).parent().parent().find('#delegates_name').text();
                     var new_string = $('#search_delegates').text().replace(string + ",", '');
                     $('#search_delegates').text(new_string);
