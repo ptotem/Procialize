@@ -1,4 +1,4 @@
-<%= content_for :jj do %>
+ <%= content_for :jj do %>
     <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript"></script>
     <%= include_gon %>
 <% end %>
@@ -85,6 +85,7 @@
 
                   <script type="text/javascript">
                       $('#submit_form').click(function(){
+                          console.log("repl");
                           if (($(":checkbox").filter(":checked").size()==0))
                           {
                           <%= add_gritter("Please Select Recepients", :title => "Error!",:image => :warning,:time => 2000  ) %>
@@ -152,6 +153,7 @@
     <script type="text/javascript">
         $(function () {
             $('#add_max').click(function(){
+                console.log("repl")
                 $("#message_form").submit(function() {
                     if (($(":checkbox").filter(":checked").size()==0) && ($('.send_users').size()==0))
                     {
@@ -160,9 +162,9 @@
                     }
                     else {
                     <%= add_gritter("Message Sent Successfully", :title => "Success",:time => 1000) %>
-                        setTimeout(function(){
-                            $('#message_form').submit();
-                        },1500);
+//                        setTimeout(function(){
+//                            $('#message_form').submit();
+//                        },1500);
 
                     }
 
