@@ -117,10 +117,10 @@
               <%= add_gritter("Message was successfully sent", :title => "Success",:image => :success,:time => 1000) %>
                   setTimeout(function(){
                       $('#message_form').submit();
+                      $('#form_btn_id').hide();
                   },1500);
 
               }
-              $('#form_btn_id').hide();
           });
 
 
