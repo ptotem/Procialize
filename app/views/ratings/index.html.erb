@@ -2,12 +2,9 @@
     Rate the Event
 <% end %>
 
-<%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %>
-<br/>
-<%= collection_select(nil, :event_id, @events, :id, :name, {:prompt => "Select the Track Day"}, {:id => 'artists_select'}) %>
-<br>
+<%= collection_select(nil, :event_day_id, @event_days, :id, :name, {:prompt => "Select the Event Day"}, {:id => 'genres_select'}) %><br/>
+<%= collection_select(nil, :event_id, @events, :id, :name, {:prompt => "Select the Track Day"}, {:id => 'artists_select'}) %><br>
 <%= collection_select(nil, :track_id, @tracks, :id, :name, {:prompt => "Select the Event"}, {:id => 'songs_select'}) %>
-
 <%= include_gon %>
 
 
