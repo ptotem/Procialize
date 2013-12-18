@@ -246,9 +246,10 @@ LinkedIn.configure do |config|
 end
 
 
-Twitter::REST::Client.new do |config|
-  config.consumer_key        = "k338JAEntAeF33lFkOIQ"
-  config.consumer_secret     = "U3hszX1mxfhjPFSoZ2nixF8nJFCFCPqFcpSS10Ec"
-  config.access_token        = "163893865-ONQsIvGHLQlpAOQRIYzFy4Lnix5oY3NZwGEso5Xw"
-  config.access_token_secret = "tXZwUmcysNh19KwqkdgSZ9WojtzNEUoDZzadq2YCPH4"
+
+Twitter.configure do |config|
+  config.consumer_key = 'k338JAEntAeF33lFkOIQ'
+  config.consumer_secret = 'U3hszX1mxfhjPFSoZ2nixF8nJFCFCPqFcpSS10Ec'
+  config.oauth_token = '163893865-ONQsIvGHLQlpAOQRIYzFy4Lnix5oY3NZwGEso5Xw'
+  config.oauth_token_secret = 'tXZwUmcysNh19KwqkdgSZ9WojtzNEUoDZzadq2YCPH4'
 end
