@@ -116,7 +116,7 @@
 
 
     $(function () {
-        $('#form_btn_id').click(function(){
+        $('#form_btn_id').on('click', function(){
             if (($(":checkbox").filter(":checked").size()==0))
             {
             <%= add_gritter("Please select Delegates", :title => "Error!",:image => :warning,:time => 2000  ) %>
@@ -130,6 +130,7 @@
 
                 $('#message_form').submit();
             }
+            $('#form_btn_id').hide();
         });
 
 
