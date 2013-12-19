@@ -1,33 +1,18 @@
 <%= form_for(@noir_quiz) do |f| %>
-  <% if @noir_quiz.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@noir_quiz.errors.count, "error") %> prohibited this noir_quiz from being saved:</h2>
+    <% if @noir_quiz.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@noir_quiz.errors.count, "error") %> prohibited this noir_quiz from being saved:</h2>
 
-      <ul>
-      <% @noir_quiz.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% @noir_quiz.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-    <div class="field">
-     <div id="noir_image">
-       <%#= image_tag "AdiGodrej.jpg" %>
-     </div>
-    </div>
 
-  <div class="field">
-    <%= f.hidden_field :user_id,:value => current_user.id.to_i  %>
-  </div>
-  <div class="field">
-    <%= f.label :noir_answer %><br />
-    <%= f.text_field :noir_answer %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :noir_question,:value => "1"  %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+
 <% end %>

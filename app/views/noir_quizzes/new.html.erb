@@ -1,5 +1,37 @@
-<h1>New noir_quiz</h1>
+<div class="black-box tex" style="margin: 10% auto;">
+  <div class="row-fluid">
+    <div id="noir_text">
+      <img  src="/assets/AdiGodrej.jpg" height="100" width="100" alt="">
+    </div>
+  </div>
 
-<%= render 'form' %>
+  <div class="row-fluid">
+    <div id="noir_button">
+      <a class="button gray noir_answer" style="float: right;" href="#">Create New</a>
+      <a class="button gray noir_answer" style="float: right;" href="#">Create</a>
+      <a class="button gray noir_answer" style="float: right;" href="#">New</a>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Back', noir_quizzes_path %>
+<script type="text/javascript">
+    $(function(){
+        $('.noir_answer').on('click',function(){
+            alert("hi");
+            var data = { user_id:[], noir_answer:[]}
+            data["user_id"].push('<%= current_user.id%>');
+            data["noir_answer"].push($(this).text());
+            $.ajax({
+                url:"<%= noir_case_path %>",
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function (data) {
+
+                }
+            });
+        })
+    })
+</script>
+
+

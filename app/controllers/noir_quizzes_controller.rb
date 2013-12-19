@@ -5,10 +5,11 @@ class NoirQuizzesController < ApplicationController
   # GET /noir_quizzes.json
   def index
     @noir_quizzes = NoirQuiz.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @noir_quizzes }
-    end
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.json { render json: @noir_quizzes }
+    #end
+    render :layout => "application"
   end
 
   # GET /noir_quizzes/1
@@ -75,10 +76,17 @@ class NoirQuizzesController < ApplicationController
   def destroy
     @noir_quiz = NoirQuiz.find(params[:id])
     @noir_quiz.destroy
-
     respond_to do |format|
       format.html { redirect_to noir_quizzes_url }
       format.json { head :no_content }
     end
   end
+
+
+  def noir_case
+    @noir_quiz=NoirQuiz.create(:user_id => params[:user_id][0], :noir_answer => params[:noir_answer][0])
+    render :text => @noir_quiz.save
+    return
+  end
+
 end

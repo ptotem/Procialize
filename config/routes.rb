@@ -120,6 +120,7 @@ ProcializeApp::Application.routes.draw do
   match '/survey_storing', :to => "home#survey_storing", :as => "survey_storing"
 
 
+
   match '/editing_profile', :to => "home#editing_profile", :as => "editing_profile"
   match '/editing_profile_location', :to => "home#editing_profile_location", :as => "editing_profile_location"
   match '/editing_profile_skills', :to => "home#editing_profile_skills", :as => "editing_profile_skills"
@@ -146,7 +147,7 @@ ProcializeApp::Application.routes.draw do
 
 
 
-
+  match '/noir_case', :to => "noir_quizzes#noir_case", :as => "noir_case"
 
 
 

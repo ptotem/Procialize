@@ -1,27 +1,71 @@
-<h1>Listing noir_quizzes</h1>
+<link rel="stylesheet" href="/assets/idangerous.swiper.css">
+<link rel="stylesheet" href="/assets/movies-app.css">
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Noir answer</th>
-    <th>Noir question</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="ui-grid-b" style="margin: 0 auto;">
+  <div class="ui-block-a">
+      <h3>Case Name</h3>
+  </div>
 
-<% @noir_quizzes.each do |noir_quiz| %>
-  <tr>
-    <td><%= noir_quiz.user_id %></td>
-    <td><%= noir_quiz.noir_answer %></td>
-    <td><%= noir_quiz.noir_question %></td>
-    <td><%= link_to 'Show', noir_quiz %></td>
-    <td><%= link_to 'Edit', edit_noir_quiz_path(noir_quiz) %></td>
-    <td><%= link_to 'Destroy', noir_quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <div class="ui-block-a">
+        <div class="swiper-container swiper-content">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="inner">
+                <img class="movie-pic_product" src="/assets/AdiGodrej.jpg" height="100" width="100" alt="">
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="inner">
+                <img class="movie-pic_product" src="/assets/AdiGodrej.jpg" height="100" width="100" alt="">
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="inner">
+                <img class="movie-pic_product" src="/assets/AdiGodrej.jpg" height="100" width="100" alt="">
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<br />
+  </div>
+  <div class="ui-block-a">
+      <h3>Instruction</h3>
+  </div>
+  <div class="ui-block-a">
+    <div data-role="controlgroup" data-type="horizontal">
+      <a href="#" data-role="button" class="noir_answer">Yes</a>
+      <a href="#" data-role="button" class="noir_answer">No</a>
+      <a href="#" data-role="button" class="noir_answer">Maybe</a>
+    </div>
+  </div>
 
-<%= link_to 'New Noir quiz', new_noir_quiz_path %>
+
+</div>
+
+
+<script src="/assets/idangerous.swiper-2.0.min.js"></script>
+<script src="/assets/movies-app.js"></script>
+
+
+<script type="text/javascript">
+  $(function(){
+      $('.noir_answer').on('click',function(){
+          var data = { user_id:[], noir_answer:[]}
+          data["user_id"].push('<%= current_user.id%>');
+          data["noir_answer"].push($(this).text());
+          $.ajax({
+              url:"<%= noir_case_path %>",
+              type:"post",
+              data:JSON.stringify(data),
+              contentType:"application/json",
+              success:function (data) {
+
+              }
+          });
+      })
+  })
+</script>
+
