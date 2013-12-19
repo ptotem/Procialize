@@ -54,7 +54,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: isb_conf_production_db
+  database: isb_conf_development_db
   pool: 5
   username: root
   password: 'p20o20e13'
