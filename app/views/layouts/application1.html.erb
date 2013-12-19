@@ -11,8 +11,9 @@
   <%= javascript_tag "var AUTH_TOKEN = '#{form_authenticity_token}';" if protect_against_forgery? %>
 
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <script src="/assets/responsiveslides.js" type="text/javascript"></script>
+
   <%= javascript_include_tag "application" %>
+  <script src="/assets/responsiveslides.js" type="text/javascript"></script>
   <%#= stylesheet_link_tag "application", :media => "all" %>
   <link href="/assets/all_application.css" media="screen" rel="stylesheet" type="text/css"/>
   <link href="/assets/jquery-ui-1.10.3.custom.min.css" media="screen" rel="stylesheet" type="text/css"/>
@@ -322,7 +323,7 @@
 
 
 
-<%= stylesheet_link_tag "responsiveslides" %>
+<link href="/assets/responsiveslides.css" media="screen" rel="stylesheet" type="text/css"/>
 
 <% if params[:desk] %>
     <%= add_gritter("Welcome", current_user.name, "You are successfully Signed in", :title => "Success", :image => :success, :time => 1000) %>
