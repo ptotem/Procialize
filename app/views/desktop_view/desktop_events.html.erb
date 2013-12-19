@@ -1,4 +1,4 @@
-<%= content_for :jj do %>
+<%#= content_for :jj do %>
 
     <script type="text/javascript">
 
@@ -68,12 +68,12 @@
         }
     </script>
 
-<% end %>
+<%# end %>
 
 
-<%= content_for :jj do %>
-    <script src="/assets/testing/dashboard/javascripts/application.js" type="text/javascript" xmlns="http://www.w3.org/1999/html"></script>
-<% end %>
+<%#= content_for :jj do %>
+    <!--<script src="/assets/testing/dashboard/javascripts/application_all.js" type="text/javascript" xmlns="http://www.w3.org/1999/html"></script>-->
+<%# end %>
 
 <div class="container-fluid">
     <div class="row-fluid">
@@ -95,7 +95,7 @@
                               $.gritter.add({
                                   title: 'Hi <% unless current_user.name.nil? %>  <%= current_user.name.titlecase %> <% end %>',
                                   text: 'you have  signed in successfully',
-                                  image: '/assets/testing/dashboard/stylesheets/success.png',
+                                  image: '/assets/success.png',
                                   sticky: false,
                                   before_open: function(){
                                       if($('.gritter-item-wrapper').length == 3)

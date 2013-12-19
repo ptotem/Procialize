@@ -1,69 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <%= content_for :page_title do %>
-      Procialize
-  <% end %>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= stylesheet_link_tag "responsiveslides" %>
-  <%= javascript_include_tag "responsiveslides.min" %>
 
 
-
-  <style type="text/css">
-      .img_style {
-          max-height: 200px;
-
-      }
-
-  </style>
-
-  <style type="text/css">
-      body {
-          background-size: 100% 100%;
-      }
-
-      .ui-page {
-          background: transparent;
-      }
-
-      .ui-content {
-          background: transparent;
-      }
-
-      /*table, td, th*/
-
-        /*td {*/
-          /*text-align: left;*/
-      /*}*/
-
-  </style>
-
-
-
-
-  <script>
-
-      $(function () {
-          $("#slider1").responsiveSlides({
-              auto:true, // Boolean: Animate automatically, true or false
-              speed:1500, // Integer: Speed of the transition, in milliseconds
-              timeout:7000, // Integer: Time between slide transitions, in milliseconds
-              random:true, // Boolean: Randomize the order of the slides, true or false
-              pause:false, // Boolean: Pause on hover, true or false
-              pauseControls:true, // Boolean: Pause when hovering controls, true or false
-              maxwidth:"", // Integer: Max-width of the slideshow, in pixels
-              navContainer:"", // Selector: Where controls should be appended to, default is after the 'ul'
-              manualControls:"", // Selector: Declare custom pager navigation
-              namespace:"rslides" // String: Change the default namespace used
-          });
-
-
-      });
-  </script>
-</head>
-<body>
 
 
 <div id="wrapper" style="height: 200px;">
@@ -172,5 +108,3 @@
 </div>
 
 
-</body>
-</html>
