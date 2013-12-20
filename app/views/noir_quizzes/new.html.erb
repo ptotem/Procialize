@@ -1,23 +1,33 @@
-<div class="black-box tex" style="margin: 10% auto;">
-  <div class="row-fluid">
-    <div id="noir_text">
-      <img  src="/assets/AdiGodrej.jpg" height="100" width="100" alt="">
-    </div>
-  </div>
 
-  <div class="row-fluid">
-    <div id="noir_button">
-      <a class="button gray noir_answer" style="float: right;" href="#">Create New</a>
-      <a class="button gray noir_answer" style="float: right;" href="#">Create</a>
-      <a class="button gray noir_answer" style="float: right;" href="#">New</a>
-    </div>
-  </div>
+<div class="black-box tex" style="margin: 3%;max-width: 100%;max-height: 100%;">
+  <ul class="recent-comments">
+    <li class="separator">
+      <ul class="rslides" id="slider1">
+        <img  src="/assets/case_desk.jpg">
+      </ul>
+    </li>
+
+    <li class="separator" id="noir_buttons" style="text-align: center;font-size: 24px">
+      <a class="button  black noir_answer"  href="#" >Gabriel The Altar Boy</a>
+      <a class="button  black noir_answer"  href="#">Mr. John White</a>
+      <a class="button  black noir_answer"  href="#">Mr. Ed 'slash' Gomes</a>
+    </li>
+    <li class="separator" style="text-align: center;">
+      <a href="https://www.facebook.com/pages/Timeline-Noir/1428187167410542" target="_blank" >More cases</a>
+    </li>
+  </ul>
 </div>
+
+
+
+
+
 
 <script type="text/javascript">
     $(function(){
+        $('#noir_buttons').show();
         $('.noir_answer').on('click',function(){
-            alert("hi");
+            var texting= $(this).text();
             var data = { user_id:[], noir_answer:[]}
             data["user_id"].push('<%= current_user.id%>');
             data["noir_answer"].push($(this).text());
@@ -27,7 +37,19 @@
                 data:JSON.stringify(data),
                 contentType:"application/json",
                 success:function (data) {
-
+                    $.gritter.add({
+                        title:texting,
+                        text: 'WODUNIT?',
+                        image: '/assets/testing/dashboard/stylesheets/success.png',
+                        sticky: false,
+                        before_open: function(){
+                            if($('.gritter-item-wrapper').length == 3)
+                            {
+                                return false;
+                            }
+                        }
+                    });
+                    $('#noir_buttons').hide();
                 }
             });
         })

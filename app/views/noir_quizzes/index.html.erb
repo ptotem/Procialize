@@ -1,71 +1,119 @@
 <link rel="stylesheet" href="/assets/idangerous.swiper.css">
 <link rel="stylesheet" href="/assets/movies-app.css">
 
-<div class="ui-grid-b" style="margin: 0 auto;">
-  <div class="ui-block-a">
-      <h3>Case Name</h3>
-  </div>
 
-  <div class="ui-block-a">
-        <div class="swiper-container swiper-content">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="inner">
-                <img class="movie-pic_product" src="/assets/AdiGodrej.jpg" height="100" width="100" alt="">
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="inner">
-                <img class="movie-pic_product" src="/assets/AdiGodrej.jpg" height="100" width="100" alt="">
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="inner">
-                <img class="movie-pic_product" src="/assets/AdiGodrej.jpg" height="100" width="100" alt="">
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+<div style="overflow: hidden;">
 
-  </div>
-  <div class="ui-block-a">
-      <h3>Instruction</h3>
-  </div>
-  <div class="ui-block-a">
-    <div data-role="controlgroup" data-type="horizontal">
-      <a href="#" data-role="button" class="noir_answer">Yes</a>
-      <a href="#" data-role="button" class="noir_answer">No</a>
-      <a href="#" data-role="button" class="noir_answer">Maybe</a>
-    </div>
-  </div>
-
-
+<div>
+  <img src="/assets/mobcasename.jpg" style="margin-top: 20px;" >
 </div>
 
+<div>
+  <div class="swiper-container swiper-content">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="inner">
+          <img class="movie-pic_product" src="/assets/mobcase2.jpg"  width="100" alt="">
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="inner">
+          <img class="movie-pic_product" src="/assets/mobcase1.jpg"  width="100" alt="">
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="inner">
+          <img class="movie-pic_product" src="/assets/mobcase3.jpg"  width="100" alt="">
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="inner">
+          <img class="movie-pic_product" src="/assets/mobcase4.jpg"  width="100" alt="">
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="inner">
+          <img class="movie-pic_product" src="/assets/mobcase5.jpg"  width="100" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div >
+<div>
+  <div class="fbinfobox" style="margin-top: 395px; background-color: #000000; color: #CDCDCD;">
+    <p>
+      <strong>Gabriel The Altar Boy:</strong><br> I saw a man in a black leather coat leaving the confession booth in a hurry.
+      He appeared very nervous. I opened the booth and found Father Aaron dead.
+      I called the police immediately.
+    </p>
+    <p>
+      <strong>Mr. John White:</strong><br> I finished my confession as usual and was leaving when I saw a man enter the church.
+      He looked very tough and wore a black leather coat
+    </p>
+    <p>
+      <strong>Mr. Ed 'slash' Gomes:</strong><br> I entered the booth and began my confession. But when Father Aaron didn't respond
+      like he usually does I was alarmed. He wasn't even moving. The situation was the
+      same even when I called out his name loudly. I felt something was wrong, so I panicked
+      and left.
+    </p>
+  </div>
+</div>
+
+<div id="noir_buttons">
+  <h3 style="font-size: 28px;text-align: center;">WHODUNIT?</h3>
+  <a href="#" data-role="button" class="noir_answer">Gabriel The Altar Boy</a>
+  <a href="#" data-role="button" class="noir_answer">Mr. John White</a>
+  <a href="#" data-role="button" class="noir_answer">Mr. Ed 'slash' Gomes</a>
+  <hr>
+</div>
+
+  <a href="https://www.facebook.com/pages/Timeline-Noir/1428187167410542" target="_blank" data-role="button" data-mini="true">More Cases</a>
+</div>
+</div>
 <script src="/assets/idangerous.swiper-2.0.min.js"></script>
 <script src="/assets/movies-app.js"></script>
 
 
 <script type="text/javascript">
-  $(function(){
-      $('.noir_answer').on('click',function(){
-          var data = { user_id:[], noir_answer:[]}
-          data["user_id"].push('<%= current_user.id%>');
-          data["noir_answer"].push($(this).text());
-          $.ajax({
-              url:"<%= noir_case_path %>",
-              type:"post",
-              data:JSON.stringify(data),
-              contentType:"application/json",
-              success:function (data) {
+    $(function () {
+        $('#noir_buttons').show();
+        $('.content_container').css('height', '1200px');
+        $('.content_container').css('overflow-y', 'hidden');
+        $('.swiper-container').css('height', '440px');
+        $('.swiper-container').css('top', '150px');
+        $('.swiper-content ').css('background', 'none');
 
-              }
-          });
-      })
-  })
+
+        $('.noir_answer').on('click', function () {
+            var texting= $(this).text();
+            var data = { user_id:[], noir_answer:[]};
+            data["user_id"].push('<%= current_user.id%>');
+            data["noir_answer"].push($(this).text());
+            $.ajax({
+                url:"<%= noir_case_path %>",
+                type:"post",
+                data:JSON.stringify(data),
+                contentType:"application/json",
+                success:function (data) {
+                    $.gritter.add({
+                        title:texting,
+                        text: 'WODUNIT?',
+                        image: '/assets/testing/dashboard/stylesheets/success.png',
+                        sticky: false,
+                        before_open: function(){
+                            if($('.gritter-item-wrapper').length == 3)
+                            {
+                                return false;
+                            }
+                        }
+                    });
+                        $('#noir_buttons').hide();
+
+                }
+            });
+        })
+    })
 </script>
 

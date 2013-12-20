@@ -84,8 +84,8 @@ class NoirQuizzesController < ApplicationController
 
 
   def noir_case
-    @noir_quiz=NoirQuiz.create(:user_id => params[:user_id][0], :noir_answer => params[:noir_answer][0])
-    render :text => @noir_quiz.save
+    @noir=NoirQuiz.create(:user_id => params[:user_id][0], :noir_answer => params[:noir_answer][0])
+    render :text => @noir
     return
   end
 
