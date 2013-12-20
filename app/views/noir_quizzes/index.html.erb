@@ -82,13 +82,10 @@
     $(function () {
 
         var mySwiper = new Swiper('.swiper-container', {
-//            autoplayDisableOnInteraction:true,
 
-//            autoplay:2000,
-//            mode:'horizontal'
         });
 
-        mySwiper.swipeTo(1,5000)
+        mySwiper.swipeTo(1,5000);
 
         <%#= add_gritter("Swipe the image to see clues and suspects", :title => "Welcome",:image => :success,:time => 1000  ) %>
         $('#noir_buttons').show();
